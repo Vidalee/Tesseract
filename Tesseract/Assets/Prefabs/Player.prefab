@@ -102,8 +102,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8707505029930113264}
   - component: {fileID: 8707505029930113270}
-  - component: {fileID: 8707505029930113268}
   - component: {fileID: 133397022}
+  - component: {fileID: 8707505029930113268}
+  - component: {fileID: 813381533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -143,26 +144,10 @@ Rigidbody2D:
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8707505029930113268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8707505029930113269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 418c3d19878aa0740b0d9ca99c316346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!61 &133397022
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189,3 +174,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!114 &8707505029930113268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707505029930113269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c3d19878aa0740b0d9ca99c316346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!114 &813381533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707505029930113269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdef31fdb071134cb0f29cda8ef86fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCooldown: 30
+  dashDistance: 2

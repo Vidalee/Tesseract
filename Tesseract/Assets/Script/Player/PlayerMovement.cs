@@ -25,14 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
-
-        RaycastHit hit;
-        
-        
         Vector2 displacement = new Vector2(xDir,yDir) * Time.deltaTime * Speed;
-
-        // if (Physics2D.Raycast(transform.position, displacement, out hit, blockingLayer)) return;
-            
+        
         transform.Translate(displacement);
     }
 }
