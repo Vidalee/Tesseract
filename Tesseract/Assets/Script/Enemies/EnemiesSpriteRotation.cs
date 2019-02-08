@@ -13,6 +13,11 @@ public class EnemiesSpriteRotation : MonoBehaviour
         
     void Update()
     {        
+        SpriteRotation();
+    }
+
+    private  void SpriteRotation()
+    {
         Vector2 direction = player.transform.position - transform.position;
         transform.up = direction;
     }
