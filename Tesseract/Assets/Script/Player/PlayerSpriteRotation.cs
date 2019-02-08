@@ -6,10 +6,10 @@ public class PlayerSpriteRotation : MonoBehaviour
 {
     void Update()
     {
-        SpriteRotaton();
+        SpriteRotation();
     }
 
-    private void SpriteRotaton()
+    private void SpriteRotation()
     {
         Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         transform.up = direction;
