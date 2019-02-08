@@ -24,6 +24,11 @@ public class EnemiesMovement : MonoBehaviour
  
     private void FixedUpdate()
     {
+        Displacement();
+    }
+
+    private void Displacement()
+    {
         Vector2 displacement = (player.transform.position - transform.position).normalized * Time.deltaTime * Speed;
         
         transform.Translate(displacement);

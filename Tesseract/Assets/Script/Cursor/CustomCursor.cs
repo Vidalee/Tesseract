@@ -14,6 +14,11 @@ public class CustomCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Position();
+    }
+
+    private void Position()
+    {
         Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPos;
     }

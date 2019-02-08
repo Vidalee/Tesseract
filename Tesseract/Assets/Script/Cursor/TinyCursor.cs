@@ -16,6 +16,11 @@ public class TinyCursor : MonoBehaviour
 
     void Update()
     {
+        Position();
+    }
+
+    private void Position()
+    {
         Vector2 playerPos = player.transform.position;
         Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 tinyCursorPos = playerPos - cursorPos;
