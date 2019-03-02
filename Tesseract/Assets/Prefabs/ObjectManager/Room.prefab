@@ -43,15 +43,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075109d122250c540aa8d10c011dcad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 15
-  maxWidth: 15
-  minHeight: 10
-  minWidth: 10
   floorObj: {fileID: 3008520919332570035, guid: b97cc623d0c726841b1466a32223791e,
     type: 3}
-  wallObj: {fileID: 5450620303306139752, guid: 6a7509b4f7ba6664a9eb6a11dc77c794, type: 3}
-  wallLeft: {fileID: 21300000, guid: 43e4b82e652958645ab1a6f273d8633f, type: 3}
-  wallRight: {fileID: 21300000, guid: 4200f8b395fdd394eb4bd6b5f918412c, type: 3}
-  wallTop: {fileID: 21300000, guid: efa39cb9e45ae8b488e4f9e7f29fc2aa, type: 3}
-  wallBottom: {fileID: 21300000, guid: 954af108c998e244fbc136de7dd4f091, type: 3}
-  wallSprite: {fileID: 21300000, guid: 8646dac4a0511084ba45dc5ab6b41f45, type: 3}
+  wallLeft: {fileID: 4688763967605712774, guid: c8098bed2bf41a44c8c1b17c36050448,
+    type: 3}
+  wallRight: {fileID: 7399384288493732843, guid: 317c624df94b78d48b545be54b0c5043,
+    type: 3}
+  wallTop: {fileID: 5179884048809313104, guid: 4f107e4e65a96be42bf5281736b919eb, type: 3}
+  wallBottom: {fileID: 8771472213140521010, guid: 8c390be812916774bbe8816e602ad27e,
+    type: 3}
+  wallTopLeft: {fileID: 5485261070887076736, guid: 532dd5d342d3e9e47b2f8978c9336dad,
+    type: 3}
+  wallTopRight: {fileID: 6194540937001632240, guid: 880495bcbcff33b48b9bac35b5661692,
+    type: 3}
+  wallBottomLeft: {fileID: 8564167073675075488, guid: 0b1bd34b9fe39e941aa969a49b7d2f9a,
+    type: 3}
+  wallBottomRight: {fileID: 4828079865991086374, guid: 34524d0dcd706064e84b22a1812c338c,
+    type: 3}
+  doorObj: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2, type: 3}

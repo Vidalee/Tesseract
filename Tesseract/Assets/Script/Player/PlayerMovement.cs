@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerDisplacement()
     {
+        //Get and set 
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
         Vector2 displacement = new Vector2(xDir,yDir) * Time.deltaTime * Speed;
