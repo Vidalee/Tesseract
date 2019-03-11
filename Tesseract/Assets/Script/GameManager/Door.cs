@@ -1,9 +1,10 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Door : MonoBehaviour
 {
     private int cardinal;
+    public Transform Close;
+    public Transform Open;
     private bool linked;
     private bool open;
 
@@ -16,5 +17,5 @@ public class Door : MonoBehaviour
     {
         this.cardinal = cardinal;
         open = false;
-    }   
+    }
 }

@@ -1,26 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemiesMovement : MonoBehaviour
 {
-    private Rigidbody2D rb2D;
-    private BoxCollider2D bc2D;
-    private GameObject player;
-
-    
     public int Speed;
-    public LayerMask blockingLayer;
-
-
+    public int distance;
+    
+    private GameObject player;
 
     private void Start()
     {
         player = GameObject.Find("Player");
-        rb2D = GetComponent<Rigidbody2D>();
-        bc2D = GetComponent<BoxCollider2D>();
     }
-
  
     private void FixedUpdate()
     {
@@ -29,6 +19,12 @@ public class EnemiesMovement : MonoBehaviour
 
     private void Displacement()
     {
+        if ((player.transform.position - transform.position).sqrMagnitude < distance*distance)
+        {
+            Debug.Log("Stop");
+            return;
+        }
+        
         Vector2 displacement = (player.transform.position - transform.position).normalized * Time.deltaTime * Speed;
         
         transform.Translate(displacement);

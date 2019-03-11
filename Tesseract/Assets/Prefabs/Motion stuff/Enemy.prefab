@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 513048650919667357}
   - component: {fileID: 513048650919667355}
   - component: {fileID: 513048650919667356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemies sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,10 +101,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 513048651898640367}
-  - component: {fileID: 513048651898640368}
   - component: {fileID: 513048651898640369}
   - component: {fileID: 513048651898640366}
-  m_Layer: 0
+  - component: {fileID: 3238825540670285254}
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,34 +119,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 513048651898640370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.125, y: 3.125, z: 1}
   m_Children:
   - {fileID: 513048650919667357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &513048651898640368
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513048651898640370}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &513048651898640369
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,6 +165,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  distance: 3
+--- !u!114 &3238825540670285254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513048651898640370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461e3ed228495a14da08e84700d52d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  distance: 3
+  maxCooldown: 0
