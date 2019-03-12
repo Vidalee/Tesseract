@@ -45,16 +45,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomObj: {fileID: 1612255663, guid: f3b81f0c7ff41a641ae21a72379188da, type: 3}
   roadObj: {fileID: 9016627188097474300, guid: a244ff919214e69448d64fe89ab2b804, type: 3}
-  maxHeight: 20
-  maxWidth: 20
-  minHeight: 10
-  minWidth: 10
+  maxHeight: 10
+  maxWidth: 10
+  minHeight: 5
+  minWidth: 5
   minDistance: 5
-  maxDistance: 10
+  maxDistance: 7
   minrndDistance: -2
   maxrndDistance: 2
   roomNumber: 10
-  scale: 2
+  scale: 1
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256

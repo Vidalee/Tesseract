@@ -58,7 +58,7 @@ Camera:
   far clip plane: 1000
   field of view: 15.3
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 813381533}
   - component: {fileID: 2473625691288936324}
   - component: {fileID: 3263347552135826758}
+  - component: {fileID: 2057984480}
   m_Layer: 11
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 8707505029930113269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.125, y: 3.125, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1989984550}
   m_Father: {fileID: 0}
@@ -246,8 +247,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1980361181
-  m_SortingLayer: 4
+  m_SortingLayerID: 2041833923
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d3e4a83e8d507a46a4f3d0dd510f4cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -260,3 +261,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2057984480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8707505029930113269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f189cca068be28040b26093e603fbc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shuriken1MaxCooldown: 50
+  shuriken1Speed: 10
+  shuriken1Obj: {fileID: 8248889906843698898, guid: b2367446b5b65544fb21bd54e35a8c03,
+    type: 3}
+  shuriken1Damage: 0
