@@ -12,14 +12,14 @@ public class RoomCreation : MonoBehaviour
     public Transform wallBottomRight;
     public Transform wallTopLeft;
     public Transform wallTopRight;
-    public Transform wallCornerTopLeftT;
-    public Transform wallCornerTopRightT;
+    
     public Transform wallCornerBottomLeftT;
     public Transform wallCornerBottomRightT;
     public Transform wallCornerTopLeftB;
     public Transform wallCornerTopRightB;
-    public Transform wallCornerBottomLeftB;
-    public Transform wallCornerBottomRightB;
+
+    public Transform wallCornerLeftTop;
+    public Transform wallCornerRightTop;
     
     public Transform doorTop;
     public Transform doorBottom;
@@ -74,6 +74,7 @@ public class RoomCreation : MonoBehaviour
         //Replace door in room, instantiate it
         Destroy(room[y,x].gameObject);
         Transform door = InstantiateObject(x,y,o);
+        InstantiateObject(x, y, floorObj);
         door.GetComponent<Door>().Create(cardinal);
         doorCreated.Add(door.GetComponent<Transform>());
         return door;
@@ -120,7 +121,7 @@ public class RoomCreation : MonoBehaviour
                 return InstantiateDoor(cardinal,xRandom, height - 1, doorTop);
             case 1:
                 CreateLeftRightDoor(width - 1, yRandom - 1, wallCornerTopLeftB);
-                CreateLeftRightDoor(width - 1, yRandom + 1, wallCornerBottomLeftT);
+                CreateLeftRightDoor(width - 1, yRandom + 1, wallCornerRightTop);
                 return InstantiateDoor(cardinal,width - 1, yRandom, doorRight);
             case 2:
                 CreateLeftRightDoor(xRandom - 1, 0, wallCornerTopRightB);
@@ -128,7 +129,7 @@ public class RoomCreation : MonoBehaviour
                 return InstantiateDoor(cardinal,xRandom, 0,doorBottom);
             default:
                 CreateLeftRightDoor(0, yRandom - 1, wallCornerTopRightB);
-                CreateLeftRightDoor(0, yRandom + 1, wallCornerBottomRightT);
+                CreateLeftRightDoor(0, yRandom + 1, wallCornerLeftTop);
                 return InstantiateDoor(cardinal,0, yRandom, doorleft);
         }
     }

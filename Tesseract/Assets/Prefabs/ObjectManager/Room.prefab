@@ -60,10 +60,6 @@ MonoBehaviour:
     type: 3}
   wallTopRight: {fileID: 8922055205653820551, guid: 2598481f1e4cad34192831074a0d7daa,
     type: 3}
-  wallCornerTopLeftT: {fileID: 2443050939852738960, guid: c42391d3f7b7dbc4d93e5b0998222154,
-    type: 3}
-  wallCornerTopRightT: {fileID: 4562777851403321331, guid: a58553a4634a9c045a5c3e8308c28104,
-    type: 3}
   wallCornerBottomLeftT: {fileID: 4154629763258057392, guid: 486f643fb1ab99746a0e455fdc9239fb,
     type: 3}
   wallCornerBottomRightT: {fileID: 6842348297143975492, guid: 37b2cf869d29e114db219e300cddc781,
@@ -72,13 +68,14 @@ MonoBehaviour:
     type: 3}
   wallCornerTopRightB: {fileID: 4562777851403321331, guid: 22307ba8c59843640a6c31630119a40d,
     type: 3}
-  wallCornerBottomLeftB: {fileID: 8230320223664258226, guid: 7c9546be78a0e424f9a465ead9509f1e,
+  wallCornerLeftTop: {fileID: 411139668786084799, guid: b8d62193ed246394d8a7418870cce589,
     type: 3}
-  wallCornerBottomRightB: {fileID: 7797926514833779251, guid: 792b0753809cac44c8a120ce42d454c3,
+  wallCornerRightTop: {fileID: 4190492882455884665, guid: a276d16d99570e34f883ce4a734f719b,
     type: 3}
-  doorTop: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2, type: 3}
-  doorBottom: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2,
+  doorTop: {fileID: 6380957416354339865, guid: a44ccb0552cddf64895186a081af41c9, type: 3}
+  doorBottom: {fileID: 1321948256929312342, guid: 2c9e2d995f6cdcd49ae2ca591224adcd,
     type: 3}
-  doorleft: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2, type: 3}
-  doorRight: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2,
+  doorleft: {fileID: 3914490330571017290, guid: 7ca53054cd9c4eb4f8d7ebd59dc44795,
+    type: 3}
+  doorRight: {fileID: 7580330740876649120, guid: 233498eab8af0804981e5a610b341d74,
     type: 3}

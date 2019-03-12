@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f09c287851661749bb45d872f1d22d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  epsilon: 1
-  scale: 2
+  epsilon: 0.25
+  scale: 1
   door1: {fileID: 0}
   door2: {fileID: 0}
   direction: 0
@@ -65,10 +65,6 @@ MonoBehaviour:
     type: 3}
   wallTopRight: {fileID: 8922055205653820551, guid: 2598481f1e4cad34192831074a0d7daa,
     type: 3}
-  wallCornerTopLeftT: {fileID: 2443050939852738960, guid: c42391d3f7b7dbc4d93e5b0998222154,
-    type: 3}
-  wallCornerTopRightT: {fileID: 4562777851403321331, guid: a58553a4634a9c045a5c3e8308c28104,
-    type: 3}
   wallCornerBottomLeftT: {fileID: 4154629763258057392, guid: 486f643fb1ab99746a0e455fdc9239fb,
     type: 3}
   wallCornerBottomRightT: {fileID: 6842348297143975492, guid: 37b2cf869d29e114db219e300cddc781,
@@ -76,8 +72,4 @@ MonoBehaviour:
   wallCornerTopLeftB: {fileID: 2443050939852738960, guid: b77324f4bfe584944a2e14c1ecd826e7,
     type: 3}
   wallCornerTopRightB: {fileID: 4562777851403321331, guid: 22307ba8c59843640a6c31630119a40d,
-    type: 3}
-  wallCornerBottomLeftB: {fileID: 8230320223664258226, guid: 7c9546be78a0e424f9a465ead9509f1e,
-    type: 3}
-  wallCornerBottomRightB: {fileID: 7797926514833779251, guid: 792b0753809cac44c8a120ce42d454c3,
     type: 3}

@@ -18,14 +18,10 @@ public class Corridors : MonoBehaviour
     public Transform wallBottomRight;
     public Transform wallTopLeft;
     public Transform wallTopRight;
-    public Transform wallCornerTopLeftT;
-    public Transform wallCornerTopRightT;
     public Transform wallCornerBottomLeftT;
     public Transform wallCornerBottomRightT;
     public Transform wallCornerTopLeftB;
     public Transform wallCornerTopRightB;
-    public Transform wallCornerBottomLeftB;
-    public Transform wallCornerBottomRightB;
 
     
     private Vector3[] RoadFloor;
@@ -63,8 +59,11 @@ public class Corridors : MonoBehaviour
         float addScale = scale * xDiff * yDiff;
         
         //Point for the floor
+        Vector3 perspective = new Vector3(0, scale / 2, 0);
+        Vector3 pointFloor0 = door1.position;
         Vector3 pointFloor1;
         Vector3 pointFloor2;
+        Vector3 pointFloor3 = door2.position;
         Vector3 addWall = !direction ? new Vector3(0, scale, 0) : new Vector3(scale, 0, 0);
 
         //point for the top wall
@@ -84,9 +83,12 @@ public class Corridors : MonoBehaviour
         {
             pointFloor1 = new Vector3(xMid, door1.position.y, 0);
             pointFloor2 = new Vector3(xMid, door2.position.y, 0);
-                
-            pointWall2 = new Vector3(pointFloor1.x + addScale, pointWall1.y, 0);
-            pointWall3 = new Vector3(pointWall2.x,pointWall4.y,0);
+
+            pointWall2 = new Vector3(pointFloor1.x + addScale, pointWall1.y, 0) - perspective;
+            pointWall3 = new Vector3(pointWall2.x,pointWall4.y,0) - perspective;
+            
+            pointWall1 -= perspective;
+            pointWall4 -= perspective;
         
             pointWall6 = new Vector3(pointFloor1.x - addScale, pointWall5.y, 0);
             pointWall7 = new Vector3(pointWall6.x,pointWall8.y,0);
@@ -168,8 +170,20 @@ public class Corridors : MonoBehaviour
                 tBottom = wallBottom;
             }
 
+            if (door1.position.x > door2.position.x && door1.position.y > door2.position.y)
+            {
+                pointWall5 += perspective;
+                pointWall6 -= perspective;
+                pointWall7 -= perspective;
+                pointWall8 -= perspective;
+            }
             if (door1.position.x < door2.position.x && door1.position.y > door2.position.y)
             {
+                pointWall1 += perspective;
+                pointWall2 -= perspective;
+                pointWall3 -= perspective;
+                pointWall4 -= perspective;
+                
                 tCorner1 = wallCornerBottomLeftT;
                 tCorner2 = wallTopRight;
                 tCorner3 = wallBottomLeft;
@@ -178,6 +192,11 @@ public class Corridors : MonoBehaviour
             
             if (door1.position.x < door2.position.x && door1.position.y < door2.position.y)
             {
+                pointWall5 -= perspective;
+                pointWall6 -= perspective;
+                pointWall7 -= perspective;
+                pointWall8 += perspective;
+                
                 tCorner1 = wallCornerTopLeftB;
                 tCorner2 = wallBottomRight;
                 tCorner3 = wallTopLeft;
@@ -186,6 +205,11 @@ public class Corridors : MonoBehaviour
             
             if (door1.position.x > door2.position.x && door1.position.y < door2.position.y)
             {
+                pointWall1 -= perspective;
+                pointWall2 -= perspective;
+                pointWall3 -= perspective;
+                pointWall4 += perspective;
+                
                 tCorner1 = wallTopRight;
                 tCorner2 = wallCornerBottomLeftT;
                 tCorner3 = wallCornerTopRightB;
@@ -208,7 +232,7 @@ public class Corridors : MonoBehaviour
         //Road pos floor list
         RoadFloor = new []
         {
-            door1.position, pointFloor1, pointFloor2, door2.position
+            pointFloor0, pointFloor1, pointFloor2, pointFloor3
         };
         
         //Road pos wall list

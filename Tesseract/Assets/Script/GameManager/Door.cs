@@ -3,8 +3,12 @@
 public class Door : MonoBehaviour
 {
     private int cardinal;
-    public Transform Close;
-    public Transform Open;
+    public Transform CloseT;
+    public Transform CloseB;
+    public Transform OpenT;
+    public Transform OpenB;
+    public float scale;
+    
     private bool linked;
     private bool open;
 
@@ -17,5 +21,7 @@ public class Door : MonoBehaviour
     {
         this.cardinal = cardinal;
         open = false;
+        Instantiate(CloseT, transform.position + new Vector3(0,scale,0), Quaternion.identity, transform);
+        Instantiate(CloseB, transform.position, Quaternion.identity, transform);
     }
 }

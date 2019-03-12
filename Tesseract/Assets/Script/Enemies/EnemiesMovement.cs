@@ -21,7 +21,6 @@ public class EnemiesMovement : MonoBehaviour
     {
         if ((player.transform.position - transform.position).sqrMagnitude < distance*distance)
         {
-            Debug.Log("Stop");
             return;
         }
         

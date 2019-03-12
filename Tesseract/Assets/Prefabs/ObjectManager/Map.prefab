@@ -54,7 +54,7 @@ MonoBehaviour:
   minrndDistance: -2
   maxrndDistance: 2
   roomNumber: 10
-  scale: 2
+  scale: 1
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
