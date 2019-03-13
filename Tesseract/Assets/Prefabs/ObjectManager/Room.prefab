@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075109d122250c540aa8d10c011dcad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorObj: {fileID: 3008520919332570035, guid: b97cc623d0c726841b1466a32223791e,
+  floorObj: {fileID: 2831731821763355568, guid: b97cc623d0c726841b1466a32223791e,
     type: 3}
   wallLeft: {fileID: 4688763967605712774, guid: c8098bed2bf41a44c8c1b17c36050448,
     type: 3}
@@ -60,4 +60,4 @@ MonoBehaviour:
     type: 3}
   wallBottomRight: {fileID: 4828079865991086374, guid: 34524d0dcd706064e84b22a1812c338c,
     type: 3}
-  doorObj: {fileID: 722912041073712986, guid: 3ef54299f3701314ca410f8e9a75f3d2, type: 3}
+  doorObj: {fileID: 7434679343239715164, guid: cf32ba0be1bc3344e84e954dd7d2ce5d, type: 3}

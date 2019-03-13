@@ -1,36 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using Script.Pathfinding;
 using UnityEngine;
 
-public class EnemiesMovement : MonoBehaviour
+namespace Script.Enemies
 {
-    private Rigidbody2D rb2D;
-    private BoxCollider2D bc2D;
-    private GameObject player;
-
-    
-    public int Speed;
-    public LayerMask blockingLayer;
-
-
-
-    private void Start()
+    public class EnemiesMovement : MonoBehaviour
     {
-        player = GameObject.Find("Player");
-        rb2D = GetComponent<Rigidbody2D>();
-        bc2D = GetComponent<BoxCollider2D>();
-    }
+        private GameObject player;
+        public int Speed;
+
+
+        private void Start()
+        {
+            player = GameObject.Find("Player");
+        }
 
  
-    private void FixedUpdate()
-    {
-        Displacement();
-    }
+        private void FixedUpdate()
+        {
+            Displacement();
+        }
 
-    private void Displacement()
-    {
-        Vector2 displacement = (player.transform.position - transform.position).normalized * Time.deltaTime * Speed;
-        
-        transform.Translate(displacement);
+    
+        private void Displacement()
+        {
+            try
+            {
+                if ((player.transform.position - transform.position).magnitude > 2)
+                {
+                    Node nextNode = Pathfinding.Pathfinding.Path[0];
+
+                    Vector2 displacement =
+                        (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime * Speed;
+                    transform.Translate(displacement, Space.World);
+                    if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
+                    {
+                        Pathfinding.Pathfinding.Path.Remove(nextNode);
+                    }
+
+                }            
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+            }
+        }
     }
 }
