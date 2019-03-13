@@ -18,6 +18,12 @@ TextureImporter:
     21300026: NinjaMoving_13
     21300028: NinjaMoving_14
     21300030: NinjaMoving_15
+    21300032: NinjaMoving_16
+    21300034: NinjaMoving_17
+    21300036: NinjaMoving_18
+    21300038: NinjaMoving_19
+    21300040: NinjaMoving_20
+    21300042: NinjaMoving_21
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -136,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6ae32efc5ab4304c8b32d4ab4d1c8d7
+      spriteID: 5fbd2aaae5152174f861d6d5e97e220a
       vertices: []
       indices: 
       edges: []
@@ -146,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 160
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -156,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e71b13c3aed52c54699f10f1f83560d0
+      spriteID: 4330959d4ab28504b86fc2b2b96e880a
       vertices: []
       indices: 
       edges: []
@@ -166,7 +172,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 160
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -176,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b17545ebeb46a41933a79bd3b73c4e
+      spriteID: 06e7570efd5da3f4bbc407afebb6b3e2
       vertices: []
       indices: 
       edges: []
@@ -185,8 +191,8 @@ TextureImporter:
       name: NinjaMoving_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 160
+        x: 0
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -196,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f63a45dbff781c14d9a7727d34296bfb
+      spriteID: fc9d78e41f0c59a47864a5b25be29bca
       vertices: []
       indices: 
       edges: []
@@ -205,8 +211,8 @@ TextureImporter:
       name: NinjaMoving_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 160
+        x: 64
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -216,7 +222,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29d47be248dd3594abd7b68d18b80b8f
+      spriteID: 356d915ecd7c64347a744f5639c98a9b
       vertices: []
       indices: 
       edges: []
@@ -225,8 +231,8 @@ TextureImporter:
       name: NinjaMoving_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 160
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -236,7 +242,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc572b23735826149be870730b49faa0
+      spriteID: 43893bd271abfdd499b12fbeac865f3e
       vertices: []
       indices: 
       edges: []
@@ -245,8 +251,8 @@ TextureImporter:
       name: NinjaMoving_6
       rect:
         serializedVersion: 2
-        x: 384
-        y: 160
+        x: 0
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -256,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 623c6e9d6190876429341b835c021f82
+      spriteID: 96a475b98f601b24cb0955ef4de71003
       vertices: []
       indices: 
       edges: []
@@ -265,8 +271,8 @@ TextureImporter:
       name: NinjaMoving_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -276,7 +282,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cb71f76bd53b89458b6f0ea3d3de6ab
+      spriteID: b23daee5fa75a314a8cb4cd079efcd84
       vertices: []
       indices: 
       edges: []
@@ -285,8 +291,8 @@ TextureImporter:
       name: NinjaMoving_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -296,7 +302,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f60742e5b0b22134db5d1bccf8ee9d39
+      spriteID: 7ed17a7ee31d9e44e8988b9bff52877e
       vertices: []
       indices: 
       edges: []
@@ -305,8 +311,8 @@ TextureImporter:
       name: NinjaMoving_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 192
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -316,7 +322,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91187a7e214393847af1e34984567295
+      spriteID: 5c25ba13b67f84143afd53fe39a2cd65
       vertices: []
       indices: 
       edges: []
@@ -325,8 +331,8 @@ TextureImporter:
       name: NinjaMoving_10
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
+        x: 256
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -336,7 +342,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c0347d4bbac3ca489ca149cf5fa356b
+      spriteID: 3d6d6303586b64c4daf184e46d8b9bd1
       vertices: []
       indices: 
       edges: []
@@ -345,8 +351,8 @@ TextureImporter:
       name: NinjaMoving_11
       rect:
         serializedVersion: 2
-        x: 256
-        y: 96
+        x: 320
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -356,7 +362,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95e2c020b9476d148918b264d37415c0
+      spriteID: 6779728ef3648de44bf4801d8e11eb49
       vertices: []
       indices: 
       edges: []
@@ -365,8 +371,8 @@ TextureImporter:
       name: NinjaMoving_12
       rect:
         serializedVersion: 2
-        x: 320
-        y: 96
+        x: 384
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -376,7 +382,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ecd92f22c0b75d4bb6e3d1f1c67f0ed
+      spriteID: 838016e6df039f54e9abce69c826d069
       vertices: []
       indices: 
       edges: []
@@ -385,8 +391,8 @@ TextureImporter:
       name: NinjaMoving_13
       rect:
         serializedVersion: 2
-        x: 384
-        y: 96
+        x: 0
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -396,7 +402,127 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71c4c1a43061c4b42aac7391e4239741
+      spriteID: f2ea1c709b1b7344cb8633d2d0a4238d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05a8090c32a679c4f80958ad47f5ff0e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b02363a2a15f274085f717bb6a7f046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_16
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eacb722ccdbef69469e0dc5f2560c78e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a0533680bfca4418edbadd7443b929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_18
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f1cb9c474dd5a4eaac273a06095318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NinjaMoving_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6940377988692454eb6179349d5ee034
       vertices: []
       indices: 
       edges: []
@@ -404,7 +530,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 68e51d65f63327a4d9b2a7fcb8d1bce0
+    spriteID: 6be525b25c0b2fc44ac2735d23942e9d
     vertices: []
     indices: 
     edges: []
