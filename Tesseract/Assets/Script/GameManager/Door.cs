@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     {
         this.cardinal = cardinal;
         open = false;
-        Instantiate(CloseT, transform.position + new Vector3(0,scale,0), Quaternion.identity, transform);
-        Instantiate(CloseB, transform.position, Quaternion.identity, transform);
+        Instantiate(OpenT, transform.position + new Vector3(0,scale,0), Quaternion.identity, transform);
+        Instantiate(OpenB, transform.position, Quaternion.identity, transform);
     }
 }
