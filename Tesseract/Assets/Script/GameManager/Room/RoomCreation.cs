@@ -25,6 +25,9 @@ public class RoomCreation : MonoBehaviour
     public Transform doorBottom;
     public Transform doorleft;
     public Transform doorRight;
+
+    public Transform RoomShadowObj;
+    public Transform RoomDecorationObj;
     
     private int height;
     private int width;
@@ -34,8 +37,11 @@ public class RoomCreation : MonoBehaviour
     private List<int> cardinalDoor;
     private float scale;
 
+    private Transform shadowSon;
+
     public int GetHeight() => height;
     public int GetWidth() => width;
+    public float GetScale() => scale;
     public List<Transform> GetDoorCreated() => doorCreated; 
     public List<int> GetCardinal() => cardinalDoor;
 
@@ -50,7 +56,11 @@ public class RoomCreation : MonoBehaviour
         cardinalDoor = new List<int>();
 
         InitiateRoom();
+        Instantiate(RoomDecorationObj,transform);
+        Instantiate(RoomShadowObj,transform);
+        shadowSon = transform.Find("RoomShadowManager(Clone)");
     }
+    
     public Transform CreateDoor(int cardinal)
     {      
         return InitiateDoor(cardinal);
@@ -111,6 +121,8 @@ public class RoomCreation : MonoBehaviour
     {
         int xRandom = Random.Range(2, width - 2);
         int yRandom = Random.Range(2, height - 2);
+        RoomShadow scriptShadow = shadowSon.GetComponent<RoomShadow>();
+        Transform o;
         
         //Create a door depending of the cardinal
         switch (cardinal)
@@ -118,19 +130,26 @@ public class RoomCreation : MonoBehaviour
             case 0:
                 CreateLeftRightDoor(xRandom-1, height - 1, wallCornerBottomRightT);
                 CreateLeftRightDoor(xRandom+1, height - 1, wallCornerBottomLeftT);
-                return InstantiateDoor(cardinal,xRandom, height - 1, doorTop);
+                o = InstantiateDoor(cardinal,xRandom, height - 1, doorTop);
+                scriptShadow.DestroyShadow(xRandom, height - 2);
+                return o;
             case 1:
                 CreateLeftRightDoor(width - 1, yRandom - 1, wallCornerTopLeftB);
                 CreateLeftRightDoor(width - 1, yRandom + 1, wallCornerRightTop);
-                return InstantiateDoor(cardinal,width - 1, yRandom, doorRight);
+                o = InstantiateDoor(cardinal,width - 1, yRandom, doorRight);
+                scriptShadow.DestroyShadow(width - 2, yRandom);
+                return o;
             case 2:
                 CreateLeftRightDoor(xRandom - 1, 0, wallCornerTopRightB);
                 CreateLeftRightDoor(xRandom + 1, 0, wallCornerTopLeftB);
-                return InstantiateDoor(cardinal,xRandom, 0,doorBottom);
+                o = InstantiateDoor(cardinal,xRandom, 0,doorBottom);
+                return o;
             default:
                 CreateLeftRightDoor(0, yRandom - 1, wallCornerTopRightB);
                 CreateLeftRightDoor(0, yRandom + 1, wallCornerLeftTop);
-                return InstantiateDoor(cardinal,0, yRandom, doorleft);
+                o = InstantiateDoor(cardinal,0, yRandom, doorleft);
+                scriptShadow.DestroyShadow(1, yRandom);
+                return o;
         }
     }
 }

@@ -112,7 +112,7 @@ public class MapManager : MonoBehaviour
         Transform room2 = InitiateEmptyRoom(pos,height2,width2);
         
         //Instantiate door1 and door2
-        Transform door1 = InitiateDoor(room1,cardinal1);
+        Transform door1 = InitiateDoor(room1, cardinal1);
         Transform door2 = InitiateDoor(room2, cardinal2);
 
         //Linked door1 and door2

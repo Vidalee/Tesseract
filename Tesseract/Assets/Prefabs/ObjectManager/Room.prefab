@@ -79,3 +79,7 @@ MonoBehaviour:
     type: 3}
   doorRight: {fileID: 7580330740876649120, guid: 233498eab8af0804981e5a610b341d74,
     type: 3}
+  RoomShadowObj: {fileID: 914207533922830402, guid: 0865bcc8fbaceb34185409927aae8abf,
+    type: 3}
+  RoomDecorationObj: {fileID: 4217288758071507301, guid: 6b5ffeb01c1d51f4aa8b3a6e157956fc,
+    type: 3}
