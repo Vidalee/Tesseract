@@ -1,22 +1,33 @@
 ﻿
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public int Speed;
     public LayerMask blockingLayer;
+    public Animator movementAnimator;
  
     private void FixedUpdate()
     {
         PlayerDisplacement();
     }
 
+    private void PlayerAnimation(int x, int y)
+    {
+        int speed = x != 0 ? x : y;
+        
+        movementAnimator.SetInteger("Speed", speed);
+    }
     private void PlayerDisplacement()
     {
         //Get and set 
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
+        
+        PlayerAnimation(xDir, yDir);
         
         Vector3 xVec = new Vector3(xDir,0,0);
         Vector3 yVec = new Vector3(0,yDir,0);
