@@ -20,6 +20,8 @@ public class RoomCreation : MonoBehaviour
 
     public Transform wallCornerLeftTop;
     public Transform wallCornerRightTop;
+    public Transform wallCornerLeftBottom;
+    public Transform wallCornerRightBottom;
     
     public Transform doorTop;
     public Transform doorBottom;
@@ -134,7 +136,7 @@ public class RoomCreation : MonoBehaviour
                 scriptShadow.DestroyShadow(xRandom, height - 2);
                 return o;
             case 1:
-                CreateLeftRightDoor(width - 1, yRandom - 1, wallCornerTopLeftB);
+                CreateLeftRightDoor(width - 1, yRandom - 1, wallCornerRightBottom);
                 CreateLeftRightDoor(width - 1, yRandom + 1, wallCornerRightTop);
                 o = InstantiateDoor(cardinal,width - 1, yRandom, doorRight);
                 scriptShadow.DestroyShadow(width - 2, yRandom);
@@ -145,7 +147,7 @@ public class RoomCreation : MonoBehaviour
                 o = InstantiateDoor(cardinal,xRandom, 0,doorBottom);
                 return o;
             default:
-                CreateLeftRightDoor(0, yRandom - 1, wallCornerTopRightB);
+                CreateLeftRightDoor(0, yRandom - 1, wallCornerLeftBottom);
                 CreateLeftRightDoor(0, yRandom + 1, wallCornerLeftTop);
                 o = InstantiateDoor(cardinal,0, yRandom, doorleft);
                 scriptShadow.DestroyShadow(1, yRandom);

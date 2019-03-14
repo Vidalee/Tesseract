@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3914490330571017290}
   - component: {fileID: 6454004026974072046}
+  - component: {fileID: 6955660998876342329}
   m_Layer: 0
   m_Name: DoorLeft
   m_TagString: Untagged
@@ -43,8 +44,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a1f9352349e0447ba91786f40c9c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloseT: {fileID: 5490114350018867038, guid: 81cf5e8f018828b4a98b14a2cb371c21, type: 3}
-  CloseB: {fileID: 3107276186147566647, guid: 5f26137b468d00048a2dc092ceb82212, type: 3}
-  OpenT: {fileID: 6072642136589533239, guid: f511f6a218cec55439814f4165cf10c7, type: 3}
-  OpenB: {fileID: 1915481713720964915, guid: 7b3610efaaa204f40a79ffb19689fbb1, type: 3}
-  scale: 0.5
+  closeObj: {fileID: 1998894878700429560, guid: 35b624b27092ed44ea691ca5395e70e2,
+    type: 3}
+  openObj: {fileID: 4197725687423508513, guid: a1a6174f916104a4bb1a76a637e6d1d6, type: 3}
+--- !u!212 &6955660998876342329
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895608536680485162}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1951938073
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

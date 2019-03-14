@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Enemies
   - Door
+  - Obstacle
+  - DoorTop
+  - DoorBottom
   layers:
   - Default
   - TransparentFX
@@ -43,25 +46,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Floor
-    uniqueID: 1357232043
-    locked: 0
-  - name: TopWall
-    uniqueID: 1951938073
-    locked: 0
-  - name: Items
-    uniqueID: 3127037379
-    locked: 0
-  - name: Enemies
-    uniqueID: 221096983
-    locked: 0
-  - name: Player
-    uniqueID: 2041833923
-    locked: 0
-  - name: Projectiles
-    uniqueID: 3112644479
-    locked: 0
-  - name: FrontWall
-    uniqueID: 4277750521
     locked: 0

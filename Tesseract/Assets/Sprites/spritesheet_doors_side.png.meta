@@ -1,23 +1,15 @@
 fileFormatVersion: 2
-guid: 23d9f7f3f4b0ee84ba4846d600788bb4
+guid: 279e738aed6bb9e4c92abcb985de34c2
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AllDoor_0
-    21300002: AllDoor_1
-    21300004: AllDoor_2
-    21300006: AllDoor_3
-    21300008: AllDoor_4
-    21300010: AllDoor_5
-    21300012: AllDoor_6
-    21300014: AllDoor_7
-    21300016: AllDoor_8
-    21300018: AllDoor_9
-    21300020: AllDoor_10
-    21300022: AllDoor_11
-    21300024: AllDoor_12
-    21300026: AllDoor_13
-    21300028: AllDoor_14
-    21300030: AllDoor_15
+    21300000: spritesheet_doors_side_0
+    21300002: spritesheet_doors_side_1
+    21300004: spritesheet_doors_side_2
+    21300006: spritesheet_doors_side_3
+    21300008: spritesheet_doors_side_4
+    21300010: spritesheet_doors_side_5
+    21300012: spritesheet_doors_side_6
+    21300014: spritesheet_doors_side_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -36,7 +28,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -122,7 +114,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AllDoor_0
+      name: spritesheet_doors_side_0
       rect:
         serializedVersion: 2
         x: 0
@@ -136,13 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fde906902e1bf7c46b239603e87ed83c
+      spriteID: 79874a51397a45143875302ede09a30d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AllDoor_1
+      name: spritesheet_doors_side_1
       rect:
         serializedVersion: 2
         x: 64
@@ -153,56 +145,24 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -30, y: -25}
+        - {x: -30, y: -32}
+        - {x: -21, y: -32}
+        - {x: -21, y: -25}
+      - - {x: -32, y: 32}
+        - {x: -32, y: -2}
+        - {x: 32, y: -2}
+        - {x: 32, y: 32}
       tessellationDetail: 0
       bones: []
-      spriteID: 5e020a63c175e1b488fcec97f82e0b87
+      spriteID: a20440aaeb2a5264ca5fe8d5b175cee2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AllDoor_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b689b6c47b347344ba37f73daf807f0d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AllDoor_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77d73907aca5c8049ad5d7bc8f074166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AllDoor_4
+      name: spritesheet_doors_side_2
       rect:
         serializedVersion: 2
         x: 0
@@ -216,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cea578daf41742945a30ff79e4cbd970
+      spriteID: c2dcdacb0cded68408b1182a772ca072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AllDoor_5
+      name: spritesheet_doors_side_3
       rect:
         serializedVersion: 2
         x: 64
@@ -233,50 +193,18 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 21, y: -32}
+        - {x: 30, y: -32}
+        - {x: 30, y: -25}
+        - {x: 21, y: -25}
+      - - {x: -32, y: 32}
+        - {x: -32, y: -2}
+        - {x: 32, y: -2}
+        - {x: 32, y: 32}
       tessellationDetail: 0
       bones: []
-      spriteID: c36c302153e495044a4b6ef9ad00f838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AllDoor_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a69ac83044913bf46a7a1568d4520166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AllDoor_7
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fae5a9ce1bcfec8418c6b795ebf58979
+      spriteID: 2c72db4b83fe4dd4695970b8b3de0e17
       vertices: []
       indices: 
       edges: []
@@ -284,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 82662352245d5de40a8fd4eafd039afb
+    spriteID: 4cd926c765cc67d48bdf2fe068055595
     vertices: []
     indices: 
     edges: []

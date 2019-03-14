@@ -3,9 +3,8 @@
 --- !u!1 &8830596204249681400
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2910317830585742120, guid: 768416198e5ef444dbc27c40531e1a4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8830596205628383455}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
@@ -14,7 +13,7 @@ GameObject:
   - component: {fileID: 8830596204249681407}
   m_Layer: 8
   m_Name: WallBottomLeftDoor
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22,9 +21,8 @@ GameObject:
 --- !u!4 &8830596204249681405
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8830596205628383455}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8830596204249681400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -37,9 +35,8 @@ Transform:
 --- !u!212 &8830596204249681406
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 522638433513762321, guid: 768416198e5ef444dbc27c40531e1a4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8830596205628383455}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8830596204249681400}
   m_Enabled: 1
@@ -70,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1951938073
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 105
   m_Sprite: {fileID: 21300002, guid: f50303486f635844db4ea5f41e7b1256, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,9 +83,8 @@ SpriteRenderer:
 --- !u!61 &8830596204249681407
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7395900955064520764, guid: 768416198e5ef444dbc27c40531e1a4c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8830596205628383455}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8830596204249681400}
   m_Enabled: 1
@@ -110,77 +106,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
---- !u!1001 &8830596205628383455
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2910317830585742120, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_Name
-      value: WallBottomLeftDoor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3017990908217009821, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395900955064520764, guid: 768416198e5ef444dbc27c40531e1a4c,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 768416198e5ef444dbc27c40531e1a4c, type: 3}
