@@ -8,9 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public int Speed;
     public LayerMask blockingLayer;
-    
+    public float width;
+    public float height;
+
     private Animator animator;
-    private NinjaAttack scriptAttack;
     
     private void FixedUpdate()
     {
@@ -19,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        scriptAttack = GetComponent<NinjaAttack>();
         animator = GetComponent<Animator>();
     }
 
@@ -39,9 +39,16 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void Shuriken1Animation(Vector3 cameraPos)
+    public void Shuriken1Animation(Vector3 cursorPos)
     {
-        Vector3 diff = cameraPos - transform.position;
+        if (animator.GetBool("OtherAction")) return;
+        StartCoroutine(shuriken1A(cursorPos));
+    }
+    
+    IEnumerator shuriken1A(Vector3 cursorPos)
+    {       
+        animator.SetBool("OtherAction", true);
+        Vector3 diff = cursorPos - transform.position;
         bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
 
         if (dir)
@@ -66,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
                 animator.Play("NinjaProjectilesTop");
             }
         }
+
+        yield return new WaitForSeconds(0.2f);
+        animator.SetBool("OtherAction", false);
     }
     
     private void PlayerDisplacement()
@@ -78,14 +88,24 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 xVec = new Vector3(xDir,0,0);
         Vector3 yVec = new Vector3(0,yDir,0);
+
+        Vector3 playerPos = transform.position;
+        playerPos.y += -0.5f + height;
         
-        RaycastHit2D xLinecast = Physics2D.Linecast(transform.position, transform.position + xVec, blockingLayer);
-        RaycastHit2D yLinecast = Physics2D.Linecast(transform.position, transform.position + yVec, blockingLayer);
+        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos, playerPos + xVec, blockingLayer);
+        RaycastHit2D yLinecast = Physics2D.Linecast(playerPos, playerPos + yVec, blockingLayer);
 
         Vector3 direction = new Vector3(xDir,yDir,0);
 
-        if (xLinecast) direction.x *= xLinecast.distance;
-        if (yLinecast) direction.y *= yLinecast.distance;
+        if (xLinecast)
+        {
+            direction.x *= xLinecast.distance - width - 0.01f;
+        }
+
+        if (yLinecast)
+        {
+            direction.y *= yLinecast.distance - height - 0.01f;
+        }
         
         transform.Translate(direction * Speed * Time.deltaTime);
     }
