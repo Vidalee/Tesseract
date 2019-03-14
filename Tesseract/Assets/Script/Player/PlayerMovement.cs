@@ -1,18 +1,26 @@
 ﻿
-using System.Net.Mail;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+using System;
+using System.Collections;
+using System.Globalization;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public int Speed;
     public LayerMask blockingLayer;
-    public Animator movementAnimator;
-
+    
+    private Animator animator;
+    private NinjaAttack scriptAttack;
+    
     private void FixedUpdate()
     {
         PlayerDisplacement();
+    }
+
+    private void Awake()
+    {
+        scriptAttack = GetComponent<NinjaAttack>();
+        animator = GetComponent<Animator>();
     }
 
     private void PlayerMovingAnimation(int x, int y)
@@ -22,19 +30,45 @@ public class PlayerMovement : MonoBehaviour
         
         if (speed == 0)
         {
-
-            movementAnimator.SetInteger("Speed", 0);
+            animator.SetInteger("Speed", 0);
             return;
         }
         
-        movementAnimator.SetInteger("Speed",speed);
-        movementAnimator.SetBool("Direction",dir);
+        animator.SetInteger("Speed",speed);
+        animator.SetBool("Direction",dir);
         
     }
 
-    private void PlayerProjectilesAnimation()
+
+
+    public void Shuriken1Animation(Vector3 cameraPos)
     {
-        movementAnimator.SetBool("Projectiles", Input.GetMouseButtonDown(0));
+        Vector3 diff = cameraPos - transform.position;
+        bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
+
+        if (dir)
+        {
+            if (diff.x < 0)
+            {
+                animator.Play("NinjaProjectilesLeft");
+            }
+            else
+            {
+                animator.Play("NinjaProjectilesRight");
+            }
+        }
+        else
+        {
+            if (diff.y < 0)
+            {
+                animator.Play("NinjaProjectilesBottom");
+            }
+            else
+            {
+                animator.Play("NinjaProjectilesTop");
+            }
+        }
+        
     }
     
     private void PlayerDisplacement()
@@ -44,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
         int yDir = (int) Input.GetAxisRaw("Vertical");
         
         PlayerMovingAnimation(xDir, yDir);
-        PlayerProjectilesAnimation();
         
         Vector3 xVec = new Vector3(xDir,0,0);
         Vector3 yVec = new Vector3(0,yDir,0);
