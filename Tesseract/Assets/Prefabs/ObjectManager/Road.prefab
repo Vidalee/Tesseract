@@ -43,12 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f09c287851661749bb45d872f1d22d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  epsilon: 0.5
-  scale: 1
-  door1: {fileID: 0}
-  door2: {fileID: 0}
+  epsilon: 0.32
+  scale: 2
+  door1: {fileID: 7434679343239715164, guid: cf32ba0be1bc3344e84e954dd7d2ce5d, type: 3}
+  door2: {fileID: 7434679343239715164, guid: cf32ba0be1bc3344e84e954dd7d2ce5d, type: 3}
   direction: 0
-  floorObj: {fileID: 3008520919332570035, guid: b97cc623d0c726841b1466a32223791e,
+  floorTransform: {fileID: 2831731821763355568, guid: b97cc623d0c726841b1466a32223791e,
     type: 3}
   wallLeft: {fileID: 3834291032552985913, guid: c8098bed2bf41a44c8c1b17c36050448,
     type: 3}
