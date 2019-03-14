@@ -58,7 +58,7 @@ public class RoomCreation : MonoBehaviour
         cardinalDoor = new List<int>();
 
         InitiateRoom();
-        Instantiate(RoomDecorationObj,transform);
+        //Instantiate(RoomDecorationObj,transform);
         Instantiate(RoomShadowObj,transform);
         shadowSon = transform.Find("RoomShadowManager(Clone)");
     }
