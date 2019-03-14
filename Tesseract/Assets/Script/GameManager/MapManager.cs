@@ -25,9 +25,7 @@ public class MapManager : MonoBehaviour
     public void Awake()
     {
         roomList = new List<Transform>();
-        int height = Random.Range(minHeight, maxHeight);
-        int width = Random.Range(minWidth, maxWidth);
-        InitiateEmptyRoom(Vector3.zero, height, width);
+        InitiateEmptyRoom(Vector3.zero, 15, 15);
         
         for (int i = 0; i < roomNumber - 1; i++)
         {

@@ -285,11 +285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404792826, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 512.8
+      value: 517
       objectReference: {fileID: 0}
     - target: {fileID: 404792826, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 404792826, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_SizeDelta.x
@@ -341,7 +341,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898355, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 532100016, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_CullTransparentMesh
@@ -381,11 +401,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_FocalLength
-      value: 26.95244
+      value: 20.371956
       objectReference: {fileID: 0}
     - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: field of view
-      value: 48
+      value: 61.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: orthographic size
+      value: 387.13104
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
