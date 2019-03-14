@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1612255661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1612255663}
+  - component: {fileID: 1612255662}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1612255663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612255661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.7843685, y: -2.375158, z: -0.053969167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1612255662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612255661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075109d122250c540aa8d10c011dcad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorObj: {fileID: 2831731821763355568, guid: b97cc623d0c726841b1466a32223791e,
+    type: 3}
+  wallLeft: {fileID: 4688763967605712774, guid: c8098bed2bf41a44c8c1b17c36050448,
+    type: 3}
+  wallRight: {fileID: 7399384288493732843, guid: 317c624df94b78d48b545be54b0c5043,
+    type: 3}
+  wallTop: {fileID: 5179884048809313104, guid: 4f107e4e65a96be42bf5281736b919eb, type: 3}
+  wallBottom: {fileID: 8771472213140521010, guid: 8c390be812916774bbe8816e602ad27e,
+    type: 3}
+  wallTopLeft: {fileID: 5485261070887076736, guid: 532dd5d342d3e9e47b2f8978c9336dad,
+    type: 3}
+  wallTopRight: {fileID: 6194540937001632240, guid: 880495bcbcff33b48b9bac35b5661692,
+    type: 3}
+  wallBottomLeft: {fileID: 8564167073675075488, guid: 0b1bd34b9fe39e941aa969a49b7d2f9a,
+    type: 3}
+  wallBottomRight: {fileID: 4828079865991086374, guid: 34524d0dcd706064e84b22a1812c338c,
+    type: 3}
+  doorObj: {fileID: 7434679343239715164, guid: cf32ba0be1bc3344e84e954dd7d2ce5d, type: 3}

@@ -37,12 +37,15 @@ public class PlayerDash : MonoBehaviour
         if (Input.GetKey("space") && dashCd)
         {
             cooldown = 0;
+            //Get direction of the dash
             Vector2 playerPos = player.transform.position;
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = (cursorPos - playerPos).normalized;
 
+            //Check if there is a wall
             RaycastHit2D hit = Physics2D.Raycast(playerPos, direction, dashDistance, blockingLayer);
             
+            //Dash to the wall if there is one, or dash to the normal position
             if (!hit)
                 player.transform.position = playerPos + direction * dashDistance;
             else
