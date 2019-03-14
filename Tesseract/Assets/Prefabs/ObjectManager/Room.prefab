@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075109d122250c540aa8d10c011dcad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorObj: {fileID: 3008520919332570035, guid: b97cc623d0c726841b1466a32223791e,
+  floorObj: {fileID: 2831731821763355568, guid: b97cc623d0c726841b1466a32223791e,
     type: 3}
   wallLeft: {fileID: 3834291032552985913, guid: c8098bed2bf41a44c8c1b17c36050448,
     type: 3}

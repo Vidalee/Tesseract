@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Script.Pathfinding;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,7 +22,7 @@ public class MapManager : MonoBehaviour
     private List<Transform> roomList;    
     
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
         roomList = new List<Transform>();
         int height = Random.Range(minHeight, maxHeight);
@@ -32,6 +33,7 @@ public class MapManager : MonoBehaviour
         {
             if (!ExpandMap()) i--;
         }
+        AllNodes.CreateLinksBetweenNodes();
     }
 
     private Transform InitiateEmptyRoom(Vector3 pos, int height, int width)

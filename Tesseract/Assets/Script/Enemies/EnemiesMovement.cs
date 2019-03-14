@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+using System;
+using Script.Pathfinding;
+using UnityEngine;
 
-public class EnemiesMovement : MonoBehaviour
+
+namespace Script.Enemies
 {
     public int Speed;
-    public int distance;
     
     private GameObject player;
 
@@ -11,21 +13,43 @@ public class EnemiesMovement : MonoBehaviour
     {
         player = GameObject.Find("Player");
     }
- 
-    private void FixedUpdate()
+    public class EnemiesMovement : MonoBehaviour
     {
-        Displacement();
-    }
+        private GameObject player;
+        public int Speed;
 
-    private void Displacement()
-    {
-        if ((player.transform.position - transform.position).sqrMagnitude < distance*distance)
+        private void Start()
         {
-            return;
+            player = GameObject.Find("Player");
         }
-        
-        Vector2 displacement = (player.transform.position - transform.position).normalized * Time.deltaTime * Speed;
-        
-        transform.Translate(displacement);
+ 
+        private void FixedUpdate()
+        {
+            Displacement();
+        }
+    
+        private void Displacement()
+        {
+            try
+            {
+                if ((player.transform.position - transform.position).magnitude > 2)
+                {
+                    Node nextNode = Pathfinding.Pathfinding.Path[0];
+                
+                    Vector2 displacement =
+                        (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime * Speed;
+                    transform.Translate(displacement, Space.World);
+                    if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
+                    {
+                        Pathfinding.Pathfinding.Path.Remove(nextNode);
+                    }
+
+                }            
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+            }
+        }
+
     }
 }
