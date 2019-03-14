@@ -1,23 +1,14 @@
-using System;
+﻿using System;
 using Script.Pathfinding;
 using UnityEngine;
 
 
 namespace Script.Enemies
 {
-    public int Speed;
-    
-    private GameObject player;
-
-    private void Start()
-    {
-        player = GameObject.Find("Player");
-    }
     public class EnemiesMovement : MonoBehaviour
     {
         private GameObject player;
         public int Speed;
-
         private void Start()
         {
             player = GameObject.Find("Player");
