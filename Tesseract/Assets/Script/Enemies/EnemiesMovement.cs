@@ -9,18 +9,15 @@ namespace Script.Enemies
         private GameObject player;
         public int Speed;
 
-
         private void Start()
         {
             player = GameObject.Find("Player");
         }
-
  
         private void FixedUpdate()
         {
             Displacement();
         }
-
     
         private void Displacement()
         {

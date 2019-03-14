@@ -19,7 +19,6 @@ namespace Script.Pathfinding
             Neighbors = new HashSet<Node>();
         }
 
-
         public Node FindNeighbor(Vector2 coordinates)
         {
             foreach (Node node in Neighbors)
@@ -37,7 +36,6 @@ namespace Script.Pathfinding
             }
             return false;
         }
-
         
         public int CompareTo(Node other)
         {
@@ -45,6 +43,5 @@ namespace Script.Pathfinding
             if (DistanceToPlayer == other.DistanceToPlayer) return 0;
             return 1;
         }
-        
     }
 }

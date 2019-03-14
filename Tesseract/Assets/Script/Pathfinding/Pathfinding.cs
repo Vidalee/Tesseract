@@ -12,7 +12,6 @@ namespace Script.Pathfinding
             public static Node start;
             public Node destination;
             public static List<Node> Path = new List<Node>();
-            
                     
             public void reconstructPath()
             {
@@ -24,7 +23,6 @@ namespace Script.Pathfinding
                         Path.Insert(0, Path[0].Parent);
                   }
             }
-
             
             public void AStar()
             {
@@ -67,7 +65,6 @@ namespace Script.Pathfinding
                   }
                   throw new Exception("AStar pas de chemin");
             }
-            
 
             private void Update()
             {
@@ -79,8 +76,5 @@ namespace Script.Pathfinding
                         AStar();
                   }
             }
-            
-            
-
       }
 }

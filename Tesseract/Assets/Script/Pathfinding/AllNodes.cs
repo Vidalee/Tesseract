@@ -13,14 +13,11 @@ namespace Script.Pathfinding
         private static int NodeSize = 2;
         public static bool PlayerPositionChanged;
 
-
         public static void AddNode(Vector2 position)
         {
             Node newNode = new Node(position + Vector2.one);
             nodes.Add(newNode);
-            Debug.Log(newNode.position);
         }
-
 
         public static void CreateLinksBetweenNodes()
         {
@@ -51,7 +48,6 @@ namespace Script.Pathfinding
             }
         }
 
-
         private void Update()
         {
             if (PlayerNode != null)
@@ -62,7 +58,6 @@ namespace Script.Pathfinding
             }
             else PlayerNode = FindNode(Player.transform.position);
         }
-
 
         private static bool DoesNeighborExist(Vector2 position, out Node neighbor)
         {
@@ -79,7 +74,6 @@ namespace Script.Pathfinding
             return false;
         }
         
-        
         public static Node FindNode(Vector2 position)
         {
             float xNodePos = position.x + NodeRadius - Math.Abs(position.x % NodeSize);
@@ -88,8 +82,5 @@ namespace Script.Pathfinding
                 if (node.position.x - NodeRadius < xNodePos && node.position.x + NodeRadius > xNodePos && node.position.y - NodeRadius < yNodePos && node.position.y + NodeRadius > yNodePos) return node;
             throw new Exception("FindNode : this shouldn't be happening");
         }
-        
     }
-    
 }
-
