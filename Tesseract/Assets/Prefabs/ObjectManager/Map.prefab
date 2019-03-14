@@ -49,12 +49,12 @@ MonoBehaviour:
   maxWidth: 20
   minHeight: 10
   minWidth: 10
-  minDistance: 0
-  maxDistance: 0
-  minrndDistance: 0
-  maxrndDistance: 0
-  roomNumber: 1
-  scale: 2
+  minDistance: 5
+  maxDistance: 10
+  minrndDistance: -2
+  maxrndDistance: 2
+  roomNumber: 10
+  scale: 1
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256

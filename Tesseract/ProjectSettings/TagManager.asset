@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wall
+  - Enemies
+  - Door
+  - Obstacle
+  - DoorTop
+  - DoorBottom
   layers:
   - Default
   - TransparentFX
@@ -14,9 +20,9 @@ TagManager:
   - 
   - 
   - BlockingLayer
-  - 
-  - 
-  - 
+  - Player
+  - Item
+  - Entity
   - 
   - 
   - 
@@ -40,13 +46,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Wall
-    uniqueID: 1466757443
-    locked: 0
-  - name: Item
-    uniqueID: 2567164237
-    locked: 0
-  - name: Entity
-    uniqueID: 79317443
     locked: 0

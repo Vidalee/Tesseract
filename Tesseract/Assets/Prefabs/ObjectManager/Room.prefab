@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612255661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7843685, y: -2.375158, z: -0.053969167}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,19 +45,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorObj: {fileID: 2831731821763355568, guid: b97cc623d0c726841b1466a32223791e,
     type: 3}
-  wallLeft: {fileID: 4688763967605712774, guid: c8098bed2bf41a44c8c1b17c36050448,
+  wallLeft: {fileID: 3834291032552985913, guid: c8098bed2bf41a44c8c1b17c36050448,
     type: 3}
-  wallRight: {fileID: 7399384288493732843, guid: 317c624df94b78d48b545be54b0c5043,
+  wallRight: {fileID: 3834291032552985913, guid: 317c624df94b78d48b545be54b0c5043,
     type: 3}
-  wallTop: {fileID: 5179884048809313104, guid: 4f107e4e65a96be42bf5281736b919eb, type: 3}
-  wallBottom: {fileID: 8771472213140521010, guid: 8c390be812916774bbe8816e602ad27e,
+  wallTop: {fileID: 2322299426061779243, guid: 4f107e4e65a96be42bf5281736b919eb, type: 3}
+  wallBottom: {fileID: 3834291032552985913, guid: 6a7509b4f7ba6664a9eb6a11dc77c794,
     type: 3}
-  wallTopLeft: {fileID: 5485261070887076736, guid: 532dd5d342d3e9e47b2f8978c9336dad,
+  wallBottomLeft: {fileID: 8922055205653820551, guid: 0c25f7e2685d8e341bc80d8fe1906f3c,
     type: 3}
-  wallTopRight: {fileID: 6194540937001632240, guid: 880495bcbcff33b48b9bac35b5661692,
+  wallBottomRight: {fileID: 8922055205653820551, guid: abb19073137d07848bac4c96618f5eec,
     type: 3}
-  wallBottomLeft: {fileID: 8564167073675075488, guid: 0b1bd34b9fe39e941aa969a49b7d2f9a,
+  wallTopLeft: {fileID: 8922055205653820551, guid: 57be5725b95629846b27c66e87f5f574,
     type: 3}
-  wallBottomRight: {fileID: 4828079865991086374, guid: 34524d0dcd706064e84b22a1812c338c,
+  wallTopRight: {fileID: 8922055205653820551, guid: 2598481f1e4cad34192831074a0d7daa,
     type: 3}
-  doorObj: {fileID: 7434679343239715164, guid: cf32ba0be1bc3344e84e954dd7d2ce5d, type: 3}
+  wallCornerBottomLeftT: {fileID: 4154629763258057392, guid: 486f643fb1ab99746a0e455fdc9239fb,
+    type: 3}
+  wallCornerBottomRightT: {fileID: 6842348297143975492, guid: 37b2cf869d29e114db219e300cddc781,
+    type: 3}
+  wallCornerTopLeftB: {fileID: 2443050939852738960, guid: b77324f4bfe584944a2e14c1ecd826e7,
+    type: 3}
+  wallCornerTopRightB: {fileID: 4562777851403321331, guid: 22307ba8c59843640a6c31630119a40d,
+    type: 3}
+  wallCornerLeftTop: {fileID: 411139668786084799, guid: b8d62193ed246394d8a7418870cce589,
+    type: 3}
+  wallCornerRightTop: {fileID: 4190492882455884665, guid: a276d16d99570e34f883ce4a734f719b,
+    type: 3}
+  wallCornerLeftBottom: {fileID: 4828424323271060806, guid: 2b72c78924a7d6346a4195fffea97838,
+    type: 3}
+  wallCornerRightBottom: {fileID: 5836052417277193822, guid: d99e14c4d5e31ec4e8a4ace264adb159,
+    type: 3}
+  doorTop: {fileID: 6380957416354339865, guid: a44ccb0552cddf64895186a081af41c9, type: 3}
+  doorBottom: {fileID: 1321948256929312342, guid: 2c9e2d995f6cdcd49ae2ca591224adcd,
+    type: 3}
+  doorleft: {fileID: 3914490330571017290, guid: 7ca53054cd9c4eb4f8d7ebd59dc44795,
+    type: 3}
+  doorRight: {fileID: 7580330740876649120, guid: 233498eab8af0804981e5a610b341d74,
+    type: 3}
+  RoomShadowObj: {fileID: 914207533922830402, guid: 0865bcc8fbaceb34185409927aae8abf,
+    type: 3}
+  RoomDecorationObj: {fileID: 4217288758071507301, guid: 6b5ffeb01c1d51f4aa8b3a6e157956fc,
+    type: 3}

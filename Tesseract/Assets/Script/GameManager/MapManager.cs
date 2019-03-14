@@ -25,7 +25,9 @@ public class MapManager : MonoBehaviour
     public void Awake()
     {
         roomList = new List<Transform>();
-        Transform o = InitiateEmptyRoom(Vector3.zero, 10,5);
+        int height = Random.Range(minHeight, maxHeight);
+        int width = Random.Range(minWidth, maxWidth);
+        InitiateEmptyRoom(Vector3.zero, height, width);
         
         for (int i = 0; i < roomNumber - 1; i++)
         {
@@ -112,7 +114,7 @@ public class MapManager : MonoBehaviour
         Transform room2 = InitiateEmptyRoom(pos,height2,width2);
         
         //Instantiate door1 and door2
-        Transform door1 = InitiateDoor(room1,cardinal1);
+        Transform door1 = InitiateDoor(room1, cardinal1);
         Transform door2 = InitiateDoor(room2, cardinal2);
 
         //Linked door1 and door2
@@ -134,8 +136,9 @@ public class MapManager : MonoBehaviour
         RaycastHit2D linecast2 = Physics2D.Linecast(pos2, pos3, blockingLayer);
         RaycastHit2D linecast3 = Physics2D.Linecast(pos3, pos4, blockingLayer);
         RaycastHit2D linecast4 = Physics2D.Linecast(pos4, pos1, blockingLayer);
+        RaycastHit2D linecast5 = Physics2D.Linecast(pos1, pos3, blockingLayer);
         
         //Return if raycast touch something
-        return linecast1 || linecast2 || linecast3 || linecast4;
+        return linecast1 || linecast2 || linecast3 || linecast4 || linecast5;
     }
 }
