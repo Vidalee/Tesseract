@@ -8,11 +8,13 @@ public class NinjaAttack : MonoBehaviour
     public int shuriken1Speed;
     public Transform shuriken1Obj;
     public int shuriken1Damage;
+    private PlayerMovement scriptMovement;
 
     private int shuriken1Cooldown;
 
     private void Start()
     {
+        scriptMovement = GetComponent<PlayerMovement>();
         shuriken1Cooldown = shuriken1MaxCooldown;
     }
 
@@ -41,8 +43,9 @@ public class NinjaAttack : MonoBehaviour
         cursorPos.z = 0;
         Vector3 shuriken1Direction = (cursorPos - transform.position).normalized;
 
-        Transform shuriken1 = Instantiate(shuriken1Obj, transform.position + shuriken1Direction, Quaternion.identity);
+        Transform shuriken1 = Instantiate(shuriken1Obj, transform.position + shuriken1Direction/2, Quaternion.identity);
         Projectiles scriptShuriken1 = shuriken1.GetComponent<Projectiles>();
+        scriptMovement.Shuriken1Animation(cursorPos);
 
         scriptShuriken1.Create(shuriken1Direction, shuriken1Speed, shuriken1Damage);
     }
