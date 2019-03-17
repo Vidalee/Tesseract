@@ -5,8 +5,8 @@ using UnityEngine;
 public class TinyCursor : MonoBehaviour
 {
     private GameObject player;
-    
-    public float distanceCursorTinyCursor;
+
+    [SerializeField] protected float distanceCursorTinyCursor;
     
     void Start()
     {

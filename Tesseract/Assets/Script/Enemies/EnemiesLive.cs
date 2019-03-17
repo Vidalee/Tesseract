@@ -2,7 +2,7 @@
 
 public class EnemiesLive : MonoBehaviour
 {
-    public int live;
+    [SerializeField] protected int live;
 
     public void GetDamaged(int damage)
     {

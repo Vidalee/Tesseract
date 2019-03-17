@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Script.Pathfinding
@@ -48,11 +46,7 @@ namespace Script.Pathfinding
                         {
                               float newDistance = node.DistanceToEnemy + Math.Abs((node.position - neighbor.position).magnitude);
                               if (neighbor.DistanceToEnemy <= newDistance) continue;
-                              if (VisitedNodes.Contains(neighbor))
-                              {
-                                    VisitedNodes.Remove(neighbor);
-                              }
-                              else
+                              if (VisitedNodes.Remove(neighbor))
                               {
                                     neighbor.Heuristic =  Math.Abs((destination.position - node.position).magnitude);
                               }

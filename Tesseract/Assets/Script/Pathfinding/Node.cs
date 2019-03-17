@@ -40,7 +40,7 @@ namespace Script.Pathfinding
         public int CompareTo(Node other)
         {
             if (DistanceToPlayer < other.DistanceToPlayer) return -1;
-            if (DistanceToPlayer == other.DistanceToPlayer) return 0;
+            if (Math.Abs(DistanceToPlayer - other.DistanceToPlayer) < Mathf.Epsilon) return 0;
             return 1;
         }
     }
