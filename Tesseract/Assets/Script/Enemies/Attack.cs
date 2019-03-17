@@ -2,9 +2,9 @@
 
 public class Attack : MonoBehaviour
 {
-    public int damage;
-    public int distance;
-    public float maxCooldown;
+    [SerializeField] protected int damage;
+    [SerializeField] protected int distance;
+    [SerializeField] protected float maxCooldown;
 
     private float cooldown;
     private GameObject player;

@@ -2,20 +2,35 @@
 
 public class Projectiles : MonoBehaviour
 {
-    private Vector3 direction;
-    private int speed;
-    private int damage;
+    [SerializeField] protected AnimatorOverrideController Aoc;
 
-    public void Create(Vector3 direction, int speed, int damage)
+    private Vector3 _direction;
+    private float _speed;
+    private int _damage;
+    private string _tag;
+    private AnimationClip _anim;
+
+    public void Create(Vector3 direction, float speed, int damage, string tag, AnimationClip anim)
     {
-        this.direction = direction;
-        this.speed = speed;
-        this.damage = damage;
+        _direction = direction;
+        _speed = speed;
+        _damage = damage;
+        _tag = tag;
+        _anim = anim;
+        
+        AnimationOverride();
     }
 
     private void FixedUpdate()
     {
-        transform.Translate(direction * Time.deltaTime * speed);
+        transform.Translate(_direction * Time.deltaTime * _speed);
+    }
+
+    private void AnimationOverride()
+    {
+        Animator ac = GetComponent<Animator>();
+        ac.runtimeAnimatorController = Aoc;
+        Aoc["DefaultProjectiles"] = _anim;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,10 +40,10 @@ public class Projectiles : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.CompareTag("Enemies"))
+        if (other.gameObject.CompareTag(_tag))
         {
             Destroy(gameObject);
-            other.transform.GetComponent<EnemiesLive>().GetDamaged(damage);
+            other.transform.GetComponent<EnemiesLive>().GetDamaged(_damage);
         }
     }
 }

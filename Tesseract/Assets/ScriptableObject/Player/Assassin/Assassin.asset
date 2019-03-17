@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
+  m_Name: Assassin
+  m_EditorClassIdentifier: 
+  _MaxHp: 100
+  _PhysicsDamage: 10
+  _MagicDamage: 20
+  _MoveSpeed: 10
+  _DashDistance: 5
+  _Width: 0.45
+  _Height: 1
+  _FeetHeight: 0.06
+  _Move:
+  - {fileID: 7400000, guid: 1f4017248b4adab4fa09c0b913aaa81f, type: 2}
+  - {fileID: 7400000, guid: ebd89d39b9f1bc446a393c37de41f0f6, type: 2}
+  - {fileID: 7400000, guid: 33baf72117d150e429b68a4ae181a726, type: 2}
+  - {fileID: 7400000, guid: b63079454b568974c902a7bb9d2a753b, type: 2}
+  _Idle:
+  - {fileID: 7400000, guid: f2fa4665a6c70be4289d98ce2dad03da, type: 2}
+  - {fileID: 7400000, guid: 9e08c5aab6a893b4baa37c68967eae4a, type: 2}
+  - {fileID: 7400000, guid: 691cc616e86149d4491f03874c1900ab, type: 2}
+  - {fileID: 7400000, guid: 446b0610010f28e46b7ca84c0bf2e79a, type: 2}
+  _Throw:
+  - {fileID: 7400000, guid: 84d6fa74466ec2c4eb7e3e4901044573, type: 2}
+  - {fileID: 7400000, guid: bf279786e03a0e24993076d787170fec, type: 2}
+  - {fileID: 7400000, guid: 977d1c988322f0d479a5e7e2e591a96e, type: 2}
+  - {fileID: 7400000, guid: a284a019f96b77f469849cf2ffa28f65, type: 2}
+  _Competences:
+  - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
+  - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}

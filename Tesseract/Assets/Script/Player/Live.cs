@@ -5,17 +5,17 @@ using UnityEngine;
 public class Live : MonoBehaviour
 {
 
-    public int live;
+    [SerializeField] protected PlayerData PlayerData;
 
     public void Damage(int damage)
     {
-        live -= damage;
+        PlayerData.Hp -= damage;
         Death();
     }
 
     public void Death()
     {
-        if (live <= 0)
+        if (PlayerData.Hp <= 0)
         {
             Destroy(gameObject);
             GameObject map = GameObject.Find("Map");

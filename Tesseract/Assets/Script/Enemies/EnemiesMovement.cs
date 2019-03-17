@@ -7,8 +7,9 @@ namespace Script.Enemies
 {
     public class EnemiesMovement : MonoBehaviour
     {
-        private GameObject player;
-        public int Speed;
+        [SerializeField] protected GameObject player;
+        [SerializeField] protected int Speed;
+        
         private void Start()
         {
             player = GameObject.Find("Player");

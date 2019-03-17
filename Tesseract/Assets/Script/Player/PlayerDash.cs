@@ -1,55 +1,51 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
 
 public class PlayerDash : MonoBehaviour
 {
-    private GameObject player;
-    private float cooldown;
     
-    public float maxCooldown;
-    public float dashDistance;
-    public LayerMask blockingLayer;
+    [SerializeField] protected PlayerData PlayerData;
+    [SerializeField] protected LayerMask BlockingLayer;
 
-    void Start()
+    private void FixedUpdate()
     {
-        player = GameObject.Find("Player");
-        cooldown = maxCooldown;
-    }
-
-    void FixedUpdate()
-    {
-        Dash();
-    }
-
-    private bool DashCd()
-    {
-        if (cooldown >= maxCooldown) 
-            return true;
-        cooldown++;
-        return false;
-    }
-    
-    private void Dash()
-    {
-        bool dashCd = DashCd();
-        if (Input.GetKey("space") && dashCd)
+        if (Input.GetKey("space") && PlayerData.GetCompetence("Dash").Usable)
         {
-            cooldown = 0;
-            //Get direction of the dash
-            Vector2 playerPos = player.transform.position;
-            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (cursorPos - playerPos).normalized;
-
-            //Check if there is a wall
-            RaycastHit2D hit = Physics2D.Raycast(playerPos, direction, dashDistance, blockingLayer);
-            
-            //Dash to the wall if there is one, or dash to the normal position
-            if (!hit)
-                player.transform.position = playerPos + direction * dashDistance;
-            else
-                player.transform.position = playerPos + direction * hit.distance;
+            StartCoroutine(Dash(PlayerData.GetCompetence("Dash")));
         }
+
+    }
+
+    private Vector3 Direction()
+    {
+        Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPos.z = 0;
+        return (cursorPos - transform.position).normalized;
+    }
+
+    private RaycastHit2D CheckObstacles(Vector3 dir, CompetencesData competence)
+    {
+        int xDir = dir.x > 0 ? 1 : -1;
+        int yDir = dir.y > 0 ? 1 : -1;
+        
+        Vector3 playerPos = transform.position + new Vector3(PlayerData.Width / 2 * xDir, PlayerData.Height/2 * yDir, 0);
+
+        return Physics2D.Raycast(playerPos, dir, competence.Speed, BlockingLayer);
+    }
+    
+    IEnumerator Dash(CompetencesData competence)
+    {
+        competence.Usable = false;
+        Vector3 dir = Direction();
+
+        //Dash to the wall if there is one, or dash to the normal position
+        RaycastHit2D hit = CheckObstacles(dir, competence);
+        if (!hit)
+            transform.position += dir * competence.Speed;
+        else
+            transform.position += dir * hit.distance;
+        
+        yield return new WaitForSeconds(competence.Cooldown);
+        competence.Usable = true;
     }
 }

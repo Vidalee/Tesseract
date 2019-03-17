@@ -142,7 +142,8 @@ GameObject:
   - component: {fileID: 4606261879900217901}
   - component: {fileID: 4606261879900217900}
   - component: {fileID: 4606261879900217903}
-  - component: {fileID: 4606261879900217902}
+  - component: {fileID: 1467376448}
+  - component: {fileID: 528407125273948501}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -200,12 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c3d19878aa0740b0d9ca99c316346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
-  blockingLayer:
+  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  BlockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  width: 0.2
-  height: 0.1
 --- !u!114 &4606261879900217898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,11 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdef31fdb071134cb0f29cda8ef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCooldown: 30
-  dashDistance: 2
-  blockingLayer:
+  PlayerData: {fileID: 0}
+  BlockingLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!114 &4606261879900217901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0b5ca7538bc86469b821423254264d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 100
+  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
 --- !u!212 &4606261879900217900
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -303,7 +301,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4606261879900217902
+--- !u!114 &1467376448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,14 +310,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4606261879900217905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9547097a91a26b4d9643f6ee9439924, type: 3}
+  m_Script: {fileID: 11500000, guid: f7ccbe5c8f9e3d54486048b8d1a9b675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shuriken1MaxCooldown: 20
-  shuriken1Speed: 12
-  shuriken1Obj: {fileID: 5722367287154517068, guid: 6e730e5b78c98504a866386babf9a8f6,
-    type: 3}
-  shuriken1Damage: 50
+  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+--- !u!114 &528407125273948501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606261879900217905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c97b17a0cb61db4b80280e659fc8bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  Aoc: {fileID: 22100000, guid: 7ba3476b83de6c94da03c728b17d4a3e, type: 2}
 --- !u!1 &4606261880112502605
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +370,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
