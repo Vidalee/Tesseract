@@ -23,28 +23,11 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
     
-    private void PlayerMovingAnimation(int x, int y)
-    {
-        int speed = x != 0 ? x : y;
-        bool dir = x == 0;
-        
-        if (speed == 0)
-        {
-            _animator.SetInteger("Speed", 0);
-            return;
-        }
-        
-        _animator.SetInteger("Speed",speed);
-        _animator.SetBool("Direction",dir);
-    }
-    
     private void PlayerDisplacement()
     {
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
-        
-        PlayerMovingAnimation(xDir, yDir);
-        
+                
         Vector3 xVec = new Vector3(xDir,0,0);
         Vector3 yVec = new Vector3(0,yDir,0);
 

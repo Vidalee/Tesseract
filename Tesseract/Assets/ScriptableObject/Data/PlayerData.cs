@@ -22,6 +22,11 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Throw;
 
     [SerializeField] protected CompetencesData[] _Competences;
+    
+    private void OnEnable()
+    {
+        _Hp = _MaxHp;
+    }
 
     public int MaxHp
     {
@@ -73,13 +78,12 @@ public class PlayerData : ScriptableObject
     public float Height => _Height;
     
     public float FeetHeight => _FeetHeight;
-
+    
+    public CompetencesData[] Competences => _Competences;
+    
     public AnimationClip[] Move => _Move;
 
     public AnimationClip[] Idle => _Idle;
 
     public AnimationClip[] Throw => _Throw;
-    
-    public CompetencesData[] Competences => _Competences;
-
 }

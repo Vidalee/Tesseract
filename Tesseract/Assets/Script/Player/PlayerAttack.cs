@@ -17,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
          if (Input.GetMouseButton(0) && PlayerData.GetCompetence("AutoAttack").Usable)
          {
              StartCoroutine(InstantiateProjectiles(PlayerData.GetCompetence("AutoAttack"), ProjectilesDirection()));
-             StartCoroutine(Shuriken1A());
          }
      }
 
@@ -33,30 +32,16 @@ public class PlayerAttack : MonoBehaviour
         competence.Usable = false;
         Transform o = Instantiate(competence.Object, transform.position + dir / 2, Quaternion.identity, transform);
         o.name = competence.Name;
+                
+        ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
+        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip);
+
         
         Projectiles script = o.GetComponent<Projectiles>();
-        script.Create(dir, competence.Speed, competence.Damage, "Enemy", competence.AnimationClip);
+
+        script.Create(projectilesData);
         
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
-    }
-    
-    IEnumerator Shuriken1A()
-    {       
-        _animator.SetBool("OtherAction", true);
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
-
-        if (dir)
-        {
-            _animator.Play(diff.x < 0 ? "DefaultThrowL" : "DefaultThrowT");
-        }
-        else
-        {
-            _animator.Play(diff.y < 0 ? "DefaultThrowB" : "DefaultThrowT");
-        }
-
-        yield return new WaitForSeconds(0.2f);
-        _animator.SetBool("OtherAction", false);
     }
 }
