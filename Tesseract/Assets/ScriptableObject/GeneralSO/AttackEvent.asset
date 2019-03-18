@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa293e61581fb64f9e31d0d04ceb831, type: 3}
-  m_Name: AnimationOverride
+  m_Script: {fileID: 11500000, guid: 7cd840351a784d045bc970b5367b68f2, type: 3}
+  m_Name: AttackEvent
   m_EditorClassIdentifier: 

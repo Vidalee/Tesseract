@@ -5,18 +5,14 @@
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] protected PlayerData PlayerData;
-    private Animator _animator;
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
+    [SerializeField] protected GameEvent AttackEvent;
 
     private void FixedUpdate()
     {
          if (Input.GetMouseButton(0) && PlayerData.GetCompetence("AutoAttack").Usable)
          {
              StartCoroutine(InstantiateProjectiles(PlayerData.GetCompetence("AutoAttack"), ProjectilesDirection()));
+             AttackEvent.Raise();
          }
      }
 
@@ -30,7 +26,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator InstantiateProjectiles(CompetencesData competence, Vector3 dir)
     {
         competence.Usable = false;
-        Transform o = Instantiate(competence.Object, transform.position + dir / 2, Quaternion.identity, transform);
+        Transform o = Instantiate(competence.Object, transform.position + dir / 2, Quaternion.identity);
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();

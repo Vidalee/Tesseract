@@ -10,20 +10,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private Animator _a;
 
-
     private void Start()
     {
         GetComponent();
         SetAnimation();
-    }
-
-    private void FixedUpdate()
-    {
-        PlayerMovingAnimation();
-        if (Input.GetMouseButton(0) && PlayerData.GetCompetence("AutoAttack").Usable)
-        {
-            StartCoroutine(Shuriken1A());
-        }
     }
 
     private void GetComponent()
@@ -38,7 +28,7 @@ public class PlayerAnimation : MonoBehaviour
         Ao.AnimationOverride("DefaultThrow", PlayerData.Throw, Aoc, _a);
     }
     
-    private void PlayerMovingAnimation()
+    public void PlayerMovingAnimation()
     {
         int x = (int) Input.GetAxisRaw("Horizontal");
         int y = (int) Input.GetAxisRaw("Vertical");
@@ -54,6 +44,11 @@ public class PlayerAnimation : MonoBehaviour
                 
         _a.SetInteger("Speed",speed);
         _a.SetBool("Direction",dir);
+    }
+
+    public void Shuriken1()
+    {
+        StartCoroutine(Shuriken1A());
     }
     
     IEnumerator Shuriken1A()
