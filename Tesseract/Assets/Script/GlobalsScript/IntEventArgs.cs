@@ -1,6 +1,6 @@
 ﻿public struct IntEventArgs : IEventArgs
 {
-    public readonly int Int;
+    private readonly int Int;
 
     public IntEventArgs(int i)
     {
