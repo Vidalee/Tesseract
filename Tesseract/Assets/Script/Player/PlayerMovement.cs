@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
         
-        PlayerMoveEvent.Raise();
+        PlayerMoveEvent.Raise(new IntEventArgs(xDir)
+            );
 
         if (xDir == 0 && yDir == 0) return;
         
