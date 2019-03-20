@@ -1,23 +1,31 @@
-﻿using UnityEngine.Events;
+﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class GameEventListener : MonoBehaviour
+namespace Script.GlobalsScript
 {
-    public GameEvent Event;
-    public UnityEvent Response;
+    [Serializable]
+    public class UnityEventWithArgs : UnityEvent<IEventArgs>{}
 
-    private void OnEnable()
+    public class GameEventListener : MonoBehaviour
     {
-        Event.Register(this);
-    }
+        public GameEvent gameEvent;
+        [SerializeField] public UnityEventWithArgs response;
 
-    private void OnDisable()
-    {
-        Event.UnRegister(this);
-    }
+        private void OnEnable()
+        {
+            gameEvent.Register(this);
+        }
 
-    public void OnEventRaised()
-    {
-        Response.Invoke();
+        private void OnDisable()
+        {
+            gameEvent.UnRegister(this);
+        }
+
+        public void OnEventRaised(IEventArgs arg)
+        {
+            response.Invoke(arg);
+        }
     }
 }

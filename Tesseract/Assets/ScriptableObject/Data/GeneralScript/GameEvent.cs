@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Script.GlobalsScript;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvent")]
@@ -6,11 +7,11 @@ public class GameEvent : ScriptableObject
 {
     private List<GameEventListener> _eventListeners = new List<GameEventListener>();
 
-    public void Raise()
+    public void Raise(IEventArgs arg)
     {
         for (int i = _eventListeners.Count - 1; i >= 0; i--)
         {
-            _eventListeners[i].OnEventRaised();
+            _eventListeners[i].OnEventRaised(arg);
         }
     }
 
