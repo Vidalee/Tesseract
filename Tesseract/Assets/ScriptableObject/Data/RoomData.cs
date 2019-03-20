@@ -7,10 +7,6 @@ public class RoomData : ScriptableObject
     [SerializeField] protected int width;
     [SerializeField] protected Transform[,] gridObstacles;
 
-    public int GetHeight() => height;
-    public int GetWidth() => width;
-    public Transform[,] GetGrid() => gridObstacles;
-
     public void InitiateGrid(int height, int width)
     {
         this.height = height;
@@ -22,4 +18,8 @@ public class RoomData : ScriptableObject
     {
         gridObstacles[y, x] = o;
     }
+
+    public int Height => height;
+
+    public int Width => width;
 }

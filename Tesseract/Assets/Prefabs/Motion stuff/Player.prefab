@@ -203,7 +203,7 @@ MonoBehaviour:
   BlockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  PlayerMoveEvent: {fileID: 11400000, guid: 94ff1116a6f83ee4d8decfe35031df4b, type: 2}
+  PlayerMoveEvent: {fileID: 0}
 --- !u!114 &4606261879900217898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
-  AttackEvent: {fileID: 11400000, guid: 4f675f70f1cde7c4f87c66c24f26bce5, type: 2}
+  AttackEvent: {fileID: 0}
 --- !u!1 &4606261880112502605
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,17 +396,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3322137366822154456, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
-        type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3522267829082382778}
     - target: {fileID: 4321773246659597882, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3522267829082382778}
-    m_RemovedComponents: []
+    - target: {fileID: 3322137366822154456, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3522267829082382778}
+    m_RemovedComponents:
+    - {fileID: 3322137366822154456, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93, type: 3}
 --- !u!4 &1354875493729341007 stripped
 Transform:

@@ -206,8 +206,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PlayerMoveEvent
       value: 
-      objectReference: {fileID: 11400000, guid: 94ff1116a6f83ee4d8decfe35031df4b,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4606261879900217898, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: BlockingLayer.m_Bits
@@ -222,23 +221,66 @@ PrefabInstance:
     - target: {fileID: 1467376448, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
       propertyPath: AttackEvent
       value: 
-      objectReference: {fileID: 11400000, guid: 4f675f70f1cde7c4f87c66c24f26bce5,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 948385839246537094, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8f0d1fe8cdc255f478f556102ddffeb4, type: 2}
-    - target: {fileID: 8736768557017178263, guid: 68892088666f8824483dd80a89cd19a9,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: Event
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 528407125273948501, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
-    - {fileID: 8736768557017178263, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
     - {fileID: 7845168559488321141, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
+--- !u!1 &1454511670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6140684989155698714, guid: 68892088666f8824483dd80a89cd19a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454511669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1454511671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3522267829082382778, guid: 68892088666f8824483dd80a89cd19a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454511669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454511670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f911031ad07b6c545bc19c2a2d1c1f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1454511672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454511670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8b07c3cfc8dea9342b456e5bea798cb6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1454511671}
+        m_MethodName: PlayerMovingAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &3862694622016012441
 PrefabInstance:
   m_ObjectHideFlags: 0
