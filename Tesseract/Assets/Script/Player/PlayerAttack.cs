@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
          if (Input.GetMouseButton(0) && PlayerData.GetCompetence("AutoAttack").Usable)
          {
              StartCoroutine(InstantiateProjectiles(PlayerData.GetCompetence("AutoAttack"), ProjectilesDirection()));
-             AttackEvent.Raise(new IntEventArgs());
+             AttackEvent.Raise(new EventArgsNull());
          }
      }
 
