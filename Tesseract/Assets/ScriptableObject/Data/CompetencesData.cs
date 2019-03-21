@@ -13,6 +13,7 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected int _Damage;
     [SerializeField] protected Transform _Object;
     [SerializeField] protected string _Tag;
+    [SerializeField] protected float _SpriteSize;
 
     private void OnEnable()
     {
@@ -58,4 +59,6 @@ public class CompetencesData : ScriptableObject
     public Transform Object => _Object;
 
     public string Tag => _Tag;
+
+    public float SpriteSize => _SpriteSize;
 }

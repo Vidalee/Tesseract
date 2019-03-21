@@ -28,13 +28,12 @@ public class PlayerAnimation : MonoBehaviour
         Ao.AnimationOverride("DefaultThrow", PlayerData.Throw, Aoc, _a);
     }
     
-    public void PlayerMovingAnimation()
+    public void PlayerMovingAnimation(IEventArgs args)
     {
-        int x = (int) Input.GetAxisRaw("Horizontal");
-        int y = (int) Input.GetAxisRaw("Vertical");
+        EventArgsCoor coor = args as EventArgsCoor;
         
-        int speed = x != 0 ? x : y;
-        bool dir = x == 0;
+        int speed = coor.X != 0 ? coor.X : coor.Y;
+        bool dir = coor.X == 0;
         
         if (speed == 0)
         {

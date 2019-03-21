@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5037516936518131200}
   - component: {fileID: 5074799785781877805}
   - component: {fileID: 6488826173823328713}
-  - component: {fileID: 3322137366822154456}
   - component: {fileID: 4321773246659597882}
   - component: {fileID: 7477168412713431541}
   m_Layer: 0
@@ -102,35 +101,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3322137366822154456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152487511598381141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 94ff1116a6f83ee4d8decfe35031df4b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7477168412713431541}
-        m_MethodName: PlayerMovingAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &4321773246659597882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,22 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 4f675f70f1cde7c4f87c66c24f26bce5, type: 2}
-  Response:
+  gameEvent: {fileID: 0}
+  response:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7477168412713431541}
-        m_MethodName: Shuriken1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      m_Calls: []
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &7477168412713431541
 MonoBehaviour:
