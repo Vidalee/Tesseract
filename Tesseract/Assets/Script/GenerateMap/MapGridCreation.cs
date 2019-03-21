@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using UnityEditorInternal;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGridCreation : MonoBehaviour
@@ -11,7 +7,7 @@ public class MapGridCreation : MonoBehaviour
     public int MapWidth;
     public int RoomNumber;
 
-    public int maxtry;
+    public int maxTry;
     public int fusion;
     public int maxH;
     public int minH;
@@ -35,7 +31,7 @@ public class MapGridCreation : MonoBehaviour
     {
         for (int i = 0; i < RoomNumber; i++)
         {
-            if (maxtry <= 0) return;
+            if (maxTry <= 0) return;
 
             int height = Random.Range(minH, maxH);
             int width = Random.Range(minW, maxW);
@@ -83,7 +79,7 @@ public class MapGridCreation : MonoBehaviour
             if (x1 <= r.X2 && x2 >= r.X1 && y1 <= r.Y2 && y2 >= r.Y1)
             {
                 if (fusion > 0) fusion--;
-                maxtry--;
+                maxTry--;
                 return false;
             }
         }
@@ -141,8 +137,7 @@ public class MapGridCreation : MonoBehaviour
             x1 = x2;
             x2 = save;
         }
-
-        Debug.Log("X");
+        
         for (int i = x1; i <= x2; i++)
         {
             _grid[y, i] = true;
@@ -158,11 +153,9 @@ public class MapGridCreation : MonoBehaviour
             y2 = save;
         }
         
-        Debug.Log("Y");
         for (int i = y1; i <= y2; i++)
         {
             _grid[i, x] = true;
         }
     }
-
 }
