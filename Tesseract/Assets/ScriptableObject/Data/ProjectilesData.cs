@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ProjectilesData : ScriptableObject
 {
-    [SerializeField] protected Vector3 _direction;
-    [SerializeField] protected  float _speed;
-    [SerializeField] protected  int _damage;
-    [SerializeField] protected  string _tag;
-    [SerializeField] protected  AnimationClip _anim;
+    private Vector3 _direction;
+    private  float _speed;
+    private  int _damage;
+    private  string _tag;
+    private  AnimationClip _anim;
 
     public void Created(Vector3 direction, float speed, int damage, string tag, AnimationClip anim)
     {

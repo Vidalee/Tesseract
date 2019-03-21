@@ -6,7 +6,7 @@ public class GenerateRoomFloor : MonoBehaviour
     public Transform FloorObj;
     
     [SerializeField] protected MapTextureData MapTexture;
-    private RoomData RoomData;
+    public RoomData RoomData;
     private Transform[,] grid;
 
     enum Rotation
@@ -30,7 +30,7 @@ public class GenerateRoomFloor : MonoBehaviour
         {
             for (int j = 0; j < RoomData.Width; j++)
             {
-                Transform floor = Instantiate(FloorObj,new Vector3(i, j, 0f), Quaternion.identity, transform);
+                Transform floor = Instantiate(FloorObj,transform.position + new Vector3(i, j, 0f), Quaternion.identity, transform);
                 floor.GetComponent<SpriteRenderer>().sprite = MapTexture.Floor[0];
             }
         }
