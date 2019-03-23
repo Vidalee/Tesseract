@@ -10,12 +10,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] protected PlayerData PlayerData;
     [SerializeField] protected LayerMask BlockingLayer;
+    [SerializeField] protected GameEvent PlayerMoveEvent;
     
     private Animator _animator;
     
     private void FixedUpdate()
     {
-        PlayerDisplacement();
+        PlayerMove();
     }
 
     private void Awake()
@@ -23,31 +24,18 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
     
-    private void PlayerMovingAnimation(int x, int y)
-    {
-        int speed = x != 0 ? x : y;
-        bool dir = x == 0;
-        
-        if (speed == 0)
-        {
-            _animator.SetInteger("Speed", 0);
-            return;
-        }
-        
-        _animator.SetInteger("Speed",speed);
-        _animator.SetBool("Direction",dir);
-    }
-    
-    private void PlayerDisplacement()
+    private void PlayerMove()
     {
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
         
-        PlayerMovingAnimation(xDir, yDir);
+        PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+
+        if (xDir == 0 && yDir == 0) return;
         
         Vector3 xVec = new Vector3(xDir,0,0);
         Vector3 yVec = new Vector3(0,yDir,0);
-
+        
         Vector3 playerPos = transform.position;
         playerPos.y += PlayerData.Height/2 + PlayerData.FeetHeight/2;
         playerPos.x += xVec.x * PlayerData.Width;

@@ -13,7 +13,6 @@ public class PlayerDash : MonoBehaviour
         {
             StartCoroutine(Dash(PlayerData.GetCompetence("Dash")));
         }
-
     }
 
     private Vector3 Direction()

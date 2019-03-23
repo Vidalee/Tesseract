@@ -12,6 +12,13 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected float _Speed;
     [SerializeField] protected int _Damage;
     [SerializeField] protected Transform _Object;
+    [SerializeField] protected string _Tag;
+    [SerializeField] protected float _SpriteSize;
+
+    private void OnEnable()
+    {
+        _Usable = _Unlock;
+    }
 
     public float Cooldown
     {
@@ -50,4 +57,8 @@ public class CompetencesData : ScriptableObject
     public AnimationClip AnimationClip => _AnimationClip;
 
     public Transform Object => _Object;
+
+    public string Tag => _Tag;
+
+    public float SpriteSize => _SpriteSize;
 }
