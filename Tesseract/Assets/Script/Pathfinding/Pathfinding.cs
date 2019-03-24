@@ -31,7 +31,8 @@ namespace Script.Pathfinding
                   }
                   start.DistanceToEnemy = 0;
                   start.DistanceToPlayer = Math.Abs((destination.position - start.position).magnitude);
-                  SortedList<Node> openList = new SortedList<Node>();
+                  //TODO SortedList<Node> openList = new SortedList<Node>();
+                  /*
                   openList.Put(start);
                   HashSet<Node> VisitedNodes = new HashSet<Node>();
                   while (!openList.IsEmpty())
@@ -58,6 +59,7 @@ namespace Script.Pathfinding
                         VisitedNodes.Add(node);
                   }
                   throw new Exception("AStar pas de chemin");
+                  */
             }
 
             private void Update()
@@ -65,7 +67,7 @@ namespace Script.Pathfinding
                   if (AllNodes.PlayerPositionChanged)
                   {
                         AllNodes.PlayerPositionChanged = false;
-                        start = AllNodes.FindNode(Enemy.transform.position);
+                        // TODO start = AllNodes.FindNode(Enemy.transform.position);
                         destination = AllNodes.PlayerNode;
                         AStar();
                   }

@@ -31,7 +31,7 @@ public class MapManager : MonoBehaviour
         {
             if (!ExpandMap()) i--;
         }
-        AllNodes.CreateLinksBetweenNodes();
+        //TODO AllNodes.CreateLinksBetweenNodes();
     }
 
     private Transform InitiateEmptyRoom(Vector3 pos, int height, int width)
