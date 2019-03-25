@@ -1,4 +1,4 @@
-﻿using TMPro.EditorUtilities;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RoomData", menuName = "Map/Room/Data")]
@@ -12,8 +12,9 @@ public class RoomData : ScriptableObject
     private int _width;
     private int[] _center;
     private Transform[,] gridObstacles;
+    private int _index;
 
-    public void Create(int x1, int y1, int x2, int y2, int height, int width)
+    public void Create(int x1, int y1, int x2, int y2, int height, int width, int index)
     {
         _x1 = x1;
         _x2 = x2;
@@ -21,8 +22,8 @@ public class RoomData : ScriptableObject
         _y2 = y2;
         _width = width;
         _height = height;
+        _index = index;
         _center = new [] {(x1 + x2)/2, (y1 + y2)/2};
-        gridObstacles = new Transform[height,width];
         
     }
     
@@ -46,4 +47,7 @@ public class RoomData : ScriptableObject
     public int[] Center => _center;
 
     public Transform[,] GridObstacles => gridObstacles;
+
+    public int Index => _index;
+    
 }
