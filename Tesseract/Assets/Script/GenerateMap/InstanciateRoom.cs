@@ -6,7 +6,6 @@ public class InstanciateRoom : MonoBehaviour
     public int GameH;
     public int GameW;
     [SerializeField] protected LayerMask BlockingLayer;
-    [SerializeField] protected Transform Floor;
 
     private List<Transform> _roomList;
     
@@ -31,11 +30,8 @@ public class InstanciateRoom : MonoBehaviour
             int roomH = Random.Range(minH, maxH);
             int roomW = Random.Range(minW, maxW);
 
-            //int xPos = Random.Range(0, GameH - roomH - 2);
-            //int yPos = Random.Range(0, GameW - roomW - 2);
-
-            int xPos = -2;
-            int yPos = -2;
+            int xPos = Random.Range(0, GameH - roomH - 2);
+            int yPos = Random.Range(0, GameW - roomW - 2);
             
             if (PlaceEmpty(xPos, yPos, roomH, roomW))
             {

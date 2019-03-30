@@ -21,7 +21,7 @@ public class BinaryHeap : ScriptableObject
             SiftMaxDown(key, i, l);
         }
     }
-    
+
     public void SiftMinDown(IHeapNode[] heap, int index, int n)
     {
         int indexSon = 2 * index + 1;
@@ -63,26 +63,26 @@ public class BinaryHeap : ScriptableObject
     }
 
     public void MinHeapSort(IHeapNode[] key)
-    {
-        int l = key.Length;
-        for (int i = l - 1; i > -1; i--)
-        {
-            IHeapNode save = key[i];
-            key[i] = key[0];
-            key[0] = save;
-            SiftMaxDown(key, 0, i);
-        }
-    }
-    
+         {
+             int l = key.Length;
+             for (int i = l - 1; i > -1; i--)
+             {
+                 IHeapNode save = key[i];
+                 key[i] = key[0];
+                 key[0] = save;
+                 SiftMaxDown(key, 0, i);
+             }
+         }
+         
     public void MaxHeapSort(IHeapNode[] key)
-    {
-        int l = key.Length;
-        for (int i = l - 1; i > -1; i--)
-        {
-            IHeapNode save = key[i];
-            key[i] = key[0];
-            key[0] = save;
-            SiftMinDown(key, 0, i);
-        }
-    }
+         {
+             int l = key.Length;
+             for (int i = l - 1; i > -1; i--)
+             {
+                 IHeapNode save = key[i];
+                 key[i] = key[0];
+                 key[0] = save;
+                 SiftMinDown(key, 0, i);
+             }
+         }
 }
