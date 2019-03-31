@@ -103,9 +103,6 @@ public class MapGridCreation : MonoBehaviour
         int y1 = pos1[1];
         int y2 = pos2[1];
 
-        Instantiate(wall, new Vector3(x1, y1), Quaternion.identity);
-        Instantiate(wall, new Vector3(x2, y2), Quaternion.identity);
-
         if (Random.Range(0, 2) == 0)
         {
             BuildLineX(x1, x2, y1);
@@ -208,7 +205,7 @@ public class MapGridCreation : MonoBehaviour
         {
             for (int j = 0; j < _grid.GetLength(1); j++)
             {
-                if (_grid[i, j]) Instantiate(floor, new Vector3(j, i), Quaternion.identity);
+                if (_grid[i, j]) Instantiate(floor, new Vector3(j, i), Quaternion.identity, transform);
             }
         }
     }

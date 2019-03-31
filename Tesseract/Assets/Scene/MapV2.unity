@@ -127,12 +127,12 @@ PrefabInstance:
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
@@ -272,42 +272,48 @@ PrefabInstance:
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: MapHeight
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: MapWidth
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: RoomNumber
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: DistanceRoom
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: maxH
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: minH
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
-        type: 3}
-      propertyPath: maxW
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
-      propertyPath: minW
-      value: 5
+      propertyPath: maxW
+      value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: minW
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: wallTexture
+      value: 
+      objectReference: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c221c65e17f2f4b9fef5edf57019fc, type: 3}
