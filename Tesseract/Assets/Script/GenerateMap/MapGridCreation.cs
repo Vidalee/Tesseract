@@ -19,9 +19,9 @@ public class MapGridCreation : MonoBehaviour
     public int minW;
 
     public Transform floor;
-    public Transform wall;
     public Transform wallTexture;
 
+    [SerializeField] protected MapTextureData MapTextureData;
     [SerializeField] protected KruskalAlgo KruskalAlgo;
 
     private List<RoomData> _roomData;
@@ -205,7 +205,13 @@ public class MapGridCreation : MonoBehaviour
         {
             for (int j = 0; j < _grid.GetLength(1); j++)
             {
-                if (_grid[i, j]) Instantiate(floor, new Vector3(j, i), Quaternion.identity, transform);
+                if (_grid[i, j])
+                {
+                    Transform o = Instantiate(floor, new Vector3(j, i),
+                        Quaternion.AngleAxis(Random.Range(0,3) * 90,Vector3.forward),transform);
+                    o.GetComponent<SpriteRenderer>().sprite =
+                        MapTextureData.Floor[Random.Range(0, MapTextureData.Floor.Length)];
+                }
             }
         }
     }
@@ -228,7 +234,7 @@ public class MapGridCreation : MonoBehaviour
     private void WallTexture()
     {
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity);
-        GenerateWallTexture script = o.GetComponent<GenerateWallTexture>();
+        GenerateWall script = o.GetComponent<GenerateWall>();
         
         script.Create(_grid);
     }

@@ -1,10 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GenerateWallTexture : MonoBehaviour
+public class GenerateWall : MonoBehaviour
 {
 
+    private List<Vector2> _vertices;
     private bool[,] _grid;
     public MapTextureData _mapTextureData;
     public Transform _wall;
@@ -12,6 +13,10 @@ public class GenerateWallTexture : MonoBehaviour
     public void Create(bool[,] grid)
     {
         _grid = grid;
+
+        _vertices = new List<Vector2>();
+        _vertices.Add(new Vector2(-0.5f, -0.5f));
+        _vertices.Add(new Vector2(-0.5f, 0));
         
         InstantiateSimpleWall();
         ChooseWall();
@@ -79,7 +84,7 @@ public class GenerateWallTexture : MonoBehaviour
             case 3: 
                 return _mapTextureData.Wall3Side;
             case 4:
-                return _mapTextureData.WallCorner; 
+                return wallType.Contains("BRTL") ? _mapTextureData.Wall4Side : _mapTextureData.WallCorner; 
             case 5:
                 return _mapTextureData.WallDoubleSide;
         }
@@ -88,8 +93,10 @@ public class GenerateWallTexture : MonoBehaviour
         return wallTexture[Random.Range(0, wallTexture.Length)];
     }
 
-    private Quaternion FindRotationObject(string wallType)
+    private Quaternion FindRotationObject(string wallType, out Vector2[] col)
     {
+        col = _mapTextureData.CubeCol;
+
         if (wallType.Length == 5)
         {
             if(wallType.Contains("BT"))
@@ -100,6 +107,12 @@ public class GenerateWallTexture : MonoBehaviour
         
         if (wallType.Length == 4)
         {
+            if (wallType.Contains("BRLT"))
+            {
+                col = _mapTextureData.WallPerspective1Col;
+                return Quaternion.identity;
+                
+            }
             if (wallType.Contains("TL"))
             {
                 return Quaternion.AngleAxis(-90,Vector3.forward);
@@ -122,6 +135,7 @@ public class GenerateWallTexture : MonoBehaviour
             }
             if (!wallType.Contains("T"))
             {
+                col = _mapTextureData.WallPerspective1Col;
                 return Quaternion.AngleAxis(90,Vector3.forward);
             }
             if (!wallType.Contains("R"))
@@ -142,8 +156,10 @@ public class GenerateWallTexture : MonoBehaviour
             }
             if (wallType.Contains("BL"))
             {
-                return Quaternion.AngleAxis(90,Vector3.forward);
+                col = _mapTextureData.WallPerspective2Col;
+                return Quaternion.AngleAxis(180,Vector3.up);
             }
+            col = _mapTextureData.WallPerspective2Col;
         }
         
         
@@ -158,9 +174,10 @@ public class GenerateWallTexture : MonoBehaviour
                 return Quaternion.AngleAxis(180,Vector3.forward);
             }
             if (wallType.Contains("R"))
-            {
+            { 
                 return Quaternion.AngleAxis(-90,Vector3.forward);
             }
+            col = _mapTextureData.WallPerspective1Col;
         }
         
         return Quaternion.identity;
@@ -168,8 +185,10 @@ public class GenerateWallTexture : MonoBehaviour
 
     private void InstantiateWall(string wallType, int x, int y)
     {
-        Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(wallType), transform);
+        Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(wallType, out Vector2[] col), transform);
         SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
+        EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
+        edgeCollider2D.points = col;
         wallSpriteRenderer.sprite = FindWallTexture(wallType);
     }
 }
