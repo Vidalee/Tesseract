@@ -11,38 +11,17 @@ namespace Script.Pathfinding
         public static int height;
         public static int width;
         public static Node[,] nodesGrid; 
-        public static List<Node> nodes = new List<Node>();
 
-        public GameObject Player;
         public static Node PlayerNode;
-        public static int NodeRadius = 1;
-        private static int NodeSize = 2;
         public static bool PlayerPositionChanged;
-
-        
-        //TODO
-        public GameObject Floor;
 
         private void Start()
         {
-            Debug.Log(Time.realtimeSinceStartup);
             GraphCreation();
-            Debug.Log(Time.realtimeSinceStartup);
         }
 
         private void GraphCreation()
         {
-            /*
-            bool[,] grid =
-            {
-                {true, true, false},
-                {false, true, true},
-                {true, true, true}
-            };
-            int height = 3 - 1;
-            int width = 3 - 1;
-            */
-            
             nodesGrid = new Node[height + 1, width + 1];
             if (grid[0, 0]) nodesGrid[0,0] = new Node(0, 0, new Vector2(0, 0));
             for (int w = 1; w <= width; w++)
@@ -123,7 +102,6 @@ namespace Script.Pathfinding
             //ShowGraph();
         }
 
-
         private void ShowGraph()
         {
             int nbrVoisins = 0;
@@ -134,7 +112,7 @@ namespace Script.Pathfinding
                 {
                     //print(node.position);
                     nbrNoeuds++;
-                    Instantiate(Floor).transform.position = node.position;
+                    //Instantiate(Floor).transform.position = node.position;
                     foreach (Node neighbor in node.Neighbors)
                     {
                         //print(" --> " + neighbor.position);
@@ -145,80 +123,11 @@ namespace Script.Pathfinding
             }
             print(nbrNoeuds);
             print(nbrVoisins);
-
-        }
-        
-        
-        /*
-        public static void AddNode(Vector2 position)
-        {
-            Node newNode = new Node(position + Vector2.one);
-            nodes.Add(newNode);
         }
 
-        public static void CreateLinksBetweenNodes()
+        public static Node PositionToNode(Vector2 position)
         {
-            foreach (Node node in nodes)
-            {
-                for (int x = -1; x < 2; x++)
-                {
-                    for (int y = -1; y < 2; y++)
-                    {
-                        if (x == 0 && y == 0) continue;
-                        Vector2 newPosistion = new Vector2(node.position.x + x * NodeSize, node.position.y + y * NodeSize);
-                        if (!node.IsNeighbor(newPosistion))
-                        {
-                            if (DoesNeighborExist(newPosistion, out Node neighbor))
-                            {
-                                if ((x + y) % 2 != 0 || DoesNeighborExist(new Vector2(node.position.x + x * NodeSize, 
-                                        node.position.y), out Node neighbor1) 
-                                    && DoesNeighborExist(new Vector2(node.position.x, node.position.y + y * NodeSize), 
-                                        out Node neighbor2))
-                                {
-                                    node.Neighbors.Add(neighbor);
-                                    neighbor.Neighbors.Add(node);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            return nodesGrid[(int) position.x, (int) position.y];
         }
-
-        private void Update()
-        {
-            if (PlayerNode != null)
-            {
-                Vector2 lastNodePos = PlayerNode.position;
-                PlayerNode = FindNode(Player.transform.position);
-                PlayerPositionChanged = lastNodePos != PlayerNode.position;
-            }
-            else PlayerNode = FindNode(Player.transform.position);
-        }
-
-        private static bool DoesNeighborExist(Vector2 position, out Node neighbor)
-        {
-            foreach (Node node in nodes)
-            {
-                if (node.position == position)
-                {
-                    neighbor = node;
-                    return true;
-                }
-            }
-
-            neighbor = null;
-            return false;
-        }
-        
-        public static Node FindNode(Vector2 position)
-        {
-            float xNodePos = position.x + NodeRadius - Math.Abs(position.x % NodeSize);
-            float yNodePos = position.y + NodeRadius - Math.Abs(position.y % NodeSize);
-            foreach (Node node in nodes)
-                if (node.position.x - NodeRadius < xNodePos && node.position.x + NodeRadius > xNodePos && node.position.y - NodeRadius < yNodePos && node.position.y + NodeRadius > yNodePos) return node;
-            throw new Exception("FindNode : this shouldn't be happening");
-        }
-        */
     }
 }

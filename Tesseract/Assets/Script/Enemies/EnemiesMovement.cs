@@ -9,6 +9,7 @@ namespace Script.Enemies
     {
         [SerializeField] protected GameObject player;
         [SerializeField] protected int Speed;
+        public LayerMask blockingLayer;
         
         private void Start()
         {
@@ -22,26 +23,18 @@ namespace Script.Enemies
     
         private void Displacement()
         {
-            try
+            if ((player.transform.position - transform.position).magnitude > 2)
             {
-                if ((player.transform.position - transform.position).magnitude > 2)
-                {
-                    Node nextNode = Pathfinding.Pathfinding.Path[0];
+                //RaycastHit2D linecast = Physics2D.Linecast(player.transform.position, transform.position, blockingLayer);
+                //if (!linecast)
                 
-                    Vector2 displacement =
-                        (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime * Speed;
-                    transform.Translate(displacement, Space.World);
-                    if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
-                    {
-                        Pathfinding.Pathfinding.Path.Remove(nextNode);
-                    }
-
-                }            
-            }
-            catch(ArgumentOutOfRangeException)
-            {
-            }
+                Node nextNode = Pathfinding.Pathfinding.Path[0];
+                Vector2 displacement =
+                    (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime * Speed;
+                transform.Translate(displacement, Space.World);
+                if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
+                    Pathfinding.Pathfinding.Path.Remove(nextNode);
+            }            
         }
-
     }
 }

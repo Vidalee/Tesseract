@@ -30,14 +30,12 @@ public class MapGridCreation : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(Time.realtimeSinceStartup);
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
         CreateGrid();
         AllNodes.grid = _grid;
         AllNodes.height = MapHeight - 1;
         AllNodes.width = MapWidth - 1;
-        Debug.Log(Time.realtimeSinceStartup);
     }
 
     public void CreateGrid()
@@ -69,10 +67,8 @@ public class MapGridCreation : MonoBehaviour
                 i--;
             }
         }
-        
         Show();
         ShowStuff();
-
     }
 
     public void AddToGrid(int x1, int y1, int x2, int y2)

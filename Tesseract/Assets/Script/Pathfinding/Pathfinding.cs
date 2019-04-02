@@ -24,7 +24,7 @@ namespace Script.Pathfinding
             
             public void AStar()
             {
-                  foreach (Node node in AllNodes.nodes)
+                  foreach (Node node in AllNodes.nodesGrid)
                   {
                         node.DistanceToEnemy = float.MaxValue;
                         node.DistanceToPlayer = float.MaxValue;
