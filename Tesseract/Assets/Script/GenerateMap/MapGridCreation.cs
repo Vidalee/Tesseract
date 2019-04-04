@@ -18,6 +18,8 @@ public class MapGridCreation : MonoBehaviour
     public int maxW;
     public int minW;
 
+    public int seed;
+
     public Transform floor;
     public Transform wallTexture;
 
@@ -29,6 +31,7 @@ public class MapGridCreation : MonoBehaviour
 
     private void Start()
     {
+        Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
         CreateGrid();
