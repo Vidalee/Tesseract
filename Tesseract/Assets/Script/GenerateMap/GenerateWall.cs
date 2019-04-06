@@ -186,6 +186,10 @@ public class GenerateWall : MonoBehaviour
     private void InstantiateWall(string wallType, int x, int y)
     {
         Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(wallType, out Vector2[] col), transform);
+        if (col == _mapTextureData.WallPerspective1Col || col == _mapTextureData.WallPerspective2Col)
+        {
+            wall.GetComponent<SpriteRenderer>().sortingOrder = 110;
+        }
         SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
         EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
         edgeCollider2D.points = col;
