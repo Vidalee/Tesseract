@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Script.GlobalsScript;
+using Script.Pathfinding;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,13 +25,17 @@ public class MapGridCreation : MonoBehaviour
     [SerializeField] protected KruskalAlgo KruskalAlgo;
 
     private List<RoomData> _roomData;
+
     private bool[,] _grid;
 
-    private void Start()
+    private void Awake()
     {
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
         CreateGrid();
+        AllNodes.Grid = _grid;
+        AllNodes.Height = MapHeight - 1;
+        AllNodes.Width = MapWidth - 1;
     }
 
     public void CreateGrid()
@@ -62,10 +67,8 @@ public class MapGridCreation : MonoBehaviour
                 i--;
             }
         }
-        
         Show();
         ShowStuff();
-
     }
 
     public void AddToGrid(int x1, int y1, int x2, int y2)
@@ -191,7 +194,7 @@ public class MapGridCreation : MonoBehaviour
         Edge[] road = KruskalAlgo.Kruskal(graph);
         return road;
     }
-
+    
     public void ShowGraph(IHeapNode[] edges)
     {
         foreach (var e in edges)
@@ -226,7 +229,7 @@ public class MapGridCreation : MonoBehaviour
 
         foreach (var e in edges)
         {
-            Debug.Log(e.Source + "->" + e.Destination + " : " + Mathf.Sqrt(e.Weight));
+            //Debug.Log(e.Source + "->" + e.Destination + " : " + Mathf.Sqrt(e.Weight));
             
             BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center);
             
