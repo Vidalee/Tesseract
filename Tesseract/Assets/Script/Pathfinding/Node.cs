@@ -14,7 +14,7 @@ namespace Script.Pathfinding
         public Node Parent { get; set; }
         public float DistanceToPlayer { get; set; }
         public float Heuristic { get; set; } // Hypothétique distance optimal (sans obstacle) entre l'ennemi et le joueur.
-        public float DistanceToEnemy { get; set; } 
+        public float DistanceToEnemy;
     
         public Node(int x, int y, Vector2 position)
         {

@@ -33,9 +33,9 @@ public class MapGridCreation : MonoBehaviour
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
         CreateGrid();
-        AllNodes.grid = _grid;
-        AllNodes.height = MapHeight - 1;
-        AllNodes.width = MapWidth - 1;
+        AllNodes.Grid = _grid;
+        AllNodes.Height = MapHeight - 1;
+        AllNodes.Width = MapWidth - 1;
     }
 
     public void CreateGrid()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace Script.GlobalsScript
 {
@@ -48,8 +49,9 @@ namespace Script.GlobalsScript
 
             Subset[] subset = new Subset[verticesCount];
 
-            BinaryHeap.CreateMaxHeap(graph.Edge);
-            BinaryHeap.MinHeapSort(graph.Edge);
+            // TODO Array to List
+            BinaryHeap.CreateMaxHeap(graph.Edge.ToList());
+            BinaryHeap.MinHeapSort(graph.Edge.ToList());
             
             for(int v = 0; v < verticesCount; v++)
             {

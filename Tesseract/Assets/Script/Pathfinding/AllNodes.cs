@@ -7,95 +7,104 @@ namespace Script.Pathfinding
 {
     public class AllNodes : MonoBehaviour
     {
-        public static bool[,] grid;
-        public static int height;
-        public static int width;
-        public static Node[,] nodesGrid; 
+        public static bool[,] Grid;
+        public static int Height;
+        public static int Width;
+        public static Node[,] NodesGrid;
 
+        public GameObject Player;
         public static Node PlayerNode;
         public static bool PlayerPositionChanged;
 
         private void Start()
         {
             GraphCreation();
+            PlayerNode = PositionToNode(Player.transform.position);
+        }
+
+        private void Update()
+        {
+            Node newPlayerNode = PositionToNode(Player.transform.position);
+            PlayerPositionChanged = newPlayerNode != PlayerNode;
+            PlayerNode = newPlayerNode;
         }
 
         private void GraphCreation()
         {
-            nodesGrid = new Node[height + 1, width + 1];
-            if (grid[0, 0]) nodesGrid[0,0] = new Node(0, 0, new Vector2(0, 0));
-            for (int w = 1; w <= width; w++)
-                if (grid[0, w])
+            NodesGrid = new Node[Height + 1, Width + 1];
+            if (Grid[0, 0]) NodesGrid[0,0] = new Node(0, 0, new Vector2(0, 0));
+            for (int w = 1; w <= Width; w++)
+                if (Grid[0, w])
                 {
-                    nodesGrid[0,w] = new Node(w, 0, new Vector2(w, 0));
-                    if (grid[0, w - 1])
+                    NodesGrid[0,w] = new Node(w, 0, new Vector2(w, 0));
+                    if (Grid[0, w - 1])
                     {
-                        nodesGrid[0, w - 1].Neighbors.Add(nodesGrid[0, w]);
-                        nodesGrid[0, w].Neighbors.Add(nodesGrid[0, w - 1]);
+                        NodesGrid[0, w - 1].Neighbors.Add(NodesGrid[0, w]);
+                        NodesGrid[0, w].Neighbors.Add(NodesGrid[0, w - 1]);
                     }
 
                 }
-            for (int h = 1; h <= height; h++)
+            for (int h = 1; h <= Height; h++)
             {
-                if (grid[h, 0])
+                if (Grid[h, 0])
                 {
-                    nodesGrid[h,0] = new Node(0, h, new Vector2(0, h));
-                    if (grid[h - 1, 0])
+                    NodesGrid[h,0] = new Node(0, h, new Vector2(0, h));
+                    if (Grid[h - 1, 0])
                     {
-                        nodesGrid[h - 1, 0].Neighbors.Add(nodesGrid[h, 0]);
-                        nodesGrid[h, 0].Neighbors.Add(nodesGrid[h - 1, 0]);
+                        NodesGrid[h - 1, 0].Neighbors.Add(NodesGrid[h, 0]);
+                        NodesGrid[h, 0].Neighbors.Add(NodesGrid[h - 1, 0]);
                     }
 
-                    if (grid[h - 1, 1] && grid[h - 1,0] && grid[h,1])
+                    if (Grid[h - 1, 1] && Grid[h - 1,0] && Grid[h,1])
                     {
-                        nodesGrid[h - 1, 1].Neighbors.Add(nodesGrid[h, 0]);
-                        nodesGrid[h, 0].Neighbors.Add(nodesGrid[h - 1, 1]);
+                        NodesGrid[h - 1, 1].Neighbors.Add(NodesGrid[h, 0]);
+                        NodesGrid[h, 0].Neighbors.Add(NodesGrid[h - 1, 1]);
                     }
                 }
-                for (int w = 1; w < width; w++)
+                for (int w = 1; w < Width; w++)
                                  {
-                                     if (grid[h, w])
+                                     if (Grid[h, w])
                                      {
-                                         nodesGrid[h,w] = new Node(w, h, new Vector2(w, h));
-                                         if (grid[h - 1, w - 1] && grid[h - 1, w] && grid[h,w - 1])
+                                         NodesGrid[h,w] = new Node(w, h, new Vector2(w, h));
+                                         if (Grid[h - 1, w - 1] && Grid[h - 1, w] && Grid[h,w - 1])
                                          {
-                                             nodesGrid[h - 1, w - 1].Neighbors.Add(nodesGrid[h, w]);
-                                             nodesGrid[h, w].Neighbors.Add(nodesGrid[h - 1, w - 1]);
+                                             NodesGrid[h - 1, w - 1].Neighbors.Add(NodesGrid[h, w]);
+                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w - 1]);
                                          }
-                                         if (grid[h - 1, w])
+                                         if (Grid[h - 1, w])
                                          {
-                                             nodesGrid[h - 1, w].Neighbors.Add(nodesGrid[h, w]);
-                                             nodesGrid[h, w].Neighbors.Add(nodesGrid[h - 1, w]);
+                                             NodesGrid[h - 1, w].Neighbors.Add(NodesGrid[h, w]);
+                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w]);
                                          }
-                                         if (grid[h - 1, w + 1] && grid[h - 1, w] && grid[h, w + 1])
+                                         if (Grid[h - 1, w + 1] && Grid[h - 1, w] && Grid[h, w + 1])
                                          {
-                                             nodesGrid[h - 1, w + 1].Neighbors.Add(nodesGrid[h, w]);
-                                             nodesGrid[h, w].Neighbors.Add(nodesGrid[h - 1, w + 1]);
+                                             NodesGrid[h - 1, w + 1].Neighbors.Add(NodesGrid[h, w]);
+                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w + 1]);
                                          }
-                                         if (grid[h, w - 1])
+                                         if (Grid[h, w - 1])
                                          {
-                                             nodesGrid[h, w - 1].Neighbors.Add(nodesGrid[h, w]);
-                                             nodesGrid[h, w].Neighbors.Add(nodesGrid[h, w - 1]);
+                                             NodesGrid[h, w - 1].Neighbors.Add(NodesGrid[h, w]);
+                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h, w - 1]);
                                          }
                                      }
                                  }
-                if (grid[h, width])
+                if (Grid[h, Width])
                 {
-                    nodesGrid[h,width] = new Node(width, h, new Vector2(width, h));
-                    if (grid[h - 1, width - 1] && grid[h - 1, width] && grid[h, width - 1])
+                    NodesGrid[h,Width] = new Node(Width, h, new Vector2(Width, h));
+                    if (Grid[h - 1, Width - 1] && Grid[h - 1, Width] && Grid[h, Width - 1])
                     {
-                        nodesGrid[h - 1, width - 1].Neighbors.Add(nodesGrid[h, width]);
-                        nodesGrid[h, width].Neighbors.Add(nodesGrid[h - 1, width - 1]);
+                        NodesGrid[h - 1, Width - 1].Neighbors.Add(NodesGrid[h, Width]);
+                        NodesGrid[h, Width].Neighbors.Add(NodesGrid[h - 1, Width - 1]);
                     }
-                    if (grid[h - 1, width])
+                    if (Grid[h - 1, Width])
                     {
-                        nodesGrid[h - 1, width].Neighbors.Add(nodesGrid[h, width]);
-                        nodesGrid[h, width].Neighbors.Add(nodesGrid[h - 1, width]);
+                        NodesGrid[h - 1, Width].Neighbors.Add(NodesGrid[h, Width]);
+                        NodesGrid[h, Width].Neighbors.Add(NodesGrid[h - 1, Width]);
                     }
-                    if (grid[h, width - 1])
+                    if (Grid[h, Width - 1])
                     {
-                        nodesGrid[h, width - 1].Neighbors.Add(nodesGrid[h, width]);
-                        nodesGrid[h, width].Neighbors.Add(nodesGrid[h, width - 1]);
+                        NodesGrid[h, Width - 1].Neighbors.Add(NodesGrid[h, Width]);
+                        NodesGrid[h, Width].Neighbors.Add(NodesGrid[h, Width - 1]);
                     }
                 }
             }
@@ -106,7 +115,7 @@ namespace Script.Pathfinding
         {
             int nbrVoisins = 0;
             int nbrNoeuds = 0;
-            foreach (Node node in nodesGrid)
+            foreach (Node node in NodesGrid)
             {
                 if (node != null)
                 {
@@ -127,7 +136,7 @@ namespace Script.Pathfinding
 
         public static Node PositionToNode(Vector2 position)
         {
-            return nodesGrid[(int) position.x, (int) position.y];
+            return NodesGrid[(int) position.x, (int) position.y];
         }
     }
 }
