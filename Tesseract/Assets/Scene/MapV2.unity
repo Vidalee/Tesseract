@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: RoomNumber
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
@@ -292,22 +292,22 @@ PrefabInstance:
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: maxH
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: minH
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: maxW
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: minW
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}

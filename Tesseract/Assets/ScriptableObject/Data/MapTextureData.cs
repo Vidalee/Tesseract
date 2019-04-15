@@ -34,6 +34,16 @@ public class MapTextureData : ScriptableObject
         new Vector2(-0.5f, -0.5f), new Vector2(-0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, -0.5f), new Vector2(-0.5f, -0.5f)
     };
 
+    [SerializeField] protected Vector2[] cornerCol =
+    {
+        new Vector2(-0.5f, 0.5f), new Vector2(0.5f,0.5f), new Vector2(0.5f, -0.5f), 
+    };
+
+    [SerializeField] protected Vector2[] demiCol =
+    {
+        new Vector2(-0.5f,0), new Vector2(0.5f, 0), new Vector2(0.5f, -0.5f), new Vector2(-0.5f, 0.5f), new Vector2(-0.5f, 0),  
+    };
+
     public Sprite[] Floor => floor;
 
     public Sprite[] Wall => wall;
@@ -56,4 +66,8 @@ public class MapTextureData : ScriptableObject
     public Vector2[] WallPerspective2Col => wallPerspective2Col;
 
     public Vector2[] CubeCol => cubeCol;
+
+    public Vector2[] CornerCol => cornerCol;
+
+    public Vector2[] DemiCol => demiCol;
 }

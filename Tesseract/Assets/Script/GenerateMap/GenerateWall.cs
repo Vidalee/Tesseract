@@ -75,7 +75,7 @@ public class GenerateWall : MonoBehaviour
         if (wallType.Contains("C"))
         {
             sprite = _mapTextureData.WallCorner;
-            col = new Vector2[0];
+            col = _mapTextureData.CornerCol;
             if (wallType.Contains("TR"))
             {
                 return Quaternion.AngleAxis(-90, Vector3.forward);
@@ -95,7 +95,14 @@ public class GenerateWall : MonoBehaviour
         if (wallType.Contains('D'))
         {
             sprite = _mapTextureData.WallDoubleSide;
-            return Quaternion.AngleAxis(wallType.Contains("BT") ? 90 : 0, Vector3.forward);
+            
+            if (wallType.Contains("BT"))
+            {
+                col = _mapTextureData.DemiCol;
+                return Quaternion.AngleAxis(-90, Vector3.forward);
+            }
+            
+            return Quaternion.identity;
         }
         
         //Wall 1 side
@@ -151,14 +158,15 @@ public class GenerateWall : MonoBehaviour
             }
             if (!wallType.Contains("T"))
             {
-                col = _mapTextureData.WallPerspective1Col;
                 return Quaternion.AngleAxis(90, Vector3.forward);
             }
             if (!wallType.Contains("R"))
             {
-                return Quaternion.AngleAxis(180, Vector3.forward);
+                col = _mapTextureData.WallPerspective2Col;
+                return Quaternion.AngleAxis(180, Vector3.up);
             }
 
+            col = _mapTextureData.WallPerspective2Col;
             return Quaternion.identity;
         }
         
