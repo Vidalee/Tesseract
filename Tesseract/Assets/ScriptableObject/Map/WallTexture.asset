@@ -13,9 +13,38 @@ MonoBehaviour:
   m_Name: WallTexture
   m_EditorClassIdentifier: 
   floor:
-  - {fileID: 21300000, guid: bb46240c64339c441bc45fd7df2b810f, type: 3}
+  - {fileID: 21300000, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
+  - {fileID: 21300002, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
+  - {fileID: 21300004, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
   wall:
-  - {fileID: 21300002, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   - {fileID: 21300000, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wallSide: {fileID: 21300004, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300002, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall1Side: {fileID: 21300004, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall2Side: {fileID: 21300008, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall3Side: {fileID: 21300010, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall4Side: {fileID: 0}
   wallCorner: {fileID: 21300006, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wallDoubleSide: {fileID: 21300012, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wallPerspective1Col:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  wallPerspective2Col:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  - {x: 0.5, y: -0.5}
+  cubeCol:
+  - {x: -0.5, y: -0.5}
+  - {x: -0.5, y: 0.5}
+  - {x: 0.5, y: 0.5}
+  - {x: 0.5, y: -0.5}
+  - {x: -0.5, y: -0.5}
+  cornerCol:
+  - {x: -0.5, y: 0.5}
+  - {x: 0.5, y: 0.5}
+  - {x: 0.5, y: -0.5}
+  demiCol:
+  - {x: 0, y: -0.5}
+  - {x: 0, y: 0.5}
+  - {x: 0.5, y: 0.5}
+  - {x: 0.5, y: -0.5}
+  - {x: 0, y: -0.5}

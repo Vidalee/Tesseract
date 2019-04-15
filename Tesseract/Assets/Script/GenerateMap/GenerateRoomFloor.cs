@@ -7,7 +7,7 @@ public class GenerateRoomFloor : MonoBehaviour
     
     [SerializeField] protected MapTextureData MapTexture;
     public RoomData RoomData;
-    private Transform[,] grid;
+    private Transform[,] _grid;
 
     enum Rotation
     {

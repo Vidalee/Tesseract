@@ -3,25 +3,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] protected PlayerData PlayerData;
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerMoveEvent;
-    
-    private Animator _animator;
-    
-    private void FixedUpdate()
+        
+    private void Update()
     {
         PlayerMove();
-    }
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
     }
     
     private void PlayerMove()
@@ -33,28 +28,38 @@ public class PlayerMovement : MonoBehaviour
 
         if (xDir == 0 && yDir == 0) return;
         
-        Vector3 xVec = new Vector3(xDir,0,0);
-        Vector3 yVec = new Vector3(0,yDir,0);
-        
         Vector3 playerPos = transform.position;
-        playerPos.y += PlayerData.Height/2 + PlayerData.FeetHeight/2;
-        playerPos.x += xVec.x * PlayerData.Width;
-        
-        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos, playerPos + xVec, BlockingLayer);
-        RaycastHit2D yLinecast = Physics2D.Linecast(playerPos, playerPos + yVec, BlockingLayer);
-
+        playerPos.y += -PlayerData.Height / 2;
+        if (yDir > 0) playerPos.y += PlayerData.FeetHeight;
+        Vector3 playerWidth = new Vector3(PlayerData.Width / 2, 0, 0);
         Vector3 direction = new Vector3(xDir,yDir,0);
 
+        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth * 2, BlockingLayer);
+        RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);
+        RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);        
+        RaycastHit2D diagLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + direction, BlockingLayer);
+     
         if (xLinecast)
         {
-            direction.x *= xLinecast.distance - PlayerData.Width - 0.01f;
+            direction.x *= xLinecast.distance - 0.01f;
         }
 
-        if (yLinecast)
+        if (yLeftLinecast)
         {
-            direction.y *= yLinecast.distance - PlayerData.FeetHeight - 0.01f;
+            direction.y *= yLeftLinecast.distance - 0.01f;
         }
-        
+
+        if (!yLeftLinecast && yRightLinecast)
+        {
+            direction.y *= yRightLinecast.distance - 0.01f;
+        }
+
+        if (!xLinecast && !yRightLinecast && !yLeftLinecast && diagLinecast)
+        {
+            Debug.Log(diagLinecast.distance);
+            direction *= diagLinecast.distance - 0.01f;
+        }
+
         transform.Translate(direction * PlayerData.MoveSpeed * Time.deltaTime);
     }
 }
