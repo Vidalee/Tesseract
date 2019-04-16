@@ -9,16 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e49271493a2abc41a56285a9fc80a9d, type: 3}
-  m_Name: Dash
+  m_Script: {fileID: 11500000, guid: 7cd840351a784d045bc970b5367b68f2, type: 3}
+  m_Name: PlayerDash
   m_EditorClassIdentifier: 
-  _Name: Dash
-  _Unlock: 1
-  _Cooldown: 0.5
-  _Sprite: {fileID: 0}
-  _AnimationClip: {fileID: 0}
-  _Speed: 2
-  _Damage: 0
-  _Object: {fileID: 0}
-  _Tag: 
-  _SpriteSize: 0

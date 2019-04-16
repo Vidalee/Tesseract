@@ -26,6 +26,7 @@ public class PlayerAnimation : MonoBehaviour
         Ao.AnimationOverride("DefaultMove", PlayerData.Move, Aoc, _a);
         Ao.AnimationOverride("DefaultIdle", PlayerData.Idle, Aoc, _a);
         Ao.AnimationOverride("DefaultThrow", PlayerData.Throw, Aoc, _a);
+        Ao.AnimationOverride("DefaultDash", PlayerData.Dash, Aoc, _a);
     }
     
     public void PlayerMovingAnimation(IEventArgs args)
@@ -45,12 +46,36 @@ public class PlayerAnimation : MonoBehaviour
         _a.SetBool("Direction",dir);
     }
 
-    public void Shuriken1()
+    public void PlayerDashAnimation()
     {
-        StartCoroutine(Shuriken1A());
+        StartCoroutine(PlayerDashCor());
     }
     
-    IEnumerator Shuriken1A()
+    IEnumerator PlayerDashCor()
+    {
+        _a.SetBool("OtherAction", true);
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
+
+        if (dir)
+        {
+            _a.Play(diff.x < 0 ? "DefaultDashL" : "DefaultDashR");
+        }
+        else
+        {
+            _a.Play(diff.y < 0 ? "DefaultDashB" : "DefaultDashT");
+        }
+
+        yield return new WaitForSeconds(0.2f);
+        _a.SetBool("OtherAction", false);
+    }
+
+    public void Shuriken1()
+    {
+        StartCoroutine(Shuriken1Cor());
+    }
+    
+    IEnumerator Shuriken1Cor()
     {       
         _a.SetBool("OtherAction", true);
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;

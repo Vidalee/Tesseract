@@ -35,6 +35,11 @@ MonoBehaviour:
   - {fileID: 7400000, guid: bf279786e03a0e24993076d787170fec, type: 2}
   - {fileID: 7400000, guid: 977d1c988322f0d479a5e7e2e591a96e, type: 2}
   - {fileID: 7400000, guid: a284a019f96b77f469849cf2ffa28f65, type: 2}
+  _Dash:
+  - {fileID: 7400000, guid: 17c9769c72b168447b0b7e1a0d4ff9ca, type: 2}
+  - {fileID: 7400000, guid: f78fdb2d2fa00074f9dccb8670679dcc, type: 2}
+  - {fileID: 7400000, guid: b5e440e968ea1e842a8a127532e43fd9, type: 2}
+  - {fileID: 7400000, guid: 51675173953f45c49bffdac334f52dd5, type: 2}
   _Competences:
   - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}

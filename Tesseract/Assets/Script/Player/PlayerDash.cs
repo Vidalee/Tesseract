@@ -6,6 +6,7 @@ public class PlayerDash : MonoBehaviour
     
     [SerializeField] protected PlayerData PlayerData;
     [SerializeField] protected LayerMask BlockingLayer;
+    [SerializeField] protected GameEvent PlayerDashEvent;
 
     private void FixedUpdate()
     {
@@ -26,6 +27,8 @@ public class PlayerDash : MonoBehaviour
     {
         int xDir = dir.x > 0 ? 1 : -1;
         int yDir = dir.y > 0 ? 1 : -1;
+        
+        PlayerDashEvent.Raise(new EventArgsNull());
         
         Vector3 playerPos = transform.position + new Vector3(PlayerData.Width / 2 * xDir, PlayerData.Height/2 * yDir, 0);
 
