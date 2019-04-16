@@ -64,7 +64,6 @@ namespace Script.Pathfinding
                         visitedNodes.Add(node);
                   }
                   throw new Exception("AStar pas de chemin");
-                  
             }
 
             private void Update()

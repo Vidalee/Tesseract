@@ -171,11 +171,11 @@ public class GenerateWall : MonoBehaviour
         }
         
         //Wall 4 side
-        if (wallType == "BRLT")
+        if (wallType == "BRTL")
         {
-            col = _mapTextureData.WallPerspective1Col;
+            col = _mapTextureData.DemiCol;
             sprite = _mapTextureData.Wall4Side;
-            return Quaternion.identity;
+            return Quaternion.AngleAxis(-90, Vector3.forward);
         }
         
         return Quaternion.identity;

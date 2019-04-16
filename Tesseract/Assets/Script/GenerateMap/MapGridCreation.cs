@@ -18,6 +18,7 @@ public class MapGridCreation : MonoBehaviour
     public int minH;
     public int maxW;
     public int minW;
+    public int forcePath;
 
     public int seed;
 
@@ -37,13 +38,15 @@ public class MapGridCreation : MonoBehaviour
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
-        CreateGrid();
-        ConstructMap();
-        WallTexture();
-        
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
+        CreateGrid();
+        ConstructCorridor();
+        FillGap();
+        
+        InitiateFloor();
+        InitiateWall();
     }
 
     //Create grid and room in it
@@ -194,31 +197,33 @@ public class MapGridCreation : MonoBehaviour
 
         return edges;
     }
-
-    //Use Kruskal algo to return link od edge between room
-    private Edge[] LinkRoom()
+    
+    //Create road from list of edge
+    public void ConstructCorridor()
     {
         List<IHeapNode> edges = CreateEdge();
         
-        ShowGraph(edges);
+        //ShowGraph(edges);
         
         Graph graph = KruskalAlgo.CreateGraph(_roomData.Count, edges);
         Edge[] road = KruskalAlgo.Kruskal(graph);
-        return road;
-    }
-    
-    //Create road from list of edge, fill gap and instantiate floor
-    public void ConstructMap()
-    {
-        Edge[] edges = LinkRoom();
 
-        foreach (var e in edges)
-        {            
+        foreach (var e in road)
+        {
+            //ShowMst(e);
             BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center); 
         }
-        
-        FillGap();
-        
+
+        int size = _roomData.Count;
+        for (int i = 0; i < forcePath; i++)
+        {
+            BuildRoad(_roomData[Random.Range(0, size)].Center, _roomData[Random.Range(0, size)].Center);
+        }
+    }
+
+    //Instantiate floor with the bool grid
+    public void InitiateFloor()
+    {
         for (int i = 0; i < _grid.GetLength(0); i++)
         {
             for (int j = 0; j < _grid.GetLength(1); j++)
@@ -251,7 +256,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Call the wall texture sprite and give the grid
-    private void WallTexture()
+    private void InitiateWall()
     {
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity);
         GenerateWall script = o.GetComponent<GenerateWall>();
@@ -276,7 +281,7 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Debug show graph after mst
-    public void ShowMST(Edge e)
+    public void ShowMst(Edge e)
     {
         int[] p1 = _roomData[e.Source].Center;
         int[] p2 = _roomData[e.Destination].Center;
