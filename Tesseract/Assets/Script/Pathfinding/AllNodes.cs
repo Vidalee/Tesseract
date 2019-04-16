@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Script.Pathfinding
 {
@@ -62,32 +59,32 @@ namespace Script.Pathfinding
                     }
                 }
                 for (int w = 1; w < Width; w++)
-                                 {
-                                     if (Grid[h, w])
-                                     {
-                                         NodesGrid[h,w] = new Node(w, h, new Vector2(w, h));
-                                         if (Grid[h - 1, w - 1] && Grid[h - 1, w] && Grid[h,w - 1])
-                                         {
-                                             NodesGrid[h - 1, w - 1].Neighbors.Add(NodesGrid[h, w]);
-                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w - 1]);
-                                         }
-                                         if (Grid[h - 1, w])
-                                         {
-                                             NodesGrid[h - 1, w].Neighbors.Add(NodesGrid[h, w]);
-                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w]);
-                                         }
-                                         if (Grid[h - 1, w + 1] && Grid[h - 1, w] && Grid[h, w + 1])
-                                         {
-                                             NodesGrid[h - 1, w + 1].Neighbors.Add(NodesGrid[h, w]);
-                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w + 1]);
-                                         }
-                                         if (Grid[h, w - 1])
-                                         {
-                                             NodesGrid[h, w - 1].Neighbors.Add(NodesGrid[h, w]);
-                                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h, w - 1]);
-                                         }
-                                     }
-                                 }
+                 {
+                     if (Grid[h, w])
+                     {
+                         NodesGrid[h,w] = new Node(w, h, new Vector2(w, h));
+                         if (Grid[h - 1, w - 1] && Grid[h - 1, w] && Grid[h,w - 1])
+                         {
+                             NodesGrid[h - 1, w - 1].Neighbors.Add(NodesGrid[h, w]);
+                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w - 1]);
+                         }
+                         if (Grid[h - 1, w])
+                         {
+                             NodesGrid[h - 1, w].Neighbors.Add(NodesGrid[h, w]);
+                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w]);
+                         }
+                         if (Grid[h - 1, w + 1] && Grid[h - 1, w] && Grid[h, w + 1])
+                         {
+                             NodesGrid[h - 1, w + 1].Neighbors.Add(NodesGrid[h, w]);
+                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h - 1, w + 1]);
+                         }
+                         if (Grid[h, w - 1])
+                         {
+                             NodesGrid[h, w - 1].Neighbors.Add(NodesGrid[h, w]);
+                             NodesGrid[h, w].Neighbors.Add(NodesGrid[h, w - 1]);
+                         }
+                     }
+                 }
                 if (Grid[h, Width])
                 {
                     NodesGrid[h,Width] = new Node(Width, h, new Vector2(Width, h));

@@ -18,6 +18,7 @@ public class MapGridCreation : MonoBehaviour
     public int minH;
     public int maxW;
     public int minW;
+    public int forcePath;
 
     public int seed;
 
@@ -31,17 +32,24 @@ public class MapGridCreation : MonoBehaviour
 
     private bool[,] _grid;
 
+    //Initiate value
     private void Awake()
     {
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
-        CreateGrid();
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
+        CreateGrid();
+        ConstructCorridor();
+        FillGap();
+        
+        InitiateFloor();
+        InitiateWall();
     }
 
+    //Create grid and room in it
     public void CreateGrid()
     {
         int index = 0;
@@ -71,14 +79,9 @@ public class MapGridCreation : MonoBehaviour
                 i--;
             }
         }
-        
-        InstantiateObject();
-        WallTexture();
-
-        Show();
-        ShowStuff();
     }
 
+    //Add true to the grid (room utilisation)
     public void AddToGrid(int x1, int y1, int x2, int y2)
     {
         for (int i = y1; i < y2; i++)
@@ -90,6 +93,7 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
+    //Collision between room
     private bool CheckCollision(int x1, int x2, int y1, int y2)
     {
         foreach (var r in _roomData)
@@ -105,6 +109,7 @@ public class MapGridCreation : MonoBehaviour
         return true;
     }
 
+    //Build road between 2 position
     public void BuildRoad(int[] pos1, int[] pos2)
     {
 
@@ -126,6 +131,7 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
+    //Build X line
     public void BuildLineX(int x1, int x2, int y)
     {
         if (x1 > x2)
@@ -141,6 +147,7 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
+    //Build Y line
     public void BuildLineY(int y1, int y2, int x)
     {
         if (y1 > y2)
@@ -157,7 +164,8 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    private IHeapNode[] CreateEdge()
+    //Create link between close room for the MST algo
+    private List<IHeapNode> CreateEdge()
     {
         HashSet<RoomData> visited = new HashSet<RoomData>();
         int vertices = _roomData.Count;
@@ -187,31 +195,35 @@ public class MapGridCreation : MonoBehaviour
             }
         }
 
-        return edges.ToArray();
+        return edges;
     }
-
-    private Edge[] LinkRoom()
+    
+    //Create road from list of edge
+    public void ConstructCorridor()
     {
-        IHeapNode[] edges = CreateEdge();
+        List<IHeapNode> edges = CreateEdge();
         
         //ShowGraph(edges);
         
         Graph graph = KruskalAlgo.CreateGraph(_roomData.Count, edges);
         Edge[] road = KruskalAlgo.Kruskal(graph);
-        return road;
-    }
-    
-    public void ShowGraph(IHeapNode[] edges)
-    {
-        Edge[] edges = LinkRoom();
 
-        foreach (var e in edges)
-        {            
+        foreach (var e in road)
+        {
+            //ShowMst(e);
             BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center); 
         }
-        
-        FillGap();
-        
+
+        int size = _roomData.Count;
+        for (int i = 0; i < forcePath; i++)
+        {
+            BuildRoad(_roomData[Random.Range(0, size)].Center, _roomData[Random.Range(0, size)].Center);
+        }
+    }
+
+    //Instantiate floor with the bool grid
+    public void InitiateFloor()
+    {
         for (int i = 0; i < _grid.GetLength(0); i++)
         {
             for (int j = 0; j < _grid.GetLength(1); j++)
@@ -227,6 +239,7 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
+    //Fill gap for legit wall
     private void FillGap()
     {
         for (int i = 1; i < _grid.GetLength(0) - 1; i++)
@@ -242,7 +255,8 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    private void WallTexture()
+    //Call the wall texture sprite and give the grid
+    private void InitiateWall()
     {
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity);
         GenerateWall script = o.GetComponent<GenerateWall>();
@@ -250,7 +264,8 @@ public class MapGridCreation : MonoBehaviour
         script.Create(_grid);
     }
 
-    public void ShowGraph(IHeapNode[] edges)
+    //Debug show graph before mst
+    public void ShowGraph(List<IHeapNode> edges)
     {
         foreach (var e in edges)
         {
@@ -261,15 +276,12 @@ public class MapGridCreation : MonoBehaviour
             Vector3 en = new Vector3(p2[0], p2[1]);
             Vector3 dir = (en - s);
 
-            //Debug.Log(e.Source + "->" + e.Destination + " : " + Mathf.Sqrt(e.Weight));
-            
-            BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center);
-            
             Debug.DrawRay(s, dir, Color.red, 1000f, false);
         }
     }
     
-    public void ShowMST(Edge e)
+    //Debug show graph after mst
+    public void ShowMst(Edge e)
     {
         int[] p1 = _roomData[e.Source].Center;
         int[] p2 = _roomData[e.Destination].Center;
