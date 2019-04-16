@@ -58,12 +58,6 @@ public class PlayerData : ScriptableObject
         set => _MoveSpeed = value;
     }
 
-    public float DashDistance
-    {
-        get => _DashDistance;
-        set => _DashDistance = value;
-    }
-
     public CompetencesData GetCompetence(string name)
     {
         foreach (var c in _Competences)
