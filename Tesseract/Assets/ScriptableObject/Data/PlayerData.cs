@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [SerializeField] protected int _MaxHp;
-    private int _Hp;
+    [SerializeField] private int _Hp;
+    [SerializeField] protected int _MaxMana;
+    [SerializeField] private int _Mana;
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     
@@ -22,10 +24,14 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Throw;
 
     [SerializeField] protected CompetencesData[] _Competences;
+    [SerializeField] protected Inventory _Inventory;
+
+    [SerializeField]protected float _PotionsCooldown;
     
     private void OnEnable()
     {
         _Hp = _MaxHp;
+        _Mana = _MaxMana;
     }
 
     public int MaxHp
@@ -39,6 +45,20 @@ public class PlayerData : ScriptableObject
         get => _Hp;
         set => _Hp = value;
     }
+
+    public int MaxMana
+    {
+        get => _MaxMana;
+        set => _MaxMana = value;
+    }
+
+    public int Mana
+    {
+        get => _Mana;
+        set => _Mana = value;
+    }
+
+    public float PotionsCooldown => _PotionsCooldown;
 
     public int PhysicsDamage
     {
@@ -86,4 +106,6 @@ public class PlayerData : ScriptableObject
     public AnimationClip[] Idle => _Idle;
 
     public AnimationClip[] Throw => _Throw;
+
+    public Inventory Inventory => _Inventory;
 }
