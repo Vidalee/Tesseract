@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "RoomData", menuName = "Map/Room/Data")]
 public class RoomData : ScriptableObject
@@ -11,11 +10,12 @@ public class RoomData : ScriptableObject
     private int _height;
     private int _width;
     private int[] _center;
-    private Transform[,] gridObstacles;
+    private Transform[,] _instance;
     private int _index;
 
     public void Create(int x1, int y1, int x2, int y2, int height, int width, int index)
     {
+        _instance = new Transform[height,width];
         _x1 = x1;
         _x2 = x2;
         _y1 = y1;
@@ -29,7 +29,7 @@ public class RoomData : ScriptableObject
     
     public void ModifyGrid(int x, int y, Transform o)
     {
-        gridObstacles[y, x] = o;
+        _instance[y, x] = o;
     }
 
     public int X1 => _x1;
@@ -46,7 +46,7 @@ public class RoomData : ScriptableObject
 
     public int[] Center => _center;
 
-    public Transform[,] GridObstacles => gridObstacles;
+    public Transform[,] Instance => _instance;
 
     public int Index => _index;
     
