@@ -1,12 +1,4 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using UnityEditor.Animations;
-using UnityEngine;
-using UnityEngine.XR;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,10 +27,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 direction = new Vector3(xDir,yDir,0);
 
         RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth * 2, BlockingLayer);
-        RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + new Vector3(0, yDir) + playerWidth, BlockingLayer);
-        RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos + new Vector3(0, yDir) - playerWidth, BlockingLayer);        
+        RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);
+        RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);        
         RaycastHit2D diagLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + direction, BlockingLayer);
-        
+     
         if (xLinecast)
         {
             direction.x *= xLinecast.distance - 0.01f;
@@ -56,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!xLinecast && !yRightLinecast && !yLeftLinecast && diagLinecast)
         {
+            Debug.Log(diagLinecast.distance);
             direction *= diagLinecast.distance - 0.01f;
         }
 
