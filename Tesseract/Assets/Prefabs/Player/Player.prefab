@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4606261879900217898}
   - component: {fileID: 4606261879900217901}
   - component: {fileID: 1467376448}
-  - component: {fileID: 4510110265792189997}
+  - component: {fileID: 3071788873854763604}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
   AttackEvent: {fileID: 11400000, guid: bd732cc18d24aa74b9f76e5a6538246a, type: 2}
---- !u!114 &4510110265792189997
+--- !u!114 &3071788873854763604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4606261879900217905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f508cfc9e24b2f4d8048e3ef4220d2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 27f3b9616b5f42c4fbf56cd038644017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
@@ -526,11 +526,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8f0d1fe8cdc255f478f556102ddffeb4, type: 2}
-    - target: {fileID: 5074799785781877805, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93, type: 3}
 --- !u!1 &6140684989155698714 stripped
