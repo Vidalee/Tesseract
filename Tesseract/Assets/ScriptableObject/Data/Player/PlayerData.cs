@@ -22,11 +22,13 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Move;
     [SerializeField] protected AnimationClip[] _Idle;
     [SerializeField] protected AnimationClip[] _Throw;
-
+    [SerializeField] protected AnimationClip[] _Dash;
+    
     [SerializeField] protected CompetencesData[] _Competences;
     [SerializeField] protected Inventory _Inventory;
 
     [SerializeField]protected float _PotionsCooldown;
+    
     
     private void OnEnable()
     {
@@ -108,4 +110,7 @@ public class PlayerData : ScriptableObject
     public AnimationClip[] Throw => _Throw;
 
     public Inventory Inventory => _Inventory;
+
+    public AnimationClip[] Dash => _Dash;
+
 }

@@ -1,12 +1,4 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using UnityEditor.Animations;
-using UnityEngine;
-using UnityEngine.XR;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
