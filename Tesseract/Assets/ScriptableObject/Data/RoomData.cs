@@ -24,7 +24,6 @@ public class RoomData : ScriptableObject
         _height = height;
         _index = index;
         _center = new [] {(x1 + x2)/2, (y1 + y2)/2};
-        
     }
     
     public void ModifyGrid(int x, int y, Transform o)
