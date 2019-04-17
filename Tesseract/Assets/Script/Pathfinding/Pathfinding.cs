@@ -23,10 +23,14 @@ namespace Script.Pathfinding
             
             public void AStar()
             {
+                  if (start == null || destination == null) return;
                   foreach (Node node in AllNodes.NodesGrid)
                   {
-                        node.DistanceToEnemy = float.MaxValue;
-                        node.DistanceToPlayer = float.MaxValue;
+                        if (node != null)
+                        {
+                              node.DistanceToEnemy = float.MaxValue;
+                              node.DistanceToPlayer = float.MaxValue;
+                        }
                   }
                   start.DistanceToEnemy = 0;
                   start.DistanceToPlayer = Math.Abs((destination.position - start.position).magnitude);
@@ -35,7 +39,6 @@ namespace Script.Pathfinding
                   BinaryHeap binaryHeap = ScriptableObject.CreateInstance<BinaryHeap>();
                   List<IHeapNode> openList = new List<IHeapNode>();
                   binaryHeap.MinPush(openList, start);
-                  HashSet<Node> visitedNodes = new HashSet<Node>();
                   
                   while (lastIndex != 0)
                   {
@@ -51,19 +54,13 @@ namespace Script.Pathfinding
                         {
                               float newDistance = node.DistanceToEnemy + Math.Abs((node.position - neighbor.position).magnitude);
                               if (neighbor.DistanceToEnemy <= newDistance) continue;
-                              if (visitedNodes.Remove(neighbor))
-                              {
-                                    neighbor.Heuristic =  Math.Abs((destination.position - node.position).magnitude);
-                              }
                               neighbor.DistanceToEnemy = newDistance;
-                              neighbor.DistanceToPlayer = newDistance + neighbor.Heuristic;
+                              neighbor.DistanceToPlayer = newDistance + Math.Abs((destination.position - node.position).magnitude);
                               neighbor.Parent = node;
                               binaryHeap.MinPush(openList, neighbor);
                               lastIndex++;
                         }
-                        visitedNodes.Add(node);
                   }
-                  throw new Exception("AStar pas de chemin");
             }
 
             private void Update()

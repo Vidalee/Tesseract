@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!xLinecast && !yRightLinecast && !yLeftLinecast && diagLinecast)
         {
-            Debug.Log(diagLinecast.distance);
+            // TODO Debug.Log(diagLinecast.distance);
             direction *= diagLinecast.distance - 0.01f;
         }
 
