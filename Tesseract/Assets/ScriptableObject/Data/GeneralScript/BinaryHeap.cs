@@ -113,18 +113,20 @@ public class BinaryHeap : ScriptableObject
 
     public IHeapNode MinPop(List<IHeapNode> key)
     {
-        int l = key.Count;
+        int l = key.Count - 1;
         IHeapNode min = key[0];
-        (key[0], key[l - 1]) = (key[l - 1], null);
+        (key[0], key[l]) = (key[l], key[0]);
+        key.Remove(min);
         SiftMinDown(key, 0, l);
         return min;
     }
     
     public IHeapNode MaxPop(List<IHeapNode> key)
     {
-        int l = key.Count;
+        int l = key.Count - 1;
         IHeapNode max = key[0];
-        (key[0], key[l - 1]) = (key[l - 1], null);
+        (key[0], key[l]) = (key[l], key[0]);
+        key.Remove(max);
         SiftMaxDown(key, 0, l);
         return max;
     }
