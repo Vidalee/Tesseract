@@ -38,3 +38,4 @@ MonoBehaviour:
   _Competences:
   - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
+  - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
