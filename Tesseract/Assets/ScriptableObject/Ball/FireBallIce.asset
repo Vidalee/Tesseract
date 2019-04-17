@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49271493a2abc41a56285a9fc80a9d, type: 3}
   m_Name: FireBallIce
   m_EditorClassIdentifier: 
-  _Name: 
-  _Unlock: 0
-  _Cooldown: 0
-  _Sprite: {fileID: 0}
-  _AnimationClip: {fileID: 0}
-  _Speed: 0
-  _Damage: 0
-  _Object: {fileID: 0}
+  _Name: FireBall
+  _Unlock: 1
+  _Cooldown: 5
+  _Sprite: {fileID: 21300008, guid: 5947522f46810be4a8ef3f573c0795ee, type: 3}
+  _AnimationClip: {fileID: 7400000, guid: 66e9bc6946a9a5d43825c96c1f7a4b43, type: 2}
+  _Speed: 2
+  _Damage: 10
+  _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
   _Tag: 
   _SpriteSize: 0
