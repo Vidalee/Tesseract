@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e49271493a2abc41a56285a9fc80a9d, type: 3}
-  m_Name: EnergyBallFire
+  m_Name: MageEnergyBall
   m_EditorClassIdentifier: 
   _Name: EnergyBall
   _Unlock: 1
-  _Cooldown: 3
-  _Sprite: {fileID: 21300004, guid: 5947522f46810be4a8ef3f573c0795ee, type: 3}
-  _AnimationClip: {fileID: 7400000, guid: f6230b121ea2b094ca3f4b4bfe6305a5, type: 2}
-  _Speed: 2
+  _Cooldown: 2
+  _Speed: 3
   _Damage: 10
+  live: 5
+  number: 16
+  color: ff0000003200000000000000
   _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
   _Tag: 
   _SpriteSize: 0
+  _Sprite: {fileID: 21300004, guid: 5947522f46810be4a8ef3f573c0795ee, type: 3}
+  _AnimationClip: {fileID: 7400000, guid: f6230b121ea2b094ca3f4b4bfe6305a5, type: 2}

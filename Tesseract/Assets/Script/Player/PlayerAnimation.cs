@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] protected AnimatorOverride Ao;
     [SerializeField] protected AnimatorOverrideController Aoc;
     [SerializeField] protected PlayerData PlayerData;
 
@@ -23,10 +22,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetAnimation()
     {
-        Ao.AnimationOverride("DefaultMove", PlayerData.Move, Aoc, _a);
-        Ao.AnimationOverride("DefaultIdle", PlayerData.Idle, Aoc, _a);
-        Ao.AnimationOverride("DefaultAttack", PlayerData.Attack, Aoc, _a);
-        Ao.AnimationOverride("DefaultDash", PlayerData.Dash, Aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultMove", PlayerData.Move, Aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultIdle", PlayerData.Idle, Aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultAttack", PlayerData.Attack, Aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultDash", PlayerData.Dash, Aoc, _a);
     }
     
     public void PlayerMovingAnimation(IEventArgs args)

@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Assassin
   m_EditorClassIdentifier: 
-  _MaxHp: 100
+  _MaxHp: 150
+  _Hp: 150
+  _MaxMana: 100
+  _Mana: 100
   _PhysicsDamage: 10
   _MagicDamage: 20
   _MoveSpeed: 10
-  _DashDistance: 5
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
@@ -30,11 +32,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 9e08c5aab6a893b4baa37c68967eae4a, type: 2}
   - {fileID: 7400000, guid: 691cc616e86149d4491f03874c1900ab, type: 2}
   - {fileID: 7400000, guid: 446b0610010f28e46b7ca84c0bf2e79a, type: 2}
-  _Throw:
-  - {fileID: 7400000, guid: 84d6fa74466ec2c4eb7e3e4901044573, type: 2}
-  - {fileID: 7400000, guid: bf279786e03a0e24993076d787170fec, type: 2}
-  - {fileID: 7400000, guid: 977d1c988322f0d479a5e7e2e591a96e, type: 2}
-  - {fileID: 7400000, guid: a284a019f96b77f469849cf2ffa28f65, type: 2}
+  _Attack: []
   _Dash:
   - {fileID: 7400000, guid: 17c9769c72b168447b0b7e1a0d4ff9ca, type: 2}
   - {fileID: 7400000, guid: f78fdb2d2fa00074f9dccb8670679dcc, type: 2}
@@ -44,3 +42,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
   - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
+  _Inventory: {fileID: 11400000, guid: c2cb697ee6a1e4c4c8dc9ac0913e9db3, type: 2}
+  _PotionsCooldown: 10

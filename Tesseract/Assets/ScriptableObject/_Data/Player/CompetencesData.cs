@@ -7,14 +7,18 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected bool _Unlock;
     [SerializeField] protected float _Cooldown;
     private bool _Usable;
-    [SerializeField] protected Sprite _Sprite;
-    [SerializeField] protected AnimationClip _AnimationClip;
+
     [SerializeField] protected float _Speed;
     [SerializeField] protected int _Damage;
     [SerializeField] protected int live;
+    [SerializeField] protected int number;
+    [SerializeField] protected int[] color;
+    
     [SerializeField] protected Transform _Object;
     [SerializeField] protected string _Tag;
     [SerializeField] protected float _SpriteSize;
+    [SerializeField] protected Sprite _Sprite;
+    [SerializeField] protected AnimationClip _AnimationClip;
 
     private void OnEnable()
     {
@@ -56,6 +60,10 @@ public class CompetencesData : ScriptableObject
         get => live;
         set => live = value;
     }
+
+    public int[] Color => color;
+
+    public int Number => number;
 
     public string Name => _Name;
 

@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "GeneralScript", menuName = "GeneralScript/Animation/AnimatorOverride")]
-public class AnimatorOverride : ScriptableObject
+public static class AnimatorOverride
 {
-    public void AnimationOverride(string name, AnimationClip[] anim, AnimatorOverrideController aoc, Animator ac)
+    public static void AnimationOverride(string name, AnimationClip[] anim, AnimatorOverrideController aoc, Animator ac)
     {
         ac.runtimeAnimatorController = aoc;
 
@@ -15,7 +14,7 @@ public class AnimatorOverride : ScriptableObject
         }
     }
 
-    public void AnimationOverride(string name, AnimationClip anim, AnimatorOverrideController aoc, Animator ac)
+    public static void AnimationOverride(string name, AnimationClip anim, AnimatorOverrideController aoc, Animator ac)
     {
         ac.runtimeAnimatorController = aoc;
         aoc[name] = anim;

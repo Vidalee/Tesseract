@@ -2,15 +2,11 @@
 
 public class ProjectilesAnimation : MonoBehaviour
 {
-    [SerializeField] protected AnimatorOverrideController Aoc;
-    [SerializeField] protected AnimatorOverride Ao;
     private ProjectilesData _projectilesData;
-    private Animator _a;
 
 
     public void Create(ProjectilesData projectilesData)
     {
-        _a = GetComponent<Animator>();
         _projectilesData = projectilesData;
         Animation();
     }
@@ -18,14 +14,24 @@ public class ProjectilesAnimation : MonoBehaviour
     private void Update()
     {
         Rotation();
+        LightColor();
     }
 
-    public void Animation()
+    private void Animation()
     {
-        Ao.AnimationOverride("DefaultProjectiles", _projectilesData.Anim, Aoc, _a);
+        Animator animator = GetComponent<Animator>();
+        AnimatorOverrideController aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        AnimatorOverride.AnimationOverride("DefaultProjectiles", _projectilesData.Anim, aoc, animator);
     }
 
-    public void Rotation()
+    private void LightColor()
+    {
+        Light light = GetComponentInChildren<Light>();
+        int[] col = _projectilesData.Color;
+        light.color = new Color(col[0], col[1], col[2]);
+    }
+
+    private void Rotation()
     {
         Vector2 dir = _projectilesData.Direction;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

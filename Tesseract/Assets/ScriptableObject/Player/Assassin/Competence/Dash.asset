@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Dash
   _Unlock: 1
-  _Cooldown: 0.5
-  _Sprite: {fileID: 0}
-  _AnimationClip: {fileID: 0}
+  _Cooldown: 1
   _Speed: 2
   _Damage: 0
+  live: 0
+  number: 0
+  color: 
   _Object: {fileID: 0}
   _Tag: 
   _SpriteSize: 0
+  _Sprite: {fileID: 0}
+  _AnimationClip: {fileID: 0}

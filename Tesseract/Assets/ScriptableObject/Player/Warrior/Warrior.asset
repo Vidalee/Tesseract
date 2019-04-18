@@ -12,21 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  _MaxHp: 0
-  _Hp: 0
-  _MaxMana: 0
-  _Mana: 0
-  _PhysicsDamage: 0
-  _MagicDamage: 0
-  _MoveSpeed: 0
-  _DashDistance: 0
-  _Width: 0
-  _Height: 0
-  _FeetHeight: 0
-  _Move: []
-  _Idle: []
-  _Throw: []
-  _Dash: []
-  _Competences: []
-  _Inventory: {fileID: 0}
-  _PotionsCooldown: 0
+  _MaxHp: 150
+  _Hp: 150
+  _MaxMana: 50
+  _Mana: 50
+  _PhysicsDamage: 20
+  _MagicDamage: 10
+  _MoveSpeed: 2.5
+  _Width: 0.5
+  _Height: 0.75
+  _FeetHeight: 0.06
+  _Move:
+  - {fileID: 7400000, guid: 1111cb7612bd8bd42aa09ea024fba778, type: 2}
+  - {fileID: 7400000, guid: c0201dc640179bb4d842a5a0c02ad622, type: 2}
+  - {fileID: 7400000, guid: dd3e958d12ffde94991c6495de57a532, type: 2}
+  - {fileID: 7400000, guid: 75ea8bb73c2af2542951c79382845a7d, type: 2}
+  _Idle:
+  - {fileID: 7400000, guid: ad1ec7fc3d968314db1db8d379524e0a, type: 2}
+  - {fileID: 7400000, guid: e7cf08b4e3b7a7d45ab1cdda7a3f1a81, type: 2}
+  - {fileID: 7400000, guid: c07e86fc2f73d434fa806f6961bcec8e, type: 2}
+  - {fileID: 7400000, guid: 8d0b20178590a334ca4295e45a7d5e49, type: 2}
+  _Attack:
+  - {fileID: 7400000, guid: b5c5ba55b2f2651449fa28c09897783b, type: 2}
+  - {fileID: 7400000, guid: 3461e7fe2a4aa4d4688f5e0288ca30ec, type: 2}
+  - {fileID: 7400000, guid: fc365fb04519a604eb093c6c022edad1, type: 2}
+  - {fileID: 7400000, guid: 52ebe426eed469340ab9da23f758f32a, type: 2}
+  _Dash:
+  - {fileID: 7400000, guid: 6fc0d196287b74d4e92e642b4923b147, type: 2}
+  - {fileID: 7400000, guid: 55301b0e47f087149994e16d4f684b4e, type: 2}
+  - {fileID: 7400000, guid: 0e221ecbfbd98714e99e662540e28926, type: 2}
+  - {fileID: 7400000, guid: 229ee47038da1c74e817c784bc977aff, type: 2}
+  _Competences:
+  - {fileID: 11400000, guid: 180c987c158f7bf4e97c91734a3cda2d, type: 2}
+  - {fileID: 11400000, guid: c4edbc4bee443814685222ae02ece83f, type: 2}
+  - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
+  - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
+  _Inventory: {fileID: 11400000, guid: a00c00f36bc26df459c3de1d5d81ac1f, type: 2}
+  _PotionsCooldown: 2

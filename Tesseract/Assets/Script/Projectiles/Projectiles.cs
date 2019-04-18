@@ -4,12 +4,12 @@ public class Projectiles : MonoBehaviour
 {
     private Animator _a;
     private ProjectilesData _projectilesData;
-    public Transform ProjectilesAnimation;
+    public Transform projectilesAnimation;
 
     public void Create(ProjectilesData data)
     {
         _projectilesData = data;
-        Transform o = Instantiate(ProjectilesAnimation, transform.position, Quaternion.identity, transform);
+        Transform o = Instantiate(projectilesAnimation, transform.position, Quaternion.identity, transform);
         o.GetComponent<ProjectilesAnimation>().Create(_projectilesData);
     }
 
@@ -22,7 +22,7 @@ public class Projectiles : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Obstacle"))
         {
-            if(_projectilesData.Live-- <= 0) Destroy(gameObject);
+            Destroy(gameObject);
         }
 
         if (_projectilesData.Tag != "" && other.gameObject.CompareTag(_projectilesData.Tag))
