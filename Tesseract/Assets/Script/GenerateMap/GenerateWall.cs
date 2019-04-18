@@ -1,22 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GenerateWall : MonoBehaviour
 {
-
-    private List<Vector2> _vertices;
     private bool[,] _grid;
     public MapTextureData _mapTextureData;
     public Transform _wall;
+    private int _wallTextureLength;
     
     public void Create(bool[,] grid)
     {
+        _wallTextureLength = _mapTextureData.Wall.Length;
         _grid = grid;
-
-        _vertices = new List<Vector2>();
-        _vertices.Add(new Vector2(-0.5f, -0.5f));
-        _vertices.Add(new Vector2(-0.5f, 0));
         
         InstantiateSimpleWall();
         ChooseWall();
@@ -29,9 +25,10 @@ public class GenerateWall : MonoBehaviour
             for (int j = _grid.GetLength(0) - 2; j > 0; j--)
             {
                 if(_grid[i, j]) continue;
+                
                 if (_grid[i - 1, j])
                 {
-                    string wallType = "";
+                    string wallType = "WWWWWW";
                     InstantiateWall(wallType, i, j);
                     _grid[i, j] = true;
                 }
@@ -54,16 +51,13 @@ public class GenerateWall : MonoBehaviour
                 if (_grid[i - 1, j]) wallType += "T";
                 if (_grid[i, j - 1]) wallType += "L";
 
-                if (wallType == "")
-                {
-                    if (_grid[i + 1, j + 1]) wallType = "CCBL";
-                    if (_grid[i - 1, j - 1]) wallType = "CCTR";
-                    if (_grid[i + 1, j - 1]) wallType = "CCBR";
-                    if (_grid[i - 1, j + 1]) wallType = "CCTL";
-                }
+                if (wallType.Equals("BT") || wallType.Equals("RL")) wallType += "D";
 
-                if (wallType.Contains("BT") && wallType.Length == 2 
-                    || wallType.Contains("RL") && wallType.Length == 2) wallType += "CCC";
+                if (_grid[i + 1, j + 1]) wallType += " CCBR";
+                if (_grid[i - 1, j - 1]) wallType += " CCTL";
+                if (_grid[i + 1, j - 1]) wallType += " CCBL";
+                if (_grid[i - 1, j + 1]) wallType += " CCTR";
+
 
                 if (wallType == "") continue;
                 
@@ -72,99 +66,50 @@ public class GenerateWall : MonoBehaviour
         }
     }
 
-    private Sprite FindWallTexture(string wallType)
-    {
-
-        switch (wallType.Length)
-        {
-            case 1:
-                return _mapTextureData.Wall1Side;
-            case 2:
-                return _mapTextureData.Wall2Side;
-            case 3: 
-                return _mapTextureData.Wall3Side;
-            case 4:
-                return wallType.Contains("BRTL") ? _mapTextureData.Wall4Side : _mapTextureData.WallCorner; 
-            case 5:
-                return _mapTextureData.WallDoubleSide;
-        }
-
-        Sprite[] wallTexture = _mapTextureData.Wall;
-        return wallTexture[Random.Range(0, wallTexture.Length)];
-    }
-
-    private Quaternion FindRotationObject(string wallType, out Vector2[] col)
+    private Quaternion FindRotationObject(string wallType, out Vector2[] col, out Sprite sprite)
     {
         col = _mapTextureData.CubeCol;
-
-        if (wallType.Length == 5)
-        {
-            if(wallType.Contains("BT"))
-            {
-                return Quaternion.AngleAxis(90,Vector3.forward);
-            }
-        }
+        sprite = _mapTextureData.Wall[Random.Range(0, _wallTextureLength)];
         
-        if (wallType.Length == 4)
+        //Corner wall
+        if (wallType.Contains("C"))
         {
-            if (wallType.Contains("BRLT"))
-            {
-                col = _mapTextureData.WallPerspective1Col;
-                return Quaternion.identity;
-                
-            }
-            if (wallType.Contains("TL"))
-            {
-                return Quaternion.AngleAxis(-90,Vector3.forward);
-            }
+            sprite = _mapTextureData.WallCorner;
+            col = _mapTextureData.CornerCol;
             if (wallType.Contains("TR"))
             {
-                return Quaternion.AngleAxis(180,Vector3.forward);
-            }
-            if (wallType.Contains("BR"))
-            {
-                return Quaternion.AngleAxis(90,Vector3.forward);
-            }
-        }
-        
-        if (wallType.Length == 3)
-        {
-            if (!wallType.Contains("B"))
-            {
-                return Quaternion.AngleAxis(-90,Vector3.forward);
-            }
-            if (!wallType.Contains("T"))
-            {
-                col = _mapTextureData.WallPerspective1Col;
-                return Quaternion.AngleAxis(90,Vector3.forward);
-            }
-            if (!wallType.Contains("R"))
-            {
-                return Quaternion.AngleAxis(180,Vector3.forward);
-            }
-        }
-        
-        if (wallType.Length == 2)
-        {
-            if (wallType.Contains("RT"))
-            {
-                return Quaternion.AngleAxis(-90,Vector3.forward);
-            }
-            if (wallType.Contains("TL"))
-            {
-                return Quaternion.AngleAxis(180,Vector3.forward);
+                return Quaternion.AngleAxis(-90, Vector3.forward);
             }
             if (wallType.Contains("BL"))
             {
-                col = _mapTextureData.WallPerspective2Col;
-                return Quaternion.AngleAxis(180,Vector3.up);
+                return Quaternion.AngleAxis(90,Vector3.forward);
             }
-            col = _mapTextureData.WallPerspective2Col;
+            if (wallType.Contains("TL"))
+            {
+                return Quaternion.AngleAxis(180,Vector3.forward);
+            }
+            
+            return Quaternion.identity;
+        }
+        //Double wall
+        if (wallType.Contains('D'))
+        {
+            sprite = _mapTextureData.WallDoubleSide;
+            
+            if (wallType.Contains("BT"))
+            {
+                col = _mapTextureData.DemiCol;
+                return Quaternion.AngleAxis(-90, Vector3.forward);
+            }
+            
+            return Quaternion.identity;
         }
         
-        
+        //Wall 1 side
         if (wallType.Length == 1)
         {
+            sprite = _mapTextureData.Wall1Side;
+            
             if (wallType.Contains("L"))
             {
                 return Quaternion.AngleAxis(90,Vector3.forward);
@@ -178,6 +123,59 @@ public class GenerateWall : MonoBehaviour
                 return Quaternion.AngleAxis(-90,Vector3.forward);
             }
             col = _mapTextureData.WallPerspective1Col;
+            return Quaternion.identity;
+        }
+                
+        //Wall 2 side
+        if (wallType.Length == 2)
+        {
+            sprite = _mapTextureData.Wall2Side;
+            
+            if (wallType.Contains("RT"))
+            {
+                return Quaternion.AngleAxis(-90, Vector3.forward);
+            }
+            if (wallType.Contains("TL"))
+            {
+                return Quaternion.AngleAxis(180, Vector3.forward);
+            }
+            if (wallType.Contains("BL"))
+            {
+                col = _mapTextureData.WallPerspective2Col;
+                return Quaternion.AngleAxis(180,Vector3.up);
+            }
+            col = _mapTextureData.WallPerspective2Col;
+            return Quaternion.identity;
+        }
+        
+        //Wall 3 side
+        if (wallType.Length == 3)
+        {
+            sprite = _mapTextureData.Wall3Side;
+            if (!wallType.Contains("B"))
+            {
+                return Quaternion.AngleAxis(-90, Vector3.forward);
+            }
+            if (!wallType.Contains("T"))
+            {
+                return Quaternion.AngleAxis(90, Vector3.forward);
+            }
+            if (!wallType.Contains("R"))
+            {
+                col = _mapTextureData.WallPerspective2Col;
+                return Quaternion.AngleAxis(180, Vector3.up);
+            }
+
+            col = _mapTextureData.WallPerspective2Col;
+            return Quaternion.identity;
+        }
+        
+        //Wall 4 side
+        if (wallType == "BRTL")
+        {
+            col = _mapTextureData.DemiCol;
+            sprite = _mapTextureData.Wall4Side;
+            return Quaternion.AngleAxis(-90, Vector3.forward);
         }
         
         return Quaternion.identity;
@@ -185,10 +183,21 @@ public class GenerateWall : MonoBehaviour
 
     private void InstantiateWall(string wallType, int x, int y)
     {
-        Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(wallType, out Vector2[] col), transform);
-        SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
-        EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
-        edgeCollider2D.points = col;
-        wallSpriteRenderer.sprite = FindWallTexture(wallType);
+        string[] w = wallType.Split(' ');
+        for (int i = 0; i < w.Length; i++)
+        {
+            if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
+            
+            Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(w[i], out Vector2[] col, out Sprite sprite), transform);
+            if (col == _mapTextureData.WallPerspective1Col || col == _mapTextureData.WallPerspective2Col || sprite == _mapTextureData.WallCorner)
+            {
+                wall.GetComponent<SpriteRenderer>().sortingOrder = 110;
+            }
+    
+            SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
+            EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
+            wallSpriteRenderer.sprite = sprite;
+            edgeCollider2D.points = col;   
+        }
     }
 }

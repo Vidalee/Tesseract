@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace Script.GlobalsScript
 {
     public struct Graph
     {
         public int VerticesCount;
-        public IHeapNode[] Edge;
+        public List<IHeapNode> Edge;
  
     }
 
@@ -30,7 +33,7 @@ namespace Script.GlobalsScript
         [SerializeField] protected UnionFind UnionFind;
         [SerializeField] protected BinaryHeap BinaryHeap;
 
-        public Graph CreateGraph(int verticesCount, IHeapNode[] edges)
+        public Graph CreateGraph(int verticesCount, List<IHeapNode> edges)
         {
             Graph graph = new Graph();
             graph.VerticesCount = verticesCount;
@@ -48,8 +51,8 @@ namespace Script.GlobalsScript
 
             Subset[] subset = new Subset[verticesCount];
 
-            BinaryHeap.CreateMaxHeap(graph.Edge);
-            BinaryHeap.MinHeapSort(graph.Edge);
+            BinaryHeap.CreateMaxHeap(graph.Edge.ToList());
+            BinaryHeap.MinHeapSort(graph.Edge.ToList());
             
             for(int v = 0; v < verticesCount; v++)
             {

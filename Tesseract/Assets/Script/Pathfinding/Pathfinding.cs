@@ -6,12 +6,11 @@ namespace Script.Pathfinding
 {
       public class Pathfinding : MonoBehaviour
       {                  
-            public GameObject Enemy;
             public static Node start;
             public Node destination;
             public static List<Node> Path = new List<Node>();
                     
-            public void reconstructPath()
+            public void ReconstructPath()
             {
                   Path.Clear();
                   Path.Add(destination);
@@ -24,40 +23,44 @@ namespace Script.Pathfinding
             
             public void AStar()
             {
-                  foreach (Node node in AllNodes.nodes)
+                  if (start == null || destination == null) return;
+                  foreach (Node node in AllNodes.NodesGrid)
                   {
-                        node.DistanceToEnemy = float.MaxValue;
-                        node.DistanceToPlayer = float.MaxValue;
+                        if (node != null)
+                        {
+                              node.DistanceToEnemy = float.MaxValue;
+                              node.DistanceToPlayer = float.MaxValue;
+                        }
                   }
                   start.DistanceToEnemy = 0;
                   start.DistanceToPlayer = Math.Abs((destination.position - start.position).magnitude);
-                  SortedList<Node> openList = new SortedList<Node>();
-                  openList.Put(start);
-                  HashSet<Node> VisitedNodes = new HashSet<Node>();
-                  while (!openList.IsEmpty())
+
+                  int lastIndex = 1;
+                  BinaryHeap binaryHeap = ScriptableObject.CreateInstance<BinaryHeap>();
+                  List<IHeapNode> openList = new List<IHeapNode>();
+                  binaryHeap.MinPush(openList, start);
+                  
+                  while (lastIndex != 0)
                   {
-                        Node node = openList.Take();
+                        Node node = (Node) binaryHeap.MinPop(openList);
+                        lastIndex--;
+                        
                         if (node == destination)
                         {
-                              reconstructPath();
+                              ReconstructPath();
                               return;
                         }
                         foreach (Node neighbor in node.Neighbors)
                         {
                               float newDistance = node.DistanceToEnemy + Math.Abs((node.position - neighbor.position).magnitude);
                               if (neighbor.DistanceToEnemy <= newDistance) continue;
-                              if (VisitedNodes.Remove(neighbor))
-                              {
-                                    neighbor.Heuristic =  Math.Abs((destination.position - node.position).magnitude);
-                              }
                               neighbor.DistanceToEnemy = newDistance;
-                              neighbor.DistanceToPlayer = newDistance + neighbor.Heuristic;
+                              neighbor.DistanceToPlayer = newDistance + Math.Abs((destination.position - node.position).magnitude);
                               neighbor.Parent = node;
-                              openList.Put(neighbor);
+                              binaryHeap.MinPush(openList, neighbor);
+                              lastIndex++;
                         }
-                        VisitedNodes.Add(node);
                   }
-                  throw new Exception("AStar pas de chemin");
             }
 
             private void Update()
@@ -65,7 +68,7 @@ namespace Script.Pathfinding
                   if (AllNodes.PlayerPositionChanged)
                   {
                         AllNodes.PlayerPositionChanged = false;
-                        start = AllNodes.FindNode(Enemy.transform.position);
+                        start = AllNodes.PositionToNode(transform.position);
                         destination = AllNodes.PlayerNode;
                         AStar();
                   }

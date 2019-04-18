@@ -1,10 +1,4 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerMoveEvent;
         
-    private void FixedUpdate()
+    private void Update()
     {
         PlayerMove();
     }
@@ -30,31 +24,34 @@ public class PlayerMovement : MonoBehaviour
         playerPos.y += -PlayerData.Height / 2;
         if (yDir > 0) playerPos.y += PlayerData.FeetHeight;
         Vector3 playerWidth = new Vector3(PlayerData.Width / 2, 0, 0);
-        
-        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + new Vector3(xDir, 0, 0), BlockingLayer);
-        RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + new Vector3(0, yDir, 0), BlockingLayer);
-        RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos + new Vector3(0, yDir, 0), BlockingLayer);
-
         Vector3 direction = new Vector3(xDir,yDir,0);
-        
-        RaycastHit2D diagLinecast = Physics2D.Linecast(playerPos, playerPos + direction, BlockingLayer);
-        if (diagLinecast) direction *= diagLinecast.distance;
+
+        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth * 2, BlockingLayer);
+        RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);
+        RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos + new Vector3(0, yDir), BlockingLayer);        
+        RaycastHit2D diagLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + direction, BlockingLayer);
      
         if (xLinecast)
         {
-            direction.x *= xLinecast.distance;
+            direction.x *= xLinecast.distance - 0.01f;
         }
 
         if (yLeftLinecast)
         {
-            direction.y *= yLeftLinecast.distance;
+            direction.y *= yLeftLinecast.distance - 0.01f;
         }
-        
+
         if (!yLeftLinecast && yRightLinecast)
         {
-            direction.y *= yRightLinecast.distance;
+            direction.y *= yRightLinecast.distance - 0.01f;
         }
-        
+
+        if (!xLinecast && !yRightLinecast && !yLeftLinecast && diagLinecast)
+        {
+            // TODO Debug.Log(diagLinecast.distance);
+            direction *= diagLinecast.distance - 0.01f;
+        }
+
         transform.Translate(direction * PlayerData.MoveSpeed * Time.deltaTime);
     }
 }
