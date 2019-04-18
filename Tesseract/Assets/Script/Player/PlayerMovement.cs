@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
+    public PlayerData _playerData;
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerMoveEvent;
-        
+
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
+    
     private void Update()
     {
         PlayerMove();
@@ -14,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void PlayerMove()
     {
-        if (!PlayerData.CanMove)
+        if (!_playerData.CanMove)
         {
             return;
         }
@@ -27,9 +32,9 @@ public class PlayerMovement : MonoBehaviour
         if (xDir == 0 && yDir == 0) return;
         
         Vector3 playerPos = transform.position;
-        playerPos.y += -PlayerData.Height / 2;
-        if (yDir > 0) playerPos.y += PlayerData.FeetHeight;
-        Vector3 playerWidth = new Vector3(PlayerData.Width / 2, 0, 0);
+        playerPos.y += -_playerData.Height / 2;
+        if (yDir > 0) playerPos.y += _playerData.FeetHeight;
+        Vector3 playerWidth = new Vector3(_playerData.Width / 2, 0, 0);
         Vector3 direction = new Vector3(xDir,yDir,0);
 
         RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
@@ -80,6 +85,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        transform.Translate(direction * PlayerData.MoveSpeed * Time.deltaTime);
+        transform.Translate(direction * _playerData.MoveSpeed * Time.deltaTime);
     }
 }

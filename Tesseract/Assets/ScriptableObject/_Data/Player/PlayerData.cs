@@ -13,6 +13,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
+    private int _Xp;
+    private int _Lvl;
     private bool _CanMove;
     
     [SerializeField] protected float _Width ;
@@ -33,6 +35,8 @@ public class PlayerData : ScriptableObject
     
     private void OnEnable()
     {
+        _Xp = 0;
+        _Lvl = 0;
         _Hp = _MaxHp;
         _Mana = _MaxMana;
         _CanMove = true;
@@ -86,6 +90,18 @@ public class PlayerData : ScriptableObject
     {
         get => _MoveSpeed;
         set => _MoveSpeed = value;
+    }
+
+    public int Xp
+    {
+        get => _Xp;
+        set => _Xp = value;
+    }
+
+    public int Lvl
+    {
+        get => _Lvl;
+        set => _Lvl = value;
     }
 
     public CompetencesData GetCompetence(string name)

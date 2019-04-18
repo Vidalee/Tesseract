@@ -1,11 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PotionUsable : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
+    public PlayerData _playerData;
     private bool _usable = true;
+    
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
     
     void Update()
     {
@@ -18,7 +22,7 @@ public class PotionUsable : MonoBehaviour
 
     private void CallCoroutine(int index)
     {
-        Potions pot = PlayerData.Inventory.UsePotion(index);
+        Potions pot = _playerData.Inventory.UsePotion(index);
         if (pot == null) return;
         StartCoroutine(UsePotion(pot));
     }
@@ -28,7 +32,7 @@ public class PotionUsable : MonoBehaviour
         PotionEffect(pot);
 
         _usable = false;
-        yield return new WaitForSeconds(PlayerData.PotionsCooldown);
+        yield return new WaitForSeconds(_playerData.PotionsCooldown);
         _usable = true;
     }
 
@@ -47,13 +51,13 @@ public class PotionUsable : MonoBehaviour
 
     private void AddHp(int hp)
     {
-        PlayerData.Hp += hp;
-        if (PlayerData.Hp >= PlayerData.MaxHp) PlayerData.Hp = PlayerData.MaxHp;
+        _playerData.Hp += hp;
+        if (_playerData.Hp >= _playerData.MaxHp) _playerData.Hp = _playerData.MaxHp;
     }
 
     private void AddMana(int mana)
     {
-        PlayerData.Mana += mana;
-        if (PlayerData.Mana >= PlayerData.MaxMana) PlayerData.Mana = PlayerData.MaxMana;
+        _playerData.Mana += mana;
+        if (_playerData.Mana >= _playerData.MaxMana) _playerData.Mana = _playerData.MaxMana;
     }
 }

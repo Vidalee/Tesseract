@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
-
+    public PlayerData _playerData;
     private Animator _a;
 
-    private void Start()
-    {
-        GetComponent();
-        SetAnimation();
-    }
-
-    private void GetComponent()
+    private void Awake()
     {
         _a = GetComponent<Animator>();
+    }
+
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+        //transform.GetComponentInChildren<DashParticles>().Create(_playerData);
+        SetAnimation();
     }
 
     private void SetAnimation()
     {
         AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
-        AnimatorOverride.AnimationOverride("DefaultMove", PlayerData.Move, aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultIdle", PlayerData.Idle, aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultAttack", PlayerData.Attack, aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultDash", PlayerData.Dash, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultMove", _playerData.Move, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultIdle", _playerData.Idle, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultAttack", _playerData.Attack, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultDash", _playerData.Dash, aoc, _a);
     }
     
     public void PlayerMovingAnimation(IEventArgs args)
@@ -56,7 +56,7 @@ public class PlayerAnimation : MonoBehaviour
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
 
-        if (PlayerData.Name == "Mage") _a.speed = 0.01f;
+        if (_playerData.Name == "Mage") _a.speed = 0.01f;
         
         if (dir)
         {

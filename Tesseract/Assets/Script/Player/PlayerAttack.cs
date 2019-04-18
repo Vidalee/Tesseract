@@ -4,24 +4,29 @@
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
+    public PlayerData _playerData;
     [SerializeField] protected GameEvent AttackEvent;
 
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
+    
     private void FixedUpdate()
     {
-         if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
          {
-             UseCompetence(PlayerData.GetCompetence("AutoAttack"));
+             UseCompetence(_playerData.GetCompetence("AutoAttack"));
          }
 
         if (Input.GetKey("e"))
         {
-            UseCompetence(PlayerData.Competences[1]);
+            UseCompetence(_playerData.Competences[1]);
         }
 
         if (Input.GetKey("r"))
         {
-            UseCompetence(PlayerData.Competences[2]);
+            UseCompetence(_playerData.Competences[2]);
         }
     }
 

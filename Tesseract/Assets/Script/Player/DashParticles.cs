@@ -1,21 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
-public class DashParticules : MonoBehaviour
+public class DashParticles : MonoBehaviour
 {
-    [SerializeField]protected PlayerData PlayerData;
+    public PlayerData _playerData;
     private Animator _a;
 
     private void Awake()
     {
         _a = GetComponent<Animator>();
-        SetAnimation();
     }
 
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+        SetAnimation();
+    }
+    
     private void SetAnimation()
     {
         AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
-        AnimatorOverride.AnimationOverride("DefaultDashParticules", PlayerData.DashParticles, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultDashParticules", _playerData.DashParticles, aoc, _a);
     }
 
     public void PlayerDashParticles()
