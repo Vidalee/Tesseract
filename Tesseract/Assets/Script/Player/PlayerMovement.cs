@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
     
     private void PlayerMove()
     {
-        if (!PlayerData.CanMove) return;
+        if (!PlayerData.CanMove)
+        {
+            return;
+        }
         
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");

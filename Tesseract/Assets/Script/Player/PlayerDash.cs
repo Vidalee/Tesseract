@@ -10,9 +10,12 @@ public class PlayerDash : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!PlayerData.CanMove) return;
+        
         if (Input.GetKey("space") && PlayerData.GetCompetence("Dash").Usable)
         {
-            StartCoroutine(SmoothDash(PlayerData.GetCompetence("Dash")));
+            if (PlayerData.Name == "Mage") StartCoroutine(Dash(PlayerData.GetCompetence("Dash")));
+            else StartCoroutine(SmoothDash(PlayerData.GetCompetence("Dash")));
         }
     }
 
@@ -55,7 +58,22 @@ public class PlayerDash : MonoBehaviour
         return dir * competence.Speed;
     }
 
-    IEnumerator SmoothDash(CompetencesData competence)
+
+    private IEnumerator Dash(CompetencesData competence)
+    {
+        competence.Usable = false;
+        PlayerData.CanMove = false;
+
+        Vector3 direction = CheckObstacles(Direction(), competence);
+        
+        yield return new WaitForSeconds(0.5f);
+
+        transform.position += direction;
+        competence.Usable = true;
+        PlayerData.CanMove = true;
+    }
+    
+    private IEnumerator SmoothDash(CompetencesData competence)
     {
         competence.Usable = false;
         PlayerData.CanMove = false;

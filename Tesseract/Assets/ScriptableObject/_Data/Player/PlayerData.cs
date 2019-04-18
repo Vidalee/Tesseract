@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
 public class PlayerData : ScriptableObject
 {
+    [SerializeField] protected string _Name;
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
     [SerializeField] protected int _MaxMana;
@@ -22,11 +23,12 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Idle;
     [SerializeField] protected AnimationClip[] _Attack;
     [SerializeField] protected AnimationClip[] _Dash;
+    [SerializeField] protected AnimationClip _DashParticles;
     
     [SerializeField] protected CompetencesData[] _Competences;
     [SerializeField] protected Inventory _Inventory;
 
-    [SerializeField]protected float _PotionsCooldown;
+    [SerializeField] protected float _PotionsCooldown;
     
     
     private void OnEnable()
@@ -94,7 +96,9 @@ public class PlayerData : ScriptableObject
         }
         throw new Exception("Competence not found");
     }
-    
+
+    public string Name => _Name;
+
     public float Width => _Width;
 
     public float Height => _Height;
@@ -113,4 +117,5 @@ public class PlayerData : ScriptableObject
 
     public AnimationClip[] Dash => _Dash;
 
+    public AnimationClip DashParticles => _DashParticles;
 }

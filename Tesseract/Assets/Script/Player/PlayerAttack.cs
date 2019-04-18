@@ -34,10 +34,10 @@ public class PlayerAttack : MonoBehaviour
                 case "AutoAttack":
                     AutoAttack(competence);
                     break;
-                case "TripleShuriken":
-                    TripleAttack(competence);
+                case "MultipleProjectiles":
+                    MultipleAttack(competence);
                     break;
-                case "EnergyBall":
+                case "CirclesProjectiles":
                     CircleAttack(competence);
                     break;
             }
@@ -80,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
     }
     
     //Ninja triple shuriken
-    private void TripleAttack(CompetencesData competence)
+    private void MultipleAttack(CompetencesData competence)
     {
         AttackEvent.Raise(new EventArgsNull());
         float rotDist = 10;

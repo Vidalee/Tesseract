@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] protected AnimatorOverrideController Aoc;
     [SerializeField] protected PlayerData PlayerData;
 
     private Animator _a;
@@ -22,10 +21,11 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SetAnimation()
     {
-        AnimatorOverride.AnimationOverride("DefaultMove", PlayerData.Move, Aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultIdle", PlayerData.Idle, Aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultAttack", PlayerData.Attack, Aoc, _a);
-        AnimatorOverride.AnimationOverride("DefaultDash", PlayerData.Dash, Aoc, _a);
+        AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
+        AnimatorOverride.AnimationOverride("DefaultMove", PlayerData.Move, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultIdle", PlayerData.Idle, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultAttack", PlayerData.Attack, aoc, _a);
+        AnimatorOverride.AnimationOverride("DefaultDash", PlayerData.Dash, aoc, _a);
     }
     
     public void PlayerMovingAnimation(IEventArgs args)
@@ -56,6 +56,8 @@ public class PlayerAnimation : MonoBehaviour
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
 
+        if (PlayerData.Name == "Mage") _a.speed = 0.01f;
+        
         if (dir)
         {
             _a.Play(diff.x < 0 ? "DefaultDashL" : "DefaultDashR");
@@ -65,8 +67,9 @@ public class PlayerAnimation : MonoBehaviour
             _a.Play(diff.y < 0 ? "DefaultDashB" : "DefaultDashT");
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         _a.SetBool("OtherAction", false);
+        _a.speed = 1;
     }
 
     public void PlayerAttackAnimation()
