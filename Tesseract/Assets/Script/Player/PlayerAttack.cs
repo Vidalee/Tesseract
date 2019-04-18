@@ -78,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip);
+        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip, competence.Live);
         
         Projectiles script = o.GetComponent<Projectiles>();
 

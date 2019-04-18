@@ -11,6 +11,7 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected AnimationClip _AnimationClip;
     [SerializeField] protected float _Speed;
     [SerializeField] protected int _Damage;
+    [SerializeField] protected int live;
     [SerializeField] protected Transform _Object;
     [SerializeField] protected string _Tag;
     [SerializeField] protected float _SpriteSize;
@@ -48,6 +49,12 @@ public class CompetencesData : ScriptableObject
     {
         get => _Damage;
         set => _Damage = value;
+    }
+
+    public int Live
+    {
+        get => live;
+        set => live = value;
     }
 
     public string Name => _Name;

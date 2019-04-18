@@ -25,7 +25,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         Ao.AnimationOverride("DefaultMove", PlayerData.Move, Aoc, _a);
         Ao.AnimationOverride("DefaultIdle", PlayerData.Idle, Aoc, _a);
-        Ao.AnimationOverride("DefaultThrow", PlayerData.Throw, Aoc, _a);
+        Ao.AnimationOverride("DefaultAttack", PlayerData.Attack, Aoc, _a);
         Ao.AnimationOverride("DefaultDash", PlayerData.Dash, Aoc, _a);
     }
     
@@ -70,12 +70,12 @@ public class PlayerAnimation : MonoBehaviour
         _a.SetBool("OtherAction", false);
     }
 
-    public void Shuriken1()
+    public void PlayerAttackAnimation()
     {
-        StartCoroutine(Shuriken1Cor());
+        StartCoroutine(PlayerAttackCoroutine());
     }
     
-    IEnumerator Shuriken1Cor()
+    IEnumerator PlayerAttackCoroutine()
     {       
         _a.SetBool("OtherAction", true);
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -83,11 +83,11 @@ public class PlayerAnimation : MonoBehaviour
 
         if (dir)
         {
-            _a.Play(diff.x < 0 ? "DefaultThrowL" : "DefaultThrowR");
+            _a.Play(diff.x < 0 ? "DefaultAttackL" : "DefaultAttackR");
         }
         else
         {
-            _a.Play(diff.y < 0 ? "DefaultThrowB" : "DefaultThrowT");
+            _a.Play(diff.y < 0 ? "DefaultAttackB" : "DefaultAttackT");
         }
 
         yield return new WaitForSeconds(0.2f);

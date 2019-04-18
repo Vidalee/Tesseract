@@ -11,17 +11,16 @@ public class PlayerData : ScriptableObject
     [SerializeField] private int _Mana;
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
-    
     [SerializeField] protected float _MoveSpeed;
-    [SerializeField] protected float _DashDistance;
-
+    private bool _CanMove;
+    
     [SerializeField] protected float _Width ;
     [SerializeField] protected float _Height;
     [SerializeField] protected float _FeetHeight;
 
     [SerializeField] protected AnimationClip[] _Move;
     [SerializeField] protected AnimationClip[] _Idle;
-    [SerializeField] protected AnimationClip[] _Throw;
+    [SerializeField] protected AnimationClip[] _Attack;
     [SerializeField] protected AnimationClip[] _Dash;
     
     [SerializeField] protected CompetencesData[] _Competences;
@@ -34,6 +33,7 @@ public class PlayerData : ScriptableObject
     {
         _Hp = _MaxHp;
         _Mana = _MaxMana;
+        _CanMove = true;
     }
 
     public int MaxHp
@@ -58,6 +58,12 @@ public class PlayerData : ScriptableObject
     {
         get => _Mana;
         set => _Mana = value;
+    }
+
+    public bool CanMove
+    {
+        get => _CanMove;
+        set => _CanMove = value;
     }
 
     public float PotionsCooldown => _PotionsCooldown;
@@ -101,7 +107,7 @@ public class PlayerData : ScriptableObject
 
     public AnimationClip[] Idle => _Idle;
 
-    public AnimationClip[] Throw => _Throw;
+    public AnimationClip[] Attack => _Attack;
 
     public Inventory Inventory => _Inventory;
 

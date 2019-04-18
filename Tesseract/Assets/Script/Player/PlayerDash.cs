@@ -12,7 +12,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (Input.GetKey("space") && PlayerData.GetCompetence("Dash").Usable)
         {
-            StartCoroutine(Dash(PlayerData.GetCompetence("Dash")));
+            StartCoroutine(SmoothDash(PlayerData.GetCompetence("Dash")));
         }
     }
 
@@ -54,15 +54,26 @@ public class PlayerDash : MonoBehaviour
 
         return dir * competence.Speed;
     }
-    
-    IEnumerator Dash(CompetencesData competence)
+
+    IEnumerator SmoothDash(CompetencesData competence)
     {
         competence.Usable = false;
-        Vector3 dir = Direction();
-
-        //Dash to the wall if there is one, or dash to the normal position
-        transform.position += CheckObstacles(dir, competence) - dir * 0.01f;
+        PlayerData.CanMove = false;
         
+        Vector3 direction = CheckObstacles(Direction(), competence);
+        float step = competence.Speed * Time.fixedDeltaTime;
+        float t = 0;
+        Vector3 end = transform.position + direction - direction * 0.01f;
+        
+        while ((end - transform.position).magnitude > 0.1f)
+        {
+            t += step;
+            transform.position = Vector3.Lerp(transform.position, end, t);
+            yield return new WaitForFixedUpdate();
+        }
+
+        transform.position = end;
+        PlayerData.CanMove = true;
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
     }

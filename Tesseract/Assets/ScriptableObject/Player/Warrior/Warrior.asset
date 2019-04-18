@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
+  m_Name: Warrior
+  m_EditorClassIdentifier: 
+  _MaxHp: 0
+  _Hp: 0
+  _MaxMana: 0
+  _Mana: 0
+  _PhysicsDamage: 0
+  _MagicDamage: 0
+  _MoveSpeed: 0
+  _DashDistance: 0
+  _Width: 0
+  _Height: 0
+  _FeetHeight: 0
+  _Move: []
+  _Idle: []
+  _Throw: []
+  _Dash: []
+  _Competences: []
+  _Inventory: {fileID: 0}
+  _PotionsCooldown: 0

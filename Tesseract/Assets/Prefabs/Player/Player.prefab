@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c3d19878aa0740b0d9ca99c316346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  PlayerData: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
   BlockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdef31fdb071134cb0f29cda8ef86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  PlayerData: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
   BlockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0b5ca7538bc86469b821423254264d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  PlayerData: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
 --- !u!114 &1467376448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ccbe5c8f9e3d54486048b8d1a9b675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  PlayerData: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
   AttackEvent: {fileID: 11400000, guid: bd732cc18d24aa74b9f76e5a6538246a, type: 2}
 --- !u!114 &3071788873854763604
 MonoBehaviour:
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f3b9616b5f42c4fbf56cd038644017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  PlayerData: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
 --- !u!1 &4606261880112502605
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3522267829082382778}
         m_MethodName: PlayerDashAnimation
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -292,7 +292,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3522267829082382778}
-        m_MethodName: Shuriken1
+        m_MethodName: PlayerAttackAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -526,7 +526,19 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8f0d1fe8cdc255f478f556102ddffeb4, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 5074799785781877805, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477168412713431541, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: PlayerData
+      value: 
+      objectReference: {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 4321773246659597882, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93, type: 3}
 --- !u!1 &6140684989155698714 stripped
 GameObject:
