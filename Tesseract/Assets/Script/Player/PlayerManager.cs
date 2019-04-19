@@ -16,8 +16,8 @@ public class PlayerManager : MonoBehaviour
     {
         //if(Input.GetKey("s")) SavePlayer();
         //if(Input.GetKey("l")) LoadPlayer();
+        //if(Input.GetKey("x")) GetXp(10);
     }
-
 
     #endregion
 
@@ -116,7 +116,11 @@ public class PlayerManager : MonoBehaviour
             int add = amout - gap;
             _playerData.Lvl++;
             _playerData.Xp = add;
-            _playerData.MaxXp = (int) (_playerData.Xp * 1.1);
+            
+            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.5f);
+            
+            UpgradeCompetence();
+            UpgradeStats();
         }
         else
         {
@@ -130,22 +134,24 @@ public class PlayerManager : MonoBehaviour
 
     private void UpgradeStats()
     {
-        if (_playerData.Lvl % 10 == 0)
+        if (_playerData.Lvl % 5 == 0)
         {
             _playerData.MaxHp += 10;
             _playerData.Hp = _playerData.MaxHp;
             _playerData.MaxMana += 10;
             _playerData.Mana = _playerData.MaxMana;
+            _playerData.MoveSpeed *= 1.05f;
+
+            if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
         }
 
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;
-        _playerData.MoveSpeed *= 0.01f;
     }
 
     private void UpgradeCompetence()
     {
-        _playerData.CompetenceTree.CompetenceLvlUp(_playerData.Competences, _playerData.Lvl);
+        CompetenceTree.CompetenceLvlUp(_playerData.Competences, _playerData.Lvl);
     }
 
     #endregion

@@ -32,6 +32,25 @@ public class CompetencesData : ScriptableObject
     private void OnEnable()
     {
         _Usable = _Unlock;
+        if (_Upgrade.Length == 0)
+        {
+            _Upgrade = new[] {1, 5, 10, 20};
+        }
+
+        if (_DamageUpgrade.Length == 0)
+        {
+            _DamageUpgrade = new[] {10, 10, 10, 10};
+        }
+
+        if (_SpeedUpgrade.Length == 0)
+        {
+            _SpeedUpgrade = new[] {5, 5, 5, 5};
+        }
+
+        if (_CooldownUpgrade.Length == 0)
+        {
+            _CooldownUpgrade = new[] {5, 5, 5, 5};
+        }
     }
 
     public float Cooldown

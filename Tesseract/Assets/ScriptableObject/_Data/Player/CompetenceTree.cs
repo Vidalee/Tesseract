@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-[CreateAssetMenu(fileName = "CompetenceTree", menuName = "Player/CompetenceTree")]
-public class CompetenceTree : ScriptableObject
+﻿public static class CompetenceTree
 {
     #region Variable
 
@@ -13,7 +10,7 @@ public class CompetenceTree : ScriptableObject
 
     #region Modify
 
-    public void CompetenceLvlUp(CompetencesData[] competence, int lvl)
+    public static void CompetenceLvlUp(CompetencesData[] competence, int lvl)
     {
         foreach (var comp in competence)
         {
@@ -32,16 +29,16 @@ public class CompetenceTree : ScriptableObject
         }
     }
 
-    private void UnlockCompetence(CompetencesData competence)
+    private static void UnlockCompetence(CompetencesData competence)
     {
         competence.Unlock = true;
     }
 
-    private void UpgradeCompetence(CompetencesData competence, float speed, float damage, float cooldown)
+    private static void UpgradeCompetence(CompetencesData competence, float speed, float damage, float cooldown)
     {
-        competence.Speed *= 1 + speed;
-        competence.Damage += (int) (competence.Damage * damage);
-        competence.Cooldown *= 1 - cooldown;
+        competence.Speed *= 1 + speed/100;
+        competence.Damage = (int) (competence.Damage * (1 + damage/100));
+        competence.Cooldown *= 1 - cooldown/100;
     }
 
     #endregion
