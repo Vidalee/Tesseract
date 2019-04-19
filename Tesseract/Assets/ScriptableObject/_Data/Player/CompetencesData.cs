@@ -7,7 +7,12 @@ public class CompetencesData : ScriptableObject
 
     [SerializeField] protected string _Name;
     [SerializeField] protected bool _Unlock;
+    [SerializeField] protected int _UnlockLvl;
     [SerializeField] protected float _Cooldown;
+    [SerializeField] protected int[] _Upgrade;
+    [SerializeField] protected int[] _DamageUpgrade;
+    [SerializeField] protected int[] _SpeedUpgrade;
+    [SerializeField] protected int[] _CooldownUpgrade;
     private bool _Usable;
 
     [SerializeField] protected float _Speed;
@@ -18,11 +23,9 @@ public class CompetencesData : ScriptableObject
     
     [SerializeField] protected Transform _Object;
     [SerializeField] protected string _Tag;
-    [SerializeField] protected float _SpriteSize;
-    [SerializeField] protected Sprite _Sprite;
     [SerializeField] protected AnimationClip _AnimationClip;
 
-        #endregion
+    #endregion
 
     #region Set/Get
 
@@ -67,13 +70,15 @@ public class CompetencesData : ScriptableObject
         set => live = value;
     }
 
+    public int UnlockLvl => _UnlockLvl;
+
+    public int[] Upgrade => _Upgrade;
+
     public int[] Color => color;
 
     public int Number => number;
 
     public string Name => _Name;
-
-    public Sprite Sprite => _Sprite;
 
     public AnimationClip AnimationClip => _AnimationClip;
 
@@ -81,7 +86,11 @@ public class CompetencesData : ScriptableObject
 
     public string Tag => _Tag;
 
-    public float SpriteSize => _SpriteSize;
+    public int[] DamageUpgrade => _DamageUpgrade;
+
+    public int[] SpeedUpgrade => _SpeedUpgrade;
+
+    public int[] CooldownUpgrade => _CooldownUpgrade;
 
     #endregion
 }

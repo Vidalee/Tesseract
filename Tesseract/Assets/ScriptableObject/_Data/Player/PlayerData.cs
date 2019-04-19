@@ -8,6 +8,8 @@ public class PlayerData : ScriptableObject
     #region Variable
 
     [SerializeField] protected string _Name;
+    [SerializeField] protected CompetenceTree _CompetenceTree;
+    
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
     [SerializeField] protected int _MaxMana;
@@ -15,8 +17,12 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
+    
+    [SerializeField] protected int maxXp;
     private int _Xp;
+    [SerializeField] protected int maxLvl;
     private int _Lvl;
+    
     private bool _CanMove;
     
     [SerializeField] protected float _Width ;
@@ -34,7 +40,7 @@ public class PlayerData : ScriptableObject
 
     [SerializeField] protected float _PotionsCooldown;
 
-        #endregion
+    #endregion
 
     #region Initialise
 
@@ -107,11 +113,19 @@ public class PlayerData : ScriptableObject
         set => _Xp = value;
     }
 
+    public int MaxXp
+    {
+        get => maxXp;
+        set => maxXp = value;
+    }
+
     public int Lvl
     {
         get => _Lvl;
         set => _Lvl = value;
     }
+
+    public int MaxLvl => maxLvl;
 
     public CompetencesData GetCompetence(string name)
     {
@@ -143,6 +157,8 @@ public class PlayerData : ScriptableObject
     public AnimationClip[] Dash => _Dash;
 
     public AnimationClip DashParticles => _DashParticles;
+
+    public CompetenceTree CompetenceTree => _CompetenceTree;
 
     #endregion
 }

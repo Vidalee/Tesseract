@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -110,9 +109,44 @@ public class PlayerManager : MonoBehaviour
 
     public void GetXp(int amout)
     {
-        
+        int gap = _playerData.MaxXp - _playerData.Xp;
+
+        if (amout >= gap)
+        {
+            int add = amout - gap;
+            _playerData.Lvl++;
+            _playerData.Xp = add;
+            _playerData.MaxXp = (int) (_playerData.Xp * 1.1);
+        }
+        else
+        {
+            _playerData.Xp += amout;
+        }
     }
 
+    #endregion
+
+    #region LvlUp
+
+    private void UpgradeStats()
+    {
+        if (_playerData.Lvl % 10 == 0)
+        {
+            _playerData.MaxHp += 10;
+            _playerData.Hp = _playerData.MaxHp;
+            _playerData.MaxMana += 10;
+            _playerData.Mana = _playerData.MaxMana;
+        }
+
+        _playerData.PhysicsDamage++;
+        _playerData.MagicDamage++;
+        _playerData.MoveSpeed *= 0.01f;
+    }
+
+    private void UpgradeCompetence()
+    {
+        _playerData.CompetenceTree.CompetenceLvlUp(_playerData.Competences, _playerData.Lvl);
+    }
 
     #endregion
 }

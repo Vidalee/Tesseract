@@ -5,41 +5,44 @@ public class CompetenceTree : ScriptableObject
 {
     #region Variable
 
-    [SerializeField] protected CompetencesData[] CompetencesData;
-    private Dictionary<string, CompetencesData> _competences;
-
-        #endregion
+    #endregion
 
     #region Initialise
-
-    private void OnEnable()
-    {
-        _competences = new Dictionary<string, CompetencesData>();
-        foreach (var c in CompetencesData)
-        {
-            _competences.Add(c.Tag, c);
-        }
-    }
 
     #endregion
 
     #region Modify
 
-    public void UnlockCompetence(string tag)
+    public void CompetenceLvlUp(CompetencesData[] competence, int lvl)
     {
-        _competences.TryGetValue(tag, out CompetencesData competence);
-        if (competence == null) return;
+        foreach (var comp in competence)
+        {
+            if (comp.Unlock)
+            {
+                for (int i = 0; i < comp.Upgrade.Length; i++)
+                {
+                    if (comp.Upgrade[i] == lvl)
+                    {
+                        UpgradeCompetence(comp, comp.SpeedUpgrade[i], comp.DamageUpgrade[i], comp.CooldownUpgrade[i]);
+                    }
+                }
+            }
+            
+            if(comp.UnlockLvl == lvl) UnlockCompetence(comp);
+        }
+    }
+
+    private void UnlockCompetence(CompetencesData competence)
+    {
         competence.Unlock = true;
     }
 
-    public void UpgradeCompetence(CompetencesData competence, float up)
+    private void UpgradeCompetence(CompetencesData competence, float speed, float damage, float cooldown)
     {
-        competence.Speed *= 1 + up;
-        competence.Damage += (int) (competence.Damage * up);
-        competence.Cooldown *= 1 - up;
+        competence.Speed *= 1 + speed;
+        competence.Damage += (int) (competence.Damage * damage);
+        competence.Cooldown *= 1 - cooldown;
     }
 
     #endregion
-
-
 }
