@@ -3,15 +3,26 @@ using UnityEngine.Serialization;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region Variable
+
     [SerializeField] protected PlayerData _playerData;
     private MapData _mapData;
     public Transform Player;
+
+    #endregion
+
+    #region Update
 
     private void Update()
     {
         //if(Input.GetKey("s")) SavePlayer();
         //if(Input.GetKey("l")) LoadPlayer();
     }
+
+
+    #endregion
+
+    #region Initialise
 
     private void Awake()
     {
@@ -59,7 +70,11 @@ public class PlayerManager : MonoBehaviour
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
     }
-    
+
+    #endregion
+
+    #region Player save and load
+
     private void SavePlayer()
     {
         Debug.Log("Save");
@@ -88,4 +103,16 @@ public class PlayerManager : MonoBehaviour
             _playerData.Competences[i].Damage = data._Damage[i];
         }
     }
+
+    #endregion
+
+    #region PlayerStats
+
+    public void GetXp(int amout)
+    {
+        
+    }
+
+
+    #endregion
 }

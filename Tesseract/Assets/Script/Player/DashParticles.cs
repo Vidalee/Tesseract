@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class DashParticles : MonoBehaviour
 {
+    #region Variable
+
     public PlayerData _playerData;
     private Animator _a;
+
+    #endregion
+
+    #region Initialise
 
     private void Awake()
     {
@@ -16,7 +22,11 @@ public class DashParticles : MonoBehaviour
         _playerData = playerData;
         SetAnimation();
     }
-    
+
+    #endregion
+
+    #region Animation
+
     private void SetAnimation()
     {
         AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
@@ -25,9 +35,8 @@ public class DashParticles : MonoBehaviour
 
     public void PlayerDashParticles()
     {
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
-
         _a.Play("DefaultDashParticules");
     }
+
+    #endregion
 }

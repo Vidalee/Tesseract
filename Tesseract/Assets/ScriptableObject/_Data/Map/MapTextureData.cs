@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "Wall", menuName = "Map/Room/Textures")]
 public class MapTextureData : ScriptableObject
 {
+    #region Variable
+
     [SerializeField] protected Sprite[] floor;
     
     [SerializeField] protected Sprite[] wall;
@@ -44,10 +46,13 @@ public class MapTextureData : ScriptableObject
         new Vector2(-0.5f,0), new Vector2(0.5f, 0), new Vector2(0.5f, -0.5f), new Vector2(-0.5f, 0.5f), new Vector2(-0.5f, 0),  
     };
 
+    #endregion
+
+    #region Set/Get
+
     public Sprite[] Floor => floor;
 
     public Sprite[] Wall => wall;
-
 
     public Sprite Wall1Side => wall1Side;
 
@@ -70,4 +75,6 @@ public class MapTextureData : ScriptableObject
     public Vector2[] CornerCol => cornerCol;
 
     public Vector2[] DemiCol => demiCol;
+
+    #endregion
 }

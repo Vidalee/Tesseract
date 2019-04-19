@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoomData", menuName = "Map/Room/Data")]
 public class RoomData : ScriptableObject
 {
+    #region Variable
+
     private int _x1;
     private int _x2;
     private int _y1;
@@ -13,6 +15,10 @@ public class RoomData : ScriptableObject
     private int[] _center;
     private Transform[,] gridObstacles;
     private int _index;
+
+    #endregion
+
+    #region Initialise
 
     public void Create(int x1, int y1, int x2, int y2, int height, int width, int index)
     {
@@ -25,11 +31,19 @@ public class RoomData : ScriptableObject
         _index = index;
         _center = new [] {(x1 + x2)/2, (y1 + y2)/2};
     }
-    
+
+    #endregion
+
+    #region Modify
+
     public void ModifyGrid(int x, int y, Transform o)
     {
         gridObstacles[y, x] = o;
     }
+
+    #endregion
+
+    #region Set/Get
 
     public int X1 => _x1;
 
@@ -48,5 +62,6 @@ public class RoomData : ScriptableObject
     public Transform[,] GridObstacles => gridObstacles;
 
     public int Index => _index;
-    
+
+    #endregion
 }

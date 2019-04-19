@@ -3,21 +3,36 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region MyRegion
+
     public PlayerData _playerData;
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerMoveEvent;
+
+    #endregion
+
+    #region Initialise
 
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
     }
-    
+
+
+    #endregion
+
+    #region Update
+
     private void Update()
     {
         PlayerMove();
     }
-    
-    private void PlayerMove()
+
+    #endregion
+
+    #region Movement
+
+        private void PlayerMove()
     {
         if (!_playerData.CanMove)
         {
@@ -30,20 +45,31 @@ public class PlayerMovement : MonoBehaviour
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
 
         if (xDir == 0 && yDir == 0) return;
-        
+
+        Vector3 distance = GetDistance(xDir, yDir);
+
+        transform.Translate(distance * _playerData.MoveSpeed *Time.deltaTime);
+    }
+
+    #endregion
+
+    #region Utilities
+
+    private Vector3 GetDistance(int xDir, int yDir)
+    {
         Vector3 playerPos = transform.position;
         playerPos.y += -_playerData.Height / 2;
         if (yDir > 0) playerPos.y += _playerData.FeetHeight;
         Vector3 playerWidth = new Vector3(_playerData.Width / 2, 0, 0);
         Vector3 direction = new Vector3(xDir,yDir,0);
-
+        
         RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
         RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + playerWidth + new Vector3(0, yDir), BlockingLayer);
         RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos - playerWidth + new Vector3(0, yDir), BlockingLayer);
         
         if (xLinecast)
         {
-            direction.x *= xLinecast.distance - 0.01f;
+             direction.x *= xLinecast.distance - 0.01f;
         }
 
         if (yLeftLinecast)
@@ -85,6 +111,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        transform.Translate(direction * _playerData.MoveSpeed * Time.deltaTime);
+        return direction;
     }
+
+    #endregion
 }

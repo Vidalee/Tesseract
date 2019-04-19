@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
 public class PlayerData : ScriptableObject
 {
+    #region Variable
+
     [SerializeField] protected string _Name;
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
@@ -31,8 +33,11 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected Inventory _Inventory;
 
     [SerializeField] protected float _PotionsCooldown;
-    
-    
+
+        #endregion
+
+    #region Initialise
+
     private void OnEnable()
     {
         _Xp = 0;
@@ -41,6 +46,10 @@ public class PlayerData : ScriptableObject
         _Mana = _MaxMana;
         _CanMove = true;
     }
+
+    #endregion
+
+    #region Set/Get
 
     public int MaxHp
     {
@@ -134,4 +143,6 @@ public class PlayerData : ScriptableObject
     public AnimationClip[] Dash => _Dash;
 
     public AnimationClip DashParticles => _DashParticles;
+
+    #endregion
 }

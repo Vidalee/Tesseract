@@ -4,20 +4,30 @@
 
 public class PlayerAttack : MonoBehaviour
 {
+    #region Variable
+
     public PlayerData _playerData;
     [SerializeField] protected GameEvent AttackEvent;
+
+    #endregion
+
+    #region Initialise
 
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
     }
-    
+
+    #endregion
+
+    #region Update
+
     private void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
-         {
-             UseCompetence(_playerData.GetCompetence("AutoAttack"));
-         }
+        {
+            UseCompetence(_playerData.GetCompetence("AutoAttack"));
+        }
 
         if (Input.GetKey("e"))
         {
@@ -29,6 +39,10 @@ public class PlayerAttack : MonoBehaviour
             UseCompetence(_playerData.Competences[2]);
         }
     }
+
+    #endregion
+
+    #region Competence
 
     private void UseCompetence(CompetencesData competence)
     {
@@ -48,6 +62,49 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+
+    private void AutoAttack(CompetencesData competence)
+    {
+        AttackEvent.Raise(new EventArgsNull());
+        InstantiateProjectiles(competence, ProjectilesDirection());
+        StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+    
+    private void MultipleAttack(CompetencesData competence)
+    {
+        AttackEvent.Raise(new EventArgsNull());
+        float rotDist = 10;
+        float rot = rotDist;
+        Vector3 dir = ProjectilesDirection();
+        InstantiateProjectiles(competence, dir);
+        
+        for (int i = 0; i < competence.Number/2; i++)
+        {
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot) * dir);
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, -rot) * dir);
+            
+            rot += rotDist;
+        }
+        
+        StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+    
+    private void CircleAttack(CompetencesData competence)
+    {
+        AttackEvent.Raise(new EventArgsNull());
+        float rot = 360 / competence.Number;
+        
+        for (int i = 0; i < competence.Number; i++)
+        {
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot * i) * new Vector3(1, 1, 0));
+        }
+
+        StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+
+    #endregion
+
+    #region Utilities
 
     private Vector3 ProjectilesDirection()
     {
@@ -76,45 +133,6 @@ public class PlayerAttack : MonoBehaviour
 
         script.Create(projectilesData);
     }
-    
-    private void AutoAttack(CompetencesData competence)
-    {
-        AttackEvent.Raise(new EventArgsNull());
-        InstantiateProjectiles(competence, ProjectilesDirection());
-        StartCoroutine(CoolDownCoroutine(competence, true));
-    }
-    
-    //Ninja triple shuriken
-    private void MultipleAttack(CompetencesData competence)
-    {
-        AttackEvent.Raise(new EventArgsNull());
-        float rotDist = 10;
-        float rot = rotDist;
-        Vector3 dir = ProjectilesDirection();
-        InstantiateProjectiles(competence, dir);
-        
-        for (int i = 0; i < competence.Number/2; i++)
-        {
-            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot) * dir);
-            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, -rot) * dir);
-            
-            rot += rotDist;
-        }
-        
-        StartCoroutine(CoolDownCoroutine(competence, true));
-    }
-    
-    //Mage multiple eneryball
-    private void CircleAttack(CompetencesData competence)
-    {
-        AttackEvent.Raise(new EventArgsNull());
-        float rot = 360 / competence.Number;
-        
-        for (int i = 0; i < competence.Number; i++)
-        {
-            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot * i) * new Vector3(1, 1, 0));
-        }
 
-        StartCoroutine(CoolDownCoroutine(competence, true));
-    }
+    #endregion
 }

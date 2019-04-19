@@ -3,16 +3,25 @@ using UnityEngine;
 
 public class PlayerDash : MonoBehaviour
 {
-    
+    #region Variable
+
     public PlayerData _playerData;
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerDashEvent;
+
+    #endregion
+
+    #region Initialise
 
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
     }
-    
+
+    #endregion
+
+    #region Update
+
     private void FixedUpdate()
     {
         if (!_playerData.CanMove) return;
@@ -23,6 +32,52 @@ public class PlayerDash : MonoBehaviour
             else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash")));
         }
     }
+
+
+    #endregion
+
+    #region Dash
+
+    private IEnumerator Dash(CompetencesData competence)
+    {
+        competence.Usable = false;
+        _playerData.CanMove = false;
+
+        Vector3 direction = CheckObstacles(Direction(), competence);
+        
+        yield return new WaitForSeconds(0.5f);
+
+        transform.position += direction;
+        competence.Usable = true;
+        _playerData.CanMove = true;
+    }
+    
+    private IEnumerator SmoothDash(CompetencesData competence)
+    {
+        competence.Usable = false;
+        _playerData.CanMove = false;
+        
+        Vector3 direction = CheckObstacles(Direction(), competence);
+        float step = competence.Speed * Time.fixedDeltaTime;
+        float t = 0;
+        Vector3 end = transform.position + direction - direction * 0.01f;
+        
+        while ((end - transform.position).magnitude > 0.1f)
+        {
+            t += step;
+            transform.position = Vector3.Lerp(transform.position, end, t);
+            yield return new WaitForFixedUpdate();
+        }
+
+        transform.position = end;
+        _playerData.CanMove = true;
+        yield return new WaitForSeconds(competence.Cooldown);
+        competence.Usable = true;
+    }
+
+    #endregion
+
+    #region Utilities
 
     private Vector3 Direction()
     {
@@ -63,40 +118,5 @@ public class PlayerDash : MonoBehaviour
         return dir * competence.Speed;
     }
 
-    private IEnumerator Dash(CompetencesData competence)
-    {
-        competence.Usable = false;
-        _playerData.CanMove = false;
-
-        Vector3 direction = CheckObstacles(Direction(), competence);
-        
-        yield return new WaitForSeconds(0.5f);
-
-        transform.position += direction;
-        competence.Usable = true;
-        _playerData.CanMove = true;
-    }
-    
-    private IEnumerator SmoothDash(CompetencesData competence)
-    {
-        competence.Usable = false;
-        _playerData.CanMove = false;
-        
-        Vector3 direction = CheckObstacles(Direction(), competence);
-        float step = competence.Speed * Time.fixedDeltaTime;
-        float t = 0;
-        Vector3 end = transform.position + direction - direction * 0.01f;
-        
-        while ((end - transform.position).magnitude > 0.1f)
-        {
-            t += step;
-            transform.position = Vector3.Lerp(transform.position, end, t);
-            yield return new WaitForFixedUpdate();
-        }
-
-        transform.position = end;
-        _playerData.CanMove = true;
-        yield return new WaitForSeconds(competence.Cooldown);
-        competence.Usable = true;
-    }
+    #endregion
 }

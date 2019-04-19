@@ -2,14 +2,24 @@
 
 public class Live : MonoBehaviour
 {
+    #region Variable
 
     public PlayerData _playerData;
+
+
+    #endregion
+
+    #region Initialise
 
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
     }
-    
+
+    #endregion
+
+    #region Damage
+
     public void Damage(int damage)
     {
         _playerData.Hp -= damage;
@@ -25,4 +35,6 @@ public class Live : MonoBehaviour
             Destroy(map);
         }
     }
+
+    #endregion
 }

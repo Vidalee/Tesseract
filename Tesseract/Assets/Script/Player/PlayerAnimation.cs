@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    #region Variable
+
     public PlayerData _playerData;
     private Animator _a;
+
+    #endregion
+
+    #region Initialise
 
     private void Awake()
     {
@@ -18,7 +24,7 @@ public class PlayerAnimation : MonoBehaviour
         //transform.GetComponentInChildren<DashParticles>().Create(_playerData);
         SetAnimation();
     }
-
+    
     private void SetAnimation()
     {
         AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
@@ -27,7 +33,11 @@ public class PlayerAnimation : MonoBehaviour
         AnimatorOverride.AnimationOverride("DefaultAttack", _playerData.Attack, aoc, _a);
         AnimatorOverride.AnimationOverride("DefaultDash", _playerData.Dash, aoc, _a);
     }
-    
+
+    #endregion
+
+    #region Animation
+
     public void PlayerMovingAnimation(IEventArgs args)
     {
         EventArgsCoor coor = args as EventArgsCoor;
@@ -95,4 +105,6 @@ public class PlayerAnimation : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _a.SetBool("OtherAction", false);
     }
+
+    #endregion
 }

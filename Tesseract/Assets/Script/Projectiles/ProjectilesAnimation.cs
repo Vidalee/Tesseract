@@ -2,8 +2,14 @@
 
 public class ProjectilesAnimation : MonoBehaviour
 {
+    #region Variable
+
     private ProjectilesData _projectilesData;
 
+
+    #endregion
+
+    #region Initialise
 
     public void Create(ProjectilesData projectilesData)
     {
@@ -11,11 +17,19 @@ public class ProjectilesAnimation : MonoBehaviour
         Animation();
     }
 
+    #endregion
+
+    #region Update
+
     private void Update()
     {
         Rotation();
         LightColor();
     }
+
+    #endregion
+
+    #region Animation
 
     private void Animation()
     {
@@ -31,10 +45,16 @@ public class ProjectilesAnimation : MonoBehaviour
         light.color = new Color(col[0], col[1], col[2]);
     }
 
+    #endregion
+
+    #region Movement
+
     private void Rotation()
     {
         Vector2 dir = _projectilesData.Direction;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+    #endregion
 }

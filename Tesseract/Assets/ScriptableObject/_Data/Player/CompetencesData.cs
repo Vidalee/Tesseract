@@ -3,6 +3,8 @@
 [CreateAssetMenu(fileName = "CompetenceData", menuName = "Player/Competence")]
 public class CompetencesData : ScriptableObject
 {
+    #region Variable
+
     [SerializeField] protected string _Name;
     [SerializeField] protected bool _Unlock;
     [SerializeField] protected float _Cooldown;
@@ -19,6 +21,10 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected float _SpriteSize;
     [SerializeField] protected Sprite _Sprite;
     [SerializeField] protected AnimationClip _AnimationClip;
+
+        #endregion
+
+    #region Set/Get
 
     private void OnEnable()
     {
@@ -76,4 +82,6 @@ public class CompetencesData : ScriptableObject
     public string Tag => _Tag;
 
     public float SpriteSize => _SpriteSize;
+
+    #endregion
 }
