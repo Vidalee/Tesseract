@@ -47,7 +47,7 @@ public class PlayerDash : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
 
-        transform.position += direction;
+        transform.position += direction - direction * 0.01f;
         competence.Usable = true;
         _playerData.CanMove = true;
     }
