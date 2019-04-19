@@ -2,13 +2,22 @@
 
 public class LayerSorter : MonoBehaviour
 {
+    #region Variable
 
     private SpriteRenderer spriteRenderer;
+
+    #endregion
+
+    #region Initialise
 
     private void Awake()
     {
         spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
     }
+
+    #endregion
+
+    #region Collision
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,4 +28,6 @@ public class LayerSorter : MonoBehaviour
             spriteRenderer.sortingOrder = otherSpriteRenderer.sortingLayerID - 1;
         }
     }
+
+    #endregion
 }

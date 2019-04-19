@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
+  m_Name: WarriorCopy
+  m_EditorClassIdentifier: 
+  _Name: Warrior
+  _MaxHp: 100
+  _Hp: 100
+  _MaxMana: 100
+  _Mana: 100
+  _PhysicsDamage: 100
+  _MagicDamage: 20
+  _MoveSpeed: 3
+  _MaxXp: 100
+  _TotalXp: 0
+  _Xp: 0
+  _MaxLvl: 100
+  _Lvl: 1
+  _Width: 0
+  _Height: 0
+  _FeetHeight: 0
+  _Move: []
+  _Idle: []
+  _Attack: []
+  _Dash: []
+  _DashParticles: {fileID: 0}
+  _Competences:
+  - {fileID: 11400000, guid: eb72a701f37b5fb4aa89f8cba8ce4fb9, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: b720bcc76551a1549b1c11a4476f837f, type: 2}
+  _Inventory: {fileID: 0}
+  _PotionsCooldown: 0

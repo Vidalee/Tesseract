@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
+  m_Name: ArcherCopy
+  m_EditorClassIdentifier: 
+  _Name: Archer
+  _MaxHp: 100
+  _Hp: 100
+  _MaxMana: 100
+  _Mana: 100
+  _PhysicsDamage: 100
+  _MagicDamage: 50
+  _MoveSpeed: 3.5
+  _MaxXp: 100
+  _TotalXp: 0
+  _Xp: 0
+  _MaxLvl: 100
+  _Lvl: 1
+  _Width: 0.5
+  _Height: 0.75
+  _FeetHeight: 0.06
+  _Move: []
+  _Idle: []
+  _Attack: []
+  _Dash: []
+  _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
+  _Competences:
+  - {fileID: 11400000, guid: 17a7a4e71d4b53f48bea1cb5ab8c7275, type: 2}
+  - {fileID: 11400000, guid: 252c0f0578b414846af50ffe0767706c, type: 2}
+  - {fileID: 11400000, guid: ac1344389bedcda4babf84ab418434e8, type: 2}
+  _Inventory: {fileID: 11400000, guid: 243c8b6e04768e04f8dd183884a6986c, type: 2}
+  _PotionsCooldown: 10

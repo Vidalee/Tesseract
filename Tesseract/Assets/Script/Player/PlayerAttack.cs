@@ -4,21 +4,45 @@
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
+    #region Variable
+
+    public PlayerData _playerData;
     [SerializeField] protected GameEvent AttackEvent;
+
+    #endregion
+
+    #region Initialise
+
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
+
+    #endregion
+
+    #region Update
 
     private void FixedUpdate()
     {
-         if (Input.GetMouseButton(0))
-         {
-             UseCompetence(PlayerData.GetCompetence("AutoAttack"));
-         }
+        if (Input.GetMouseButton(0))
+        {
+            UseCompetence(_playerData.GetCompetence("AutoAttack"));
+        }
 
         if (Input.GetKey("e"))
         {
-            UseCompetence(PlayerData.GetCompetence("TripleShuriken"));
+            UseCompetence(_playerData.Competences[1]);
         }
-     }
+
+        if (Input.GetKey("r"))
+        {
+            UseCompetence(_playerData.Competences[2]);
+        }
+    }
+
+    #endregion
+
+    #region Competence
 
     private void UseCompetence(CompetencesData competence)
     {
@@ -29,8 +53,11 @@ public class PlayerAttack : MonoBehaviour
                 case "AutoAttack":
                     AutoAttack(competence);
                     break;
-                case "TripleShuriken":
-                    TripleShuriken(competence);
+                case "MultipleProjectiles":
+                    MultipleAttack(competence);
+                    break;
+                case "CirclesProjectiles":
+                    CircleAttack(competence);
                     break;
             }
         }
@@ -43,19 +70,41 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
     
-    private void TripleShuriken(CompetencesData competence)
+    private void MultipleAttack(CompetencesData competence)
     {
         AttackEvent.Raise(new EventArgsNull());
+        float rotDist = 10;
+        float rot = rotDist;
         Vector3 dir = ProjectilesDirection();
-        Vector3 dir1 = Quaternion.Euler(0, 0, -10) * dir;
-        Vector3 dir2 = Quaternion.Euler(0, 0, 10) * dir;
-
         InstantiateProjectiles(competence, dir);
-        InstantiateProjectiles(competence, dir1);
-        InstantiateProjectiles(competence, dir2);
+        
+        for (int i = 0; i < competence.Number/2; i++)
+        {
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot) * dir);
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, -rot) * dir);
+            
+            rot += rotDist;
+        }
+        
+        StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+    
+    private void CircleAttack(CompetencesData competence)
+    {
+        AttackEvent.Raise(new EventArgsNull());
+        float rot = 360 / competence.Number;
+        
+        for (int i = 0; i < competence.Number; i++)
+        {
+            InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot * i) * new Vector3(1, 1, 0));
+        }
 
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
+
+    #endregion
+
+    #region Utilities
 
     private Vector3 ProjectilesDirection()
     {
@@ -78,10 +127,12 @@ public class PlayerAttack : MonoBehaviour
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip);
+        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip, competence.Live, competence.Color);
         
         Projectiles script = o.GetComponent<Projectiles>();
 
         script.Create(projectilesData);
     }
+
+    #endregion
 }

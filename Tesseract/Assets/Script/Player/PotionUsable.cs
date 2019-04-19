@@ -1,12 +1,26 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PotionUsable : MonoBehaviour
 {
-    [SerializeField] protected PlayerData PlayerData;
+    #region Variable
+
+    public PlayerData _playerData;
     private bool _usable = true;
-    
+
+    #endregion
+
+    #region Initialise
+
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
+
+    #endregion
+
+    #region Update
+
     void Update()
     {
         if (_usable)
@@ -16,19 +30,16 @@ public class PotionUsable : MonoBehaviour
         }
     }
 
-    private void CallCoroutine(int index)
-    {
-        Potions pot = PlayerData.Inventory.UsePotion(index);
-        if (pot == null) return;
-        StartCoroutine(UsePotion(pot));
-    }
-    
+    #endregion
+
+    #region Potion
+
     IEnumerator UsePotion(Potions pot)
     {
         PotionEffect(pot);
 
         _usable = false;
-        yield return new WaitForSeconds(PlayerData.PotionsCooldown);
+        yield return new WaitForSeconds(_playerData.PotionsCooldown);
         _usable = true;
     }
 
@@ -38,22 +49,39 @@ public class PotionUsable : MonoBehaviour
         {
             case "live":
                 AddHp(potion.Heal);
-              break;
+                break;
             case "mana":
                 AddMana(potion.Heal);
                 break;
         }
     }
 
+    #endregion
+
+    #region Effects
+
     private void AddHp(int hp)
     {
-        PlayerData.Hp += hp;
-        if (PlayerData.Hp >= PlayerData.MaxHp) PlayerData.Hp = PlayerData.MaxHp;
+        _playerData.Hp += hp;
+        if (_playerData.Hp >= _playerData.MaxHp) _playerData.Hp = _playerData.MaxHp;
     }
 
     private void AddMana(int mana)
     {
-        PlayerData.Mana += mana;
-        if (PlayerData.Mana >= PlayerData.MaxMana) PlayerData.Mana = PlayerData.MaxMana;
+        _playerData.Mana += mana;
+        if (_playerData.Mana >= _playerData.MaxMana) _playerData.Mana = _playerData.MaxMana;
     }
+
+    #endregion
+
+    #region Utilities
+
+    private void CallCoroutine(int index)
+    {
+        Potions pot = _playerData.Inventory.UsePotion(index);
+        if (pot == null) return;
+        StartCoroutine(UsePotion(pot));
+    }
+
+    #endregion
 }

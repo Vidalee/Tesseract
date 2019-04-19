@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
+  m_Name: Mage
+  m_EditorClassIdentifier: 
+  _Name: Mage
+  _MaxHp: 100
+  _Hp: 100
+  _MaxMana: 100
+  _Mana: 100
+  _PhysicsDamage: 50
+  _MagicDamage: 100
+  _MoveSpeed: 3.5
+  _MaxXp: 0
+  _TotalXp: 0
+  _Xp: 0
+  _MaxLvl: 100
+  _Lvl: 1
+  _Width: 0.5
+  _Height: 0.75
+  _FeetHeight: 0.06
+  _Move:
+  - {fileID: 7400000, guid: 83922220bc971dd42acbcdfdecedc6e2, type: 2}
+  - {fileID: 7400000, guid: 9d65af5d4cc5c234da500845180b7ca3, type: 2}
+  - {fileID: 7400000, guid: f7be7d1ae626e2642ab99f2b902ac397, type: 2}
+  - {fileID: 7400000, guid: cd90e7457e2488c4095a241b2a506160, type: 2}
+  _Idle:
+  - {fileID: 7400000, guid: f0fe3c6005304734f9cbea6ebd21ff56, type: 2}
+  - {fileID: 7400000, guid: 42131e980b2478141a0f47dd113aac43, type: 2}
+  - {fileID: 7400000, guid: 203f07b0e473d5a47a9614c0ae8f0fad, type: 2}
+  - {fileID: 7400000, guid: c6328279d3d519b4d9131e29995fe074, type: 2}
+  _Attack:
+  - {fileID: 7400000, guid: e02869d0463b103408d25b70a3ee1c25, type: 2}
+  - {fileID: 7400000, guid: 31375ef546d8ce544b6e28ce4f5a1e02, type: 2}
+  - {fileID: 7400000, guid: b509fbc47777d97499d8a2d96883c46e, type: 2}
+  - {fileID: 7400000, guid: 407abc8afdc6ce44cbc4ce942d69c557, type: 2}
+  _Dash:
+  - {fileID: 7400000, guid: 8458eb6a0eab3a346b7c1f039380690c, type: 2}
+  - {fileID: 7400000, guid: 528be43d9fa2594448a955ea8c355e54, type: 2}
+  - {fileID: 7400000, guid: 08121ae031cbfec469977f4e16d32b20, type: 2}
+  - {fileID: 7400000, guid: 42d449a77add08d41a47cf1a13ee2b1e, type: 2}
+  _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
+  _Competences:
+  - {fileID: 11400000, guid: 180c987c158f7bf4e97c91734a3cda2d, type: 2}
+  - {fileID: 11400000, guid: c4edbc4bee443814685222ae02ece83f, type: 2}
+  - {fileID: 11400000, guid: f9257553b8735c8448b18f712064624e, type: 2}
+  _Inventory: {fileID: 11400000, guid: d0bd3fa36119c1346965360d4e0aa6cf, type: 2}
+  _PotionsCooldown: 5

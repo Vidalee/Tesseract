@@ -1,25 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Live : MonoBehaviour
 {
+    #region Variable
 
-    [SerializeField] protected PlayerData PlayerData;
+    public PlayerData _playerData;
+
+
+    #endregion
+
+    #region Initialise
+
+    public void Create(PlayerData playerData)
+    {
+        _playerData = playerData;
+    }
+
+    #endregion
+
+    #region Damage
 
     public void Damage(int damage)
     {
-        PlayerData.Hp -= damage;
+        _playerData.Hp -= damage;
         Death();
     }
 
-    public void Death()
+    private void Death()
     {
-        if (PlayerData.Hp <= 0)
+        if (_playerData.Hp <= 0)
         {
             Destroy(gameObject);
             GameObject map = GameObject.Find("Map");
             Destroy(map);
         }
     }
+
+    #endregion
 }

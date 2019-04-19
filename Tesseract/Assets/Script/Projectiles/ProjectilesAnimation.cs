@@ -2,26 +2,58 @@
 
 public class ProjectilesAnimation : MonoBehaviour
 {
-    [SerializeField] protected AnimatorOverrideController Aoc;
-    [SerializeField] protected AnimatorOverride Ao;
-    private Projectiles _projectiles;
-    private Animator _a;
+    #region Variable
 
+    private ProjectilesData _projectilesData;
 
-    private void Start()
+    #endregion
+
+    #region Initialise
+
+    public void Create(ProjectilesData projectilesData)
     {
-        GetComponent();
+        _projectilesData = projectilesData;
         Animation();
     }
 
-    private void GetComponent()
+    #endregion
+
+    #region Update
+
+    private void Update()
     {
-        _a = GetComponent<Animator>();
-        _projectiles = transform.parent.GetComponent<Projectiles>();
+        Rotation();
+        LightColor();
     }
 
-    public void Animation()
+    #endregion
+
+    #region Animation
+
+    private void Animation()
     {
-        Ao.AnimationOverride("DefaultProjectiles", _projectiles.ProjectilesData.Anim, Aoc, _a);
+        Animator animator = GetComponent<Animator>();
+        AnimatorOverrideController aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        AnimatorOverride.AnimationOverride("DefaultProjectiles", _projectilesData.Anim, aoc, animator);
     }
+
+    private void LightColor()
+    {
+        Light light = GetComponentInChildren<Light>();
+        int[] col = _projectilesData.Color;
+        light.color = new Color(col[0], col[1], col[2]);
+    }
+
+    #endregion
+
+    #region Movement
+
+    private void Rotation()
+    {
+        Vector2 dir = _projectilesData.Direction;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    #endregion
 }

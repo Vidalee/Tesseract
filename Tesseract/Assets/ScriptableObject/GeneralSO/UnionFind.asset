@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0232699cb697ea943b0f36096d0adbf7, type: 3}
   m_Name: UnionFind
-  m_EditorClassIdentifier: Assembly-CSharp::UnionFind
+  m_EditorClassIdentifier: 
