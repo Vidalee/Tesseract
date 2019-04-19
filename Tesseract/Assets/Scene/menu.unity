@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532100014, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Room1
+      value: MapV2
       objectReference: {fileID: 0}
     - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: m_FocalLength
@@ -418,6 +418,34 @@ PrefabInstance:
     - target: {fileID: 976898354, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
       propertyPath: orthographic size
       value: 387.13104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 983476956}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeToScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718186000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Login
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e310a534ed0494ffbbd8591c812ea6f7, type: 3}
