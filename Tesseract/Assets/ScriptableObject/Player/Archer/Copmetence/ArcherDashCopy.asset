@@ -15,12 +15,12 @@ MonoBehaviour:
   _Name: 
   _Unlock: 0
   _UnlockLvl: 0
-  _Cooldown: 0
-  _Upgrade: 
-  _DamageUpgrade: 
-  _SpeedUpgrade: 
-  _CooldownUpgrade: 
-  _Speed: 0
+  _Cooldown: 3
+  _Upgrade: 01000000050000000a00000014000000
+  _DamageUpgrade: 0a0000000a0000000a0000000a000000
+  _SpeedUpgrade: 05000000050000000500000005000000
+  _CooldownUpgrade: 05000000050000000500000005000000
+  _Speed: 3
   _Damage: 0
   live: 0
   number: 0

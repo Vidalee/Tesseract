@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e49271493a2abc41a56285a9fc80a9d, type: 3}
-  m_Name: AssassinMultipleShuriken
+  m_Name: AssassinMultiple
   m_EditorClassIdentifier: 
   _Name: MultipleProjectiles
   _Unlock: 1

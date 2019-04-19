@@ -34,8 +34,8 @@ MonoBehaviour:
   _Dash: []
   _DashParticles: {fileID: 0}
   _Competences:
-  - {fileID: 11400000, guid: 180c987c158f7bf4e97c91734a3cda2d, type: 2}
-  - {fileID: 11400000, guid: c4edbc4bee443814685222ae02ece83f, type: 2}
-  - {fileID: 11400000, guid: f9257553b8735c8448b18f712064624e, type: 2}
+  - {fileID: 11400000, guid: f247408fbc9ce3f49bafb12c3dfa8e78, type: 2}
+  - {fileID: 11400000, guid: a5b2c6082f9c2f647a394893fea9b084, type: 2}
+  - {fileID: 11400000, guid: 70fb1d9232b98b54f85f20eb760f612b, type: 2}
   _Inventory: {fileID: 0}
   _PotionsCooldown: 0

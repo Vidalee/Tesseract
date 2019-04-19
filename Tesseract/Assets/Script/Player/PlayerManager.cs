@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
     
     private void InstantiatePlayer()
     {
-        Vector3 pos = new Vector3(5, 5, 0);
+        Vector3 pos = new Vector3(10, 10, 0);
 
         /*
         int roomsNumber = _mapData.RoomsData.Length;

@@ -50,9 +50,8 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 229ee47038da1c74e817c784bc977aff, type: 2}
   _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
   _Competences:
-  - {fileID: 11400000, guid: cad668a5bd52a1241ad850cd3b0941fe, type: 2}
-  - {fileID: 11400000, guid: 6a076720d7f50f540be0c7527a5c457d, type: 2}
-  - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
-  - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
+  - {fileID: 11400000, guid: 305d1ae88034adb45a30f75947a4aaac, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: b720bcc76551a1549b1c11a4476f837f, type: 2}
   _Inventory: {fileID: 11400000, guid: a00c00f36bc26df459c3de1d5d81ac1f, type: 2}
   _PotionsCooldown: 2
