@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49271493a2abc41a56285a9fc80a9d, type: 3}
   m_Name: ArcherMultipleArrow
   m_EditorClassIdentifier: 
-  _Name: 
-  _Unlock: 0
-  _Cooldown: 0
-  _Speed: 0
-  _Damage: 0
-  live: 0
-  number: 0
-  color: 
-  _Object: {fileID: 0}
-  _Tag: 
-  _SpriteSize: 0
-  _Sprite: {fileID: 0}
-  _AnimationClip: {fileID: 0}
+  _Name: MultipleProjectiles
+  _Unlock: 1
+  _UnlockLvl: 2
+  _Cooldown: 3
+  _Upgrade: 01000000050000000a00000014000000
+  _DamageUpgrade: 0a0000000a0000000a0000000a000000
+  _SpeedUpgrade: 05000000050000000500000005000000
+  _CooldownUpgrade: 05000000050000000500000005000000
+  _Speed: 7
+  _Damage: 20
+  live: 1
+  number: 5
+  color: 000000000000000000000000
+  _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
+  _Tag: Enemies
+  _AnimationClip: {fileID: 7400000, guid: ce91fac31e31eef4b994e8bd2581b0de, type: 2}

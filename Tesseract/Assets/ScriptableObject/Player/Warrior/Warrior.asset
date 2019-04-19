@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
+  _Name: Warrior
   _MaxHp: 150
   _Hp: 150
   _MaxMana: 50
   _Mana: 50
   _PhysicsDamage: 20
   _MagicDamage: 10
-  _MoveSpeed: 2.5
+  _MoveSpeed: 3
+  _MaxXp: 0
+  _TotalXp: 0
+  _Xp: 0
+  _MaxLvl: 100
+  _Lvl: 1
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
@@ -42,9 +48,10 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 55301b0e47f087149994e16d4f684b4e, type: 2}
   - {fileID: 7400000, guid: 0e221ecbfbd98714e99e662540e28926, type: 2}
   - {fileID: 7400000, guid: 229ee47038da1c74e817c784bc977aff, type: 2}
+  _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
   _Competences:
-  - {fileID: 11400000, guid: 180c987c158f7bf4e97c91734a3cda2d, type: 2}
-  - {fileID: 11400000, guid: c4edbc4bee443814685222ae02ece83f, type: 2}
+  - {fileID: 11400000, guid: cad668a5bd52a1241ad850cd3b0941fe, type: 2}
+  - {fileID: 11400000, guid: 6a076720d7f50f540be0c7527a5c457d, type: 2}
   - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
   _Inventory: {fileID: 11400000, guid: a00c00f36bc26df459c3de1d5d81ac1f, type: 2}

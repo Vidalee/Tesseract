@@ -18,6 +18,8 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected float _MoveSpeed;
     
     [SerializeField] protected int _MaxXp;
+
+    public int _TotalXp;
     public int _Xp;
     [SerializeField] protected int _MaxLvl;
     public int _Lvl;
@@ -113,6 +115,12 @@ public class PlayerData : ScriptableObject
         set => _Xp = value;
     }
 
+    public int TotalXp
+    {
+        get => _TotalXp;
+        set => _TotalXp = value;
+    }
+
     public int MaxXp
     {
         get => _MaxXp;
@@ -143,9 +151,13 @@ public class PlayerData : ScriptableObject
     public float Height => _Height;
     
     public float FeetHeight => _FeetHeight;
-    
-    public CompetencesData[] Competences => _Competences;
-    
+
+    public CompetencesData[] Competences
+    {
+        get => _Competences;
+        set => _Competences = value;
+    }
+
     public AnimationClip[] Move => _Move;
 
     public AnimationClip[] Idle => _Idle;

@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: AutoAttack
   _Unlock: 1
-  _Cooldown: 1
-  _Speed: 5
+  _UnlockLvl: 0
+  _Cooldown: 0.5
+  _Upgrade: 01000000050000000a00000014000000
+  _DamageUpgrade: 0a0000000a0000000a0000000a000000
+  _SpeedUpgrade: 05000000050000000500000005000000
+  _CooldownUpgrade: 05000000050000000500000005000000
+  _Speed: 7
   _Damage: 20
   live: 1
   number: 1
   color: ff0000003200000000000000
   _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
-  _Tag: 
-  _SpriteSize: 0
-  _Sprite: {fileID: 21300000, guid: 5947522f46810be4a8ef3f573c0795ee, type: 3}
+  _Tag: Enemies
   _AnimationClip: {fileID: 7400000, guid: d88510efc2a0f8e448805bef105e443a, type: 2}

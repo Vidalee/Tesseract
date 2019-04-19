@@ -6,7 +6,6 @@ public class ProjectilesAnimation : MonoBehaviour
 
     private ProjectilesData _projectilesData;
 
-
     #endregion
 
     #region Initialise

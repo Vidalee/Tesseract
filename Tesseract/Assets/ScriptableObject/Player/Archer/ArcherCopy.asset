@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
-  m_Name: Archer
+  m_Name: ArcherCopy
   m_EditorClassIdentifier: 
   _Name: Archer
   _MaxHp: 100
@@ -18,9 +18,9 @@ MonoBehaviour:
   _MaxMana: 100
   _Mana: 100
   _PhysicsDamage: 100
-  _MagicDamage: 0
+  _MagicDamage: 50
   _MoveSpeed: 3.5
-  _MaxXp: 0
+  _MaxXp: 100
   _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
@@ -38,4 +38,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a076720d7f50f540be0c7527a5c457d, type: 2}
   - {fileID: 11400000, guid: dadab51ec64b6a947b87bcb6fa8dfe26, type: 2}
   _Inventory: {fileID: 11400000, guid: 243c8b6e04768e04f8dd183884a6986c, type: 2}
-  _PotionsCooldown: 5
+  _PotionsCooldown: 10

@@ -4,9 +4,15 @@ public class PlayerManager : MonoBehaviour
 {
     #region Variable
 
-    [SerializeField] protected PlayerData _playerData;
-    private MapData _mapData;
+    [SerializeField] protected PlayerData[] _PlayersData;
+    [SerializeField] protected PlayerData[] _PlayersDataCopy;
+    
+    public string choice;
+        
     public Transform Player;
+    private PlayerData _playerData;
+
+    private MapData _mapData;
 
     #endregion
 
@@ -14,9 +20,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        //if(Input.GetKey("s")) SavePlayer();
-        //if(Input.GetKey("l")) LoadPlayer();
-        //if(Input.GetKey("x")) GetXp(10);
+        if(Input.GetKey("s")) SavePlayer();
+        if(Input.GetKey("l")) LoadPlayer();
+        if(Input.GetKey("x")) GetXp(10);
     }
 
     #endregion
@@ -25,6 +31,9 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        
+        ResetStat(FindClass());
+        
         InstantiatePlayer();
     }
 
@@ -74,6 +83,58 @@ public class PlayerManager : MonoBehaviour
 
     #region Player save and load
 
+    private int FindClass()
+    {
+        int index = 0;
+        switch (choice)
+        {
+            case "Archer":
+                index = 0;
+                break;
+            case "Assassin":
+                index = 1;
+                break;
+            case "Mage":
+                index = 2;
+                break;
+            case "Warrior":
+                index = 3;
+                break;
+            default:
+                Debug.Log("???");
+                break;
+        }
+
+        return index;
+    }
+    
+    private void ResetStat(int index)
+    {
+        _playerData = _PlayersData[index];
+        _playerData.MaxHp = _PlayersDataCopy[index].MaxHp;
+        _playerData.Hp = _PlayersDataCopy[index].Hp;
+        _playerData.MaxMana = _PlayersDataCopy[index].MaxMana;
+        _playerData.Mana = _PlayersDataCopy[index].Mana;
+        _playerData.PhysicsDamage = _PlayersDataCopy[index].PhysicsDamage;
+        _playerData.MagicDamage = _PlayersDataCopy[index].MagicDamage;
+        _playerData.MoveSpeed = _PlayersDataCopy[index].MoveSpeed;
+        _playerData.Xp = _PlayersDataCopy[index].Xp;
+        _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
+        _playerData.TotalXp = _PlayersDataCopy[index].TotalXp;
+        _playerData.Lvl = _PlayersDataCopy[index].Lvl;
+        for (int i = 0; i < _playerData.Competences.Length; i++)
+        {
+            CompetencesData c = _playerData.Competences[i];
+            CompetencesData cc = _PlayersDataCopy[index].Competences[i];
+
+            c.Speed = cc.Speed;
+            c.Cooldown = cc.Cooldown;
+            c.Damage = cc.Damage;
+            c.Live = cc.Live;
+            c.Number = cc.Number;
+        }
+    }
+
     private void SavePlayer()
     {
         Debug.Log("Save");
@@ -84,23 +145,9 @@ public class PlayerManager : MonoBehaviour
     {
         Debug.Log("load");
         PlayerDataSave data = SaveSystem.LoadPlayer();
-
-        _playerData.MaxHp = data._MaxHp;
-        _playerData.PhysicsDamage = data._PhysicsDamage;
-        _playerData.MagicDamage = data._MagicDamage;
-        _playerData.MoveSpeed = data._MoveSpeed;
-        SetCompetence(data);
-    }
-
-    private void SetCompetence(PlayerDataSave data)
-    {
-        for (int i = 0; i < data.size; i++)
-        {
-            _playerData.Competences[i].Unlock = data._Unlock[i];
-            _playerData.Competences[i].Cooldown = data._Cooldown[i];
-            _playerData.Competences[i].Speed = data._Speed[i];
-            _playerData.Competences[i].Damage = data._Damage[i];
-        }
+        
+        ResetStat(FindClass());
+        GetXp(data.xp);
     }
 
     #endregion
@@ -111,21 +158,24 @@ public class PlayerManager : MonoBehaviour
     {
         int gap = _playerData.MaxXp - _playerData.Xp;
 
-        if (amout >= gap)
+        while (amout >= gap)
         {
-            int add = amout - gap;
+            amout = amout - gap;
+
             _playerData.Lvl++;
-            _playerData.Xp = add;
+            _playerData.Xp = gap;
+            _playerData.TotalXp += gap;
             
-            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.5f);
+            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
             
             UpgradeCompetence();
             UpgradeStats();
+            
+            gap = _playerData.MaxXp - _playerData.Xp;
         }
-        else
-        {
-            _playerData.Xp += amout;
-        }
+        
+        _playerData.Xp += amout;
+        _playerData.TotalXp += amout;
     }
 
     #endregion
