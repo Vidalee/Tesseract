@@ -43,17 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc01d04ce901ef42901125c394c8d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapHeight: 150
-  MapWidth: 150
-  RoomNumber: 100
-  DistanceRoom: 100
+
+  MapHeight: 100
+  MapWidth: 100
+  RoomNumber: 20
+  DistanceRoom: 40
   maxTry: 100
-  fusion: 5
-  maxH: 10
-  minH: 5
-  maxW: 10
-  minW: 5
-  forcePath: 0
+  fusion: 0
+  maxH: 20
+  minH: 10
+  maxW: 20
+  minW: 10
+  forcePath: 5
   seed: 0
   floor: {fileID: 7715380838967053743, guid: 73a9597eae601cb44851a5afafa5ff00, type: 3}
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,

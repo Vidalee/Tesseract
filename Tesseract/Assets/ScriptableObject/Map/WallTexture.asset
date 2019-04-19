@@ -22,7 +22,7 @@ MonoBehaviour:
   wall1Side: {fileID: 21300004, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wall2Side: {fileID: 21300008, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wall3Side: {fileID: 21300010, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wall4Side: {fileID: 0}
+  wall4Side: {fileID: 21300014, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wallCorner: {fileID: 21300006, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wallDoubleSide: {fileID: 21300012, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wallPerspective1Col:

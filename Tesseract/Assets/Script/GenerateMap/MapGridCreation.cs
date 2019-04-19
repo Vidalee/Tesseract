@@ -19,16 +19,19 @@ public class MapGridCreation : MonoBehaviour
     public int maxW;
     public int minW;
     public int forcePath;
+    public int prob;
 
     public int seed;
 
     public Transform floor;
     public Transform wallTexture;
+    public Transform room;
 
     [SerializeField] protected MapTextureData MapTextureData;
     [SerializeField] protected KruskalAlgo KruskalAlgo;
 
     private List<RoomData> _roomData;
+    private List<Transform> _rooms;
 
     private bool[,] _grid;
 
@@ -38,19 +41,22 @@ public class MapGridCreation : MonoBehaviour
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
+        _rooms = new List<Transform>();
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
         CreateGrid();
         ConstructCorridor();
+
+        RoomInstance();
         FillGap();
         
-        InitiateFloor();
-        InitiateWall();
+        CreateFloor();
+        CreateWall();
     }
 
     //Create grid and room in it
-    public void CreateGrid()
+    private void CreateGrid()
     {
         int index = 0;
         for (int i = 0; i < RoomNumber; i++)
@@ -69,9 +75,13 @@ public class MapGridCreation : MonoBehaviour
             if (CheckCollision(x1 - 1, x2 + 1, y1 - 2, y2 + 2) || fusion > 0)
             {
                 AddToGrid(x1, y1, x2, y2);
+                
                 RoomData newRoom = ScriptableObject.CreateInstance<RoomData>();
                 newRoom.Create(x1, y1, x2, y2, height, width, index);
+                
                 _roomData.Add(newRoom);
+                _rooms.Add(CreateRoom(x1, y1, newRoom));
+                
                 index++;
             }
             else
@@ -81,8 +91,8 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    //Add true to the grid (room utilisation)
-    public void AddToGrid(int x1, int y1, int x2, int y2)
+    //Add true to the grid (set a room)
+    private void AddToGrid(int x1, int y1, int x2, int y2)
     {
         for (int i = y1; i < y2; i++)
         {
@@ -91,6 +101,12 @@ public class MapGridCreation : MonoBehaviour
                 _grid[i, j] = true;
             }
         }
+    }
+
+    //Add false/true on one pos (from room)
+    public void AddToGrid(int x, int y, bool state)
+    {
+        _grid[x, y] = state;
     }
 
     //Collision between room
@@ -108,9 +124,26 @@ public class MapGridCreation : MonoBehaviour
 
         return true;
     }
+    
+    //Create room
+    private Transform CreateRoom(int x, int y, RoomData roomData)
+    {
+        Transform o = Instantiate(room, new Vector3(x, y), Quaternion.identity, transform);
+        o.GetComponent<RoomInstance>().Create(roomData, prob);
+        return o;
+    }
+    
+    //Call instance in room
+    private void RoomInstance()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            _rooms[i].GetComponent<RoomInstance>().BigWall();
+        }
+    }
 
     //Build road between 2 position
-    public void BuildRoad(int[] pos1, int[] pos2)
+    private void BuildRoad(int[] pos1, int[] pos2)
     {
 
         int x1 = pos1[0];
@@ -132,7 +165,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Build X line
-    public void BuildLineX(int x1, int x2, int y)
+    private void BuildLineX(int x1, int x2, int y)
     {
         if (x1 > x2)
         {
@@ -148,7 +181,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Build Y line
-    public void BuildLineY(int y1, int y2, int x)
+    private void BuildLineY(int y1, int y2, int x)
     {
         if (y1 > y2)
         {
@@ -199,7 +232,7 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Create road from list of edge
-    public void ConstructCorridor()
+    private void ConstructCorridor()
     {
         List<IHeapNode> edges = CreateEdge();
         
@@ -222,8 +255,9 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Instantiate floor with the bool grid
-    public void InitiateFloor()
+    private void CreateFloor()
     {
+        int len = MapTextureData.Floor.Length;
         for (int i = 0; i < _grid.GetLength(0); i++)
         {
             for (int j = 0; j < _grid.GetLength(1); j++)
@@ -233,7 +267,7 @@ public class MapGridCreation : MonoBehaviour
                     Transform o = Instantiate(floor, new Vector3(j, i),
                         Quaternion.AngleAxis(Random.Range(0,3) * 90,Vector3.forward),transform);
                     o.GetComponent<SpriteRenderer>().sprite =
-                        MapTextureData.Floor[Random.Range(0, MapTextureData.Floor.Length)];
+                        MapTextureData.Floor[Random.Range(0, len)];
                 }
             }
         }
@@ -256,7 +290,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Call the wall texture sprite and give the grid
-    private void InitiateWall()
+    private void CreateWall()
     {
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity);
         GenerateWall script = o.GetComponent<GenerateWall>();
@@ -265,7 +299,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     //Debug show graph before mst
-    public void ShowGraph(List<IHeapNode> edges)
+    private void ShowGraph(List<IHeapNode> edges)
     {
         foreach (var e in edges)
         {
@@ -281,7 +315,7 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Debug show graph after mst
-    public void ShowMst(Edge e)
+    private void ShowMst(Edge e)
     {
         int[] p1 = _roomData[e.Source].Center;
         int[] p2 = _roomData[e.Destination].Center;
