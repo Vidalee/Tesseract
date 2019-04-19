@@ -1,9 +1,7 @@
-﻿using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RoomInstance : MonoBehaviour
 {
-    
     public Transform Wall;
 
     private RoomData _roomData;

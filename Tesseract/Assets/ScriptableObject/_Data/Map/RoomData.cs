@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "RoomData", menuName = "Map/Room/Data")]
 public class RoomData : ScriptableObject
@@ -38,7 +39,7 @@ public class RoomData : ScriptableObject
 
     public void ModifyGrid(int x, int y, Transform o)
     {
-        _instance[y, x] = o;
+        _instance[x, y] = o;
     }
 
     #endregion
