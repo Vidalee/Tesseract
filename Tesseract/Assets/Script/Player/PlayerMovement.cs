@@ -59,17 +59,41 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 playerPos = transform.position;
         playerPos.y += -_playerData.Height / 2;
-        if (yDir > 0) playerPos.y += _playerData.FeetHeight;
         Vector3 playerWidth = new Vector3(_playerData.Width / 2, 0, 0);
         Vector3 direction = new Vector3(xDir,yDir,0);
         
-        RaycastHit2D xLinecast = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
+        RaycastHit2D xLinecastUp = Physics2D.Linecast(playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth,
+            playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight), BlockingLayer);
+        RaycastHit2D xLinecastDown = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
+
+                    
+        Vector3 s = playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth;
+        Vector3 en = playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight);
+        Vector3 dir3 = (en - s);
+        Debug.DrawRay(s, dir3, Color.red, 1000f, false);
+        
+                    
+        Vector3 s2 = playerPos + xDir * playerWidth;
+        Vector3 en2 = playerPos + xDir * playerWidth + new Vector3(xDir, 0);
+        Vector3 dir = (en2 - s2);
+        Debug.DrawRay(s2, dir, Color.red, 1000f, false);
+        
+        
+        if (yDir > 0)
+        {
+            playerPos.y += _playerData.FeetHeight;
+        }
+
         RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + playerWidth + new Vector3(0, yDir), BlockingLayer);
         RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos - playerWidth + new Vector3(0, yDir), BlockingLayer);
         
-        if (xLinecast)
+        if (xLinecastDown)
         {
-             direction.x *= xLinecast.distance - 0.01f;
+             direction.x *= xLinecastDown.distance - 0.01f;
+        }
+        else if (xLinecastUp)
+        {
+            direction.x *= xLinecastUp.distance - 0.01f;
         }
 
         if (yLeftLinecast)
@@ -81,17 +105,10 @@ public class PlayerMovement : MonoBehaviour
             direction.y *= yRightLinecast.distance - 0.01f;
         }
 
-        if (!xLinecast && !yRightLinecast && !yLeftLinecast)
+        if (!xLinecastDown && !xLinecastUp && !yRightLinecast && !yLeftLinecast)
         {
             RaycastHit2D diagLinecastLeft = Physics2D.Linecast(playerPos + playerWidth, playerPos + playerWidth + direction, BlockingLayer);
             RaycastHit2D diagLinecastRight = Physics2D.Linecast(playerPos - playerWidth, playerPos - playerWidth + direction, BlockingLayer);
-            
-            /* DEBUG
-            Vector3 s = playerPos - playerWidth;
-            Vector3 en = playerPos - playerWidth + direction;
-            Vector3 dir3 = (en - s);
-            Debug.DrawRay(s, dir3, Color.red, 1000f, false);
-            */
 
             if (diagLinecastLeft && diagLinecastRight)
             {

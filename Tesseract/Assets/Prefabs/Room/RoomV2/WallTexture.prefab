@@ -46,3 +46,6 @@ MonoBehaviour:
   _mapTextureData: {fileID: 11400000, guid: 1d6fe0cb736f3d644944c9b4c13d9b24, type: 2}
   _wall: {fileID: 5174777262050269427, guid: 452ee0b59cd22a944ab314c47e1346e3, type: 3}
   Material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
+  Shadow: {fileID: 1680862288699927580, guid: 7435aaf7a2639ae47bf9d35371e3ba19, type: 3}
+  ShadowCorner: {fileID: 6665198207282227961, guid: 93ce6d79512794444b911c2a3636b2d8,
+    type: 3}

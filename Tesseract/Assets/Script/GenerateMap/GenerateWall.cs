@@ -9,6 +9,7 @@ public class GenerateWall : MonoBehaviour
     public Transform _wall;
     public Material Material;
     private int _wallTextureLength;
+    public Transform Shadow;
     
     public void Create(bool[,] grid)
     {
@@ -189,8 +190,34 @@ public class GenerateWall : MonoBehaviour
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
             
-            Transform wall = Instantiate(_wall,new Vector3(y, x), FindRotationObject(w[i], out Vector2[] col, out Sprite sprite), transform);
-            if (col == _mapTextureData.WallPerspective1Col || col == _mapTextureData.WallPerspective2Col || sprite == _mapTextureData.WallCorner)
+            Quaternion rot = FindRotationObject(w[i], out Vector2[] col, out Sprite sprite);
+            Transform wall = Instantiate(_wall,new Vector3(y, x), rot, transform);
+            if (!w[i].Contains('C'))
+            {
+                if (w[i].Contains('W'))
+                {
+                    Instantiate(Shadow, new Vector3(y, x - 1), rot, transform);
+                    Instantiate(Shadow, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                    Instantiate(Shadow, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+
+                }
+                if (w[i].Contains('R'))
+                {
+                    Instantiate(Shadow, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                }
+                if (w[i].Contains('L'))
+                {
+                    Instantiate(Shadow, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+                }
+                if (w[i].Contains('B'))
+                {
+                    Instantiate(Shadow, new Vector3(y, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
+                }
+            }
+            if (col == _mapTextureData.WallPerspective1Col ||
+                col == _mapTextureData.WallPerspective2Col ||
+                col == _mapTextureData.DemiCol ||
+                sprite == _mapTextureData.WallCorner)
             {
                 wall.GetComponent<SpriteRenderer>().sortingOrder = 110;
             }
