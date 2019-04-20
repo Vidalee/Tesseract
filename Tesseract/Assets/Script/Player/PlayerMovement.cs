@@ -65,19 +65,13 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D xLinecastUp = Physics2D.Linecast(playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth,
             playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight), BlockingLayer);
         RaycastHit2D xLinecastDown = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
-
-                    
+        
+        /* DEBUG
         Vector3 s = playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth;
         Vector3 en = playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight);
         Vector3 dir3 = (en - s);
         Debug.DrawRay(s, dir3, Color.red, 1000f, false);
-        
-                    
-        Vector3 s2 = playerPos + xDir * playerWidth;
-        Vector3 en2 = playerPos + xDir * playerWidth + new Vector3(xDir, 0);
-        Vector3 dir = (en2 - s2);
-        Debug.DrawRay(s2, dir, Color.red, 1000f, false);
-        
+        */
         
         if (yDir > 0)
         {
