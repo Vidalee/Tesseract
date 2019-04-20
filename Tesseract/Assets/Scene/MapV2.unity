@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: 3450212170037480732, guid: 333b277654c841f4a93afe4f68d1d86f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3450212170037480732, guid: 333b277654c841f4a93afe4f68d1d86f,
         type: 3}
@@ -429,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 5825322326558187760, guid: cb387498514af0f489a5fcb754ddbfc7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5825322326558187760, guid: cb387498514af0f489a5fcb754ddbfc7,
         type: 3}
@@ -525,6 +525,12 @@ PrefabInstance:
       propertyPath: Floor
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4075750761702604897, guid: 61c56bef1d307d145acaf87f36ece903,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 4606261879900217905, guid: 68892088666f8824483dd80a89cd19a9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c56bef1d307d145acaf87f36ece903, type: 3}
 --- !u!1001 &2143954521735687522
@@ -793,7 +799,28 @@ PrefabInstance:
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: seed
-      value: 4568
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: prob
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: simpleDecoration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: fusion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 3862694622386907583, guid: a334797e540caac43a0c0d9feec9a75a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c221c65e17f2f4b9fef5edf57019fc, type: 3}

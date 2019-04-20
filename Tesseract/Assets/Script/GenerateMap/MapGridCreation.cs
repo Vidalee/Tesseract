@@ -21,6 +21,7 @@ public class MapGridCreation : MonoBehaviour
     public int forcePath;
     public int prob;
 
+    public int simpleDecoration;
     public int seed;
 
     public Transform floor;
@@ -34,12 +35,14 @@ public class MapGridCreation : MonoBehaviour
     private List<Transform> _rooms;
 
     private bool[,] _grid;
-
+    private bool[,] _instances;
+    
     //Initiate value
     private void Awake()
     {
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
+        _instances = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
         _rooms = new List<Transform>();
         AllNodes.Grid = _grid;
@@ -47,13 +50,17 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Width = MapWidth - 1;
         CreateGrid();
         ConstructCorridor();
-
-        RoomInstance();
-        FillGap();
         
+        RoomInstanceWall();
+        FillGap();
+
         CreateFloor();
         CreateWall();
+        
+        RoomInstanceDeco();
     }
+
+    public bool[,] Instances => _instances;
 
     //Create grid and room in it
     private void CreateGrid()
@@ -107,6 +114,13 @@ public class MapGridCreation : MonoBehaviour
     public void AddToGrid(int x, int y, bool state)
     {
         _grid[x, y] = state;
+        _instances[x, y] = true;
+    }
+
+    public void AddToInstance(int x, int y, bool state, bool col)
+    {
+        _instances[x, y] = state;
+        _grid[x, y] = col;
     }
 
     //Collision between room
@@ -134,11 +148,22 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Call instance in room
-    private void RoomInstance()
+    private void RoomInstanceWall()
     {
         for (int i = 0; i < _rooms.Count; i++)
         {
-            _rooms[i].GetComponent<RoomInstance>().BigWall();
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.BigWall();
+        }
+    }
+    
+    //Call instance deco in room
+    private void RoomInstanceDeco()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddSimpleDecoration(Random.Range(1, simpleDecoration));
         }
     }
 
@@ -292,7 +317,7 @@ public class MapGridCreation : MonoBehaviour
     //Call the wall texture sprite and give the grid
     private void CreateWall()
     {
-        Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity);
+        Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
         script.Create(_grid);

@@ -43,5 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577ffbd6920987e42b2c1e1bb170d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomData: {fileID: 0}
   Wall: {fileID: 5174777262050269427, guid: 452ee0b59cd22a944ab314c47e1346e3, type: 3}
+  w: {fileID: 7099328321416386233, guid: cf4afa5940138f04fb7b64a142d7f9e0, type: 3}
+  SimpleDeco: {fileID: 1177790884011656289, guid: 456fc5cb7c244ff49a755625a05b1a81,
+    type: 3}
+  SimpleDecoration:
+  - {fileID: 11400000, guid: a2a008cfdbad3fd4f8ccc15da96274c8, type: 2}
+  - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}
+  - {fileID: 11400000, guid: 7fa6e75eb046d104da2bde5a9c393c39, type: 2}

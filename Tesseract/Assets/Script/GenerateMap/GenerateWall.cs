@@ -7,6 +7,7 @@ public class GenerateWall : MonoBehaviour
     private bool[,] _grid;
     public MapTextureData _mapTextureData;
     public Transform _wall;
+    public Material Material;
     private int _wallTextureLength;
     
     public void Create(bool[,] grid)
@@ -195,6 +196,7 @@ public class GenerateWall : MonoBehaviour
             }
     
             SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
+            if (wallType == "WWWWWW") wallSpriteRenderer.material = Material;
             EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
             wallSpriteRenderer.sprite = sprite;
             edgeCollider2D.points = col;   
