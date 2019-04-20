@@ -69,17 +69,9 @@ public class RoomInstance : MonoBehaviour
     {
         MapGridCreation script = transform.parent.GetComponent<MapGridCreation>();
         Transform o = Instantiate(SimpleDeco, new Vector3(x, y, 0), Quaternion.identity, transform);
+        o.GetComponent<SimpleDeco>().Create(deco);
 
-        o.GetComponent<SpriteRenderer>().sprite = deco.Sprite;
-        if (deco.AsCol)
-        {
-            o.gameObject.AddComponent<EdgeCollider2D>().points = deco.Col;
-            script.AddToInstance(y, x, true, false);
-        }
-        else
-        {
-            script.AddToInstance(y, x, true, true);
-        }
+        script.AddToInstance(y, x, true, !deco.AsCol);
 
         return o;
     }

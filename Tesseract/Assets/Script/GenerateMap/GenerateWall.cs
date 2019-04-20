@@ -5,19 +5,23 @@ using Random = UnityEngine.Random;
 public class GenerateWall : MonoBehaviour
 {
     private bool[,] _grid;
+    private bool[,] _wallPos;
     public MapTextureData _mapTextureData;
     public Transform _wall;
     public Material Material;
     private int _wallTextureLength;
-    public Transform Shadow;
+    public Transform Deco;
+    public SimpleDecoration[] SimpleDecoration;
     
     public void Create(bool[,] grid)
     {
         _wallTextureLength = _mapTextureData.Wall.Length;
         _grid = grid;
+        _wallPos = new bool[_grid.GetLength(0),_grid.GetLength(1)];
         
         InstantiateSimpleWall();
         ChooseWall();
+        Torchwall();
     }
 
     private void InstantiateSimpleWall()
@@ -33,6 +37,7 @@ public class GenerateWall : MonoBehaviour
                     string wallType = "WWWWWW";
                     InstantiateWall(wallType, i, j);
                     _grid[i, j] = true;
+                    _wallPos[i, j] = true;
                 }
             }
         }
@@ -186,32 +191,62 @@ public class GenerateWall : MonoBehaviour
     private void InstantiateWall(string wallType, int x, int y)
     {
         string[] w = wallType.Split(' ');
+        
         for (int i = 0; i < w.Length; i++)
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
             
             Quaternion rot = FindRotationObject(w[i], out Vector2[] col, out Sprite sprite);
             Transform wall = Instantiate(_wall,new Vector3(y, x), rot, transform);
+            
             if (!w[i].Contains('C'))
             {
                 if (w[i].Contains('W'))
                 {
-                    Instantiate(Shadow, new Vector3(y, x - 1), rot, transform);
-                    Instantiate(Shadow, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
-                    Instantiate(Shadow, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
-
+                    Transform o1 = Instantiate(Deco, new Vector3(y, x - 1), rot, transform);
+                    o1.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                 }
+                
                 if (w[i].Contains('R'))
                 {
-                    Instantiate(Shadow, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                    Transform o = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    
+                    if (Random.Range(0, 4) == 0)
+                    {
+                        Transform o4 = Instantiate(Deco, new Vector3(y + 0.5f, x), Quaternion.identity, transform);
+                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
+                    }
+                    
+                    if (w[i].Contains("BR"))
+                    {
+                        Transform o2 = Instantiate(Deco, new Vector3(y + 1, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
+                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                    }
                 }
+                
                 if (w[i].Contains('L'))
                 {
-                    Instantiate(Shadow, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+                    Transform o = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    
+                    if (Random.Range(0, 4) == 0)
+                    {
+                        Transform o4 = Instantiate(Deco, new Vector3(y - 0.5f, x), Quaternion.identity, transform);
+                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
+                    }
+                    
+                    if (w[i].Contains("BL"))
+                    {
+                        Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                    }
                 }
+                
                 if (w[i].Contains('B'))
                 {
-                    Instantiate(Shadow, new Vector3(y, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
+                    Transform o = Instantiate(Deco, new Vector3(y, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
+                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                 }
             }
             if (col == _mapTextureData.WallPerspective1Col ||
@@ -221,12 +256,58 @@ public class GenerateWall : MonoBehaviour
             {
                 wall.GetComponent<SpriteRenderer>().sortingOrder = 110;
             }
-    
+
             SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
             if (wallType == "WWWWWW") wallSpriteRenderer.material = Material;
             EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
             wallSpriteRenderer.sprite = sprite;
             edgeCollider2D.points = col;   
         }
+    }
+
+    private void Torchwall()
+    {
+        for (int x = 1; x < _wallPos.GetLength(1) - 1; x++)
+        {
+            for (int y = 1; y < _wallPos.GetLength(0) - 1; y++)
+            {
+                if (_wallPos[x, y])
+                {
+                    Transform o4 = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
+                    o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[4]);
+                        
+                    if (!_wallPos[x, y + 1])
+                    {
+                        Transform o2 = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                        
+                        if (!_wallPos[x + 1, y + 1])
+                        {
+                            Transform o3 = Instantiate(Deco, new Vector3(y + 1, x - 1), Quaternion.AngleAxis(90, Vector3.forward), transform);
+                            o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                        }
+                    }
+
+                    if (!_wallPos[x, y - 1])
+                    {
+                        Transform o3 = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
+                        o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                        
+                        if (!_wallPos[x + 1, y - 1])
+                        {
+                            Transform o2 = Instantiate(Deco, new Vector3(y - 1, x - 1), Quaternion.AngleAxis(0, Vector3.forward), transform);
+                            o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                        }
+                    }
+                    
+                    if (Random.Range(0, 5) == 0)
+                    {
+                        Transform o = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
+                        o.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
+                    }
+                }
+            }
+        }
+
     }
 }
