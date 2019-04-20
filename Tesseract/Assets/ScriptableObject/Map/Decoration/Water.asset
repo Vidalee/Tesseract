@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300002, guid: 870315e50a30af846a96ab51bd32fbfa, type: 3}
   col: []
   asCol: 0
