@@ -165,6 +165,7 @@ public class GenerateWall : MonoBehaviour
             }
             if (!wallType.Contains("T"))
             {
+                col = _mapTextureData.DemiCol2;
                 return Quaternion.AngleAxis(90, Vector3.forward);
             }
             if (!wallType.Contains("R"))
@@ -236,7 +237,7 @@ public class GenerateWall : MonoBehaviour
                         o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
                     }
                     
-                    if (w[i].Contains("BL"))
+                    if (w[i].Contains("BL")  || w[i].Contains("BRL"))
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);

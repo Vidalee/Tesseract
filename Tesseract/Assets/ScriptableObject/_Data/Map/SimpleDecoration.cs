@@ -13,6 +13,8 @@ public class SimpleDecoration : ScriptableObject
     [SerializeField] protected int sortingOrder;
     [SerializeField] protected Material material;
 
+    [SerializeField] protected Transform interaction;
+
     private void OnEnable()
     {
         if(sortingOrder == 0) sortingOrder = 1;

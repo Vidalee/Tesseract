@@ -26,10 +26,15 @@ public class SimpleDeco : MonoBehaviour
         SpriteRenderer s = GetComponent<SpriteRenderer>();
         s.sortingOrder = _simpleDecoration.SortingOrder;
         s.material = _simpleDecoration.Material;
-        
-        Light o = GetComponentInChildren<Light>();
-        o.color = new Color(_simpleDecoration.Color[0], _simpleDecoration.Color[1], _simpleDecoration.Color[2]);
-        o.intensity = _simpleDecoration.Intensity;
-        o.range = _simpleDecoration.Range;
+
+        if (_simpleDecoration.Color.Length != 0)
+        {
+            GameObject light = Instantiate(new GameObject("Light"), transform.position - new Vector3(0, 0, 0.5f), Quaternion.identity, transform);
+            Light o = light.gameObject.AddComponent<Light>();
+            
+            o.color = new Color(_simpleDecoration.Color[0], _simpleDecoration.Color[1], _simpleDecoration.Color[2]);
+            o.intensity = _simpleDecoration.Intensity;
+            o.range = _simpleDecoration.Range;
+        }
     }
 }
