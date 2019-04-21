@@ -59,7 +59,7 @@ namespace Script.Pathfinding
                      }
                  }
             }
-            //ShowGraph();
+            ShowGraph();
         }
 
         private void ShowGraph()
@@ -70,12 +70,9 @@ namespace Script.Pathfinding
             {
                 if (node != null)
                 {
-                    //print(node.position);
                     nbrNoeuds++;
-                    //Instantiate(Floor).transform.position = node.position;
                     foreach (Node neighbor in node.Neighbors)
                     {
-                        //print(" --> " + neighbor.position);
                         Debug.DrawRay(node.position, neighbor.position - node.position, Color.red, 1000f, false);
                         nbrVoisins++;
                     }

@@ -27,7 +27,6 @@ public class Enemy : ScriptableObject
     [SerializeField] protected int _DetectionRange;
     
     
-    [SerializeField] protected Vector3 _FeetPos;    
     [SerializeField] protected Vector3 _StartPos;
 
     [SerializeField] public List<Node> Path;
@@ -51,7 +50,6 @@ public class Enemy : ScriptableObject
         _MoveSpeed = enemy.MoveSpeed;
         _AttackRange = enemy.AttackRange;
         _DetectionRange = enemy._DetectionRange;
-        _FeetPos = enemy.FeetPos;
         _StartPos = new Vector3(x, y);
         _Competences = enemy.Competences;
         _Sprite = enemy.Sprite;
@@ -81,7 +79,6 @@ public class Enemy : ScriptableObject
 
     public int MaxCooldown => _MaxCooldown;
     
-    public Vector3 FeetPos => _FeetPos;
 
     public CompetencesData[] Competences => _Competences;
     

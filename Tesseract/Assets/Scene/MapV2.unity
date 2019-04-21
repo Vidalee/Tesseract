@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
       propertyPath: RoomNumber
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
         type: 3}
@@ -462,7 +462,7 @@ MonoBehaviour:
   BlockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  Enemy: {fileID: 5711822903153624505, guid: ee793e47837b84ba3b7b8c35448f14be, type: 3}
+  Enemy: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85, type: 3}
   Enemies:
   - {fileID: 11400000, guid: efa6a1f4050934f13b99596757a553ad, type: 2}
   - {fileID: 11400000, guid: 852bbf52c97a74cd6a3e3ae6ae76a17e, type: 2}

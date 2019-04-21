@@ -42,9 +42,9 @@ public class GenerateEnemies : MonoBehaviour
                     enemy.GetComponent<Attack>().Create(newEnemy);
                     enemy.GetComponent<EnemiesLive>().Create(newEnemy); 
                     enemy.GetComponent<EnemiesMovement>().Create(newEnemy, Players, BlockingLayer);
-                    enemy.GetComponent<Pathfinding>().Create(newEnemy); 
-                    enemy.GetComponent<SpriteRenderer>().sprite = newEnemy.Sprite;
-                    
+                    enemy.GetComponent<Pathfinding>().Create(newEnemy);
+                    enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
+
                     enemiesNumber--;
                 }
             }

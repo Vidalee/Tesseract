@@ -34,21 +34,25 @@ namespace Script.Enemies
             {
                 if ((player.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
             }
-            if (Targets.Count == 0) ComeBackToDefensePoint();
+            if (Targets.Count == 0)
+            {
+                if (Enemy.Triggered) ComeBackToDefensePoint();
+            }
             else
             {
-                Vector3 EnemyPos = transform.position + Enemy.FeetPos;
+                Vector3 EnemyPos = transform.position;
                 Transform target = null;
                 float distance = -1;
                 foreach (Transform potentialTarget in Targets)
                 {
-                    Vector3 playerFeet = potentialTarget.position + new Vector3(0, -0.465f);
+                    Vector3 playerFeet = potentialTarget.position + new Vector3(0, -0.375f);
                     RaycastHit2D linecast = Physics2D.Linecast(EnemyPos, playerFeet, BlockingLayer);
+                    Debug.DrawRay(EnemyPos, playerFeet - EnemyPos, Color.green);
                     if (!linecast)
-                    {
+                    { 
                         if (target == null)
                         {
-                            target = potentialTarget;
+                            target = potentialTarget; 
                             distance = (EnemyPos - playerFeet).magnitude;
                         }
                         else
@@ -66,7 +70,7 @@ namespace Script.Enemies
                 if (target != null)
                 {
                     Enemy.Triggered = true;
-                    StraightToPoint(target.position + new Vector3(0, -0.465f), Enemy.AttackRange);
+                    StraightToPoint(target.position + new Vector3(0, -0.375f), Enemy.AttackRange);
                 }
                 else
                 {
@@ -74,7 +78,7 @@ namespace Script.Enemies
                     Pathfinding.Pathfinding script = GetComponent<Pathfinding.Pathfinding>();
                     foreach (Transform potentialTarget in Targets)
                     {
-                        script.FindPathToPos(potentialTarget.position + new Vector3(0, -0.465f));
+                        script.FindPathToPos(potentialTarget.position);
                         int length = Enemy.Path.Count;
                         if (length < Enemy.DetectionRange && length != 0)
                         {
@@ -90,7 +94,7 @@ namespace Script.Enemies
 
         private void ComeBackToDefensePoint()
         {
-            Vector3 pos = transform.position + Enemy.FeetPos;
+            Vector3 pos = transform.position;
             RaycastHit2D linecast = Physics2D.Linecast(pos, Enemy.StartPos, BlockingLayer);
 
             if (!linecast)
@@ -116,7 +120,7 @@ namespace Script.Enemies
 
         private void StraightToPoint(Vector3 position, float range)
         {
-            Vector3 distanceToPos = position - transform.position + Enemy.FeetPos;
+            Vector3 distanceToPos = position - transform.position;
             if (distanceToPos.magnitude > range)
             {
                 transform.Translate(distanceToPos.normalized * Time.deltaTime * Enemy.MoveSpeed);
