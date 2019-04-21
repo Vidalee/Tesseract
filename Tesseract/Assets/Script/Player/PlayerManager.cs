@@ -4,6 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] protected PlayerData PlayerData;
 
+    public PlayerData Player => PlayerData;
 
     private void Update()
     {

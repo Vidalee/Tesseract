@@ -10,7 +10,7 @@ public class GenerateEnemies : MonoBehaviour
 
     public int seed;
     
-    [SerializeField] protected List<Transform> Players;
+    [SerializeField] protected List<GameObject> Players;
     public LayerMask BlockingLayer;
 
     

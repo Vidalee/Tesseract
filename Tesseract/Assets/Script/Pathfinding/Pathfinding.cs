@@ -70,17 +70,18 @@ namespace Script.Pathfinding
                   Debug.Log("No path");
             }
 
-            /*
-            public void FindPathToPlayer()
+            
+            public void FindPathToPlayer(GameObject player)
             {
-                  if (AllNodes.PlayerPositionChanged)
+                  PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                  if (playerData.PositionChanged)
                   {
                         start = AllNodes.PositionToNode(transform.position);
-                        destination = AllNodes.PlayerNode;
+                        destination = playerData.Node;
                         AStar();
                   }
             }
-            */
+            
             
             public void FindPathToPos(Vector3 position)
             {

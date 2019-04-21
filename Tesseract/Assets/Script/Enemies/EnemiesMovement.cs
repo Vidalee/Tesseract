@@ -17,7 +17,7 @@ namespace Script.Enemies
     {
         [SerializeField] protected Enemy Enemy;
         
-        [SerializeField] protected List<Transform> Players;
+        [SerializeField] protected List<GameObject> Players;
         
         public LayerMask BlockingLayer;
         
@@ -29,10 +29,10 @@ namespace Script.Enemies
         
         private void FindTarget()
         {
-            List<Transform> Targets = new List<Transform>();
-            foreach (Transform player in Players)
+            List<GameObject> Targets = new List<GameObject>();
+            foreach (GameObject player in Players)
             {
-                if ((player.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
+                if ((player.transform.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
             }
             if (Targets.Count == 0)
             {
@@ -41,11 +41,11 @@ namespace Script.Enemies
             else
             {
                 Vector3 EnemyPos = transform.position;
-                Transform target = null;
+                GameObject target = null;
                 float distance = -1;
-                foreach (Transform potentialTarget in Targets)
+                foreach (GameObject potentialTarget in Targets)
                 {
-                    Vector3 playerFeet = potentialTarget.position + new Vector3(0, -0.375f);
+                    Vector3 playerFeet = potentialTarget.transform.position + new Vector3(0, -0.375f);
                     RaycastHit2D linecast = Physics2D.Linecast(EnemyPos, playerFeet, BlockingLayer);
                     Debug.DrawRay(EnemyPos, playerFeet - EnemyPos, Color.green);
                     if (!linecast)
@@ -70,15 +70,15 @@ namespace Script.Enemies
                 if (target != null)
                 {
                     Enemy.Triggered = true;
-                    StraightToPoint(target.position + new Vector3(0, -0.375f), Enemy.AttackRange);
+                    StraightToPoint(target.transform.position + new Vector3(0, -0.375f), Enemy.AttackRange);
                 }
                 else
                 {
                     if (!Enemy.Triggered) return;
                     Pathfinding.Pathfinding script = GetComponent<Pathfinding.Pathfinding>();
-                    foreach (Transform potentialTarget in Targets)
+                    foreach (GameObject potentialTarget in Targets)
                     {
-                        script.FindPathToPos(potentialTarget.position);
+                        script.FindPathToPlayer(potentialTarget);
                         int length = Enemy.Path.Count;
                         if (length < Enemy.DetectionRange && length != 0)
                         {
@@ -138,7 +138,7 @@ namespace Script.Enemies
                 Enemy.Path.Remove(nextNode);
         }
 
-        public void Create(Enemy enemy, List<Transform> players, LayerMask blockingLayer)
+        public void Create(Enemy enemy, List<GameObject> players, LayerMask blockingLayer)
         {
             Enemy = enemy;
             Players = players;

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Script.Pathfinding;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -28,6 +30,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected Inventory _Inventory;
 
     [SerializeField]protected float _PotionsCooldown;
+
+    public bool PositionChanged;
+    public Script.Pathfinding.Node Node;
     
     
     private void OnEnable()

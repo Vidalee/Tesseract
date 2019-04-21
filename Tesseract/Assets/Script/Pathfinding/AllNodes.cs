@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Script.Pathfinding
 {
@@ -9,21 +10,27 @@ namespace Script.Pathfinding
         public static int Width;
         public static Node[,] NodesGrid;
 
-        public GameObject Player;
-        public static Node PlayerNode;
-        public static bool PlayerPositionChanged = true;
+        [SerializeField] public List<GameObject> Players;
 
         private void Start()
         {
             GraphCreation();
-            PlayerNode = PositionToNode(Player.transform.position);
+            foreach (GameObject player in Players)
+            {
+                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                playerData.Node = PositionToNode(player.transform.position);
+            }
         }
 
         private void Update()
         {
-            Node newPlayerNode = PositionToNode(Player.transform.position); 
-            PlayerPositionChanged = newPlayerNode != PlayerNode;  
-            PlayerNode = newPlayerNode; 
+            foreach (GameObject player in Players)
+            {
+                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                Node newNode = PositionToNode(player.transform.position);
+                playerData.PositionChanged = newNode != playerData.Node;
+                playerData.Node = newNode;
+            }
         }
 
         private void GraphCreation()
