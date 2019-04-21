@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: PlayerFeet
       objectReference: {fileID: 0}
     - target: {fileID: 9094924654389468839, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
@@ -479,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5037516936518131200, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}

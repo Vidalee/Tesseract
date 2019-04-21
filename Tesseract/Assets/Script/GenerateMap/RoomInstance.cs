@@ -6,8 +6,12 @@ public class RoomInstance : MonoBehaviour
     public Transform Wall;
     public Transform SimpleDeco;
     public Transform Chest;
+    public Transform Portal;
+    
     public ChestData[] ChestDatas;
     public GamesItem[] GamesItems;
+
+    public PortalData[] PortalDatas;
     public SimpleDecoration[] SimpleDecoration;
     private MapGridCreation script;
     public int ChestChance;
@@ -98,5 +102,37 @@ public class RoomInstance : MonoBehaviour
                 _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
             }
         }
+    }
+
+    public void AddPortal(Vector3 pos)
+    {
+        int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+        int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+        
+        if (!script.Instances[y, x])
+        {
+            Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
+            o.GetComponent<Portal>().Create(PortalDatas[Random.Range(0, PortalDatas.Length)], pos);
+                
+            _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
+        }
+    }
+
+    public Vector3 GetFreePos()
+    {
+        int maxTry = 0;
+        int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+        int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+
+        while (maxTry < 10)
+        {
+            if (!script.Instances[y, x])
+            {
+                return new Vector3(x, y, 0);
+            }
+            maxTry++;
+        }
+
+        return Vector3.zero;
     }
 }

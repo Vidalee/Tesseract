@@ -20,6 +20,7 @@ public class MapGridCreation : MonoBehaviour
     public int minW;
     public int forcePath;
     public int prob;
+    public int portalChance;
 
     public int simpleDecoration;
     public int seed;
@@ -59,6 +60,7 @@ public class MapGridCreation : MonoBehaviour
         
         RoomInstanceDeco();
         AddChest();
+        AddPortal();
     }
 
     public bool[,] Instances => _instances;
@@ -178,6 +180,22 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
+    //Call portal in room
+    private void AddPortal()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            if (Random.Range(0, portalChance + 1) == 0)
+            {
+                RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+                Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
+                
+                if(pos == Vector3.zero) continue;
+                
+                script.AddPortal(pos);
+            }
+        }
+    }
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {

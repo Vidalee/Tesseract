@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.SymbolStore;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Decoration", menuName = "Map/Decoration")]
 public class SimpleDecoration : ScriptableObject
@@ -12,6 +13,7 @@ public class SimpleDecoration : ScriptableObject
     [SerializeField] protected float intensity;
     [SerializeField] protected int sortingOrder;
     [SerializeField] protected Material material;
+    [SerializeField] protected bool rot;
 
     private void OnEnable()
     {
@@ -33,6 +35,8 @@ public class SimpleDecoration : ScriptableObject
     public float Intensity => intensity;
 
     public int SortingOrder => sortingOrder;
+
+    public bool Rot => rot;
 
     public Material Material => material;
 }
