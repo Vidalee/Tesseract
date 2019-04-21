@@ -23,7 +23,12 @@ namespace Script.Pathfinding
             
             public void AStar()
             {
-                  if (start == null || destination == null) return;
+                  Debug.Log("Start");
+                  if (start == null || destination == null)
+                  {
+                        Debug.Log("Null");
+                        return;
+                  }
                   foreach (Node node in AllNodes.NodesGrid)
                   {
                         if (node != null)
@@ -39,7 +44,7 @@ namespace Script.Pathfinding
                   BinaryHeap binaryHeap = ScriptableObject.CreateInstance<BinaryHeap>();
                   List<IHeapNode> openList = new List<IHeapNode>();
                   binaryHeap.MinPush(openList, start);
-                  
+                   
                   while (lastIndex != 0)
                   {
                         Node node = (Node) binaryHeap.MinPop(openList);
@@ -48,6 +53,7 @@ namespace Script.Pathfinding
                         if (node == destination)
                         {
                               ReconstructPath();
+                              Debug.Log("Found it");
                               return;
                         }
                         foreach (Node neighbor in node.Neighbors)
@@ -61,8 +67,10 @@ namespace Script.Pathfinding
                               lastIndex++;
                         }
                   }
+                  Debug.Log("No path");
             }
 
+            /*
             public void FindPathToPlayer()
             {
                   if (AllNodes.PlayerPositionChanged)
@@ -72,11 +80,12 @@ namespace Script.Pathfinding
                         AStar();
                   }
             }
-
-            public void FindPathToPos(Vector3 Position)
+            */
+            
+            public void FindPathToPos(Vector3 position)
             {
                   start = AllNodes.PositionToNode(transform.position);
-                  destination = AllNodes.PositionToNode(Position);
+                  destination = AllNodes.PositionToNode(position);
                   AStar();    
             }
 

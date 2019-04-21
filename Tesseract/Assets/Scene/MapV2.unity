@@ -127,12 +127,12 @@ PrefabInstance:
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 20.03
       objectReference: {fileID: 0}
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 21.22
       objectReference: {fileID: 0}
     - target: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
         type: 3}
@@ -182,15 +182,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7845168559488321141, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
---- !u!4 &1454511670 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4606261878664261781, guid: 68892088666f8824483dd80a89cd19a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1454511669}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1454511671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4606261879900217905, guid: 68892088666f8824483dd80a89cd19a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454511669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1454511678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9,
     type: 3}
   m_PrefabInstance: {fileID: 1454511669}
   m_PrefabAsset: {fileID: 0}
@@ -457,7 +457,8 @@ MonoBehaviour:
   MapHeight: 100
   MapWidth: 100
   seed: 1337
-  PlayerFeet: {fileID: 1454511670}
+  Players:
+  - {fileID: 1454511678}
   BlockingLayer:
     serializedVersion: 2
     m_Bits: 256

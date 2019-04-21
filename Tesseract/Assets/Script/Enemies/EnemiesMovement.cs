@@ -29,7 +29,63 @@ namespace Script.Enemies
         
         private void FindTarget()
         {
-            List<Transform> Targets = Players.OrderBy(player => (player.position - Enemy.StartPos).magnitude).Select().ToList();
+            List<Transform> Targets = new List<Transform>();
+            foreach (Transform player in Players)
+            {
+                if ((player.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
+            }
+            if (Targets.Count == 0) ComeBackToDefensePoint();
+            else
+            {
+                Vector3 EnemyPos = transform.position + Enemy.FeetPos;
+                Transform target = null;
+                float distance = -1;
+                foreach (Transform potentialTarget in Targets)
+                {
+                    Vector3 playerFeet = potentialTarget.position + new Vector3(0, -0.465f);
+                    RaycastHit2D linecast = Physics2D.Linecast(EnemyPos, playerFeet, BlockingLayer);
+                    if (!linecast)
+                    {
+                        if (target == null)
+                        {
+                            target = potentialTarget;
+                            distance = (EnemyPos - playerFeet).magnitude;
+                        }
+                        else
+                        {
+                            float newDistance = (EnemyPos - playerFeet).magnitude;
+                            if (newDistance < distance)
+                            {
+                                target = potentialTarget;
+                                distance = newDistance;
+                            }
+                        }
+                    }
+                }
+
+                if (target != null)
+                {
+                    Enemy.Triggered = true;
+                    StraightToPoint(target.position + new Vector3(0, -0.465f), Enemy.AttackRange);
+                }
+                else
+                {
+                    if (!Enemy.Triggered) return;
+                    Pathfinding.Pathfinding script = GetComponent<Pathfinding.Pathfinding>();
+                    foreach (Transform potentialTarget in Targets)
+                    {
+                        script.FindPathToPos(potentialTarget.position + new Vector3(0, -0.465f));
+                        int length = Enemy.Path.Count;
+                        if (length < Enemy.DetectionRange && length != 0)
+                        {
+                            FollowPath();
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            
         }
 
         private void ComeBackToDefensePoint()
@@ -67,43 +123,15 @@ namespace Script.Enemies
             }
         }
         
-        
-        
-        private void Displacement(Transform target)
+        private void FollowPath()
         {
-            Vector3 playerFeet = target.position + new Vector3(0, -0.465f);
-            Vector3 defensePointToPlayer = playerFeet - Enemy.StartPos;
-            if (defensePointToPlayer.magnitude < Enemy.DetectionRange)
-            {
-                Vector3 Pos = transform.position + Enemy.FeetPos;
-                RaycastHit2D linecast = Physics2D.Linecast(Pos, playerFeet, BlockingLayer);
-                Enemy.Triggered = Enemy.Triggered || !linecast;
-                if (!Enemy.Triggered) return;
-
-                if (!linecast)
-                {
-                    Vector3 DistanceToPlayer = playerFeet - Pos;
-                    if (DistanceToPlayer.magnitude > Enemy.AttackRange)
-                    {
-                        transform.Translate(DistanceToPlayer.normalized * Time.deltaTime * Enemy.MoveSpeed);
-                    }
-                }
-                else
-                {
-                    GetComponent<Pathfinding.Pathfinding>().FindPathToPlayer();
-                    int pathLength = Enemy.Path.Count;
-                    if (pathLength != 0 && pathLength < Enemy.DetectionRange)
-                    {
-                        Node nextNode = Enemy.Path[0];
-                        Vector2 displacement =
-                            (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime *
-                            Enemy.MoveSpeed;
-                        transform.Translate(displacement, Space.World);
-                        if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
-                            Enemy.Path.Remove(nextNode);
-                    }
-                }
-            }
+            Node nextNode = Enemy.Path[0];
+            Vector2 displacement =
+                (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime *
+                Enemy.MoveSpeed;
+            transform.Translate(displacement, Space.World);
+            if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
+                Enemy.Path.Remove(nextNode);
         }
 
         public void Create(Enemy enemy, List<Transform> players, LayerMask blockingLayer)

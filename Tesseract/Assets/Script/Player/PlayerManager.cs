@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey("s")) SavePlayer();
+        if(Input.GetKey("k")) SavePlayer();
         if(Input.GetKey("l")) LoadPlayer();
     }
 
