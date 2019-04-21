@@ -7,17 +7,20 @@ public class RoomInstance : MonoBehaviour
     public Transform SimpleDeco;
     public Transform Chest;
     public Transform Portal;
+    public Transform Pikes;
     
     public ChestData[] ChestDatas;
     public GamesItem[] GamesItems;
-
+    public PikesData[] PikesDatas;
     public PortalData[] PortalDatas;
     public SimpleDecoration[] SimpleDecoration;
+    
     private MapGridCreation script;
     public int ChestChance;
 
     private RoomData _roomData;
     private int _prob;
+    public int PikeProb;
 
     public void Create(RoomData roomData, int prob)
     {
@@ -118,6 +121,22 @@ public class RoomInstance : MonoBehaviour
         }
     }
 
+    public void AddPikes()
+    {
+        for (int i = 0; i < PikeProb; i++)
+        {
+            int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+            int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+        
+            if (!script.Instances[y, x])
+            {
+                Transform o = Instantiate(Pikes, new Vector3(x, y, 0), Quaternion.identity, transform);
+                o.GetComponent<Pikes>().Create(PikesDatas[Random.Range(0, PikesDatas.Length)]);
+                
+                _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
+            } 
+        }
+    }
     public Vector3 GetFreePos()
     {
         int maxTry = 0;

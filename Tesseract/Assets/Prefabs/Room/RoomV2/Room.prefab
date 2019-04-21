@@ -48,11 +48,14 @@ MonoBehaviour:
     type: 3}
   Chest: {fileID: 1864003398, guid: 4a125ff5547fc0045ab3323adc5033b8, type: 3}
   Portal: {fileID: 7732069477856648191, guid: 4fd5aa2211306814aab349943a796fe3, type: 3}
+  Pikes: {fileID: 3172297101696362767, guid: 85f97980b92ab764e9740a5ddf363bd8, type: 3}
   ChestDatas:
   - {fileID: 11400000, guid: f98dac3224d1c714fbda36cae487dada, type: 2}
   GamesItems:
   - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
   - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  PikesDatas:
+  - {fileID: 11400000, guid: e1b6d2a9be59181409be6efd0d07b130, type: 2}
   PortalDatas:
   - {fileID: 11400000, guid: 8d4c9fe65672afa46b0c673a6554b866, type: 2}
   SimpleDecoration:
@@ -60,3 +63,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}
   - {fileID: 11400000, guid: 7fa6e75eb046d104da2bde5a9c393c39, type: 2}
   ChestChance: 1
+  PikeProb: 5

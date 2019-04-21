@@ -60,6 +60,8 @@ public class MapGridCreation : MonoBehaviour
         
         RoomInstanceDeco();
         AddChest();
+        AddPikes();
+        
         AddPortal();
     }
 
@@ -195,6 +197,16 @@ public class MapGridCreation : MonoBehaviour
                 script.AddPortal(pos);
             }
         }
+    }
+    
+    //Call pikes in room
+    private void AddPikes()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddPikes();
+        }   
     }
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
