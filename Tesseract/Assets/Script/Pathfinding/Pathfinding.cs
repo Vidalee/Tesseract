@@ -5,25 +5,30 @@ using UnityEngine;
 namespace Script.Pathfinding
 {
       public class Pathfinding : MonoBehaviour
-      {                  
-            public static Node start;
+      {
+            private static Node start;
             public Node destination;
-            public static List<Node> Path = new List<Node>();
-                    
+            [SerializeField] protected Enemy Enemy;
+
             public void ReconstructPath()
             {
-                  Path.Clear();
-                  Path.Add(destination);
-                  while (Path[0].Parent != start)
+                  Enemy.Path.Clear();
+                  Enemy.Path.Add(destination);
+                  while (Enemy.Path[0].Parent != start)
                   {
-                        if (Path[0].Parent == null) return; 
-                        Path.Insert(0, Path[0].Parent);
+                        if (Enemy.Path[0].Parent == null) return; 
+                        Enemy.Path.Insert(0, Enemy.Path[0].Parent);
                   }
             }
             
             public void AStar()
             {
-                  if (start == null || destination == null) return;
+                  //Debug.Log("Start");
+                  if (start == null || destination == null)
+                  {
+                        //Debug.Log("Null");
+                        return;
+                  }
                   foreach (Node node in AllNodes.NodesGrid)
                   {
                         if (node != null)
@@ -39,7 +44,7 @@ namespace Script.Pathfinding
                   BinaryHeap binaryHeap = ScriptableObject.CreateInstance<BinaryHeap>();
                   List<IHeapNode> openList = new List<IHeapNode>();
                   binaryHeap.MinPush(openList, start);
-                  
+                   
                   while (lastIndex != 0)
                   {
                         Node node = (Node) binaryHeap.MinPop(openList);
@@ -48,6 +53,7 @@ namespace Script.Pathfinding
                         if (node == destination)
                         {
                               ReconstructPath();
+                              //Debug.Log("Found it");
                               return;
                         }
                         foreach (Node neighbor in node.Neighbors)
@@ -61,17 +67,32 @@ namespace Script.Pathfinding
                               lastIndex++;
                         }
                   }
+                  //Debug.Log("No path");
             }
 
-            private void Update()
+            
+            public void FindPathToPlayer(GameObject player)
             {
-                  if (AllNodes.PlayerPositionChanged)
+                  PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                  if (playerData.PositionChanged)
                   {
-                        AllNodes.PlayerPositionChanged = false;
                         start = AllNodes.PositionToNode(transform.position);
-                        destination = AllNodes.PlayerNode;
+                        destination = playerData.Node;
                         AStar();
                   }
+            }
+            
+            
+            public void FindPathToPos(Vector3 position)
+            {
+                  start = AllNodes.PositionToNode(transform.position);
+                  destination = AllNodes.PositionToNode(position);
+                  AStar();    
+            }
+
+            public void Create(Enemy enemy)
+            {
+                  Enemy = enemy;
             }
       }
 }

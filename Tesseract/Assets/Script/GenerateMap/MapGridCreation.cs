@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.Pathfinding;
@@ -63,6 +63,8 @@ public class MapGridCreation : MonoBehaviour
         AddPikes();
         
         AddPortal();
+
+        GenerateEnemies.RoomData = _roomData;
     }
 
     public bool[,] Instances => _instances;

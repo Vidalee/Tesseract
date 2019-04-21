@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Script.Pathfinding
 {
@@ -9,21 +10,27 @@ namespace Script.Pathfinding
         public static int Width;
         public static Node[,] NodesGrid;
 
-        public GameObject Player;
-        public static Node PlayerNode;
-        public static bool PlayerPositionChanged = true;
+        [SerializeField] public List<GameObject> Players;
 
         private void Start()
         {
             GraphCreation();
-            PlayerNode = PositionToNode(Player.transform.position);
+            foreach (GameObject player in Players)
+            {
+                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                playerData.Node = PositionToNode(player.transform.position);
+            }
         }
 
         private void Update()
         {
-            Node newPlayerNode = PositionToNode(Player.transform.position); 
-            PlayerPositionChanged = newPlayerNode != PlayerNode; 
-            PlayerNode = newPlayerNode; 
+            foreach (GameObject player in Players)
+            {
+                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                Node newNode = PositionToNode(player.transform.position);
+                playerData.PositionChanged = newNode != playerData.Node;
+                playerData.Node = newNode;
+            }
         }
 
         private void GraphCreation()
@@ -35,7 +42,7 @@ namespace Script.Pathfinding
                  {
                      if (Grid[h, w])
                      {
-                         NodesGrid[h,w] = new Node(w, h, new Vector2(w, h - 0.5f));
+                         NodesGrid[h,w] = new Node(new Vector2(w, h - 0.5f));
                          if (Grid[h - 1, w - 1] && Grid[h - 1, w] && Grid[h,w - 1])
                          {
                              NodesGrid[h - 1, w - 1].Neighbors.Add(NodesGrid[h, w]);
@@ -70,12 +77,9 @@ namespace Script.Pathfinding
             {
                 if (node != null)
                 {
-                    //print(node.position);
                     nbrNoeuds++;
-                    //Instantiate(Floor).transform.position = node.position;
                     foreach (Node neighbor in node.Neighbors)
                     {
-                        //print(" --> " + neighbor.position);
                         Debug.DrawRay(node.position, neighbor.position - node.position, Color.red, 1000f, false);
                         nbrVoisins++;
                     }

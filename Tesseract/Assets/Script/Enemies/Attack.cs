@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor.VersionControl;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] protected int damage;
-    [SerializeField] protected int distance;
-    [SerializeField] protected float maxCooldown;
+    [SerializeField] protected Enemy Enemy;
 
     private float cooldown;
     private GameObject player;
@@ -12,26 +13,29 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player");
-    }
-
-    private void FixedUpdate()
-    {
-        TryAttack();
+        StartCoroutine(Cooldown());
     }
 
     public void TryAttack()
     {
-        if (cooldown < maxCooldown)
+        if ((transform.position - player.transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange)
         {
-            cooldown++;
-            return;
-        }
-        
-        if ((transform.position - player.transform.position).sqrMagnitude < distance*distance)
-        {
-            cooldown -= maxCooldown;
             Live script = player.GetComponent<Live>();
-            script.Damage(damage);
+            script.Damage(Enemy.PhysicsDamage);
         }
+    }
+
+    IEnumerator Cooldown()
+    {
+        for (;;)
+        {
+            TryAttack();
+            yield return new WaitForSeconds(Enemy.MaxCooldown);
+        }
+    }
+
+    public void Create(Enemy enemy)
+    {
+        Enemy = enemy;
     }
 }

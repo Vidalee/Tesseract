@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     #region Variable
+
 
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
@@ -18,11 +19,13 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
+    public PlayerData Player => PlayerData;
+
     #region Update
 
     private void Update()
     {
-        if(Input.GetKey("s")) SavePlayer();
+        if(Input.GetKey("k")) SavePlayer();
         if(Input.GetKey("l")) LoadPlayer();
         if(Input.GetKey("x")) GetXp(10);
     }
