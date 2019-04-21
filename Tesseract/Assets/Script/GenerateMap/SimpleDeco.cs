@@ -29,7 +29,9 @@ public class SimpleDeco : MonoBehaviour
 
         if (_simpleDecoration.Color.Length != 0)
         {
-            GameObject light = Instantiate(new GameObject("Light"), transform.position - new Vector3(0, 0, 0.5f), Quaternion.identity, transform);
+            GameObject go = new GameObject("Light");
+            go.transform.parent = transform;
+            GameObject light = Instantiate(go, transform.position - new Vector3(0, 0, .5f), Quaternion.identity, transform);
             Light o = light.gameObject.AddComponent<Light>();
             
             o.color = new Color(_simpleDecoration.Color[0], _simpleDecoration.Color[1], _simpleDecoration.Color[2]);

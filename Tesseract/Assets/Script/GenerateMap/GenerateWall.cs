@@ -237,7 +237,7 @@ public class GenerateWall : MonoBehaviour
                         o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
                     }
                     
-                    if (w[i].Contains("BL")  || w[i].Contains("BRL"))
+                    if (w[i].Contains("BL")  || w[i].Contains("BRL") || w[i].Contains("BRTL"))
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);

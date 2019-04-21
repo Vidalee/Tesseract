@@ -21,7 +21,7 @@ public class LayerSorter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Obstacles"))
+        if (other.CompareTag("Obstacles"))
         {
             Debug.Log("Obstacles");
             SpriteRenderer otherSpriteRenderer = other.transform.GetComponent<SpriteRenderer>();

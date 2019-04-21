@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
-  m_Name: SimpleShuriken
+  m_Script: {fileID: 11500000, guid: f9c8b78f5aeddd645adbc384dfa4a77e, type: 3}
+  m_Name: Chest
   m_EditorClassIdentifier: 
-  physicsDamage: 0
-  magicDamage: 0
-  sprite: {fileID: 0}
+  chestClose: {fileID: 0}
+  chestOpen: {fileID: 0}
+  boxCol: []
+  TriggerCol: []
+  item: {fileID: 0}
