@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour
 
     private MapData _mapData;
 
+    public PlayerData PlayerData => _playerData;
+
     #endregion
 
     #region Update
@@ -137,13 +139,13 @@ public class PlayerManager : MonoBehaviour
 
     private void SavePlayer()
     {
-        Debug.Log("Save");
+        //Debug.Log("Save");
         SaveSystem.SavePlayer(_playerData);
     }
 
     private void LoadPlayer()
     {
-        Debug.Log("load");
+        //Debug.Log("load");
         PlayerDataSave data = SaveSystem.LoadPlayer();
         
         ResetStat(FindClass());
@@ -205,4 +207,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     #endregion
+
+    public void AddItem(IEventArgs item)
+    {
+        _playerData.Inventory.AddItem((item as EventArgsItem).Item);
+    }
 }

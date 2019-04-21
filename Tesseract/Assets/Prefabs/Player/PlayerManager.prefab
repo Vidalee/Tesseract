@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4236175760814717961}
   - component: {fileID: 7447967311768191375}
+  - component: {fileID: 6434590799956567368}
   m_Layer: 0
   m_Name: PlayerManager
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,5 +44,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f3b9616b5f42c4fbf56cd038644017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: f61eb72d2954ab04e9eea36a3aab9200, type: 2}
+  _PlayersData:
+  - {fileID: 11400000, guid: 4c097147e9829d74d94a7f53901eab19, type: 2}
+  - {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
+  - {fileID: 11400000, guid: f61eb72d2954ab04e9eea36a3aab9200, type: 2}
+  - {fileID: 11400000, guid: aa570d12d97379942aa04a236db1bde7, type: 2}
+  _PlayersDataCopy:
+  - {fileID: 11400000, guid: fbd3a3388ee42174b89c31e3f1beea85, type: 2}
+  - {fileID: 11400000, guid: f414fa96ec487744b9ff88b9a89d8e9d, type: 2}
+  - {fileID: 11400000, guid: 8c52fdc37ef03ec48905391dbfd8552e, type: 2}
+  - {fileID: 11400000, guid: 7eb9b995a267fb14eb8f1e516e09c250, type: 2}
+  choice: Assassin
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
+--- !u!114 &6434590799956567368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 32b35486695acb543b37503ea11de54e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: AddItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

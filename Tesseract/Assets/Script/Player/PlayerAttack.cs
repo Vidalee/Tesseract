@@ -123,7 +123,7 @@ public class PlayerAttack : MonoBehaviour
     
     private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)
     {
-        Transform o = Instantiate(competence.Object, transform.position + dir / 2, Quaternion.identity);
+        Transform o = Instantiate(competence.Object, transform.position + dir/4, Quaternion.identity);
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();

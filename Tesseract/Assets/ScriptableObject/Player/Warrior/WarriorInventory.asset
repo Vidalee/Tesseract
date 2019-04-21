@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: WarriorInventory
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  potions:
-  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
-  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  potions: []
   maxPotion: 5

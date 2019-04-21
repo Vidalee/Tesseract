@@ -55,10 +55,11 @@ MonoBehaviour:
   minW: 10
   forcePath: 5
   prob: 0
+  simpleDecoration: 0
   seed: 0
   floor: {fileID: 7715380838967053743, guid: 73a9597eae601cb44851a5afafa5ff00, type: 3}
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,
     type: 3}
-  room: {fileID: 1833470625, guid: a084ae2797cef85429a290124da9d2ed, type: 3}
+  room: {fileID: 3862694622386907583, guid: a334797e540caac43a0c0d9feec9a75a, type: 3}
   MapTextureData: {fileID: 11400000, guid: 1d6fe0cb736f3d644944c9b4c13d9b24, type: 2}
   KruskalAlgo: {fileID: 11400000, guid: a79a4496a8d12dd49946f32aa7f44bd1, type: 2}

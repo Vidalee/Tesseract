@@ -34,7 +34,7 @@ public class Projectiles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Obstacle"))
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("ObstaclesDestroy"))
         {
             Destroy(gameObject);
         }

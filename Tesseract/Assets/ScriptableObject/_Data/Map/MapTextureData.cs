@@ -46,6 +46,11 @@ public class MapTextureData : ScriptableObject
         new Vector2(-0.5f,0), new Vector2(0.5f, 0), new Vector2(0.5f, -0.5f), new Vector2(-0.5f, 0.5f), new Vector2(-0.5f, 0),  
     };
 
+    [SerializeField] protected Vector2[] demiCol2 =
+    {
+        new Vector2(-0.5f, 0), new Vector2(-0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0), new Vector2(-0.5f, 0)
+    };
+
     #endregion
 
     #region Set/Get
@@ -75,6 +80,8 @@ public class MapTextureData : ScriptableObject
     public Vector2[] CornerCol => cornerCol;
 
     public Vector2[] DemiCol => demiCol;
+
+    public Vector2[] DemiCol2 => demiCol2;
 
     #endregion
 }

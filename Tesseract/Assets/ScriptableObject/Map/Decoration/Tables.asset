@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
+  m_Name: Tables
+  m_EditorClassIdentifier: 
+  anim: {fileID: 7400000, guid: 21440a88b1353954f8cc361df30c3238, type: 2}
+  col:
+  - {x: -0.5, y: -0.5}
+  - {x: -0.5, y: 0.5}
+  - {x: 0.5, y: 0.5}
+  - {x: 0.5, y: -0.5}
+  - {x: -0.5, y: -0.5}
+  asCol: 1
+  color: 
+  name: Table
+  range: 0
+  intensity: 0
+  sortingOrder: 1
+  material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
+  rot: 0
