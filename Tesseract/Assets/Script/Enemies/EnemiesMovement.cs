@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Numerics;
 using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SocialPlatforms;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -12,35 +15,102 @@ namespace Script.Enemies
 {
     public class EnemiesMovement : MonoBehaviour
     {
-        [SerializeField] protected Transform PlayerFeet;
-        [SerializeField] protected int Speed;
+        [SerializeField] protected Enemy Enemy;
+        
+        [SerializeField] protected List<Transform> Players;
+        
         public LayerMask BlockingLayer;
         
  
         private void FixedUpdate()
         {
-            Displacement();
+            FindTarget();
         }
-    
-        private void Displacement()
+        
+        private void FindTarget()
         {
-            Vector3 enemyFeetPos = transform.position - new Vector3(0, transform.localScale.y / 2, 0);
-            if ((PlayerFeet.position - enemyFeetPos).magnitude > 2)
+            List<Transform> Targets = Players.OrderBy(player => (player.position - Enemy.StartPos).magnitude).Select().ToList();
+        }
+
+        private void ComeBackToDefensePoint()
+        {
+            Vector3 pos = transform.position + Enemy.FeetPos;
+            RaycastHit2D linecast = Physics2D.Linecast(pos, Enemy.StartPos, BlockingLayer);
+
+            if (!linecast)
             {
-                if (!Physics2D.Linecast(enemyFeetPos, PlayerFeet.position, BlockingLayer))
+                StraightToPoint(Enemy.StartPos, 0.05f);
+            }
+            else
+            {
+                GetComponent<Pathfinding.Pathfinding>().FindPathToPos(Enemy.StartPos);
+                int pathLength = Enemy.Path.Count;
+                if (pathLength != 0)
                 {
-                    transform.Translate((PlayerFeet.position - transform.position).normalized * Time.deltaTime * Speed);
-                }
-                else if (Pathfinding.Pathfinding.Path.Count != 0)
-                {
-                    Node nextNode = Pathfinding.Pathfinding.Path[0]; 
+                    Node nextNode = Enemy.Path[0];
                     Vector2 displacement =
-                        (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime * Speed;
+                        (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime *
+                        Enemy.MoveSpeed;
                     transform.Translate(displacement, Space.World);
-                    if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
-                        Pathfinding.Pathfinding.Path.Remove(nextNode);
+                    if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05) 
+                        Enemy.Path.Remove(nextNode);
                 }
-            }            
+            }
+        }
+
+        private void StraightToPoint(Vector3 position, float range)
+        {
+            Vector3 distanceToPos = position - transform.position + Enemy.FeetPos;
+            if (distanceToPos.magnitude > range)
+            {
+                transform.Translate(distanceToPos.normalized * Time.deltaTime * Enemy.MoveSpeed);
+            }
+        }
+        
+        
+        
+        private void Displacement(Transform target)
+        {
+            Vector3 playerFeet = target.position + new Vector3(0, -0.465f);
+            Vector3 defensePointToPlayer = playerFeet - Enemy.StartPos;
+            if (defensePointToPlayer.magnitude < Enemy.DetectionRange)
+            {
+                Vector3 Pos = transform.position + Enemy.FeetPos;
+                RaycastHit2D linecast = Physics2D.Linecast(Pos, playerFeet, BlockingLayer);
+                Enemy.Triggered = Enemy.Triggered || !linecast;
+                if (!Enemy.Triggered) return;
+
+                if (!linecast)
+                {
+                    Vector3 DistanceToPlayer = playerFeet - Pos;
+                    if (DistanceToPlayer.magnitude > Enemy.AttackRange)
+                    {
+                        transform.Translate(DistanceToPlayer.normalized * Time.deltaTime * Enemy.MoveSpeed);
+                    }
+                }
+                else
+                {
+                    GetComponent<Pathfinding.Pathfinding>().FindPathToPlayer();
+                    int pathLength = Enemy.Path.Count;
+                    if (pathLength != 0 && pathLength < Enemy.DetectionRange)
+                    {
+                        Node nextNode = Enemy.Path[0];
+                        Vector2 displacement =
+                            (nextNode.position - (Vector2) transform.position).normalized * Time.deltaTime *
+                            Enemy.MoveSpeed;
+                        transform.Translate(displacement, Space.World);
+                        if (((Vector2) transform.position - nextNode.position).magnitude <= 0.05)
+                            Enemy.Path.Remove(nextNode);
+                    }
+                }
+            }
+        }
+
+        public void Create(Enemy enemy, List<Transform> players, LayerMask blockingLayer)
+        {
+            Enemy = enemy;
+            Players = players;
+            BlockingLayer = blockingLayer;
         }
     }
 }

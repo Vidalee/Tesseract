@@ -22,7 +22,7 @@ namespace Script.Pathfinding
         private void Update()
         {
             Node newPlayerNode = PositionToNode(Player.transform.position); 
-            PlayerPositionChanged = newPlayerNode != PlayerNode; 
+            PlayerPositionChanged = newPlayerNode != PlayerNode;  
             PlayerNode = newPlayerNode; 
         }
 
@@ -35,7 +35,7 @@ namespace Script.Pathfinding
                  {
                      if (Grid[h, w])
                      {
-                         NodesGrid[h,w] = new Node(w, h, new Vector2(w, h - 0.5f));
+                         NodesGrid[h,w] = new Node(new Vector2(w, h - 0.5f));
                          if (Grid[h - 1, w - 1] && Grid[h - 1, w] && Grid[h,w - 1])
                          {
                              NodesGrid[h - 1, w - 1].Neighbors.Add(NodesGrid[h, w]);

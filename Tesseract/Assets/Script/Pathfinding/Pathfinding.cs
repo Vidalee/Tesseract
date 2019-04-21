@@ -5,19 +5,19 @@ using UnityEngine;
 namespace Script.Pathfinding
 {
       public class Pathfinding : MonoBehaviour
-      {                  
-            public static Node start;
+      {
+            private static Node start;
             public Node destination;
-            public static List<Node> Path = new List<Node>();
-                    
+            [SerializeField] protected Enemy Enemy;
+
             public void ReconstructPath()
             {
-                  Path.Clear();
-                  Path.Add(destination);
-                  while (Path[0].Parent != start)
+                  Enemy.Path.Clear();
+                  Enemy.Path.Add(destination);
+                  while (Enemy.Path[0].Parent != start)
                   {
-                        if (Path[0].Parent == null) return; 
-                        Path.Insert(0, Path[0].Parent);
+                        if (Enemy.Path[0].Parent == null) return; 
+                        Enemy.Path.Insert(0, Enemy.Path[0].Parent);
                   }
             }
             
@@ -63,15 +63,26 @@ namespace Script.Pathfinding
                   }
             }
 
-            private void Update()
+            public void FindPathToPlayer()
             {
                   if (AllNodes.PlayerPositionChanged)
                   {
-                        AllNodes.PlayerPositionChanged = false;
                         start = AllNodes.PositionToNode(transform.position);
                         destination = AllNodes.PlayerNode;
                         AStar();
                   }
+            }
+
+            public void FindPathToPos(Vector3 Position)
+            {
+                  start = AllNodes.PositionToNode(transform.position);
+                  destination = AllNodes.PositionToNode(Position);
+                  AStar();    
+            }
+
+            public void Create(Enemy enemy)
+            {
+                  Enemy = enemy;
             }
       }
 }

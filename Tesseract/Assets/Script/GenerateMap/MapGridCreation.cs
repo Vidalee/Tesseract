@@ -47,6 +47,7 @@ public class MapGridCreation : MonoBehaviour
         
         InitiateFloor();
         InitiateWall();
+        GenerateEnemies.RoomData = _roomData;
     }
 
     //Create grid and room in it
