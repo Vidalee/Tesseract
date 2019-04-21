@@ -102,6 +102,7 @@ public class RoomInstance : MonoBehaviour
                 chest.Item = GamesItems[Random.Range(0, GamesItems.Length)];
                 o.GetComponent<Chest>().Create(chest);
                 
+                script.AddToInstance(y, x, true, false);
                 _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
             }
         }
@@ -116,7 +117,8 @@ public class RoomInstance : MonoBehaviour
         {
             Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
             o.GetComponent<Portal>().Create(PortalDatas[Random.Range(0, PortalDatas.Length)], pos);
-                
+
+            script.AddToInstance(y, x, true, true);
             _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
         }
     }
@@ -133,6 +135,7 @@ public class RoomInstance : MonoBehaviour
                 Transform o = Instantiate(Pikes, new Vector3(x, y, 0), Quaternion.identity, transform);
                 o.GetComponent<Pikes>().Create(PikesDatas[Random.Range(0, PikesDatas.Length)]);
                 
+                script.AddToInstance(y, x, true, false);
                 _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
             } 
         }

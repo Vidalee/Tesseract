@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a53982cbe1a047b2a4230ce0846dd, type: 3}
   m_Name: SimplePikes
   m_EditorClassIdentifier: 
-  damage: 0
-  nonTrig: {fileID: 0}
-  trig: {fileID: 0}
+  damage: 20
+  nonTrig: {fileID: 21300000, guid: 19965d3ec82491240874b26e466b1e91, type: 3}
+  trig: {fileID: 21300002, guid: 19965d3ec82491240874b26e466b1e91, type: 3}

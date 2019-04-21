@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
   m_Name: Bones
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300004, guid: 870315e50a30af846a96ab51bd32fbfa, type: 3}
+  anim: {fileID: 7400000, guid: bb8f7b7669aab6d48bc1bf5ef766910e, type: 2}
   col: []
   asCol: 0
+  color: 
+  name: Bone
+  range: 0
+  intensity: 0
+  sortingOrder: 1
+  material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
+  rot: 0

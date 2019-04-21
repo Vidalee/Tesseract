@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
-  m_Name: Decoration
+  m_Name: TorchT
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: c911d5fb59aa71a4fb18e98d6c2f6606, type: 2}
   col: []
   asCol: 0
-  color: 
-  name: 
-  range: 0
-  intensity: 0
+  color: fa000000fa000000f0000000
+  name: TorchT
+  range: 5
+  intensity: 0.005
+  sortingOrder: 91
+  material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
+  rot: 0

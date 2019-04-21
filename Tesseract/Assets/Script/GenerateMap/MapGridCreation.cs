@@ -66,7 +66,7 @@ public class MapGridCreation : MonoBehaviour
     }
 
     public bool[,] Instances => _instances;
-
+    
     //Create grid and room in it
     private void CreateGrid()
     {

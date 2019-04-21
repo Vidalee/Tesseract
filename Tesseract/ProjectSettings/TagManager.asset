@@ -10,6 +10,9 @@ TagManager:
   - Obstacle
   - DoorTop
   - DoorBottom
+  - ObstaclesDestroy
+  - Portal
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea4df1b64c598e24a9ebe8e24e3862fa, type: 3}
-  m_Name: Portal
+  m_Name: SimplePortal
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
-  col: []
+  _sprite: {fileID: 21300018, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
+  col:
+  - {x: -0.34, y: -0.5}
+  - {x: -0.34, y: -0.45}
+  - {x: 0.34, y: -0.45}
+  - {x: 0.34, y: -0.5}
+  - {x: -0.34, y: -0.5}
+  persCol:
+  - {x: -0.34, y: -0.42}
+  - {x: -0.34, y: 0.5}
+  - {x: 0.34, y: 0.5}
+  - {x: 0.34, y: -0.42}
+  - {x: -0.34, y: -0.42}

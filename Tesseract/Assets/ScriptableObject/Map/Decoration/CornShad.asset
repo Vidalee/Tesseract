@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
   m_Name: CornShad
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 7400000, guid: ceda3f052032ada44a5da3c09e98a02e, type: 2}
   col: []
   asCol: 0
   color: 
-  name: 
+  name: CornShad
   range: 0
   intensity: 0
   sortingOrder: 1
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: d340d5664a78bc44b9586217c2d243b7, type: 2}
+  rot: 0
