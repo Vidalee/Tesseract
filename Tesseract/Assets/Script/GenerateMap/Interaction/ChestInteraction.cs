@@ -39,7 +39,7 @@ public class ChestInteraction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {       
-        if ((other.transform.position - transform.position).magnitude > 0.8f)
+        if (other.CompareTag("Player") && (other.transform.position - transform.position).magnitude > 0.8f)
         {
             _canOpen = false;
         }

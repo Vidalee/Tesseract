@@ -40,7 +40,7 @@ public class FeetCollision : MonoBehaviour
         if(other.CompareTag("Obstacle"))
         {
             yield return new WaitForSeconds(1);
-            if((other.transform.position - transform.position).magnitude > 0.8f) spriteRenderer.sortingOrder = 100;
+            if((other.transform.position - transform.position).magnitude > 0.7f) spriteRenderer.sortingOrder = 100;
         }
     }
 

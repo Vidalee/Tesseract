@@ -11,10 +11,20 @@ public class ChestData : ScriptableObject
     [SerializeField] protected GamesItem item;
     private bool isOpen;
 
+    public void Create(ChestData chestData)
+    {
+        chestClose = chestData.chestClose;
+        chestOpen = chestData.chestOpen;
+        boxCol = chestData.boxCol;
+        triggerCol = chestData.triggerCol;
+        persCol = chestData.persCol;
+        isOpen = chestData.isOpen;
+    }
+
     private void OnEnable()
     {
         isOpen = false;
-        if (boxCol.Length == 0)
+        if (boxCol == null || boxCol.Length == 0)
         {
             boxCol = new[]
             {
@@ -22,7 +32,7 @@ public class ChestData : ScriptableObject
             };
         }
 
-        if (triggerCol.Length == 0)
+        if (triggerCol == null || triggerCol.Length == 0)
         {
             triggerCol = new[]
             {
@@ -41,7 +51,11 @@ public class ChestData : ScriptableObject
 
     public Vector2[] PersCol => persCol;
 
-    public GamesItem Item => item;
+    public GamesItem Item
+    {
+        get => item;
+        set => item = value;
+    }
 
     public bool IsOpen
     {

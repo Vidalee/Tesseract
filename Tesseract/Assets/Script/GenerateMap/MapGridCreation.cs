@@ -58,6 +58,7 @@ public class MapGridCreation : MonoBehaviour
         CreateWall();
         
         RoomInstanceDeco();
+        AddChest();
     }
 
     public bool[,] Instances => _instances;
@@ -163,7 +164,17 @@ public class MapGridCreation : MonoBehaviour
         for (int i = 0; i < _rooms.Count; i++)
         {
             RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
-            script.AddSimpleDecoration(Random.Range(1, simpleDecoration));
+            script.AddSimpleDecoration(Random.Range(0, simpleDecoration));
+        }
+    }
+    
+    //Call chest in room
+    private void AddChest()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddChest();
         }
     }
 

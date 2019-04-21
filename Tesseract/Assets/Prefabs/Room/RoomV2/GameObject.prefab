@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1864003401}
   m_Layer: 8
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: ObstaclesDestroy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

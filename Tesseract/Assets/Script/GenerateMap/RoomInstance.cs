@@ -5,7 +5,12 @@ public class RoomInstance : MonoBehaviour
 {
     public Transform Wall;
     public Transform SimpleDeco;
+    public Transform Chest;
+    public ChestData[] ChestDatas;
+    public GamesItem[] GamesItems;
     public SimpleDecoration[] SimpleDecoration;
+    private MapGridCreation script;
+    public int ChestChance;
 
     private RoomData _roomData;
     private int _prob;
@@ -14,6 +19,7 @@ public class RoomInstance : MonoBehaviour
     {
         _roomData = roomData;
         _prob = prob;
+        script = transform.parent.GetComponent<MapGridCreation>();
     }
 
     public void BigWall()
@@ -23,8 +29,6 @@ public class RoomInstance : MonoBehaviour
 
         int width = Random.Range(x + 2, _roomData.X2) - x;
         int height = Random.Range(y + 2, _roomData.Y2) - y;
-
-        MapGridCreation script = transform.parent.GetComponent<MapGridCreation>();
         
         for (int i = x; i < x + width; i++)
         {
@@ -41,8 +45,6 @@ public class RoomInstance : MonoBehaviour
     public void AddSimpleDecoration(int number)
     {
         int len = SimpleDecoration.Length;
-        MapGridCreation script = transform.parent.GetComponent<MapGridCreation>();
-
         for (int i = 0; i < number; i++)
         {
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
@@ -74,5 +76,27 @@ public class RoomInstance : MonoBehaviour
         script.AddToInstance(y, x, true, !deco.AsCol);
 
         return o;
+    }
+
+    public void AddChest()
+    {
+        if (Random.Range(0, ChestChance + 1) == 0)
+        {
+            int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+            int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+
+            if (!script.Instances[y, x])
+            {
+                Transform o = Instantiate(Chest, new Vector3(x, y, 0), Quaternion.identity, transform);
+                ChestData chest = ScriptableObject.CreateInstance<ChestData>();
+                ChestData chestref = ChestDatas[Random.Range(0, ChestDatas.Length)];
+                
+                chest.Create(chestref);
+                chest.Item = GamesItems[Random.Range(0, GamesItems.Length)];
+                o.GetComponent<Chest>().Create(chest);
+                
+                _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
+            }
+        }
     }
 }
