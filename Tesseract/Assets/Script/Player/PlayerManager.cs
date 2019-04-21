@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
-    public PlayerData Player => PlayerData;
+    public PlayerData GetPlayerData => PlayerData;
 
     #region Update
 

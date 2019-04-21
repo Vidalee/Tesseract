@@ -17,7 +17,7 @@ namespace Script.Pathfinding
             GraphCreation();
             foreach (GameObject player in Players)
             {
-                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
                 playerData.Node = PositionToNode(player.transform.position);
             }
         }
@@ -26,7 +26,7 @@ namespace Script.Pathfinding
         {
             foreach (GameObject player in Players)
             {
-                PlayerData playerData = player.GetComponent<PlayerManager>().Player;
+                PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
                 Node newNode = PositionToNode(player.transform.position);
                 playerData.PositionChanged = newNode != playerData.Node;
                 playerData.Node = newNode;
