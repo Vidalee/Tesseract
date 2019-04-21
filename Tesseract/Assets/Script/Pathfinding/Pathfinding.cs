@@ -23,10 +23,10 @@ namespace Script.Pathfinding
             
             public void AStar()
             {
-                  Debug.Log("Start");
+                  //Debug.Log("Start");
                   if (start == null || destination == null)
                   {
-                        Debug.Log("Null");
+                        //Debug.Log("Null");
                         return;
                   }
                   foreach (Node node in AllNodes.NodesGrid)
@@ -53,7 +53,7 @@ namespace Script.Pathfinding
                         if (node == destination)
                         {
                               ReconstructPath();
-                              Debug.Log("Found it");
+                              //Debug.Log("Found it");
                               return;
                         }
                         foreach (Node neighbor in node.Neighbors)
@@ -67,7 +67,7 @@ namespace Script.Pathfinding
                               lastIndex++;
                         }
                   }
-                  Debug.Log("No path");
+                  //Debug.Log("No path");
             }
 
             

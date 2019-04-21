@@ -36,7 +36,7 @@ public class Enemy : ScriptableObject
     [SerializeField] protected Sprite _Sprite;
 
     [SerializeField] protected bool _Triggered;
-
+    public bool OnHisWayBack;
 
 
     public void Create(Enemy enemy, int x, int y)
@@ -55,6 +55,7 @@ public class Enemy : ScriptableObject
         _Sprite = enemy.Sprite;
         Path = new List<Node>();
         _Triggered = false;
+        OnHisWayBack = false;
     }
 
     public int MaxHp => _MaxHp;

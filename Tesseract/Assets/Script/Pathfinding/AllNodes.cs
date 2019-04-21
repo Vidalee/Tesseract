@@ -66,7 +66,7 @@ namespace Script.Pathfinding
                      }
                  }
             }
-            ShowGraph();
+            //ShowGraph();
         }
 
         private void ShowGraph()

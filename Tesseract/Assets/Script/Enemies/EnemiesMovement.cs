@@ -63,13 +63,14 @@ namespace Script.Enemies
                                 target = potentialTarget;
                                 distance = newDistance;
                             }
-                        }
+                        } 
                     }
                 }
-
+ 
                 if (target != null)
                 {
                     Enemy.Triggered = true;
+                    Enemy.OnHisWayBack = false;
                     StraightToPoint(target.transform.position + new Vector3(0, -0.375f), Enemy.AttackRange);
                 }
                 else
@@ -82,6 +83,7 @@ namespace Script.Enemies
                         int length = Enemy.Path.Count;
                         if (length < Enemy.DetectionRange && length != 0)
                         {
+                            Enemy.OnHisWayBack = false;
                             FollowPath();
                             return;
                         }
@@ -103,9 +105,12 @@ namespace Script.Enemies
             }
             else
             {
-                GetComponent<Pathfinding.Pathfinding>().FindPathToPos(Enemy.StartPos);
-                int pathLength = Enemy.Path.Count;
-                if (pathLength != 0)
+                if (!Enemy.OnHisWayBack)
+                {
+                    Enemy.OnHisWayBack = true;
+                    GetComponent<Pathfinding.Pathfinding>().FindPathToPos(Enemy.StartPos);
+                }
+                if (Enemy.Path.Count != 0)
                 {
                     Node nextNode = Enemy.Path[0];
                     Vector2 displacement =
