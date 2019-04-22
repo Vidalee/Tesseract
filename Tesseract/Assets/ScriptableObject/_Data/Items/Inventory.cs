@@ -7,11 +7,15 @@ public class Inventory : ScriptableObject
     [SerializeField] protected Weapons weapon;
     [SerializeField] protected List<Potions> potions;
     [SerializeField] protected int maxPotion;
+    public GameEvent PotionsAth; 
+
+    public List<Potions> Potions => potions;
 
     public Potions UsePotion(int index)
     {
         if (potions.Count == 0) return null;
         Potions pot = potions[index];
+        PotionsAth.Raise(new EventArgsPotAth(index, null));
         potions.RemoveAt(index);
         return pot;
     }
@@ -19,7 +23,7 @@ public class Inventory : ScriptableObject
     private bool AddPotion(Potions potion)
     {
         if(potions.Count >= maxPotion) return false;
-        
+        PotionsAth.Raise(new EventArgsPotAth(potions.Count, potion.icon));
         potions.Add(potion);
         return true;
     }
