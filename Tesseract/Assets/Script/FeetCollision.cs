@@ -2,13 +2,10 @@
 using UnityEngine;
 
 public class FeetCollision : MonoBehaviour
-{
-    private bool isIn;
-    
+{    
     #region Variable
 
     private SpriteRenderer spriteRenderer;
-    private int save;
 
     #endregion
 
@@ -17,7 +14,6 @@ public class FeetCollision : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = transform.parent.GetComponentInChildren<SpriteRenderer>();
-        save = spriteRenderer.sortingOrder;
     }
 
     #endregion
@@ -31,8 +27,6 @@ public class FeetCollision : MonoBehaviour
             SpriteRenderer otherSpriteRenderer = other.transform.parent.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = otherSpriteRenderer.sortingOrder - 1;
         }
-
-        isIn = true;
     }
 
     private IEnumerator OnTriggerExit2D(Collider2D other)

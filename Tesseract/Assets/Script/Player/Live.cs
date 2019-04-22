@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Live : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class Live : MonoBehaviour
     public PlayerData _playerData;
     public GameEvent PlayerLive;
 
-
     #endregion
 
     #region Initialise
@@ -15,6 +15,8 @@ public class Live : MonoBehaviour
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
+
+        StartCoroutine(ManaRegen());
     }
 
     #endregion
@@ -41,6 +43,17 @@ public class Live : MonoBehaviour
             Destroy(gameObject);
             GameObject map = GameObject.Find("Map");
             Destroy(map);
+        }
+    }
+
+    private IEnumerator ManaRegen()
+    {
+        while (_playerData.Hp > 0)
+        {
+            if (_playerData.Mana + _playerData.ManaRegen > _playerData.MaxMana) _playerData.Mana = _playerData.MaxMana;
+            else _playerData.Mana += _playerData.ManaRegen;
+            
+            yield return new WaitForSeconds(1);
         }
     }
 

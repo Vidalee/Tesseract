@@ -131,6 +131,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
         _playerData.TotalXp = _PlayersDataCopy[index].TotalXp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
+        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
+        
         for (int i = 0; i < _playerData.Competences.Length; i++)
         {
             CompetencesData c = _playerData.Competences[i];
@@ -221,6 +223,7 @@ public class PlayerManager : MonoBehaviour
             _playerData.MaxMana += 10;
             _playerData.Mana = _playerData.MaxMana;
             _playerData.MoveSpeed *= 1.05f;
+            _playerData.ManaRegen++;
         }
 
         _playerData.PhysicsDamage++;

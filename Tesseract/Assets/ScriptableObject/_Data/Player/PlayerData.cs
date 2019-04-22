@@ -15,6 +15,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] private int _Hp;
     [SerializeField] protected int _MaxMana;
     [SerializeField] private int _Mana;
+    
+    [SerializeField] protected int _ManaRegen;
+    
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
@@ -61,6 +64,12 @@ public class PlayerData : ScriptableObject
     #endregion
 
     #region Set/Get
+
+    public int ManaRegen
+    {
+        get => _ManaRegen;
+        set => _ManaRegen = value;
+    }
 
     public int MaxHp
     {
