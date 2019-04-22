@@ -188,7 +188,7 @@ public class PlayerManager : MonoBehaviour
         {
             amout = amout - gap;
 
-            _playerData.Lvl++;
+            if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
             _playerData.TotalXp += gap;
             
@@ -221,8 +221,6 @@ public class PlayerManager : MonoBehaviour
             _playerData.MaxMana += 10;
             _playerData.Mana = _playerData.MaxMana;
             _playerData.MoveSpeed *= 1.05f;
-
-            if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
         }
 
         _playerData.PhysicsDamage++;
