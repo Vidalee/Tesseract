@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
+    public GamesItem[] Items;
     public GameEvent playerXp;
     public GameEvent playerMaxXp;
     public GameEvent playerLvl;
@@ -152,10 +153,27 @@ public class PlayerManager : MonoBehaviour
     private void LoadPlayer()
     {
         //Debug.Log("load");
-        PlayerDataSave data = SaveSystem.LoadPlayer();
+        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
         
         ResetStat(FindClass());
         GetXp(data.xp);
+
+        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        
+        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
+    }
+
+    private GamesItem FindItems(int id)
+    {
+        foreach (var it in Items)
+        {
+            if (it.id == id) return it;
+        }
+
+        return null;
     }
 
     #endregion
