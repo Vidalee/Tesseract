@@ -26,7 +26,7 @@ public class FeetCollision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Perspective"))
         {
             SpriteRenderer otherSpriteRenderer = other.transform.parent.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = otherSpriteRenderer.sortingOrder - 1;
@@ -37,9 +37,9 @@ public class FeetCollision : MonoBehaviour
 
     private IEnumerator OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Obstacle"))
+        if(other.CompareTag("Perspective"))
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             if((other.transform.position - transform.position).magnitude > 0.7f) spriteRenderer.sortingOrder = 100;
         }
     }
