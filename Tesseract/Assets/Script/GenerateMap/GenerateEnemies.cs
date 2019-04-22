@@ -34,7 +34,7 @@ public class GenerateEnemies : MonoBehaviour
             {
                 int x = roomData.X1 + Random.Range(0, roomData.Width);
                 int y = roomData.Y1 + Random.Range(0, roomData.Height);
-                if (_grid[y, x] == null)
+                if (availablePosGrid[y + 1, x] && _grid[y, x] == null)
                 {
                     GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
                     Enemy newEnemy = ScriptableObject.CreateInstance<Enemy>();
