@@ -17,6 +17,7 @@ public class GenerateEnemies : MonoBehaviour
     [SerializeField] protected GameObject Enemy;
     private Enemy[,] _grid;
     public static List<RoomData> RoomData;
+    public static bool[,] availablePosGrid;
     
     [SerializeField] protected List<Enemy> Enemies;
 
@@ -27,7 +28,8 @@ public class GenerateEnemies : MonoBehaviour
         
         foreach (RoomData roomData in RoomData)
         {
-            int enemiesNumber = roomData.Width * roomData.Height / 20;
+            int roomSpace = roomData.Width * roomData.Height;
+            int enemiesNumber = roomSpace / 20;
             while (enemiesNumber != 0)
             {
                 int x = roomData.X1 + Random.Range(0, roomData.Width);

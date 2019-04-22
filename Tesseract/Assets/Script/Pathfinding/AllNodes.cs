@@ -17,6 +17,7 @@ namespace Script.Pathfinding
             GraphCreation();
             foreach (GameObject player in Players)
             {
+
                 PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
                 playerData.Node = PositionToNode(player.transform.position);
             }
@@ -66,7 +67,7 @@ namespace Script.Pathfinding
                      }
                  }
             }
-            //ShowGraph();
+            ShowGraph();
         }
 
         private void ShowGraph()
