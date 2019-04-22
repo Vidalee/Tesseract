@@ -91,6 +91,15 @@ public class PlayerAttack : MonoBehaviour
     
     private void CircleAttack(CompetencesData competence)
     {
+        if (_playerData.Name == "Mage")
+        {
+            if (_playerData.Mana < competence.ManaCost)
+            {
+                return;
+            }
+            _playerData.Mana -= competence.ManaCost;
+        }
+
         AttackEvent.Raise(new EventArgsNull());
         float rot = 360 / competence.Number;
         
