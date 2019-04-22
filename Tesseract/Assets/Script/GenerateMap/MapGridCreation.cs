@@ -53,11 +53,11 @@ public class MapGridCreation : MonoBehaviour
         ConstructCorridor();
         
         RoomInstanceWall();
-        FillGap();
 
+        FillGap();
         CreateFloor();
         CreateWall();
-        
+
         RoomInstanceDeco();
         AddChest();
         AddPikes();
