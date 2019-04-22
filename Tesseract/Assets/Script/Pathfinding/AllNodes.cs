@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Script.Pathfinding
 {
@@ -10,24 +11,28 @@ namespace Script.Pathfinding
         public static int Width;
         public static Node[,] NodesGrid;
 
-        [SerializeField] public List<GameObject> Players;
-
+        public static List<Transform> players = new List<Transform>();
+        [SerializeField] private List<PlayerData> playersData = new List<PlayerData>();
+        private int _playersNbr;
+        
         private void Start()
         {
             GraphCreation();
-            foreach (GameObject player in Players)
+            foreach (Transform player in players)
             {
-
-                PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
+                PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
                 playerData.Node = PositionToNode(player.transform.position);
+                playersData.Add(playerData);
             }
+
+            _playersNbr = players.Count;
         }
 
         private void Update()
         {
-            foreach (GameObject player in Players)
+            foreach (Transform player in players)
             {
-                PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
+                PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
                 Node newNode = PositionToNode(player.transform.position);
                 playerData.PositionChanged = newNode != playerData.Node;
                 playerData.Node = newNode;

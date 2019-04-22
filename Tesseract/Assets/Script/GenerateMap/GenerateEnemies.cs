@@ -10,7 +10,7 @@ public class GenerateEnemies : MonoBehaviour
 
     public int seed;
     
-    [SerializeField] protected List<GameObject> Players;
+    public static List<Transform> players = new List<Transform>();
     public LayerMask BlockingLayer;
 
     
@@ -23,13 +23,14 @@ public class GenerateEnemies : MonoBehaviour
 
     private void Start()
     {
+        //players.Add(PlayerManager.Player);
         _grid = new Enemy[MapHeight, MapWidth];
         Random.InitState(seed); 
         
         foreach (RoomData roomData in RoomData)
         {
             int roomSpace = roomData.Width * roomData.Height;
-            int enemiesNumber = roomSpace / 20;
+            int enemiesNumber = 2;
             while (enemiesNumber != 0)
             {
                 int x = roomData.X1 + Random.Range(0, roomData.Width);
@@ -41,9 +42,9 @@ public class GenerateEnemies : MonoBehaviour
                     newEnemy.Create(Enemies[Random.Range(0, 2)], x, y);
                     
                     
-                    enemy.GetComponent<Attack>().Create(newEnemy);
+                    enemy.GetComponent<Attack>().Create(newEnemy, players[0]);
                     enemy.GetComponent<EnemiesLive>().Create(newEnemy); 
-                    enemy.GetComponent<EnemiesMovement>().Create(newEnemy, Players, BlockingLayer);
+                    enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, BlockingLayer);
                     enemy.GetComponent<Pathfinding>().Create(newEnemy);
                     enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
 

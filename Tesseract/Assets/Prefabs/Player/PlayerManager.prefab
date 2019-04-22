@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4236175760814717961}
   - component: {fileID: 7447967311768191375}
   - component: {fileID: 6434590799956567368}
+  - component: {fileID: 9058914715773683575}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -74,6 +75,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7447967311768191375}
         m_MethodName: AddItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &9058914715773683575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: GetXp
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

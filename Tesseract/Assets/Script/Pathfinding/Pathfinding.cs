@@ -71,9 +71,9 @@ namespace Script.Pathfinding
             }
 
             
-            public void FindPathToPlayer(GameObject player)
+            public void FindPathToPlayer(Transform player)
             {
-                  PlayerData playerData = player.GetComponent<PlayerManager>().GetPlayerData;
+                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
                   if (playerData.PositionChanged)
                   {
                         start = AllNodes.PositionToNode(transform.position);
