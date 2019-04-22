@@ -7,6 +7,9 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
+    public GameEvent playerXp;
+    public GameEvent playerMaxXp;
+    public GameEvent playerLvl;
     
     public string choice;
         
@@ -177,10 +180,14 @@ public class PlayerManager : MonoBehaviour
             UpgradeStats();
             
             gap = _playerData.MaxXp - _playerData.Xp;
+            
+            playerLvl.Raise(new EventArgsInt(_playerData._Lvl));
+            playerMaxXp.Raise(new EventArgsInt(_playerData.MaxXp));
         }
         
         _playerData.Xp += amout;
         _playerData.TotalXp += amout;
+        playerXp.Raise(new EventArgsInt(_playerData.Xp));
     }
 
     #endregion

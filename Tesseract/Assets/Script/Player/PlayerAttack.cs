@@ -118,7 +118,6 @@ public class PlayerAttack : MonoBehaviour
         competence.Usable = !use;
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
-
     }
     
     private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)
