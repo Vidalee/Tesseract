@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4236175760814717961}
   - component: {fileID: 7447967311768191375}
   - component: {fileID: 6434590799956567368}
+  - component: {fileID: 645389402}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -54,6 +55,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f414fa96ec487744b9ff88b9a89d8e9d, type: 2}
   - {fileID: 11400000, guid: 8c52fdc37ef03ec48905391dbfd8552e, type: 2}
   - {fileID: 11400000, guid: 7eb9b995a267fb14eb8f1e516e09c250, type: 2}
+  Items:
+  - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
+  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  - {fileID: 11400000, guid: 76a599d7286b3fc469ba3c33e7faa8fc, type: 2}
+  - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
+  - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
+  playerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
+  playerMaxXp: {fileID: 11400000, guid: 1cf84972a815fe54d89bfe62e5bc95e8, type: 2}
+  playerLvl: {fileID: 11400000, guid: e7c9a6191d3c4414996e18b766f22fc6, type: 2}
   choice: Assassin
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
 --- !u!114 &6434590799956567368
@@ -74,6 +85,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7447967311768191375}
         m_MethodName: AddItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &645389402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 688fcaecfedd57442967e71d6b79bc38, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: InstantiatePlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

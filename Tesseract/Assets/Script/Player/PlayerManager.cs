@@ -39,46 +39,25 @@ public class PlayerManager : MonoBehaviour
     #region Initialise
 
     private void Awake()
-    {
-        
+    {        
+        _playerData = _PlayersData[FindClass()];
         ResetStat(FindClass());
-        
-        InstantiatePlayer();
+        InstantiatePlayer(new EventArgsCoor(10, 10));
     }
 
-    public void Create(PlayerData playerData, MapData mapData)
+    public void Create(PlayerData playerData)
     {
-        _mapData = mapData;
-        _playerData = playerData;
-        InstantiatePlayer();
+        _playerData = _PlayersDataCopy[FindClass()];
     }
     
-    private void InstantiatePlayer()
+    public void InstantiatePlayer(IEventArgs args)
     {
-        Vector3 pos = new Vector3(10, 10, 0);
-
-        /*
-        int roomsNumber = _mapData.RoomsData.Length;
-
-        if (roomsNumber != 0)
-        {
-            int rand = Random.Range(0, roomsNumber);
-            RoomData room = _mapData.RoomsData[rand];
+        EventArgsCoor coor = (EventArgsCoor) args;
         
-            int xRand = Random.Range(0, room.Width);
-            int yRand = Random.Range(0, room.Height);
+        _playerData = _PlayersData[FindClass()];
+        ResetStat(FindClass());
 
-            while (room.GridObstacles[xRand, yRand])
-            {
-                xRand = Random.Range(0, room.Width);
-                yRand = Random.Range(0, room.Height);
-            }
-
-            pos.x = xRand;
-            pos.y = yRand;
-        }
-        */
-        Transform o = Instantiate(Player, pos, Quaternion.identity, transform);
+        Transform o = Instantiate(Player, new Vector3(coor.X, coor.Y, 0), Quaternion.identity, transform);
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);

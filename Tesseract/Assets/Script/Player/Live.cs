@@ -36,6 +36,7 @@ public class Live : MonoBehaviour
     {
         //Anti Merge conflict rofl
     }
+    
     private void Death()
     {
         if (_playerData.Hp <= 0)

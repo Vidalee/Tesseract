@@ -66,5 +66,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2a008cfdbad3fd4f8ccc15da96274c8, type: 2}
   - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}
   - {fileID: 11400000, guid: 7fa6e75eb046d104da2bde5a9c393c39, type: 2}
-  ChestChance: 1
-  PikeProb: 5
+  ChestChance: 0
+  PikeProb: 4

@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Script.Pathfinding;
-using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]

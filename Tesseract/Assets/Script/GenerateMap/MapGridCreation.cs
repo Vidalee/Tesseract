@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class MapGridCreation : MonoBehaviour
 {
+    public GameEvent PlayerSpawn;
     public int MapHeight;
     public int MapWidth;
     public int RoomNumber;
@@ -63,6 +64,7 @@ public class MapGridCreation : MonoBehaviour
         AddPikes();
         
         AddPortal();
+        AddPlayer();
 
         GenerateEnemies.RoomData = _roomData;
     }
@@ -209,6 +211,31 @@ public class MapGridCreation : MonoBehaviour
             RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
             script.AddPikes();
         }   
+    }
+    
+    //Add player
+
+    private void AddPlayer()
+    {
+        int j = 0;
+        while (j < 100)
+        {
+            int i = Random.Range(0, _roomData.Count);
+            RoomData room = _roomData[i];
+            
+            int x = room.X1 + Random.Range(1, room.Width - 2);
+            int y = room.Y1 + Random.Range(1, room.Height - 2);
+        
+            if (!Instances[y, x])
+            {
+                PlayerSpawn.Raise(new EventArgsCoor(x, y));
+                AddToInstance(y, x, true, true);
+                return;
+            }
+
+            j++;
+            Debug.Log("Nop");
+        }
     }
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)

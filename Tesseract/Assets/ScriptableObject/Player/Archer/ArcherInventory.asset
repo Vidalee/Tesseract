@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: ArcherInventory
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  potions: []
-  maxPotion: 0
+  potions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

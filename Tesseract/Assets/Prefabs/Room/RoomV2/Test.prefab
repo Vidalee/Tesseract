@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc01d04ce901ef42901125c394c8d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerSpawn: {fileID: 11400000, guid: 688fcaecfedd57442967e71d6b79bc38, type: 2}
   MapHeight: 100
   MapWidth: 100
   RoomNumber: 25
@@ -58,7 +59,7 @@ MonoBehaviour:
   prob: 2
   portalChance: 1
   simpleDecoration: 5
-  seed: 0
+  seed: 1
   floor: {fileID: 7715380838967053743, guid: 73a9597eae601cb44851a5afafa5ff00, type: 3}
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,
     type: 3}
