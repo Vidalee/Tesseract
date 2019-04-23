@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     {        
         _playerData = _PlayersData[FindClass()];
         ResetStat(FindClass());
-        InstantiatePlayer(new EventArgsCoor(10, 10));
+        //InstantiatePlayer(new EventArgsCoor(10, 10));
     }
 
     public void Create(PlayerData playerData)

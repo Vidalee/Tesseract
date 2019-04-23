@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ManaPotionStrong
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  displayName: 
-  description: 
-  id: 0
-  type: 
-  heal: 0
+  displayName: Potion of mana
+  description: It can give you some mana
+  id: 106
+  type: mana
+  heal: 100

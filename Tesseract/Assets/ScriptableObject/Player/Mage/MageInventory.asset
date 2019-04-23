@@ -16,6 +16,6 @@ MonoBehaviour:
   potions:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-
+  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
+  PotionsAth: {fileID: 0}

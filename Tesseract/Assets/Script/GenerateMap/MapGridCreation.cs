@@ -227,7 +227,7 @@ public class MapGridCreation : MonoBehaviour
             int x = room.X1 + Random.Range(1, room.Width - 2);
             int y = room.Y1 + Random.Range(1, room.Height - 2);
         
-            if (!Instances[y, x])
+            if (!Instances[y, x] && _grid[y, x])
             {
                 PlayerSpawn.Raise(new EventArgsCoor(x, y));
                 AddToInstance(y, x, true, true);
@@ -238,6 +238,7 @@ public class MapGridCreation : MonoBehaviour
             Debug.Log("Nop");
         }
     }
+    
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {

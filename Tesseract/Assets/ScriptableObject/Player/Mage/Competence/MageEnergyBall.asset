@@ -15,15 +15,16 @@ MonoBehaviour:
   _Name: CirclesProjectiles
   _Unlock: 1
   _UnlockLvl: 0
-  _Cooldown: 2
+  _Cooldown: 1.9
   _Upgrade: 01000000050000000a00000014000000
   _DamageUpgrade: 0a0000000a0000000a0000000a000000
   _SpeedUpgrade: 05000000050000000500000005000000
   _CooldownUpgrade: 05000000050000000500000005000000
-  _Speed: 4
-  _Damage: 10
+  manaCost: 50
+  _Speed: 4.2
+  _Damage: 55
   live: 5
-  number: 16
+  number: 32
   color: ff0000003200000000000000
   _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
   _Tag: Enemies

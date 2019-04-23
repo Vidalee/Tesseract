@@ -20,10 +20,11 @@ MonoBehaviour:
   _DamageUpgrade: 0a0000000a0000000a0000000a000000
   _SpeedUpgrade: 05000000050000000500000005000000
   _CooldownUpgrade: 05000000050000000500000005000000
+  manaCost: 50
   _Speed: 4
-  _Damage: 10
+  _Damage: 50
   live: 5
-  number: 16
+  number: 32
   color: 
   _Object: {fileID: 0}
   _Tag: 
