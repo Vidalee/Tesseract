@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
-  m_Name: MageInventory
+  m_Name: AssassinInventory
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
+  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
   potions:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
-  - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
-  PotionsAth: {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   displayName: Potion of mana
   description: It can give you some mana
-  id: 0
+  id: 104
   type: mana
   heal: 20

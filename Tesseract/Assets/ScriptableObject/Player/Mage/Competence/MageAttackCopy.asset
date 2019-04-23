@@ -20,8 +20,9 @@ MonoBehaviour:
   _DamageUpgrade: 0a0000000a0000000a0000000a000000
   _SpeedUpgrade: 05000000050000000500000005000000
   _CooldownUpgrade: 05000000050000000500000005000000
+  manaCost: 0
   _Speed: 7
-  _Damage: 20
+  _Damage: 30
   live: 1
   number: 1
   color: 

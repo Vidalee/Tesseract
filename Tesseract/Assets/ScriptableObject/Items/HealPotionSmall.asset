@@ -15,6 +15,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   displayName: Potion of heal
   description: It can give you some hp
-  id: 0
+  id: 100
   type: live
   heal: 20

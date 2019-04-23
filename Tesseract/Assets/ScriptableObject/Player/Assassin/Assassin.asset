@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Assassin
   m_EditorClassIdentifier: 
   _Name: Assassin
-  _MaxHp: 130
-  _Hp: 130
-  _MaxMana: 130
-  _Mana: 130
-  _PhysicsDamage: 114
-  _MagicDamage: 44
-  _MoveSpeed: 4.6304994
-  _MaxXp: 372
-  _TotalXp: 1620
-  _Xp: 300
+  _MaxHp: 100
+  _Hp: 65
+  _MaxMana: 100
+  _Mana: 100
+  _ManaRegen: 0
+  _PhysicsDamage: 103
+  _MagicDamage: 33
+  _MoveSpeed: 4
+  _MaxXp: 133
+  _TotalXp: 350
+  _Xp: 100
   _MaxLvl: 100
-  _Lvl: 18
+  _Lvl: 4
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
@@ -54,4 +55,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
   _Inventory: {fileID: 11400000, guid: c2cb697ee6a1e4c4c8dc9ac0913e9db3, type: 2}
-  _PotionsCooldown: 10
+  _PotionsCooldown: 0
+  PositionChanged: 0
