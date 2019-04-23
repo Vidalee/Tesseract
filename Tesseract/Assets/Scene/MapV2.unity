@@ -131,6 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f3b9616b5f42c4fbf56cd038644017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &56691220 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4236175760814717961, guid: 500983a92f18e1e4e9612b4b727d1f9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2143954521735687522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1454511669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -778,6 +784,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7447967311768191375, guid: 500983a92f18e1e4e9612b4b727d1f9b,
+        type: 3}
+      propertyPath: choice
+      value: Mage
+      objectReference: {fileID: 0}
     - target: {fileID: 4236175760814717961, guid: 500983a92f18e1e4e9612b4b727d1f9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -902,5 +913,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8841730517460495720, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 56691220}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c221c65e17f2f4b9fef5edf57019fc, type: 3}
