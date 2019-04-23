@@ -13,6 +13,7 @@ public class CompetencesData : ScriptableObject
     [SerializeField] protected int[] _DamageUpgrade;
     [SerializeField] protected int[] _SpeedUpgrade;
     [SerializeField] protected int[] _CooldownUpgrade;
+    [SerializeField] protected int manaCost;
     private bool _Usable;
 
     [SerializeField] protected float _Speed;
@@ -94,6 +95,8 @@ public class CompetencesData : ScriptableObject
     public int[] Upgrade => _Upgrade;
 
     public int[] Color => color;
+
+    public int ManaCost => manaCost;
 
     public int Number
     {

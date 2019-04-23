@@ -6,6 +6,7 @@ public class SimpleDecoration : ScriptableObject
 {
     [SerializeField] protected AnimationClip anim;
     [SerializeField] protected Vector2[] col;
+    [SerializeField] protected Vector2[] pers;
     [SerializeField] protected bool asCol;
     [SerializeField] protected int[] color;
     [SerializeField] protected string name;
@@ -23,6 +24,8 @@ public class SimpleDecoration : ScriptableObject
     public AnimationClip Anim => anim;
 
     public Vector2[] Col => col;
+
+    public Vector2[] Pers => pers;
 
     public bool AsCol => asCol;
 

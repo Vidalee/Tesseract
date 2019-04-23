@@ -52,8 +52,12 @@ MonoBehaviour:
   ChestDatas:
   - {fileID: 11400000, guid: f98dac3224d1c714fbda36cae487dada, type: 2}
   GamesItems:
+  - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
   - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  - {fileID: 11400000, guid: 76a599d7286b3fc469ba3c33e7faa8fc, type: 2}
+  - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
   - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
   PikesDatas:
   - {fileID: 11400000, guid: e1b6d2a9be59181409be6efd0d07b130, type: 2}
   PortalDatas:
@@ -62,5 +66,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2a008cfdbad3fd4f8ccc15da96274c8, type: 2}
   - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}
   - {fileID: 11400000, guid: 7fa6e75eb046d104da2bde5a9c393c39, type: 2}
-  ChestChance: 1
-  PikeProb: 5
+  ChestChance: 0
+  PikeProb: 4

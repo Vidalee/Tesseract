@@ -43,18 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc01d04ce901ef42901125c394c8d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerSpawn: {fileID: 11400000, guid: 688fcaecfedd57442967e71d6b79bc38, type: 2}
   MapHeight: 100
   MapWidth: 100
   RoomNumber: 20
   DistanceRoom: 40
   maxTry: 100
-  fusion: 0
+  fusion: 5
   maxH: 20
   minH: 10
   maxW: 20
   minW: 10
   forcePath: 5
-  prob: 0
+  prob: 2
+  portalChance: 0
   simpleDecoration: 0
   seed: 0
   floor: {fileID: 7715380838967053743, guid: 73a9597eae601cb44851a5afafa5ff00, type: 3}

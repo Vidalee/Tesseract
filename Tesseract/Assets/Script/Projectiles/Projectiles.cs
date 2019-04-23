@@ -41,7 +41,7 @@ public class Projectiles : MonoBehaviour
 
         if (_projectilesData.Tag != "" && other.gameObject.CompareTag(_projectilesData.Tag))
         {
-            if(_projectilesData.Live-- <= 0) Destroy(gameObject);
+            if(--_projectilesData.Live <= 0) Destroy(gameObject);
             other.transform.GetComponent<EnemiesLive>().GetDamaged(_projectilesData.Damage);
         }
     }

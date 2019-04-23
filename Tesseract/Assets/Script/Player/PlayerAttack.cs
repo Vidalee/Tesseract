@@ -94,6 +94,15 @@ public class PlayerAttack : MonoBehaviour
     
     private void CircleAttack(CompetencesData competence)
     {
+        if (_playerData.Name == "Mage")
+        {
+            if (_playerData.Mana < competence.ManaCost)
+            {
+                return;
+            }
+            _playerData.Mana -= competence.ManaCost;
+        }
+
         AttackEvent.Raise(new EventArgsNull());
         if (_playerData.Name == "Warrior") return;
         float rot = 360 / competence.Number;
@@ -122,7 +131,6 @@ public class PlayerAttack : MonoBehaviour
         competence.Usable = !use;
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
-
     }
     
     private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)

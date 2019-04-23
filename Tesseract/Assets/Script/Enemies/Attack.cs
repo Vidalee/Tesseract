@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Attack : MonoBehaviour
 {

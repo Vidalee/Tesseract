@@ -55,7 +55,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f414fa96ec487744b9ff88b9a89d8e9d, type: 2}
   - {fileID: 11400000, guid: 8c52fdc37ef03ec48905391dbfd8552e, type: 2}
   - {fileID: 11400000, guid: 7eb9b995a267fb14eb8f1e516e09c250, type: 2}
-  choice: Assassin
+  Items: []
+  playerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
+  playerMaxXp: {fileID: 11400000, guid: 1cf84972a815fe54d89bfe62e5bc95e8, type: 2}
+  playerLvl: {fileID: 11400000, guid: e7c9a6191d3c4414996e18b766f22fc6, type: 2}
+  choice: Mage
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
 --- !u!114 &6434590799956567368
 MonoBehaviour:

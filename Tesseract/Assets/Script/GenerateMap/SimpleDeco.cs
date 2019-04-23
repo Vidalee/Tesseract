@@ -2,6 +2,8 @@
 
 public class SimpleDeco : MonoBehaviour
 {
+    public Transform persp;
+    
     private SimpleDecoration _simpleDecoration;
     private Animator _a;
 
@@ -37,6 +39,12 @@ public class SimpleDeco : MonoBehaviour
             o.color = new Color(_simpleDecoration.Color[0], _simpleDecoration.Color[1], _simpleDecoration.Color[2]);
             o.intensity = _simpleDecoration.Intensity;
             o.range = _simpleDecoration.Range;
+        }
+
+        if (_simpleDecoration.Pers.Length != 0)
+        {           
+            Transform pers = Instantiate(persp, transform.position, Quaternion.identity, transform);
+            pers.GetComponent<Perspective>().Create(_simpleDecoration.Pers);
         }
     }
 }

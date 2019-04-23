@@ -237,7 +237,7 @@ public class GenerateWall : MonoBehaviour
                         o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
                     }
                     
-                    if (w[i].Contains("BL")  || w[i].Contains("BRL") || w[i].Contains("BRTL"))
+                    if (w[i].Contains("BL")  || w[i].Contains("BRL") || w[i].Contains("BRTL") ||w[i].Contains("BTL"))
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
@@ -282,7 +282,7 @@ public class GenerateWall : MonoBehaviour
                         Transform o2 = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                         
-                        if (!_wallPos[x + 1, y + 1])
+                        if (!_wallPos[x - 1, y + 1])
                         {
                             Transform o3 = Instantiate(Deco, new Vector3(y + 1, x - 1), Quaternion.AngleAxis(90, Vector3.forward), transform);
                             o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
@@ -294,7 +294,7 @@ public class GenerateWall : MonoBehaviour
                         Transform o3 = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                         o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                         
-                        if (!_wallPos[x + 1, y - 1])
+                        if (!_wallPos[x - 1, y - 1])
                         {
                             Transform o2 = Instantiate(Deco, new Vector3(y - 1, x - 1), Quaternion.AngleAxis(0, Vector3.forward), transform);
                             o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);

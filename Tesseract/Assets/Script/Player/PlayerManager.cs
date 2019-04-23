@@ -8,6 +8,10 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
+    public GamesItem[] Items;
+    public GameEvent playerXp;
+    public GameEvent playerMaxXp;
+    public GameEvent playerLvl;
     
     public string choice;
         
@@ -36,46 +40,25 @@ public class PlayerManager : MonoBehaviour
     #region Initialise
 
     private void Awake()
-    {
-        
+    {        
+        _playerData = _PlayersData[FindClass()];
         ResetStat(FindClass());
-        
-        InstantiatePlayer();
+        InstantiatePlayer(new EventArgsCoor(10, 10));
     }
 
-    public void Create(PlayerData playerData, MapData mapData)
+    public void Create(PlayerData playerData)
     {
-        _mapData = mapData;
-        _playerData = playerData;
-        InstantiatePlayer();
+        _playerData = _PlayersDataCopy[FindClass()];
     }
     
-    private void InstantiatePlayer()
+    public void InstantiatePlayer(IEventArgs args)
     {
-        Vector3 pos = new Vector3(10, 10, 0);
-
-        /*
-        int roomsNumber = _mapData.RoomsData.Length;
-
-        if (roomsNumber != 0)
-        {
-            int rand = Random.Range(0, roomsNumber);
-            RoomData room = _mapData.RoomsData[rand];
+        EventArgsCoor coor = (EventArgsCoor) args;
         
-            int xRand = Random.Range(0, room.Width);
-            int yRand = Random.Range(0, room.Height);
+        _playerData = _PlayersData[FindClass()];
+        ResetStat(FindClass());
 
-            while (room.GridObstacles[xRand, yRand])
-            {
-                xRand = Random.Range(0, room.Width);
-                yRand = Random.Range(0, room.Height);
-            }
-
-            pos.x = xRand;
-            pos.y = yRand;
-        }
-        */
-        Transform o = Instantiate(Player, pos, Quaternion.identity, transform);
+        Transform o = Instantiate(Player, new Vector3(coor.X, coor.Y, 0), Quaternion.identity, transform);
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
@@ -131,6 +114,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
         _playerData.TotalXp = _PlayersDataCopy[index].TotalXp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
+        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
+        
         for (int i = 0; i < _playerData.Competences.Length; i++)
         {
             CompetencesData c = _playerData.Competences[i];
@@ -153,10 +138,27 @@ public class PlayerManager : MonoBehaviour
     private void LoadPlayer()
     {
         //Debug.Log("load");
-        PlayerDataSave data = SaveSystem.LoadPlayer();
+        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
         
         ResetStat(FindClass());
         GetXp(data.xp);
+
+        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        
+        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
+    }
+
+    private GamesItem FindItems(int id)
+    {
+        foreach (var it in Items)
+        {
+            if (it.id == id) return it;
+        }
+
+        return null;
     }
 
     public void GetXp(IEventArgs args)
@@ -176,7 +178,7 @@ public class PlayerManager : MonoBehaviour
         {
             amout = amout - gap;
 
-            _playerData.Lvl++;
+            if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
             _playerData.TotalXp += gap;
             
@@ -186,10 +188,15 @@ public class PlayerManager : MonoBehaviour
             UpgradeStats();
             
             gap = _playerData.MaxXp - _playerData.Xp;
+            
+            playerLvl.Raise(new EventArgsInt(_playerData._Lvl));
+            playerMaxXp.Raise(new EventArgsInt(_playerData.MaxXp));
         }
         
         _playerData.Xp += amout;
         _playerData.TotalXp += amout;
+        playerXp.Raise(new EventArgsInt(_playerData.Xp));
+
     }
 
     #endregion
@@ -205,8 +212,7 @@ public class PlayerManager : MonoBehaviour
             _playerData.MaxMana += 10;
             _playerData.Mana = _playerData.MaxMana;
             _playerData.MoveSpeed *= 1.05f;
-
-            if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
+            _playerData.ManaRegen++;
         }
 
         _playerData.PhysicsDamage++;

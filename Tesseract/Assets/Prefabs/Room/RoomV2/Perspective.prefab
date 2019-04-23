@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4653853191405988449}
   m_Layer: 0
   m_Name: Perspective
-  m_TagString: Obstacle
+  m_TagString: Perspective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
