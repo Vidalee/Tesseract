@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
-  m_Name: Weapons
+  m_Name: Axe1
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   displayName: 
   description: 
+  id: 0
   physicsDamage: 0
-  magicDamage: 0
+  colliderPoints: []
