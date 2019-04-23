@@ -66,13 +66,16 @@ public class PlayerAttack : MonoBehaviour
     private void AutoAttack(CompetencesData competence)
     {
         AttackEvent.Raise(new EventArgsNull());
-        InstantiateProjectiles(competence, ProjectilesDirection());
         StartCoroutine(CoolDownCoroutine(competence, true));
+        if (_playerData.Name == "Warrior") return;
+        InstantiateProjectiles(competence, ProjectilesDirection());
+ 
     }
     
     private void MultipleAttack(CompetencesData competence)
     {
         AttackEvent.Raise(new EventArgsNull());
+        if (_playerData.Name == "Warrior") return;
         float rotDist = 10;
         float rot = rotDist;
         Vector3 dir = ProjectilesDirection();
@@ -101,6 +104,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         AttackEvent.Raise(new EventArgsNull());
+        if (_playerData.Name == "Warrior") return;
         float rot = 360 / competence.Number;
         
         for (int i = 0; i < competence.Number; i++)

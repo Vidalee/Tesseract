@@ -31,7 +31,7 @@ public class Live : MonoBehaviour
         PlayerLive.Raise(new EventArgsInt(_playerData.Hp));
         Death();
     }
-
+    
     public void Damage(int x)
     {
         //Anti Merge conflict rofl

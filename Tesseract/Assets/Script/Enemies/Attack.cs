@@ -4,13 +4,13 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [SerializeField] protected Enemy Enemy;
+    public GameEvent PlayerDamage;
 
     private float cooldown;
-    private GameObject player;
+    private Transform player;
 
     private void Start()
     {
-        player = GameObject.Find("Player");
         StartCoroutine(Cooldown());
     }
 
@@ -18,8 +18,7 @@ public class Attack : MonoBehaviour
     {
         if ((transform.position - player.transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange)
         {
-            Live script = player.GetComponent<Live>();
-            script.Damage(Enemy.PhysicsDamage);
+            PlayerDamage.Raise(new EventArgsInt(Enemy.PhysicsDamage));
         }
     }
 
@@ -32,8 +31,9 @@ public class Attack : MonoBehaviour
         }
     }
 
-    public void Create(Enemy enemy)
+    public void Create(Enemy enemy, Transform player)
     {
         Enemy = enemy;
+        this.player = player;
     }
 }

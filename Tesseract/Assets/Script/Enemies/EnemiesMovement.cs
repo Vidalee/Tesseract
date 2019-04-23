@@ -17,7 +17,7 @@ namespace Script.Enemies
     {
         [SerializeField] protected Enemy Enemy;
         
-        [SerializeField] protected List<GameObject> Players;
+        [SerializeField] protected List<Transform> Players;
         
         public LayerMask BlockingLayer;
         
@@ -29,8 +29,8 @@ namespace Script.Enemies
         
         private void FindTarget()
         {
-            List<GameObject> Targets = new List<GameObject>();
-            foreach (GameObject player in Players)
+            List<Transform> Targets = new List<Transform>();
+            foreach (Transform player in Players)
             {
                 if ((player.transform.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
             }
@@ -41,9 +41,9 @@ namespace Script.Enemies
             else
             {
                 Vector3 EnemyPos = transform.position;
-                GameObject target = null;
+                Transform target = null;
                 float distance = -1;
-                foreach (GameObject potentialTarget in Targets)
+                foreach (Transform potentialTarget in Targets)
                 {
                     Vector3 playerFeet = potentialTarget.transform.position + new Vector3(0, -0.375f);
                     RaycastHit2D linecast = Physics2D.Linecast(EnemyPos, playerFeet, BlockingLayer);
@@ -77,7 +77,7 @@ namespace Script.Enemies
                 {
                     if (!Enemy.Triggered) return;
                     Pathfinding.Pathfinding script = GetComponent<Pathfinding.Pathfinding>();
-                    foreach (GameObject potentialTarget in Targets)
+                    foreach (Transform potentialTarget in Targets)
                     {
                         script.FindPathToPlayer(potentialTarget);
                         int length = Enemy.Path.Count;
@@ -143,7 +143,7 @@ namespace Script.Enemies
                 Enemy.Path.Remove(nextNode);
         }
 
-        public void Create(Enemy enemy, List<GameObject> players, LayerMask blockingLayer)
+        public void Create(Enemy enemy, List<Transform> players, LayerMask blockingLayer)
         {
             Enemy = enemy;
             Players = players;

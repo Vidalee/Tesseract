@@ -1,3 +1,4 @@
+using Script.Pathfinding;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -65,6 +66,9 @@ public class PlayerManager : MonoBehaviour
         o.GetComponent<PlayerAttack>().Create(_playerData);
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
+        
+        AllNodes.players.Add(o);
+        GenerateEnemies.players.Add(o);
     }
 
     #endregion
@@ -157,6 +161,11 @@ public class PlayerManager : MonoBehaviour
         return null;
     }
 
+    public void GetXp(IEventArgs args)
+    {
+        GetXp(((EventArgsInt) args).X);
+    }
+    
     #endregion
 
     #region PlayerStats
