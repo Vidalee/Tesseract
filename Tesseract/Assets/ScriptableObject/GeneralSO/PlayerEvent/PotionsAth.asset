@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
-  m_Name: WarriorInventory
+  m_Script: {fileID: 11500000, guid: 7cd840351a784d045bc970b5367b68f2, type: 3}
+  m_Name: PotionsAth
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  potions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-

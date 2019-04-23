@@ -8,12 +8,15 @@ public class Inventory : ScriptableObject
     [SerializeField] protected Potions[] potions;
     
     public Potions[] Potions => potions;
+    public GameEvent PotionsAth; 
 
     public Potions UsePotion(int index)
     {
         if (potions[index] == null) return null;
         Potions pot = potions[index];
         potions[index] = null;
+
+        PotionsAth.Raise(new EventArgsPotAth(index, null));
         return pot;
     }
 
@@ -25,6 +28,7 @@ public class Inventory : ScriptableObject
         else if (potions[3] == null) potions[3] = potion;
         else return false;
 
+        PotionsAth.Raise(new EventArgsPotAth(potions.Length, potion.icon));
         return true;
     }
 
