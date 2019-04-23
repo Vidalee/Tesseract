@@ -14,17 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Mage
   _MaxHp: 100
-  _Hp: 100
+  _Hp: 90
   _MaxMana: 100
   _Mana: 100
-  _PhysicsDamage: 50
+  _ManaRegen: 0
+  _PhysicsDamage: 20
   _MagicDamage: 100
-  _MoveSpeed: 3.5
-  _MaxXp: 0
+  _MoveSpeed: 4
+  _MaxXp: 100
   _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
-  _Lvl: 1
+  _Lvl: 3
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
@@ -55,3 +56,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9257553b8735c8448b18f712064624e, type: 2}
   _Inventory: {fileID: 11400000, guid: d0bd3fa36119c1346965360d4e0aa6cf, type: 2}
   _PotionsCooldown: 5
+  PositionChanged: 0
