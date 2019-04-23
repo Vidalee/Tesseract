@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   potions:
-  - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
-  - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
   maxPotion: 2
+  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}

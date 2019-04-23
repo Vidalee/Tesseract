@@ -15,3 +15,4 @@ MonoBehaviour:
   weapon: {fileID: 0}
   potions: []
   maxPotion: 5
+  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
