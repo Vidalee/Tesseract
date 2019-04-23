@@ -5,26 +5,30 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
     [SerializeField] protected Weapons weapon;
-    [SerializeField] protected List<Potions> potions;
-    [SerializeField] protected int maxPotion;
+    [SerializeField] protected Potions[] potions;
+    
+    public Potions[] Potions => potions;
     public GameEvent PotionsAth; 
-
-    public List<Potions> Potions => potions;
 
     public Potions UsePotion(int index)
     {
-        if (potions.Count == 0) return null;
+        if (potions[index] == null) return null;
         Potions pot = potions[index];
+        potions[index] = null;
+
         PotionsAth.Raise(new EventArgsPotAth(index, null));
-        potions.RemoveAt(index);
         return pot;
     }
 
     private bool AddPotion(Potions potion)
     {
-        if(potions.Count >= maxPotion) return false;
-        PotionsAth.Raise(new EventArgsPotAth(potions.Count, potion.icon));
-        potions.Add(potion);
+        if (potions[0] == null) potions[0] = potion;
+        else if (potions[1] == null) potions[1] = potion;
+        else if (potions[2] == null) potions[2] = potion;
+        else if (potions[3] == null) potions[3] = potion;
+        else return false;
+
+        PotionsAth.Raise(new EventArgsPotAth(potions.Length, potion.icon));
         return true;
     }
 
@@ -44,5 +48,11 @@ public class Inventory : ScriptableObject
             default:
                 return false;
         }
+    }
+
+    public Weapons Weapon
+    {
+        get => weapon;
+        set => weapon = value;
     }
 }

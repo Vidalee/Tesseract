@@ -25,8 +25,10 @@ public class PotionUsable : MonoBehaviour
     {
         if (_usable)
         {
-            if (Input.GetKey("p")) CallCoroutine(0);
-            if (Input.GetKey("o")) CallCoroutine(1);
+            if (Input.GetKey("p")) CallCoroutine(3);
+            if (Input.GetKey("o")) CallCoroutine(2);
+            if (Input.GetKey("i")) CallCoroutine(1);
+            if (Input.GetKey("u")) CallCoroutine(0);
         }
     }
 
