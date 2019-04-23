@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe6514493b25a9e4e8e0488042be4c43, type: 3}
-  m_Name: HealPotion2
+  m_Name: HealPotionMedium
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   displayName: 

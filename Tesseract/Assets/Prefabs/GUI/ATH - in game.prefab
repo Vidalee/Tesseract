@@ -894,8 +894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81244bb0adfe5475a9a592ce8ab6da5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Playermanager: {fileID: 1737344898176030325, guid: 500983a92f18e1e4e9612b4b727d1f9b,
-    type: 3}
+  Playermanager: {fileID: 0}
   PlayerData: {fileID: 0}
 --- !u!114 &8964517526090726700
 MonoBehaviour:
@@ -1128,6 +1127,7 @@ RectTransform:
   - {fileID: 8964517526317756582}
   - {fileID: 8964517527060796452}
   - {fileID: 8964517527193903495}
+  - {fileID: 8964517526621481679}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1624,12 +1624,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8964517526621481678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8964517527386261585}
-  m_RootOrder: 1
+  m_Father: {fileID: 8964517526177259923}
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1779,8 +1779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518f14993c47d455f99942a7e339b6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Playermanager: {fileID: 1737344898176030325, guid: 500983a92f18e1e4e9612b4b727d1f9b,
-    type: 3}
+  Playermanager: {fileID: 0}
   PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
 --- !u!1 &8964517526826592748
 GameObject:
@@ -2840,7 +2839,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8964517526826592749}
-  - {fileID: 8964517526621481679}
   m_Father: {fileID: 8964517526177259923}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3038,8 +3036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec77ac3100d4e465db9f416d7175dfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Playermanager: {fileID: 1737344898176030325, guid: 500983a92f18e1e4e9612b4b727d1f9b,
-    type: 3}
+  Playermanager: {fileID: 0}
   PlayerData: {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
 --- !u!1 &8964517527438310196
 GameObject:

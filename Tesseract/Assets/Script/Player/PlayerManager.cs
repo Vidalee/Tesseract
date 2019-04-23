@@ -187,6 +187,7 @@ public class PlayerManager : MonoBehaviour
         _playerData.Xp += amout;
         _playerData.TotalXp += amout;
         playerXp.Raise(new EventArgsInt(_playerData.Xp));
+
     }
 
     #endregion
