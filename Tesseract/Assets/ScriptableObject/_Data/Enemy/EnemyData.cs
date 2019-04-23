@@ -8,7 +8,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 [CreateAssetMenu(fileName = "Enemies", menuName = "Enemy")]
-public class Enemy : ScriptableObject
+public class EnemyData : ScriptableObject
 {
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
@@ -39,7 +39,7 @@ public class Enemy : ScriptableObject
     public bool OnHisWayBack;
 
 
-    public void Create(Enemy enemy, int x, int y)
+    public void Create(EnemyData enemy, int x, int y)
     { 
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp;

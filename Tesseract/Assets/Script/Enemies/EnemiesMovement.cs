@@ -15,7 +15,7 @@ namespace Script.Enemies
 {
     public class EnemiesMovement : MonoBehaviour
     {
-        [SerializeField] protected Enemy Enemy;
+        [SerializeField] protected EnemyData Enemy;
         
         [SerializeField] protected List<Transform> Players;
         
@@ -143,7 +143,7 @@ namespace Script.Enemies
                 Enemy.Path.Remove(nextNode);
         }
 
-        public void Create(Enemy enemy, List<Transform> players, LayerMask blockingLayer)
+        public void Create(EnemyData enemy, List<Transform> players, LayerMask blockingLayer)
         {
             Enemy = enemy;
             Players = players;
