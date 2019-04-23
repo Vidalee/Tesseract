@@ -29,6 +29,7 @@ public class MapGridCreation : MonoBehaviour
     public Transform floor;
     public Transform wallTexture;
     public Transform room;
+    public Transform playerManager;
 
     [SerializeField] protected MapTextureData MapTextureData;
     [SerializeField] protected KruskalAlgo KruskalAlgo;
@@ -229,7 +230,7 @@ public class MapGridCreation : MonoBehaviour
         
             if (!Instances[y, x] && _grid[y, x])
             {
-                PlayerSpawn.Raise(new EventArgsCoor(x, y));
+                playerManager.GetComponent<PlayerManager>().InstantiatePlayer(new EventArgsCoor(x, y));
                 AddToInstance(y, x, true, true);
                 return;
             }
