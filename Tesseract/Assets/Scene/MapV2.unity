@@ -918,5 +918,11 @@ PrefabInstance:
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 56691220}
+    - target: {fileID: 8841730515794100920, guid: 55c221c65e17f2f4b9fef5edf57019fc,
+        type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c221c65e17f2f4b9fef5edf57019fc, type: 3}
