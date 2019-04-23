@@ -29,17 +29,17 @@ public class GenerateEnemies : MonoBehaviour
         
         foreach (RoomData roomData in RoomData)
         {
-            int roomSpace = roomData.Width * roomData.Height;
+            //int roomSpace = roomData.Width * roomData.Height;
             int enemiesNumber = 2;
             while (enemiesNumber != 0)
             {
                 int x = roomData.X1 + Random.Range(0, roomData.Width);
                 int y = roomData.Y1 + Random.Range(0, roomData.Height);
-                if (availablePosGrid[y + 1, x] && _grid[y, x] == null)
+                if (availablePosGrid[y + 1, x] && availablePosGrid[y, x] && _grid[y, x] == null)
                 {
                     GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
                     Enemy newEnemy = ScriptableObject.CreateInstance<Enemy>();
-                    newEnemy.Create(Enemies[Random.Range(0, 2)], x, y);
+                    newEnemy.Create(Enemies[Random.Range(0, 1)], x, y);
                     
                     
                     enemy.GetComponent<Attack>().Create(newEnemy, players[0]);
