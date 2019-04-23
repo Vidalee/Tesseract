@@ -9,9 +9,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public GamesItem[] Items;
-    public GameEvent playerXp;
-    public GameEvent playerMaxXp;
-    public GameEvent playerLvl;
     
     public string choice;
         
@@ -145,6 +142,8 @@ public class PlayerManager : MonoBehaviour
 
         _playerData.Inventory.AddItem(FindItems(data.weapon));
         
+        _playerData.Inventory.Potions = new Potions[4];
+        
         _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
         _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
         _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
@@ -188,14 +187,11 @@ public class PlayerManager : MonoBehaviour
             UpgradeStats();
             
             gap = _playerData.MaxXp - _playerData.Xp;
-            
-            playerLvl.Raise(new EventArgsInt(_playerData._Lvl));
-            playerMaxXp.Raise(new EventArgsInt(_playerData.MaxXp));
         }
         
         _playerData.Xp += amout;
         _playerData.TotalXp += amout;
-        playerXp.Raise(new EventArgsInt(_playerData.Xp));
+        //playerXp.Raise(new EventArgsInt(_playerData.Xp));
 
     }
 

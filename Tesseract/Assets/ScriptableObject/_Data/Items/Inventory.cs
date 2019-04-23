@@ -1,22 +1,33 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
 public class Inventory : ScriptableObject
 {
     [SerializeField] protected Weapons weapon;
     [SerializeField] protected Potions[] potions;
-    
-    public Potions[] Potions => potions;
-    public GameEvent PotionsAth; 
 
+    public Potions[] Potions
+    {
+        get => potions;
+        set => potions = value;
+    }
+
+    public GameEvent PotionsAth;
+
+    public void Update()
+    {
+        
+    }
+    
     public Potions UsePotion(int index)
     {
         if (potions[index] == null) return null;
         Potions pot = potions[index];
         potions[index] = null;
 
-        PotionsAth.Raise(new EventArgsPotAth(index, null));
+        //PotionsAth.Raise(new EventArgsPotAth(index, null));
         return pot;
     }
 
@@ -28,7 +39,7 @@ public class Inventory : ScriptableObject
         else if (potions[3] == null) potions[3] = potion;
         else return false;
 
-        PotionsAth.Raise(new EventArgsPotAth(potions.Length, potion.icon));
+        //PotionsAth.Raise(new EventArgsPotAth(potions.Length, potion.icon));
         return true;
     }
 
