@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 8079f63ec1b864f34b71f1beb691b04d, type: 3}
   m_Name: Archer
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  m_EditorClassIdentifier: 
   _MaxHp: 100
   _Hp: 100
   _XpValue: 50
   _PhysicsDamage: 5
   _MagicDamage: 0
-  _MaxCooldown: 3
+  _MaxCooldown: 2
   _MoveSpeed: 3
   _AttackRange: 6
   _DetectionRange: 15
-  _FeetPos: {x: 0, y: -0.5, z: 0}
   _StartPos: {x: 0, y: 0, z: 0}
-  _Competences: []
-  _Sprite: {fileID: 21300002, guid: 9227dd4023270574e9021754187fb4ad, type: 3}
+  _Competences:
+  - {fileID: 11400000, guid: 8177b743ae5cd4d48a42bec4db0b69e6, type: 2}
+  _Sprite: {fileID: 21300000, guid: 87a6a02512bf54bfa8329c1003935144, type: 3}
   _Triggered: 0
+  OnHisWayBack: 0
