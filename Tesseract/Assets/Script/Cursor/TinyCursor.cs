@@ -11,7 +11,7 @@ public class TinyCursor : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player(Clone)"); 
     }
 
     void Update()
