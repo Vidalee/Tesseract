@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class MapGridCreation : MonoBehaviour
@@ -26,10 +27,10 @@ public class MapGridCreation : MonoBehaviour
     public int simpleDecoration;
     public int seed;
 
-    public Transform floor;
     public Transform wallTexture;
     public Transform room;
     public Transform playerManager;
+    public Tilemap FloorMap;
 
     [SerializeField] protected MapTextureData MapTextureData;
     [SerializeField] protected KruskalAlgo KruskalAlgo;
@@ -43,6 +44,8 @@ public class MapGridCreation : MonoBehaviour
     //Initiate value
     private void Awake()
     {
+        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -100;
+        
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _instances = new bool[MapHeight, MapWidth];
@@ -362,10 +365,10 @@ public class MapGridCreation : MonoBehaviour
             {
                 if (_grid[i, j])
                 {
-                    Transform o = Instantiate(floor, new Vector3(j, i),
-                        Quaternion.AngleAxis(Random.Range(0,3) * 90,Vector3.forward),transform);
-                    o.GetComponent<SpriteRenderer>().sprite =
-                        MapTextureData.Floor[Random.Range(0, len)];
+                    Tile tile = ScriptableObject.CreateInstance<Tile>();
+                    tile.sprite = MapTextureData.Floor[Random.Range(0, len)];
+                    
+                    FloorMap.SetTile(new Vector3Int(j, i, 0), tile);
                 }
             }
         }

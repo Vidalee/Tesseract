@@ -259,6 +259,7 @@ public class GenerateWall : MonoBehaviour
             }
 
             SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
+            wallSpriteRenderer.sortingOrder = x * -100;
             if (wallType == "WWWWWW") wallSpriteRenderer.material = Material;
             EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
             wallSpriteRenderer.sprite = sprite;

@@ -8,13 +8,20 @@ public class PlayerAnimation : MonoBehaviour
 
     public PlayerData _playerData;
     private Animator _a;
+    private SpriteRenderer _spriteRenderer;
 
     #endregion
 
     #region Initialise
 
+    private void Update()
+    {
+        _spriteRenderer.sortingOrder = (int) (transform.position.y * -100);
+    }
+
     private void Awake()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _a = GetComponent<Animator>();
     }
 
