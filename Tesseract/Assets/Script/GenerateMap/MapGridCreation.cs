@@ -33,7 +33,7 @@ public class MapGridCreation : MonoBehaviour
     
     public Tilemap FloorMap;
     public Tilemap PerspMap;
-    public Tilemap ColMap;
+    public Tilemap WallMap;
     public Tilemap ShadWMap;
     public Tilemap[] ShadSMap;
     public Tilemap[] ShadCornMap;
@@ -400,7 +400,8 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        script.Create(_grid, FloorMap, PerspMap, ColMap, ShadWMap, ShadSMap, ShadCornMap);
+        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 
     //Debug show graph before mst

@@ -63,6 +63,8 @@ MonoBehaviour:
   - {fileID: 21300012, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
   - {fileID: 21300016, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
   shadowWall: {fileID: 21300004, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  colCube: {fileID: 21300000, guid: 63c8c8bae7d2cee4999794990051ecf6, type: 3}
+  colCorner: {fileID: 21300000, guid: 63c8c8bae7d2cee4999794990051ecf6, type: 3}
   Col: []
   wallPerspective1Col:
   - {x: -0.5, y: 0}

@@ -21,6 +21,9 @@ public class MapTextureData : ScriptableObject
     [SerializeField] protected Sprite[] shadowCorner;
     [SerializeField] protected Sprite shadowWall;
 
+    [SerializeField] protected Sprite colCube;
+    [SerializeField] protected Sprite colCorner;
+    
     [SerializeField] protected Sprite[] Col;
     
     [SerializeField] protected Vector2[] wallPerspective1Col =
@@ -87,6 +90,10 @@ public class MapTextureData : ScriptableObject
     public Vector2[] DemiCol => demiCol;
 
     public Vector2[] DemiCol2 => demiCol2;
+
+    public Sprite ColCube => colCube;
+
+    public Sprite ColCorner => colCorner;
 
     #endregion
 }

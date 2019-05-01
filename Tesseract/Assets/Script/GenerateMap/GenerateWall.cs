@@ -17,7 +17,7 @@ public class GenerateWall : MonoBehaviour
 
     private Tilemap _wallMap;
     private Tilemap _perspMap;
-    private Tilemap _colMap;
+    private Tilemap _floorMap;
     private Tilemap _shadWMap;
     private Tilemap[] _shadCMap;
     private Tilemap[] _shadSMap;
@@ -29,17 +29,20 @@ public class GenerateWall : MonoBehaviour
         _wallTextureLength = MapTextureData.Wall.Length;
         _grid = grid;
         _wallPos = new bool[_grid.GetLength(0),_grid.GetLength(1)];
+        
         _wallMap = wallMap;
         _perspMap = perspMap;
-        _colMap = colMap;
+        _wallMap = colMap;
         _shadWMap = shadMap;
         _shadCMap = shadCMap;
         _shadSMap = shadSMap;
+        
         _tile = ScriptableObject.CreateInstance<Tile>();
         
         InstantiateSimpleWall();
         ChooseWall();
         CornerShadow();
+        RefreshCollision();
     }
 
     private void InstantiateSimpleWall()
@@ -91,15 +94,11 @@ public class GenerateWall : MonoBehaviour
         }
     }
 
-    private Sprite FindRotationObject(string wallType, out Vector2[] col)
+    private Sprite FindRotationObject(string wallType)
     {
-        col = MapTextureData.CubeCol;
-
         //Corner wall
         if (wallType.Contains("C"))
-        {
-            col = MapTextureData.CornerCol;
-            
+        {            
             if (wallType.Contains("TR"))
             {
                 return MapTextureData.WallCorner[1];
@@ -123,7 +122,6 @@ public class GenerateWall : MonoBehaviour
             
             if (wallType.Contains("BT"))
             {
-                col = MapTextureData.DemiCol;
                 return MapTextureData.WallDoubleSide[1];
             }
             
@@ -145,7 +143,6 @@ public class GenerateWall : MonoBehaviour
             { 
                 return MapTextureData.Wall1Side[1];
             }
-            col = MapTextureData.WallPerspective1Col;
             return MapTextureData.Wall1Side[0];
         }
                 
@@ -162,10 +159,8 @@ public class GenerateWall : MonoBehaviour
             }
             if (wallType.Contains("BL"))
             {
-                col = MapTextureData.WallPerspective2Col;
                 return MapTextureData.Wall2Side[3];
             }
-            col = MapTextureData.WallPerspective2Col;
             return MapTextureData.Wall2Side[0];
         }
         
@@ -178,29 +173,40 @@ public class GenerateWall : MonoBehaviour
             }
             if (!wallType.Contains("T"))
             {
-                col = MapTextureData.DemiCol2;
                 return MapTextureData.Wall3Side[3];
             }
             if (!wallType.Contains("R"))
             {
-                col = MapTextureData.WallPerspective2Col;
                 return MapTextureData.Wall3Side[2];
             }
 
-            col = MapTextureData.WallPerspective2Col;
             return MapTextureData.Wall3Side[0];
         }
         
         //Wall 4 side
         if (wallType == "BRTL")
         {
-            col = MapTextureData.DemiCol;
             return MapTextureData.Wall4Side;
         }
         
         return MapTextureData.Wall[Random.Range(0, _wallTextureLength)];
     }
 
+    private void RefreshCollision()
+    {
+        Tilemap[] tilemaps = {_wallMap, _perspMap};
+        
+        foreach (var maps in tilemaps)
+        {
+            TilemapCollider2D col = maps.GetComponent<TilemapCollider2D>();
+
+            col.enabled = false;
+            col.enabled = true;
+            
+            col.composite.GenerateGeometry();
+        }
+    }
+    
     private void InstantiateWall(string wallType, int x, int y)
     {
         string[] w = wallType.Split(' ');
@@ -209,16 +215,21 @@ public class GenerateWall : MonoBehaviour
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
             
-            _tile.sprite = FindRotationObject(w[i], out Vector2[] col);
-            
+            _tile.sprite =  FindRotationObject(w[i]);
+
             if (w[i].Contains("W"))
             {
                 _wallMap.SetTile(new Vector3Int(y, x, 0), _tile);
             }
-            else if (col == MapTextureData.CornerCol)
+            else if (w[i].Contains('C'))
             {
-                Transform wall = Instantiate(Wall,new Vector3(y, x), Quaternion.identity, transform);
-                wall.GetComponent<SpriteRenderer>().sprite = _tile.sprite;
+                Quaternion rot = Quaternion.identity;
+
+                if (_tile.sprite == MapTextureData.WallCorner[1]) rot = Quaternion.AngleAxis(-90, Vector3.forward);
+                else if (_tile.sprite == MapTextureData.WallCorner[2]) rot = Quaternion.AngleAxis(180, Vector3.forward);
+                else if (_tile.sprite == MapTextureData.WallCorner[3]) rot = Quaternion.AngleAxis(90, Vector3.forward);
+
+                Instantiate(Wall, new Vector3(y, x), rot, transform);
             }
             else
             {
@@ -268,13 +279,6 @@ public class GenerateWall : MonoBehaviour
                     _shadSMap[2].SetTile(new Vector3Int(y, x + 1, 0), _tile);
                 }
             }
-
-            //SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
-            //wallSpriteRenderer.sortingOrder = x * -100;
-            //if (wallType == "WWWWWW") wallSpriteRenderer.material = Material;
-            //EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
-            //wallSpriteRenderer.sprite = sprite;
-            //edgeCollider2D.points = col;
         }
     }
 
