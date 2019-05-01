@@ -11,7 +11,8 @@ public class Portal : MonoBehaviour
     {
         _portalData = portalData;
         _pos = pos;
-        
+        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
+
         Initiate();
     }
 
@@ -19,8 +20,6 @@ public class Portal : MonoBehaviour
     {
         GetComponent<EdgeCollider2D>().points = _portalData.Col;
         GetComponent<SpriteRenderer>().sprite = _portalData.Sprite;
-        
-        GetComponentInChildren<Perspective>().Create(_portalData.PersCol);
     }
 
     public void OnTriggerEnter2D(Collider2D other)

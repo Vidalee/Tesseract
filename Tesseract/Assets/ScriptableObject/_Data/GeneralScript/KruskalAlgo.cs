@@ -26,14 +26,10 @@ namespace Script.GlobalsScript
         public int Parent;
         public int rank;
     }
-    [CreateAssetMenu(fileName = "KruskaAlgo", menuName = "GeneralScript/KruskalAlgo")]
-    public class KruskalAlgo : ScriptableObject
+
+    public static class KruskalAlgo
     {
-
-        [SerializeField] protected UnionFind UnionFind;
-        [SerializeField] protected BinaryHeap BinaryHeap;
-
-        public Graph CreateGraph(int verticesCount, List<IHeapNode> edges)
+        public static Graph CreateGraph(int verticesCount, List<IHeapNode> edges)
         {
             Graph graph = new Graph();
             graph.VerticesCount = verticesCount;
@@ -42,7 +38,7 @@ namespace Script.GlobalsScript
             return graph;
         }
      
-        public Edge[] Kruskal(Graph graph)
+        public static Edge[] Kruskal(Graph graph)
         {
             int verticesCount = graph.VerticesCount;
             Edge[] result = new Edge[verticesCount - 1];

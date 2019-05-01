@@ -64,6 +64,7 @@ MonoBehaviour:
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,
     type: 3}
   room: {fileID: 3862694622386907583, guid: a334797e540caac43a0c0d9feec9a75a, type: 3}
+  playerManager: {fileID: 0}
   MapTextureData: {fileID: 11400000, guid: 1d6fe0cb736f3d644944c9b4c13d9b24, type: 2}
   KruskalAlgo: {fileID: 11400000, guid: a79a4496a8d12dd49946f32aa7f44bd1, type: 2}
 --- !u!114 &8841730515794100920
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8841730517460495723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cf33493429974dabb9d562c86369080, type: 3}
   m_Name: 

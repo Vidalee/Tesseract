@@ -1,27 +1,48 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class GenerateWall : MonoBehaviour
 {
     private bool[,] _grid;
     private bool[,] _wallPos;
-    public MapTextureData _mapTextureData;
-    public Transform _wall;
+    public MapTextureData MapTextureData;
+    public Transform Wall;
     public Material Material;
     private int _wallTextureLength;
     public Transform Deco;
     public SimpleDecoration[] SimpleDecoration;
+
+    private Tilemap _wallMap;
+    private Tilemap _perspMap;
+    private Tilemap _floorMap;
+    private Tilemap _shadWMap;
+    private Tilemap[] _shadCMap;
+    private Tilemap[] _shadSMap;
+    private Tile _tile;
     
-    public void Create(bool[,] grid)
+    
+    public void Create(bool[,] grid, Tilemap wallMap, Tilemap perspMap, Tilemap colMap, Tilemap shadMap, Tilemap[] shadSMap, Tilemap[] shadCMap)
     {
-        _wallTextureLength = _mapTextureData.Wall.Length;
+        _wallTextureLength = MapTextureData.Wall.Length;
         _grid = grid;
         _wallPos = new bool[_grid.GetLength(0),_grid.GetLength(1)];
         
+        _wallMap = wallMap;
+        _perspMap = perspMap;
+        _wallMap = colMap;
+        _shadWMap = shadMap;
+        _shadCMap = shadCMap;
+        _shadSMap = shadSMap;
+        
+        _tile = ScriptableObject.CreateInstance<Tile>();
+        
         InstantiateSimpleWall();
         ChooseWall();
-        Torchwall();
+        CornerShadow();
+        RefreshCollision();
     }
 
     private void InstantiateSimpleWall()
@@ -73,122 +94,119 @@ public class GenerateWall : MonoBehaviour
         }
     }
 
-    private Quaternion FindRotationObject(string wallType, out Vector2[] col, out Sprite sprite)
+    private Sprite FindRotationObject(string wallType)
     {
-        col = _mapTextureData.CubeCol;
-        sprite = _mapTextureData.Wall[Random.Range(0, _wallTextureLength)];
-        
         //Corner wall
         if (wallType.Contains("C"))
-        {
-            sprite = _mapTextureData.WallCorner;
-            col = _mapTextureData.CornerCol;
+        {            
             if (wallType.Contains("TR"))
             {
-                return Quaternion.AngleAxis(-90, Vector3.forward);
-            }
-            if (wallType.Contains("BL"))
-            {
-                return Quaternion.AngleAxis(90,Vector3.forward);
-            }
-            if (wallType.Contains("TL"))
-            {
-                return Quaternion.AngleAxis(180,Vector3.forward);
+                return MapTextureData.WallCorner[1];
             }
             
-            return Quaternion.identity;
+            if (wallType.Contains("BL"))
+            {
+                return MapTextureData.WallCorner[3];
+            }
+            
+            if (wallType.Contains("TL"))
+            {
+                return MapTextureData.WallCorner[2];
+            }
+            
+            return MapTextureData.WallCorner[0];
         }
         //Double wall
         if (wallType.Contains('D'))
         {
-            sprite = _mapTextureData.WallDoubleSide;
             
             if (wallType.Contains("BT"))
             {
-                col = _mapTextureData.DemiCol;
-                return Quaternion.AngleAxis(-90, Vector3.forward);
+                return MapTextureData.WallDoubleSide[1];
             }
             
-            return Quaternion.identity;
+            return MapTextureData.WallDoubleSide[0];
         }
         
         //Wall 1 side
         if (wallType.Length == 1)
-        {
-            sprite = _mapTextureData.Wall1Side;
-            
+        {            
             if (wallType.Contains("L"))
             {
-                return Quaternion.AngleAxis(90,Vector3.forward);
+                return MapTextureData.Wall1Side[3];
             }
             if (wallType.Contains("T"))
             {
-                return Quaternion.AngleAxis(180,Vector3.forward);
+                return MapTextureData.Wall1Side[2];
             }
             if (wallType.Contains("R"))
             { 
-                return Quaternion.AngleAxis(-90,Vector3.forward);
+                return MapTextureData.Wall1Side[1];
             }
-            col = _mapTextureData.WallPerspective1Col;
-            return Quaternion.identity;
+            return MapTextureData.Wall1Side[0];
         }
                 
         //Wall 2 side
         if (wallType.Length == 2)
-        {
-            sprite = _mapTextureData.Wall2Side;
-            
+        {            
             if (wallType.Contains("RT"))
             {
-                return Quaternion.AngleAxis(-90, Vector3.forward);
+                return MapTextureData.Wall2Side[1];
             }
             if (wallType.Contains("TL"))
             {
-                return Quaternion.AngleAxis(180, Vector3.forward);
+                return MapTextureData.Wall2Side[2];
             }
             if (wallType.Contains("BL"))
             {
-                col = _mapTextureData.WallPerspective2Col;
-                return Quaternion.AngleAxis(180,Vector3.up);
+                return MapTextureData.Wall2Side[3];
             }
-            col = _mapTextureData.WallPerspective2Col;
-            return Quaternion.identity;
+            return MapTextureData.Wall2Side[0];
         }
         
         //Wall 3 side
         if (wallType.Length == 3)
         {
-            sprite = _mapTextureData.Wall3Side;
             if (!wallType.Contains("B"))
             {
-                return Quaternion.AngleAxis(-90, Vector3.forward);
+                return MapTextureData.Wall3Side[1];
             }
             if (!wallType.Contains("T"))
             {
-                col = _mapTextureData.DemiCol2;
-                return Quaternion.AngleAxis(90, Vector3.forward);
+                return MapTextureData.Wall3Side[3];
             }
             if (!wallType.Contains("R"))
             {
-                col = _mapTextureData.WallPerspective2Col;
-                return Quaternion.AngleAxis(180, Vector3.up);
+                return MapTextureData.Wall3Side[2];
             }
 
-            col = _mapTextureData.WallPerspective2Col;
-            return Quaternion.identity;
+            return MapTextureData.Wall3Side[0];
         }
         
         //Wall 4 side
         if (wallType == "BRTL")
         {
-            col = _mapTextureData.DemiCol;
-            sprite = _mapTextureData.Wall4Side;
-            return Quaternion.AngleAxis(-90, Vector3.forward);
+            return MapTextureData.Wall4Side;
         }
         
-        return Quaternion.identity;
+        return MapTextureData.Wall[Random.Range(0, _wallTextureLength)];
     }
 
+    private void RefreshCollision()
+    {
+        Tilemap[] tilemaps = {_wallMap, _perspMap};
+        
+        foreach (var maps in tilemaps)
+        {
+            TilemapCollider2D col = maps.GetComponent<TilemapCollider2D>();
+
+            col.enabled = false;
+            col.enabled = true;
+            
+            col.composite.GenerateGeometry();
+        }
+    }
+    
     private void InstantiateWall(string wallType, int x, int y)
     {
         string[] w = wallType.Split(' ');
@@ -197,76 +215,74 @@ public class GenerateWall : MonoBehaviour
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
             
-            Quaternion rot = FindRotationObject(w[i], out Vector2[] col, out Sprite sprite);
-            Transform wall = Instantiate(_wall,new Vector3(y, x), rot, transform);
+            _tile.sprite =  FindRotationObject(w[i]);
+
+            if (w[i].Contains("W"))
+            {
+                _wallMap.SetTile(new Vector3Int(y, x, 0), _tile);
+            }
+            else if (w[i].Contains('C'))
+            {
+                Quaternion rot = Quaternion.identity;
+
+                if (_tile.sprite == MapTextureData.WallCorner[1]) rot = Quaternion.AngleAxis(-90, Vector3.forward);
+                else if (_tile.sprite == MapTextureData.WallCorner[2]) rot = Quaternion.AngleAxis(180, Vector3.forward);
+                else if (_tile.sprite == MapTextureData.WallCorner[3]) rot = Quaternion.AngleAxis(90, Vector3.forward);
+
+                Instantiate(Wall, new Vector3(y, x), rot, transform);
+            }
+            else
+            {
+                _perspMap.SetTile(new Vector3Int(y, x, 0), _tile);
+            }
             
             if (!w[i].Contains('C'))
             {
                 if (w[i].Contains('W'))
                 {
-                    Transform o1 = Instantiate(Deco, new Vector3(y, x - 1), rot, transform);
-                    o1.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    _tile.sprite = MapTextureData.ShadowSide[0];
+                    _shadSMap[0].SetTile(new Vector3Int(y, x - 1, 0), _tile);
                 }
                 
                 if (w[i].Contains('R'))
                 {
-                    Transform o = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
-                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    CreateTorch(new Vector3(y + 0.5f, x), SimpleDecoration[1]);
                     
-                    if (Random.Range(0, 4) == 0)
-                    {
-                        Transform o4 = Instantiate(Deco, new Vector3(y + 0.5f, x), Quaternion.identity, transform);
-                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
-                    }
+                    _tile.sprite = MapTextureData.ShadowSide[3];
+                    _shadSMap[3].SetTile(new Vector3Int(y + 1, x, 0), _tile);
                     
                     if (w[i].Contains("BR"))
-                    {
-                        Transform o2 = Instantiate(Deco, new Vector3(y + 1, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
-                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                    {              
+                        _tile.sprite = MapTextureData.ShadowCorner[2];
+                        _shadCMap[2].SetTile(new Vector3Int(y + 1, x + 1, 0), _tile);
                     }
                 }
                 
                 if (w[i].Contains('L'))
                 {
-                    Transform o = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
-                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    CreateTorch(new Vector3(y - 0.5f, x), SimpleDecoration[2]);
                     
-                    if (Random.Range(0, 4) == 0)
-                    {
-                        Transform o4 = Instantiate(Deco, new Vector3(y - 0.5f, x), Quaternion.identity, transform);
-                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
-                    }
+                    _tile.sprite = MapTextureData.ShadowSide[1];
+                    _shadSMap[1].SetTile(new Vector3Int(y - 1, x, 0), _tile);
                     
+                                        
                     if (w[i].Contains("BL")  || w[i].Contains("BRL") || w[i].Contains("BRTL") ||w[i].Contains("BTL"))
                     {
-                        Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
-                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                        _tile.sprite = MapTextureData.ShadowCorner[1];
+                        _shadCMap[1].SetTile(new Vector3Int(y - 1, x + 1, 0), _tile);
                     }
                 }
                 
                 if (w[i].Contains('B'))
                 {
-                    Transform o = Instantiate(Deco, new Vector3(y, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
-                    o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                    _tile.sprite = MapTextureData.ShadowSide[2];
+                    _shadSMap[2].SetTile(new Vector3Int(y, x + 1, 0), _tile);
                 }
             }
-            if (col == _mapTextureData.WallPerspective1Col ||
-                col == _mapTextureData.WallPerspective2Col ||
-                col == _mapTextureData.DemiCol ||
-                sprite == _mapTextureData.WallCorner)
-            {
-                wall.GetComponent<SpriteRenderer>().sortingOrder = 110;
-            }
-
-            SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
-            if (wallType == "WWWWWW") wallSpriteRenderer.material = Material;
-            EdgeCollider2D edgeCollider2D = wall.GetComponent<EdgeCollider2D>();
-            wallSpriteRenderer.sprite = sprite;
-            edgeCollider2D.points = col;   
         }
     }
 
-    private void Torchwall()
+    private void CornerShadow()
     {
         for (int x = 1; x < _wallPos.GetLength(1) - 1; x++)
         {
@@ -274,41 +290,46 @@ public class GenerateWall : MonoBehaviour
             {
                 if (_wallPos[x, y])
                 {
-                    Transform o4 = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
-                    o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[4]);
-                        
+                    CreateTorch(new Vector3(y, x), SimpleDecoration[0]);
+
+                    _tile.sprite = MapTextureData.ShadowWall;
+                    _shadWMap.SetTile(new Vector3Int(y, x, 0), _tile);
+                    
                     if (!_wallPos[x, y + 1])
                     {
-                        Transform o2 = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
-                        o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
+                        _tile.sprite = MapTextureData.ShadowSide[3];
+                        _shadSMap[3].SetTile(new Vector3Int(y + 1, x, 0), _tile);
                         
                         if (!_wallPos[x - 1, y + 1])
                         {
-                            Transform o3 = Instantiate(Deco, new Vector3(y + 1, x - 1), Quaternion.AngleAxis(90, Vector3.forward), transform);
-                            o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                            _tile.sprite = MapTextureData.ShadowCorner[3];
+                            _shadCMap[3].SetTile(new Vector3Int(y + 1, x - 1, 0), _tile);
                         }
                     }
 
                     if (!_wallPos[x, y - 1])
                     {
-                        Transform o3 = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
-                        o3.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
-                        
+                        _tile.sprite = MapTextureData.ShadowSide[1];
+                        _shadSMap[1].SetTile(new Vector3Int(y - 1, x, 0), _tile);
+
                         if (!_wallPos[x - 1, y - 1])
                         {
-                            Transform o2 = Instantiate(Deco, new Vector3(y - 1, x - 1), Quaternion.AngleAxis(0, Vector3.forward), transform);
-                            o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
+                            _tile.sprite = MapTextureData.ShadowCorner[0];
+                            _shadCMap[0].SetTile(new Vector3Int(y - 1, x - 1, 0), _tile);
                         }
-                    }
-                    
-                    if (Random.Range(0, 5) == 0)
-                    {
-                        Transform o = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
-                        o.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
                     }
                 }
             }
         }
 
+    }
+
+    private void CreateTorch(Vector3 pos, SimpleDecoration deco)
+    {
+        if (Random.Range(0, 5) == 0)
+        {
+            Transform o4 = Instantiate(Deco, pos, Quaternion.identity, transform);
+            o4.GetComponent<SimpleDeco>().Create(deco);
+        }
     }
 }
