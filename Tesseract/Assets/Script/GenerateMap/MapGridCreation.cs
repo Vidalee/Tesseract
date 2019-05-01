@@ -34,7 +34,10 @@ public class MapGridCreation : MonoBehaviour
     public Tilemap FloorMap;
     public Tilemap PerspMap;
     public Tilemap ColMap;
-    public Tilemap ShadMap;
+    public Tilemap ShadWMap;
+    public Tilemap[] ShadSMap;
+    public Tilemap[] ShadCornMap;
+    
     
     [SerializeField] protected MapTextureData MapTextureData;
 
@@ -397,7 +400,7 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        script.Create(_grid, FloorMap, PerspMap, ColMap, ShadMap);
+        script.Create(_grid, FloorMap, PerspMap, ColMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 
     //Debug show graph before mst
