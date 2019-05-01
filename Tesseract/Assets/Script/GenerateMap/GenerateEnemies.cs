@@ -15,16 +15,16 @@ public class GenerateEnemies : MonoBehaviour
 
     
     [SerializeField] protected GameObject Enemy;
-    private Enemy[,] _grid;
+    private EnemyData[,] _grid;
     public static List<RoomData> RoomData;
     public static bool[,] availablePosGrid;
     
-    [SerializeField] protected List<Enemy> Enemies;
+    [SerializeField] protected List<EnemyData> Enemies;
 
     private void Start()
     {
         //players.Add(PlayerManager.Player);
-        _grid = new Enemy[MapHeight, MapWidth];
+        _grid = new EnemyData[MapHeight, MapWidth];
         Random.InitState(seed); 
         
         foreach (RoomData roomData in RoomData)
@@ -38,8 +38,8 @@ public class GenerateEnemies : MonoBehaviour
                 if (availablePosGrid[y + 1, x] && availablePosGrid[y, x] && _grid[y, x] == null)
                 {
                     GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
-                    Enemy newEnemy = ScriptableObject.CreateInstance<Enemy>();
-                    newEnemy.Create(Enemies[Random.Range(0, 1)], x, y);
+                    EnemyData newEnemy = ScriptableObject.CreateInstance<EnemyData>();
+                    newEnemy.Create(Enemies[Random.Range(0, 2)], x, y);
                     
                     
                     enemy.GetComponent<Attack>().Create(newEnemy, players[0]);

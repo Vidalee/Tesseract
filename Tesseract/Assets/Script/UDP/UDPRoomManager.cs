@@ -55,6 +55,8 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
         }
     }
 
+    public void Refresh() => refresh = true;
+
     // Update is called once per frame
     void Update()
     {
@@ -97,10 +99,6 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
         toAdd.Clear();
     }
 
-    public void Login()
-    {
-        _socket.Send("CONNECT " + "Vivi2" + " " + sha256("vivi"));
-    }
 
     string sha256(string password)
     {

@@ -2,7 +2,7 @@
 
 public class EnemiesLive : MonoBehaviour
 {
-    [SerializeField] protected Enemy Enemy;
+    [SerializeField] protected EnemyData Enemy;
     public GameEvent SendPlayerXp;
 
     public void GetDamaged(int damage)
@@ -20,7 +20,7 @@ public class EnemiesLive : MonoBehaviour
         SendPlayerXp.Raise(new EventArgsInt(Enemy.XpValue));
     }
 
-    public void Create(Enemy enemy)
+    public void Create(EnemyData enemy)
     {
         Enemy = enemy;
     }

@@ -8,7 +8,7 @@ namespace Script.Pathfinding
       {
             private static Node start;
             public Node destination;
-            [SerializeField] protected Enemy Enemy;
+            [SerializeField] protected EnemyData Enemy;
 
             public void ReconstructPath()
             {
@@ -28,7 +28,7 @@ namespace Script.Pathfinding
                   {
                         //Debug.Log("Null");
                         return;
-                  }
+                  }   
                   foreach (Node node in AllNodes.NodesGrid)
                   {
                         if (node != null)
@@ -89,7 +89,7 @@ namespace Script.Pathfinding
                   AStar();    
             }
 
-            public void Create(Enemy enemy)
+            public void Create(EnemyData enemy)
             {
                   Enemy = enemy;
             }

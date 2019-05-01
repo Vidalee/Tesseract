@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UDPClient : MonoBehaviour, UDPEventListener
 {
+    public string ip;
+
     public Text error;
     public Button loginButton;
 
@@ -34,7 +36,7 @@ public class UDPClient : MonoBehaviour, UDPEventListener
         //loginButton.enabled = false;
         loginButton.gameObject.SetActive(false);
 
-        _socket.Client("127.0.0.1", 27000);
+        _socket.Client(ip, 27000);
         _socket.Send("PING");
 
     }

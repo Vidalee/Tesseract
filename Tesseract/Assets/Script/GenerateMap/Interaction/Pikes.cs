@@ -18,12 +18,12 @@ public class Pikes : MonoBehaviour
 
     private IEnumerator OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerFeet"))
         {
             yield return new WaitForSeconds(1);
             _spriteRenderer.sprite = _pikesData.Trig;
 
-            if ((other.transform.position - transform.position).magnitude < 0.5f)
+            if ((other.transform.position - transform.position - new Vector3(0, 0.5f, 0)).magnitude < 0.5f)
             {
                 PlayerDamage.Raise(new EventArgsInt(_pikesData.Damage));
             }
