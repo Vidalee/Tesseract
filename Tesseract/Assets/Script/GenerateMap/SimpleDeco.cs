@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Xml.Serialization;
+using UnityEngine;
 
 public class SimpleDeco : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class SimpleDeco : MonoBehaviour
             o.color = new Color(_simpleDecoration.Color[0], _simpleDecoration.Color[1], _simpleDecoration.Color[2]);
             o.intensity = _simpleDecoration.Intensity;
             o.range = _simpleDecoration.Range;
+            o.bounceIntensity = 0;
+            o.renderMode = LightRenderMode.ForcePixel;
         }
     }
 }
