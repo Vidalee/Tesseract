@@ -1,11 +1,9 @@
 ﻿using Script.GlobalsScript;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "UnionFind", menuName = "GeneralScript/UnionFind")]
-public class UnionFind : ScriptableObject
+public static class UnionFind
 {
     // Find, assign and return the root id of a node, assign every parent of the node to this id (path compressed)
-    public int Find(Subset[] subset, int i)
+    public static int Find(Subset[] subset, int i)
     {
         if (subset[i].Parent != i)
             subset[i].Parent = Find(subset, subset[i].Parent);
@@ -14,7 +12,7 @@ public class UnionFind : ScriptableObject
     }
 
     // Create union between 2 subset if it's not a cycle
-    public void Union(Subset[] subset, int x, int y)
+    public static void Union(Subset[] subset, int x, int y)
     {
         // Find root of both node and compressed the path
         int xRoot = Find(subset, x);

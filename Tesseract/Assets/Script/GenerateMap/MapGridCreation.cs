@@ -33,7 +33,6 @@ public class MapGridCreation : MonoBehaviour
     public Tilemap FloorMap;
 
     [SerializeField] protected MapTextureData MapTextureData;
-    [SerializeField] protected KruskalAlgo KruskalAlgo;
 
     private List<RoomData> _roomData;
     private List<Transform> _rooms;

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BinaryHeap", menuName = "GeneralScript/BinaryHeap")]
-public class BinaryHeap : ScriptableObject
+public static class BinaryHeap
 {
-    public void CreateMinHeap(List<IHeapNode> key)
+    public static void CreateMinHeap(List<IHeapNode> key)
     {
         int l = key.Count;
         for (int i = l/2 - 1; i > - 1; i--)
@@ -14,7 +13,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
 
-    public void CreateMaxHeap(List<IHeapNode> key)
+    public static void CreateMaxHeap(List<IHeapNode> key)
     {
         int l = key.Count;
         for (int i = l/2 - 1; i > - 1; i--)
@@ -23,7 +22,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
     
-    public void SiftMinDown(List<IHeapNode> heap, int index, int n)
+    public static void SiftMinDown(List<IHeapNode> heap, int index, int n)
     {
         int indexSon = 2 * index + 1;
         while (indexSon < n)
@@ -43,7 +42,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
     
-    public void SiftMaxDown(List<IHeapNode> heap, int index, int n)
+    public static void SiftMaxDown(List<IHeapNode> heap, int index, int n)
     {
         int indexSon = 2 * index + 1;
         while (indexSon < n)
@@ -63,7 +62,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
 
-    public void SiftMinUp(List<IHeapNode> heap, int lastIndex)
+    public static void SiftMinUp(List<IHeapNode> heap, int lastIndex)
     {
         int node = lastIndex;
         int parent = node / 2;
@@ -75,7 +74,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
     
-    public void SiftMaxUp(List<IHeapNode> heap, int lastIndex)
+    public static void SiftMaxUp(List<IHeapNode> heap, int lastIndex)
     {
         int node = lastIndex;
         int parent = node / 2;
@@ -87,7 +86,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
     
-    public void MinHeapSort(List<IHeapNode> key)
+    public static void MinHeapSort(List<IHeapNode> key)
     {
         int l = key.Count;
         for (int i = l - 1; i > -1; i--)
@@ -99,7 +98,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
     
-    public void MaxHeapSort(List<IHeapNode> key)
+    public static void MaxHeapSort(List<IHeapNode> key)
     {
         int l = key.Count;
         for (int i = l - 1; i > -1; i--)
@@ -111,7 +110,7 @@ public class BinaryHeap : ScriptableObject
         }
     }
 
-    public IHeapNode MinPop(List<IHeapNode> key)
+    public static IHeapNode MinPop(List<IHeapNode> key)
     {
         int l = key.Count - 1;
         IHeapNode min = key[0];
@@ -121,7 +120,7 @@ public class BinaryHeap : ScriptableObject
         return min;
     }
     
-    public IHeapNode MaxPop(List<IHeapNode> key)
+    public static IHeapNode MaxPop(List<IHeapNode> key)
     {
         int l = key.Count - 1;
         IHeapNode max = key[0];
@@ -131,13 +130,13 @@ public class BinaryHeap : ScriptableObject
         return max;
     }
 
-    public void MinPush(List<IHeapNode> key,IHeapNode item)
+    public static void MinPush(List<IHeapNode> key,IHeapNode item)
     {
         key.Add(item);
         SiftMinUp(key, key.Count - 1);
     }
     
-    public void MaxPush(List<IHeapNode> key,IHeapNode item)
+    public static void MaxPush(List<IHeapNode> key,IHeapNode item)
     {
         key.Add(item);
         SiftMaxUp(key, key.Count - 1);
