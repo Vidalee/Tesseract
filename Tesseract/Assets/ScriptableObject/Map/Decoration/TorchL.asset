@@ -16,9 +16,8 @@ MonoBehaviour:
   col: []
   asCol: 0
   color: fa000000fa000000f0000000
-  name: TorchL
   range: 5
   intensity: 0.005
-  sortingOrder: 91
   material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
   rot: 0
+  behind: 0
