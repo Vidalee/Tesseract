@@ -32,7 +32,7 @@ public class GenerateWall : MonoBehaviour
         
         InstantiateSimpleWall();
         ChooseWall();
-        Torchwall();
+        CornerShadow();
     }
 
     private void InstantiateSimpleWall()
@@ -223,53 +223,53 @@ public class GenerateWall : MonoBehaviour
             
             if (!w[i].Contains('C'))
             {
+                /*
                 if (w[i].Contains('W'))
                 {
                     Transform o1 = Instantiate(Deco, new Vector3(y, x - 1), Quaternion.identity, transform);
                     o1.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                 }
+                */
                 
                 if (w[i].Contains('R'))
                 {
+                    CreateTorch(new Vector3(y + 0.5f, x), SimpleDecoration[1]);
+                    
+                    /*
                     Transform o = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
                     o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
-                    
-                    if (Random.Range(0, 4) == 0)
-                    {
-                        Transform o4 = Instantiate(Deco, new Vector3(y + 0.5f, x), Quaternion.identity, transform);
-                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
-                    }
                     
                     if (w[i].Contains("BR"))
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y + 1, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
                     }
+                    */
                 }
                 
                 if (w[i].Contains('L'))
                 {
+                    CreateTorch(new Vector3(y - 0.5f, x), SimpleDecoration[2]);
+                    
+                    /*
                     Transform o = Instantiate(Deco, new Vector3(y - 1, x), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                     o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
-                    
-                    if (Random.Range(0, 4) == 0)
-                    {
-                        Transform o4 = Instantiate(Deco, new Vector3(y - 0.5f, x), Quaternion.identity, transform);
-                        o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
-                    }
-                    
+                                        
                     if (w[i].Contains("BL")  || w[i].Contains("BRL") || w[i].Contains("BRTL") ||w[i].Contains("BTL"))
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y - 1, x + 1), Quaternion.AngleAxis(-90, Vector3.forward), transform);
                         o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
                     }
+                    */
                 }
                 
+                /*
                 if (w[i].Contains('B'))
                 {
                     Transform o = Instantiate(Deco, new Vector3(y, x + 1), Quaternion.AngleAxis(180, Vector3.forward), transform);
                     o.GetComponent<SimpleDeco>().Create(SimpleDecoration[0]);
                 }
+                */
             }
 
             //SpriteRenderer wallSpriteRenderer = wall.GetComponent<SpriteRenderer>();
@@ -281,7 +281,7 @@ public class GenerateWall : MonoBehaviour
         }
     }
 
-    private void Torchwall()
+    private void CornerShadow()
     {
         for (int x = 1; x < _wallPos.GetLength(1) - 1; x++)
         {
@@ -289,9 +289,12 @@ public class GenerateWall : MonoBehaviour
             {
                 if (_wallPos[x, y])
                 {
-                    Transform o4 = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
+                    CreateTorch(new Vector3(y, x), SimpleDecoration[0]);
+
+                    /*
+                     Transform o4 = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
                     o4.GetComponent<SimpleDeco>().Create(SimpleDecoration[4]);
-                        
+                    
                     if (!_wallPos[x, y + 1])
                     {
                         Transform o2 = Instantiate(Deco, new Vector3(y + 1, x), Quaternion.AngleAxis(90, Vector3.forward), transform);
@@ -315,15 +318,19 @@ public class GenerateWall : MonoBehaviour
                             o2.GetComponent<SimpleDeco>().Create(SimpleDecoration[5]);
                         }
                     }
-                    
-                    if (Random.Range(0, 5) == 0)
-                    {
-                        Transform o = Instantiate(Deco, new Vector3(y, x), Quaternion.identity, transform);
-                        o.GetComponent<SimpleDeco>().Create(SimpleDecoration[1]);
-                    }
+                    */
                 }
             }
         }
 
+    }
+
+    private void CreateTorch(Vector3 pos, SimpleDecoration deco)
+    {
+        if (Random.Range(0, 5) == 0)
+        {
+            Transform o4 = Instantiate(Deco, pos, Quaternion.identity, transform);
+            o4.GetComponent<SimpleDeco>().Create(deco);
+        }
     }
 }
