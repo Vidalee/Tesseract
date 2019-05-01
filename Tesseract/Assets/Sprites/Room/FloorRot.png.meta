@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: 07df756bad788744fbcacbc8cce21a29
+guid: 50ce2e6f4d18b1241b2795b8471a8fa3
 TextureImporter:
   fileIDToRecycleName:
-    21300000: WallSheet_0
-    21300002: WallSheet_1
-    21300004: WallSheet_2
-    21300006: WallSheet_3
-    21300008: WallSheet_4
-    21300010: WallSheet_5
-    21300012: WallSheet_6
-    21300014: WallSheet_7
-    21300016: WallSheet_8
-    21300018: WallSheet_9
-    21300020: WallSheet_10
-    21300022: WallSheet_11
-    21300024: WallSheet_12
-    21300026: WallSheet_13
-    21300028: WallSheet_14
-    21300030: WallSheet_15
-    21300032: WallSheet_16
-    21300034: WallSheet_17
-    21300036: WallSheet_18
-    21300038: WallSheet_19
-    21300040: WallSheet_20
+    21300000: FloorRot_0
+    21300002: FloorRot_1
+    21300004: FloorRot_2
+    21300006: FloorRot_3
+    21300008: FloorRot_4
+    21300010: FloorRot_5
+    21300012: FloorRot_6
+    21300014: FloorRot_7
+    21300016: FloorRot_8
+    21300018: FloorRot_9
+    21300020: FloorRot_10
+    21300022: FloorRot_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -127,11 +118,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallSheet_0
+      name: FloorRot_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -141,17 +132,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa96552df3ecd9458c8afad2a6ae6ea
+      spriteID: 91dfb1a917444da409e464825b08b8a1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_1
+      name: FloorRot_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 288
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -161,57 +152,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9949834cb8293040a31e984f6ff3b76
+      spriteID: 154b002ff818bc7479396d95644ec71a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f57db958cf6fa7c4da79e15e7a906152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 640e85d8288195b4fba99fbc7fea7a6d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_4
+      name: FloorRot_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -221,77 +172,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acf6873bab5f2f0418b2b93d0db7b853
+      spriteID: e07b4c33baa14c5499a1c19f805a3ce4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_5
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5acbf08289403e24586e3f57639da543
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb028892acd5a8547a8f03b4c2a07783
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_7
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63d4ccc86f72dfa4e983b77992bf71ff
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_8
+      name: FloorRot_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -301,17 +192,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d5d87198e95d974eb67dc75235d3684
+      spriteID: 13ab6dce629003a418a8b2e5dbd107ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_9
+      name: FloorRot_4
       rect:
         serializedVersion: 2
         x: 32
-        y: 224
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -321,17 +212,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4a0ecba0a08ce54ea4f73d490d5027a
+      spriteID: 890e9aec87dfcc940a5eae6482fa0886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_10
+      name: FloorRot_5
       rect:
         serializedVersion: 2
         x: 64
-        y: 224
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -341,57 +232,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5941323bc89c8054daec1a29ba40226b
+      spriteID: 3a3af27924178bc498d7606e7c5a36eb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c98114725564ed479199926d29c56d3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_12
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87d34c361846d9648917a2c40df5b0f6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_13
+      name: FloorRot_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -401,17 +252,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ab379593ad504048ac3aeb4a66e1f17
+      spriteID: 14fcefbaed7728846a593fcf69527601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_14
+      name: FloorRot_7
       rect:
         serializedVersion: 2
         x: 32
-        y: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -421,17 +272,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 451a3745d42a5cb48b0e80224b13288b
+      spriteID: 9609519e882287345a0aeb607098fe86
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_15
+      name: FloorRot_8
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -441,37 +292,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8532716c8c48794c97fdb7719ca0c71
+      spriteID: 3ee16b6c53e907b418d4d9f6364a7235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_16
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7036762b34cf9b94ca14ac605af57ee3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_17
+      name: FloorRot_9
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -481,17 +312,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54123f520c01081488ecde66e0f5edf2
+      spriteID: 3fb482b395a7aab4f9db9ead69baf202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_18
+      name: FloorRot_10
       rect:
         serializedVersion: 2
         x: 32
-        y: 160
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -501,17 +332,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7897d4a1c4889c842bbf8229eb0546e2
+      spriteID: 386617bd1e0c8ff4abe7c2adcdf13a9f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallSheet_19
+      name: FloorRot_11
       rect:
         serializedVersion: 2
         x: 64
-        y: 160
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -521,27 +352,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bac1d81921a04647879f39832c47355
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallSheet_20
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c22058a5e2a06043a624c6940c9368c
+      spriteID: a067b23705af3bd4fa55a1608a930a33
       vertices: []
       indices: 
       edges: []
@@ -549,7 +360,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c0a4ce36faf84cf439f55d7842926d86
+    spriteID: 7dc03cf82dbbde14f8909e98ad5206d9
     vertices: []
     indices: 
     edges: []

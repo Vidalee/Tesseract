@@ -54,3 +54,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da1673f6a3b9c8c40ac3ccc693b0f4a0, type: 2}
   - {fileID: 11400000, guid: de1158536ef217849845f34ff42ee654, type: 2}
   - {fileID: 11400000, guid: 6adaff902ecc6524b83b4d729eb18bd3, type: 2}
+  WallMap: {fileID: 3279032811082872001, guid: 6d7bb2eae63c83f44a0af6169cd5a7a1, type: 3}
+  PerspMap: {fileID: 245081579857845497, guid: 741dd1fcecd04a247b1fc46e7d8d874c, type: 3}

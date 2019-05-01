@@ -30,8 +30,12 @@ public class MapGridCreation : MonoBehaviour
     public Transform wallTexture;
     public Transform room;
     public Transform playerManager;
+    
     public Tilemap FloorMap;
-
+    public Tilemap PerspMap;
+    public Tilemap ColMap;
+    public Tilemap ShadMap;
+    
     [SerializeField] protected MapTextureData MapTextureData;
 
     private List<RoomData> _roomData;
@@ -40,11 +44,8 @@ public class MapGridCreation : MonoBehaviour
     private bool[,] _grid;
     private bool[,] _instances;
     
-    //Initiate value
     private void Awake()
     {
-        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -100;
-        
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _instances = new bool[MapHeight, MapWidth];
@@ -357,6 +358,8 @@ public class MapGridCreation : MonoBehaviour
     //Instantiate floor with the bool grid
     private void CreateFloor()
     {
+        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+
         int len = MapTextureData.Floor.Length;
         for (int i = 0; i < _grid.GetLength(0); i++)
         {
@@ -366,7 +369,6 @@ public class MapGridCreation : MonoBehaviour
                 {
                     Tile tile = ScriptableObject.CreateInstance<Tile>();
                     tile.sprite = MapTextureData.Floor[Random.Range(0, len)];
-                    
                     FloorMap.SetTile(new Vector3Int(j, i, 0), tile);
                 }
             }
@@ -395,7 +397,7 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        script.Create(_grid);
+        script.Create(_grid, FloorMap, PerspMap, ColMap, ShadMap);
     }
 
     //Debug show graph before mst
