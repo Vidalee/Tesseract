@@ -15,7 +15,7 @@ public class level : MonoBehaviour
     
     void Start()
     { 
-        playerData = Playermanager.GetComponent<PlayerManager>().GetPlayerData;
+        playerData = Playermanager.GetComponent<PlayerManager>().PlayerData;
     }
     
     void Update()

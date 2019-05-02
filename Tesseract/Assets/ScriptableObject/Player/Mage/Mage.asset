@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Name: Mage
   _MaxHp: 100
-  _Hp: 90
+  _Hp: 100
   _MaxMana: 100
   _Mana: 100
-  _ManaRegen: 0
+  _ManaRegen: 5
   _PhysicsDamage: 20
   _MagicDamage: 100
   _MoveSpeed: 4
@@ -25,7 +25,7 @@ MonoBehaviour:
   _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
-  _Lvl: 3
+  _Lvl: 1
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
