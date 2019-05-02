@@ -10,6 +10,10 @@ TagManager:
   - Obstacle
   - DoorTop
   - DoorBottom
+  - ObstaclesDestroy
+  - Portal
+  - PlayerFeet
+  - Perspective
   layers:
   - Default
   - TransparentFX
@@ -23,7 +27,7 @@ TagManager:
   - Player
   - Item
   - Entity
-  - 
+  - Minimap
   - 
   - 
   - 

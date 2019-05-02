@@ -2,12 +2,13 @@
 
 public class EnemiesLive : MonoBehaviour
 {
-    [SerializeField] protected int live;
+    [SerializeField] protected EnemyData Enemy;
+    public GameEvent SendPlayerXp;
 
     public void GetDamaged(int damage)
     {
-        live -= damage;
-        if (live <= 0)
+        Enemy.Hp -= damage;
+        if (Enemy.Hp <= 0)
         {
             Death();
         }
@@ -16,5 +17,11 @@ public class EnemiesLive : MonoBehaviour
     public void Death()
     {
         Destroy(gameObject);
+        SendPlayerXp.Raise(new EventArgsInt(Enemy.XpValue));
+    }
+
+    public void Create(EnemyData enemy)
+    {
+        Enemy = enemy;
     }
 }

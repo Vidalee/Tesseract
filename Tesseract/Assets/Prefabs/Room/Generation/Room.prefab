@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3862694622386907581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3862694622386907583}
+  - component: {fileID: 3862694622386907580}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3862694622386907583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862694622386907581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3862694622386907580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3862694622386907581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577ffbd6920987e42b2c1e1bb170d52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wall: {fileID: 5174777262050269427, guid: 452ee0b59cd22a944ab314c47e1346e3, type: 3}
+  SimpleDeco: {fileID: 1177790884011656289, guid: 456fc5cb7c244ff49a755625a05b1a81,
+    type: 3}
+  Chest: {fileID: 1864003398, guid: 4a125ff5547fc0045ab3323adc5033b8, type: 3}
+  Portal: {fileID: 7732069477856648191, guid: 4fd5aa2211306814aab349943a796fe3, type: 3}
+  Pikes: {fileID: 3172297101696362767, guid: 85f97980b92ab764e9740a5ddf363bd8, type: 3}
+  ChestDatas:
+  - {fileID: 11400000, guid: f98dac3224d1c714fbda36cae487dada, type: 2}
+  GamesItems:
+  - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
+  - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  - {fileID: 11400000, guid: 76a599d7286b3fc469ba3c33e7faa8fc, type: 2}
+  - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
+  - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
+  PikesDatas:
+  - {fileID: 11400000, guid: e1b6d2a9be59181409be6efd0d07b130, type: 2}
+  PortalDatas:
+  - {fileID: 11400000, guid: 8d4c9fe65672afa46b0c673a6554b866, type: 2}
+  SimpleDecoration:
+  - {fileID: 11400000, guid: a2a008cfdbad3fd4f8ccc15da96274c8, type: 2}
+  - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}
+  - {fileID: 11400000, guid: 7fa6e75eb046d104da2bde5a9c393c39, type: 2}
+  ChestChance: 0
+  PikeProb: 4

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Script.GlobalsScript;
+using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class MapGridCreation : MonoBehaviour
 {
+    public GameEvent PlayerSpawn;
     public int MapHeight;
     public int MapWidth;
     public int RoomNumber;
@@ -17,44 +20,92 @@ public class MapGridCreation : MonoBehaviour
     public int minH;
     public int maxW;
     public int minW;
+    public int forcePath;
+    public int prob;
+    public int portalChance;
 
-    public Transform floor;
-    public Transform wall;
+    public int simpleDecoration;
+    public int seed;
 
-    [SerializeField] protected KruskalAlgo KruskalAlgo;
+    public Transform wallTexture;
+    public Transform room;
+    public Transform playerManager;
+    
+    public Tilemap FloorMap;
+    public Tilemap PerspMap;
+    public Tilemap WallMap;
+    public Tilemap ShadWMap;
+    public Tilemap[] ShadSMap;
+    public Tilemap[] ShadCornMap;
+    
+    
+    [SerializeField] protected MapTextureData MapTextureData;
 
     private List<RoomData> _roomData;
-    private bool[,] _grid;
+    private List<Transform> _rooms;
 
-    private void Start()
+    private bool[,] _grid;
+    private bool[,] _instances;
+    
+    private void Awake()
     {
+        Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
+        _instances = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();
+        _rooms = new List<Transform>();
+        AllNodes.Grid = _grid;
+        AllNodes.Height = MapHeight - 1;
+        AllNodes.Width = MapWidth - 1;
         CreateGrid();
+        ConstructCorridor();
+        
+        RoomInstanceWall();
+
+        FillGap();
+        CreateFloor();
+        CreateWall();
+
+        RoomInstanceDeco();
+        AddChest();
+        AddPikes();
+        
+        AddPortal();
+        AddPlayer();
+
+        GenerateEnemies.RoomData = _roomData;
+        GenerateEnemies.availablePosGrid = _grid;
     }
 
-    public void CreateGrid()
+    public bool[,] Instances => _instances;
+    
+    //Create grid and room in it
+    private void CreateGrid()
     {
         int index = 0;
         for (int i = 0; i < RoomNumber; i++)
         {
-            if (maxTry <= 0) return;
+            if (maxTry <= 0) break;
 
             int height = Random.Range(minH, maxH);
             int width = Random.Range(minW, maxW);
 
-            int x1 = Random.Range(width, MapWidth) - width;
+            int x1 = Random.Range(width + 2, MapWidth - 2) - width;
             int x2 = x1 + width;
 
-            int y1 = Random.Range(height, MapHeight) - height;
+            int y1 = Random.Range(height + 2, MapHeight - 2) - height;
             int y2 = y1 + height;
 
-            if (CheckCollision(x1 - 1, x2 + 1, y1 - 1, y2 + 1) || fusion > 0)
+            if (CheckCollision(x1 - 1, x2 + 1, y1 - 2, y2 + 2) || fusion > 0)
             {
                 AddToGrid(x1, y1, x2, y2);
+                
                 RoomData newRoom = ScriptableObject.CreateInstance<RoomData>();
                 newRoom.Create(x1, y1, x2, y2, height, width, index);
+                
                 _roomData.Add(newRoom);
+                _rooms.Add(CreateRoom(x1, y1, newRoom));
+                
                 index++;
             }
             else
@@ -62,13 +113,10 @@ public class MapGridCreation : MonoBehaviour
                 i--;
             }
         }
-        
-        Show();
-        ShowStuff();
-
     }
 
-    public void AddToGrid(int x1, int y1, int x2, int y2)
+    //Add true to the grid (set a room)
+    private void AddToGrid(int x1, int y1, int x2, int y2)
     {
         for (int i = y1; i < y2; i++)
         {
@@ -79,7 +127,21 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    public bool CheckCollision(int x1, int x2, int y1, int y2)
+    //Add false/true on one pos (from room)
+    public void AddToGrid(int x, int y, bool state)
+    {
+        _grid[x, y] = state;
+        _instances[x, y] = true;
+    }
+
+    public void AddToInstance(int x, int y, bool state, bool col)
+    {
+        _instances[x, y] = state;
+        _grid[x, y] = col;
+    }
+
+    //Collision between room
+    private bool CheckCollision(int x1, int x2, int y1, int y2)
     {
         foreach (var r in _roomData)
         {
@@ -93,8 +155,99 @@ public class MapGridCreation : MonoBehaviour
 
         return true;
     }
+    
+    //Create room
+    private Transform CreateRoom(int x, int y, RoomData roomData)
+    {
+        Transform o = Instantiate(room, new Vector3(x, y), Quaternion.identity, transform);
+        o.GetComponent<RoomInstance>().Create(roomData, prob);
+        return o;
+    }
+    
+    //Call instance in room
+    private void RoomInstanceWall()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.BigWall();
+        }
+    }
+    
+    //Call instance deco in room
+    private void RoomInstanceDeco()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddSimpleDecoration(Random.Range(0, simpleDecoration));
+        }
+    }
+    
+    //Call chest in room
+    private void AddChest()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddChest();
+        }
+    }
 
-    public void BuildRoad(int[] pos1, int[] pos2)
+    //Call portal in room
+    private void AddPortal()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            if (Random.Range(0, portalChance + 1) == 0)
+            {
+                RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+                Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
+                
+                if(pos == Vector3.zero) continue;
+                
+                script.AddPortal(pos);
+            }
+        }
+    }
+    
+    //Call pikes in room
+    private void AddPikes()
+    {
+        for (int i = 0; i < _rooms.Count; i++)
+        {
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            script.AddPikes();
+        }   
+    }
+    
+    //Add player
+
+    private void AddPlayer()
+    {
+        int j = 0;
+        while (j < 100)
+        {
+            int i = Random.Range(0, _roomData.Count);
+            RoomData room = _roomData[i];
+            
+            int x = room.X1 + Random.Range(1, room.Width - 2);
+            int y = room.Y1 + Random.Range(1, room.Height - 2);
+        
+            if (!Instances[y, x] && _grid[y, x])
+            {
+                playerManager.GetComponent<PlayerManager>().InstantiatePlayer(new EventArgsCoor(x, y));
+                AddToInstance(y, x, true, true);
+                return;
+            }
+
+            j++;
+            Debug.Log("Nop");
+        }
+    }
+    
+    //Build road between 2 position
+    private void BuildRoad(int[] pos1, int[] pos2)
     {
 
         int x1 = pos1[0];
@@ -102,9 +255,6 @@ public class MapGridCreation : MonoBehaviour
 
         int y1 = pos1[1];
         int y2 = pos2[1];
-
-        Instantiate(wall, new Vector3(x1, y1), Quaternion.identity);
-        Instantiate(wall, new Vector3(x2, y2), Quaternion.identity);
 
         if (Random.Range(0, 2) == 0)
         {
@@ -118,7 +268,8 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    public void BuildLineX(int x1, int x2, int y)
+    //Build X line
+    private void BuildLineX(int x1, int x2, int y)
     {
         if (x1 > x2)
         {
@@ -133,7 +284,8 @@ public class MapGridCreation : MonoBehaviour
         }
     }
 
-    public void BuildLineY(int y1, int y2, int x)
+    //Build Y line
+    private void BuildLineY(int y1, int y2, int x)
     {
         if (y1 > y2)
         {
@@ -145,10 +297,12 @@ public class MapGridCreation : MonoBehaviour
         for (int i = y1; i <= y2; i++)
         {
             _grid[i, x] = true;
+            _grid[i, x + 1] = true;
         }
     }
 
-    public IHeapNode[] CreateEdge()
+    //Create link between close room for the MST algo
+    private List<IHeapNode> CreateEdge()
     {
         HashSet<RoomData> visited = new HashSet<RoomData>();
         int vertices = _roomData.Count;
@@ -178,21 +332,80 @@ public class MapGridCreation : MonoBehaviour
             }
         }
 
-        return edges.ToArray();
+        return edges;
     }
-
-    public Edge[] LinkRoom()
+    
+    //Create road from list of edge
+    private void ConstructCorridor()
     {
-        IHeapNode[] edges = CreateEdge();
+        List<IHeapNode> edges = CreateEdge();
         
         //ShowGraph(edges);
         
         Graph graph = KruskalAlgo.CreateGraph(_roomData.Count, edges);
         Edge[] road = KruskalAlgo.Kruskal(graph);
-        return road;
+
+        foreach (var e in road)
+        {
+            //ShowMst(e);
+            BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center); 
+        }
+
+        int size = _roomData.Count;
+        for (int i = 0; i < forcePath; i++)
+        {
+            BuildRoad(_roomData[Random.Range(0, size)].Center, _roomData[Random.Range(0, size)].Center);
+        }
     }
 
-    public void ShowGraph(IHeapNode[] edges)
+    //Instantiate floor with the bool grid
+    private void CreateFloor()
+    {
+        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+
+        int len = MapTextureData.Floor.Length;
+        for (int i = 0; i < _grid.GetLength(0); i++)
+        {
+            for (int j = 0; j < _grid.GetLength(1); j++)
+            {
+                if (_grid[i, j])
+                {
+                    Tile tile = ScriptableObject.CreateInstance<Tile>();
+                    tile.sprite = MapTextureData.Floor[Random.Range(0, len)];
+                    FloorMap.SetTile(new Vector3Int(j, i, 0), tile);
+                }
+            }
+        }
+    }
+
+    //Fill gap for legit wall
+    private void FillGap()
+    {
+        for (int i = 1; i < _grid.GetLength(0) - 1; i++)
+        {
+            for (int j = 1; j < _grid.GetLength(1) - 1; j++)
+            {
+                if (_grid[i, j]) continue;
+
+                if (_grid[i + 1, j] && _grid[i - 1, j]) _grid[i, j] = true;
+                if (_grid[i + 1, j - 1] && _grid[i - 1, j - 1]) _grid[i, j - 1] = true;
+                if (_grid[i + 1, j + 1] && _grid[i - 1, j + 1]) _grid[i, j + 1] = true;
+            }
+        }
+    }
+
+    //Call the wall texture sprite and give the grid
+    private void CreateWall()
+    {
+        Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
+        GenerateWall script = o.GetComponent<GenerateWall>();
+        
+        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
+    }
+
+    //Debug show graph before mst
+    private void ShowGraph(List<IHeapNode> edges)
     {
         foreach (var e in edges)
         {
@@ -202,38 +415,13 @@ public class MapGridCreation : MonoBehaviour
             Vector3 s = new Vector3(p1[0], p1[1]);
             Vector3 en = new Vector3(p2[0], p2[1]);
             Vector3 dir = (en - s);
-            
+
             Debug.DrawRay(s, dir, Color.red, 1000f, false);
         }
     }
-
-    public void ShowStuff()
-    {
-        for (int i = 0; i < _grid.GetLength(0); i++)
-        {
-            for (int j = 0; j < _grid.GetLength(1); j++)
-            {
-                if (_grid[i, j]) Instantiate(floor, new Vector3(j, i), Quaternion.identity);
-            }
-        }
-
-        Debug.Log("Done");
-    }
-
-    public void Show()
-    {
-        Edge[] edges = LinkRoom();
-
-        foreach (var e in edges)
-        {
-            Debug.Log(e.Source + "->" + e.Destination + " : " + Mathf.Sqrt(e.Weight));
-            
-            BuildRoad(_roomData[e.Source].Center, _roomData[e.Destination].Center);
-            
-        }
-    }
-
-    public void ShowMST(Edge e)
+    
+    //Debug show graph after mst
+    private void ShowMst(Edge e)
     {
         int[] p1 = _roomData[e.Source].Center;
         int[] p2 = _roomData[e.Destination].Center;

@@ -5,70 +5,93 @@ using UnityEngine;
 namespace Script.Pathfinding
 {
       public class Pathfinding : MonoBehaviour
-      {                  
-            public GameObject Enemy;
-            public static Node start;
+      {
+            private static Node start;
             public Node destination;
-            public static List<Node> Path = new List<Node>();
-                    
-            public void reconstructPath()
+            [SerializeField] protected EnemyData Enemy;
+
+            public void ReconstructPath()
             {
-                  Path.Clear();
-                  Path.Add(destination);
-                  while (Path[0].Parent != start)
+                  Enemy.Path.Clear();
+                  Enemy.Path.Add(destination);
+                  while (Enemy.Path[0].Parent != start)
                   {
-                        if (Path[0].Parent == null) return; 
-                        Path.Insert(0, Path[0].Parent);
+                        if (Enemy.Path[0].Parent == null) return; 
+                        Enemy.Path.Insert(0, Enemy.Path[0].Parent);
                   }
             }
             
             public void AStar()
             {
-                  foreach (Node node in AllNodes.nodes)
+                  //Debug.Log("Start");
+                  if (start == null || destination == null)
                   {
-                        node.DistanceToEnemy = float.MaxValue;
-                        node.DistanceToPlayer = float.MaxValue;
+                        //Debug.Log("Null");
+                        return;
+                  }   
+                  foreach (Node node in AllNodes.NodesGrid)
+                  {
+                        if (node != null)
+                        {
+                              node.DistanceToEnemy = float.MaxValue;
+                              node.DistanceToPlayer = float.MaxValue;
+                        }
                   }
                   start.DistanceToEnemy = 0;
                   start.DistanceToPlayer = Math.Abs((destination.position - start.position).magnitude);
-                  SortedList<Node> openList = new SortedList<Node>();
-                  openList.Put(start);
-                  HashSet<Node> VisitedNodes = new HashSet<Node>();
-                  while (!openList.IsEmpty())
+
+                  int lastIndex = 1;
+                  List<IHeapNode> openList = new List<IHeapNode>();
+                  BinaryHeap.MinPush(openList, start);
+                   
+                  while (lastIndex != 0)
                   {
-                        Node node = openList.Take();
+                        Node node = (Node) BinaryHeap.MinPop(openList);
+                        lastIndex--;
+                        
                         if (node == destination)
                         {
-                              reconstructPath();
+                              ReconstructPath();
+                              //Debug.Log("Found it");
                               return;
                         }
                         foreach (Node neighbor in node.Neighbors)
                         {
                               float newDistance = node.DistanceToEnemy + Math.Abs((node.position - neighbor.position).magnitude);
                               if (neighbor.DistanceToEnemy <= newDistance) continue;
-                              if (VisitedNodes.Remove(neighbor))
-                              {
-                                    neighbor.Heuristic =  Math.Abs((destination.position - node.position).magnitude);
-                              }
                               neighbor.DistanceToEnemy = newDistance;
-                              neighbor.DistanceToPlayer = newDistance + neighbor.Heuristic;
+                              neighbor.DistanceToPlayer = newDistance + Math.Abs((destination.position - node.position).magnitude);
                               neighbor.Parent = node;
-                              openList.Put(neighbor);
+                              BinaryHeap.MinPush(openList, neighbor);
+                              lastIndex++;
                         }
-                        VisitedNodes.Add(node);
                   }
-                  throw new Exception("AStar pas de chemin");
+                  //Debug.Log("No path");
             }
 
-            private void Update()
+            
+            public void FindPathToPlayer(Transform player)
             {
-                  if (AllNodes.PlayerPositionChanged)
+                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
+                  if (playerData.PositionChanged)
                   {
-                        AllNodes.PlayerPositionChanged = false;
-                        start = AllNodes.FindNode(Enemy.transform.position);
-                        destination = AllNodes.PlayerNode;
+                        start = AllNodes.PositionToNode(transform.position);
+                        destination = playerData.Node;
                         AStar();
                   }
+            }
+            
+            
+            public void FindPathToPos(Vector3 position)
+            {
+                  start = AllNodes.PositionToNode(transform.position);
+                  destination = AllNodes.PositionToNode(position);
+                  AStar();    
+            }
+
+            public void Create(EnemyData enemy)
+            {
+                  Enemy = enemy;
             }
       }
 }

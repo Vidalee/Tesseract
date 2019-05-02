@@ -1,35 +1,42 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FeetCollision : MonoBehaviour
-{
+{    
+    #region Variable
+
     private SpriteRenderer spriteRenderer;
+
+    #endregion
+
+    #region Initialise
 
     private void Awake()
     {
-        spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
+        spriteRenderer = transform.parent.GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    #endregion
+
+    #region Collision
+
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.transform.CompareTag("DoorTop"))
+        if (other.CompareTag("Perspective"))
         {
             SpriteRenderer otherSpriteRenderer = other.transform.parent.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = otherSpriteRenderer.sortingOrder - 1;
         }
-        
-        if (other.transform.CompareTag("DoorBottom"))
+    }
+
+    private IEnumerator OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Perspective"))
         {
-            Debug.Log("bot");
-            SpriteRenderer otherSpriteRenderer = other.transform.parent.GetComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = otherSpriteRenderer.sortingOrder + 1;
+            yield return new WaitForSeconds(0.5f);
+            if((other.transform.position - transform.position).magnitude > 0.7f) spriteRenderer.sortingOrder = 100;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.transform.CompareTag("DoorTop") || other.transform.CompareTag("DoorBottom"))
-        {
-            spriteRenderer.sortingOrder = 100;
-        }
-    }
+    #endregion
 }

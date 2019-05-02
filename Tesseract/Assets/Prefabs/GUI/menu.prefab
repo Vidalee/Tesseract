@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 404792824}
   - component: {fileID: 404792823}
   m_Layer: 5
-  m_Name: Canvas 1
+  m_Name: menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +516,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 37.724377
+  field of view: 37.72438
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

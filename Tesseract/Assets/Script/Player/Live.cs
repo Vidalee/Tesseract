@@ -1,25 +1,62 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Live : MonoBehaviour
 {
+    #region Variable
 
-    [SerializeField] protected PlayerData PlayerData;
+    public PlayerData _playerData;
+    public GameEvent PlayerLive;
 
-    public void Damage(int damage)
+    #endregion
+
+    #region Initialise
+
+    public void Create(PlayerData playerData)
     {
-        PlayerData.Hp -= damage;
-        Death();
+        _playerData = playerData;
+
+        StartCoroutine(ManaRegen());
     }
 
-    public void Death()
+    #endregion
+
+    #region Damage
+
+    public void Damage(IEventArgs args)
     {
-        if (PlayerData.Hp <= 0)
+        int damage = ((EventArgsInt) args).X;
+        
+        _playerData.Hp -= damage;
+        PlayerLive.Raise(new EventArgsInt(_playerData.Hp));
+        Death();
+    }
+    
+    public void Damage(int x)
+    {
+        //Anti Merge conflict rofl
+    }
+    
+    private void Death()
+    {
+        if (_playerData.Hp <= 0)
         {
             Destroy(gameObject);
             GameObject map = GameObject.Find("Map");
             Destroy(map);
         }
     }
+
+    private IEnumerator ManaRegen()
+    {
+        while (_playerData.Hp > 0)
+        {
+            if (_playerData.Mana + _playerData.ManaRegen > _playerData.MaxMana) _playerData.Mana = _playerData.MaxMana;
+            else _playerData.Mana += _playerData.ManaRegen;
+            
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    #endregion
 }
