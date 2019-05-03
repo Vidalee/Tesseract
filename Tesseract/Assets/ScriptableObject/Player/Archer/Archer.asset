@@ -29,10 +29,26 @@ MonoBehaviour:
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
-  _Move: []
-  _Idle: []
-  _Attack: []
-  _Dash: []
+  _Move:
+  - {fileID: 7400000, guid: 60d81811282b11f4497398d68207fe08, type: 2}
+  - {fileID: 7400000, guid: 9dff62cee0ffa514c8951f70d06e38f1, type: 2}
+  - {fileID: 7400000, guid: 363b2d8de0bd6454fbb2d57523a1e43b, type: 2}
+  - {fileID: 7400000, guid: 3cc374dcc4091d54b88ccbf08d9c3d23, type: 2}
+  _Idle:
+  - {fileID: 7400000, guid: 0466c7087ee4d4140b62d22d25dd46c9, type: 2}
+  - {fileID: 7400000, guid: dece37273e7572d46b413f816aac4fdd, type: 2}
+  - {fileID: 7400000, guid: d86c364288aa85d418139b1c4af8fe93, type: 2}
+  - {fileID: 7400000, guid: a10da31ce91e040438845213ec9c7703, type: 2}
+  _Attack:
+  - {fileID: 7400000, guid: fd6fe4b947816ec4289f6e100a4e98ef, type: 2}
+  - {fileID: 7400000, guid: 32c264e1492f41341a6e935281430632, type: 2}
+  - {fileID: 7400000, guid: b13abf18b37a22a458bfa881b585af22, type: 2}
+  - {fileID: 7400000, guid: bd4f2f0149a896843a05cd9c8e5b3346, type: 2}
+  _Dash:
+  - {fileID: 7400000, guid: 0f48c20aa510cc247b09d7dcfcf640de, type: 2}
+  - {fileID: 7400000, guid: c7234678ca1e28d48adfe65ad3b3ce52, type: 2}
+  - {fileID: 7400000, guid: e611919aafa16784fb1241c3d196d54a, type: 2}
+  - {fileID: 7400000, guid: 5dc5852e42d4bac48a2b2e3904c06def, type: 2}
   _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
   _Competences:
   - {fileID: 11400000, guid: cad668a5bd52a1241ad850cd3b0941fe, type: 2}

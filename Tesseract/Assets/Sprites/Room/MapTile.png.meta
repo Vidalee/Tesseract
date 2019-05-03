@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 63c8c8bae7d2cee4999794990051ecf6
+guid: a17a472c3215c8f4ea19d9eb99974a55
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TileMapCol_0
+    21300000: MapTile_0
+    21300002: MapTile_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -46,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileMapCol_0
+      name: MapTile_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 480
-        width: 32
-        height: 32
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,7 +122,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ba84b1799fb8974cab484afd0a3b0c5
+      spriteID: 74e0031280935424f82b8f9ffee4a706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MapTile_1
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c83d8c424d3d1cd469bf76d78807fe1a
       vertices: []
       indices: 
       edges: []
@@ -129,7 +150,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 04b7d0aaac040894ab5aa4b68e165ed1
+    spriteID: a1cc70d245fc21342b955821dd4afa92
     vertices: []
     indices: 
     edges: []
