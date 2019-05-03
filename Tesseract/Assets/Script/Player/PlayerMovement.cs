@@ -79,8 +79,14 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit2D yLeftLinecast = Physics2D.Linecast(playerPos + playerWidth, playerPos + playerWidth + new Vector3(0, yDir), BlockingLayer);
         RaycastHit2D yRightLinecast = Physics2D.Linecast(playerPos - playerWidth, playerPos - playerWidth + new Vector3(0, yDir), BlockingLayer);
-        
-        if (xLinecastDown)
+
+        if (xLinecastDown && xLinecastUp)
+        {
+            direction.x *= xLinecastDown.distance < xLinecastUp.distance
+                ? xLinecastDown.distance
+                : xLinecastUp.distance;
+        }
+        else if (xLinecastDown)
         {
              direction.x *= xLinecastDown.distance - 0.01f;
         }
@@ -89,6 +95,12 @@ public class PlayerMovement : MonoBehaviour
             direction.x *= xLinecastUp.distance - 0.01f;
         }
 
+        if (yLeftLinecast && yRightLinecast)
+        {
+            direction.y *= yLeftLinecast.distance < yRightLinecast.distance
+                ? yLeftLinecast.distance
+                : yRightLinecast.distance;
+        }
         if (yLeftLinecast)
         {
             direction.y *= yLeftLinecast.distance - 0.01f;

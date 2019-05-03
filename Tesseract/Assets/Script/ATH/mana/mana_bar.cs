@@ -13,7 +13,7 @@ public class mana_bar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerData = Playermanager.GetComponent<PlayerManager>().GetPlayerData;
+        PlayerData = Playermanager.GetComponent<PlayerManager>().PlayerData;
     }
 
     // Update is called once per frame

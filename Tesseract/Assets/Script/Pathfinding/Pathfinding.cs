@@ -72,7 +72,7 @@ namespace Script.Pathfinding
             
             public void FindPathToPlayer(Transform player)
             {
-                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
+                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().PlayerData;
                   if (playerData.PositionChanged)
                   {
                         start = AllNodes.PositionToNode(transform.position);

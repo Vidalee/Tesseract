@@ -1,5 +1,6 @@
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -16,12 +17,11 @@ public class PlayerManager : MonoBehaviour
     private PlayerData _playerData;
 
     private MapData _mapData;
-
-    public PlayerData PlayerData => _playerData;
+    private TileData _miniMap;
 
     #endregion
 
-    public PlayerData GetPlayerData => PlayerData;
+    public PlayerData PlayerData => _playerData;
 
     #region Update
 
@@ -40,7 +40,6 @@ public class PlayerManager : MonoBehaviour
     {        
         _playerData = _PlayersData[FindClass()];
         ResetStat(FindClass());
-        //InstantiatePlayer(new EventArgsCoor(10, 10));
     }
 
     public void Create(PlayerData playerData)

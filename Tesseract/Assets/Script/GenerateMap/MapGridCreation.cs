@@ -29,12 +29,12 @@ public class MapGridCreation : MonoBehaviour
 
     public Transform wallTexture;
     public Transform room;
-    public Transform playerManager;
     
     public Tilemap FloorMap;
     public Tilemap PerspMap;
     public Tilemap WallMap;
     public Tilemap ShadWMap;
+    public Tilemap MiniMap;
     public Tilemap[] ShadSMap;
     public Tilemap[] ShadCornMap;
     
@@ -222,27 +222,25 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Add player
-
     private void AddPlayer()
     {
         int j = 0;
         while (j < 100)
         {
             int i = Random.Range(0, _roomData.Count);
-            RoomData room = _roomData[i];
+            RoomData roomData = _roomData[i];
             
-            int x = room.X1 + Random.Range(1, room.Width - 2);
-            int y = room.Y1 + Random.Range(1, room.Height - 2);
+            int x = roomData.X1 + Random.Range(1, roomData.Width - 2);
+            int y = roomData.Y1 + Random.Range(1, roomData.Height - 2);
         
             if (!Instances[y, x] && _grid[y, x])
             {
-                playerManager.GetComponent<PlayerManager>().InstantiatePlayer(new EventArgsCoor(x, y));
+                PlayerSpawn.Raise(new EventArgsCoor(x, y));
                 AddToInstance(y, x, true, true);
                 return;
             }
 
             j++;
-            Debug.Log("Nop");
         }
     }
     
@@ -362,6 +360,8 @@ public class MapGridCreation : MonoBehaviour
     private void CreateFloor()
     {
         FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        
+        Tile tile = ScriptableObject.CreateInstance<Tile>();
 
         int len = MapTextureData.Floor.Length;
         for (int i = 0; i < _grid.GetLength(0); i++)
@@ -370,9 +370,10 @@ public class MapGridCreation : MonoBehaviour
             {
                 if (_grid[i, j])
                 {
-                    Tile tile = ScriptableObject.CreateInstance<Tile>();
                     tile.sprite = MapTextureData.Floor[Random.Range(0, len)];
                     FloorMap.SetTile(new Vector3Int(j, i, 0), tile);
+                    tile.sprite = MapTextureData.MiniMap[0];
+                    MiniMap.SetTile(new Vector3Int(j, i, 0), tile);
                 }
             }
         }
@@ -401,7 +402,7 @@ public class MapGridCreation : MonoBehaviour
         GenerateWall script = o.GetComponent<GenerateWall>();
         
         WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
-        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
+        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap, MiniMap);
     }
 
     //Debug show graph before mst
