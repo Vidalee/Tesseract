@@ -5,8 +5,10 @@ public class PlayerMovement : MonoBehaviour
     #region MyRegion
 
     public PlayerData _playerData;
-    [SerializeField] protected LayerMask BlockingLayer;
-    [SerializeField] protected GameEvent PlayerMoveEvent;
+    public LayerMask BlockingLayer;
+    public GameEvent PlayerMoveEvent;
+    public GameEvent PlayerPos;
+    
 
     #endregion
 
@@ -40,10 +42,13 @@ public class PlayerMovement : MonoBehaviour
         
         int xDir = (int) Input.GetAxisRaw("Horizontal");
         int yDir = (int) Input.GetAxisRaw("Vertical");
-        
+
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
 
         if (xDir == 0 && yDir == 0) return;
+        
+        Vector3 position = transform.position;
+        PlayerPos.Raise(new EventArgsCoor((int) position.x, (int) position.y));
 
         Vector3 distance = GetDistance(xDir, yDir);
 

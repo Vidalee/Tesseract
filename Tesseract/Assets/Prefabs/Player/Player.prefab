@@ -159,6 +159,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PlayerMoveEvent: {fileID: 11400000, guid: 8b07c3cfc8dea9342b456e5bea798cb6, type: 2}
+  PlayerPos: {fileID: 11400000, guid: 82c63267bbe63e5499d1e286fc72f958, type: 2}
 --- !u!114 &4606261879900217898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +503,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
     - target: {fileID: 9094924654389468839, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -557,16 +568,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
 --- !u!4 &4606261878664261781 stripped
@@ -582,6 +583,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
+    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerAnimation
+      objectReference: {fileID: 0}
     - target: {fileID: 5037516936518131200, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -636,11 +642,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 8443675173538344433, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
