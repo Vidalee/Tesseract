@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class UDPEvent : ScriptableObject
+class UDPEvent
 {
     private static List<UDPEventListener> _eventListeners = new List<UDPEventListener>();
 
@@ -16,8 +16,6 @@ class UDPEvent : ScriptableObject
             _eventListeners[i].OnReceive(text);
         }
     }
-
-    
 
     public static void Register(UDPEventListener listener)
     {

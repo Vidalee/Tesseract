@@ -20,12 +20,11 @@ public class GenerateWall : MonoBehaviour
     private Tilemap _shadWMap;
     private Tilemap[] _shadCMap;
     private Tilemap[] _shadSMap;
-    private Tilemap _miniMap;
     private Tile _tile;
     
     
     public void Create(bool[,] grid, Tilemap wallMap, Tilemap perspMap, Tilemap colMap, Tilemap shadMap,
-        Tilemap[] shadSMap, Tilemap[] shadCMap, Tilemap miniMap)
+        Tilemap[] shadSMap, Tilemap[] shadCMap)
     {
         _wallTextureLength = MapTextureData.Wall.Length;
         _grid = grid;
@@ -37,10 +36,9 @@ public class GenerateWall : MonoBehaviour
         _shadWMap = shadMap;
         _shadCMap = shadCMap;
         _shadSMap = shadSMap;
-        _miniMap = miniMap;
         
         _tile = ScriptableObject.CreateInstance<Tile>();
-        
+                
         InstantiateSimpleWall();
         ChooseWall();
         CornerShadow();
@@ -216,9 +214,6 @@ public class GenerateWall : MonoBehaviour
         for (int i = 0; i < w.Length; i++)
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
-            
-            _tile.sprite = MapTextureData.MiniMap[1];
-            _miniMap.SetTile(new Vector3Int(y, x, 0), _tile);
             
             _tile.sprite =  FindRotationObject(w[i]);
 

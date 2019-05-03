@@ -57,6 +57,9 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
+        
+        GetComponentInChildren<MiniMapFog>().Create(MiniMap, _grid, MapTextureData);
+
         CreateGrid();
         ConstructCorridor();
         
@@ -372,8 +375,6 @@ public class MapGridCreation : MonoBehaviour
                 {
                     tile.sprite = MapTextureData.Floor[Random.Range(0, len)];
                     FloorMap.SetTile(new Vector3Int(j, i, 0), tile);
-                    tile.sprite = MapTextureData.MiniMap[0];
-                    MiniMap.SetTile(new Vector3Int(j, i, 0), tile);
                 }
             }
         }
@@ -402,7 +403,7 @@ public class MapGridCreation : MonoBehaviour
         GenerateWall script = o.GetComponent<GenerateWall>();
         
         WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
-        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap, MiniMap);
+        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 
     //Debug show graph before mst
