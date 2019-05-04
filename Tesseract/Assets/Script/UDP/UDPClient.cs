@@ -43,7 +43,7 @@ public class UDPClient : MonoBehaviour, UDPEventListener
 
     public void Login()
     {
-        _socket.Send("CONNECT " + nameInputfield.text + " " + sha256(passwordInputfield.text));
+        _socket.Send("CONNECT " + nameInputfield.text + " " + passwordInputfield.text);
     }
 
     // Update is called once per frame
