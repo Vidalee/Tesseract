@@ -2003,7 +2003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc01d04ce901ef42901125c394c8d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawn: {fileID: 11400000, guid: 688fcaecfedd57442967e71d6b79bc38, type: 2}
+  Player: {fileID: 4236175760814717961, guid: 500983a92f18e1e4e9612b4b727d1f9b, type: 3}
   MapHeight: 100
   MapWidth: 100
   RoomNumber: 20

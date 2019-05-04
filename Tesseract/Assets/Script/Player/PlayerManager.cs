@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public GamesItem[] Items;
     
-    public string choice;
+    public string Perso;
         
     public Transform Player;
     private PlayerData _playerData;
@@ -38,25 +38,20 @@ public class PlayerManager : MonoBehaviour
 
     #region Initialise
 
-    private void Awake()
-    {        
-        _playerData = _PlayersData[FindClass()];
-        ResetStat(FindClass());
-    }
-
-    public void Create(PlayerData playerData)
+    public void Create(int x, int y)
     {
-        _playerData = _PlayersDataCopy[FindClass()];
+        string type = Perso != "" ? Perso : StaticData.PlayerChoice;
+        int pers = FindClass(type);
+
+        _playerData = _PlayersData[pers];
+        LoadPlayer();
+        
+        InstantiatePlayer(x, y);
     }
     
-    public void InstantiatePlayer(IEventArgs args)
-    {
-        EventArgsCoor coor = (EventArgsCoor) args;
-        
-        _playerData = _PlayersData[FindClass()];
-        ResetStat(FindClass());
-
-        Transform o = Instantiate(Player, new Vector3(coor.X, coor.Y, 0), Quaternion.identity, transform);
+    private void InstantiatePlayer(int x, int y)
+    {        
+        Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
@@ -73,7 +68,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Player save and load
 
-    private int FindClass()
+    private int FindClass(string choice)
     {
         int index = 0;
         switch (choice)
@@ -97,8 +92,35 @@ public class PlayerManager : MonoBehaviour
 
         return index;
     }
-    
-    private void ResetStat(int index)
+
+    private void SavePlayer()
+    {
+        SaveSystem.SavePlayer(_playerData);
+    }
+
+    private void LoadPlayer()
+    {
+        
+        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
+        if (data == null || data.CompCd == null || data.CompCd.Length == 0)
+        {
+            ResetStats(FindClass(_playerData.Name));
+            return;
+        }
+
+        LoadStats(data);
+        
+        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        
+        _playerData.Inventory.Potions = new Potions[4];
+        
+        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
+    }
+
+    private void ResetStats(int index)
     {
         _playerData = _PlayersData[index];
         _playerData.MaxHp = _PlayersDataCopy[index].MaxHp;
@@ -108,9 +130,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.PhysicsDamage = _PlayersDataCopy[index].PhysicsDamage;
         _playerData.MagicDamage = _PlayersDataCopy[index].MagicDamage;
         _playerData.MoveSpeed = _PlayersDataCopy[index].MoveSpeed;
-        _playerData.Xp = _PlayersDataCopy[index].Xp;
         _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
-        _playerData.TotalXp = _PlayersDataCopy[index].TotalXp;
+        _playerData.Xp = _PlayersDataCopy[index].Xp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
         _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
         
@@ -127,28 +148,30 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void SavePlayer()
+    private void LoadStats(PlayerDataSave data)
     {
-        //Debug.Log("Save");
-        SaveSystem.SavePlayer(_playerData);
-    }
+        _playerData.MaxHp = data.MaxHp;
+        _playerData.Hp = data.Hp;
+        _playerData.MaxMana = data.MaxMana;
+        _playerData.Mana = data.Mana;
+        _playerData.PhysicsDamage = data.PhysicsDamage;
+        _playerData.MagicDamage = data.MagicDamage;
+        _playerData.MoveSpeed = data.MoveSpeed;
+        _playerData.Xp = data.Xp;
+        _playerData.MaxXp = data.MaxXp;
+        _playerData.Lvl = data.Lvl;
+        _playerData.ManaRegen = data.ManaRegen;
+        
+        for (int i = 0; i < _playerData.Competences.Length; i++)
+        {
+            CompetencesData c = _playerData.Competences[i];
 
-    private void LoadPlayer()
-    {
-        //Debug.Log("load");
-        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
-        
-        ResetStat(FindClass());
-        GetXp(data.xp);
-
-        _playerData.Inventory.AddItem(FindItems(data.weapon));
-        
-        _playerData.Inventory.Potions = new Potions[4];
-        
-        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
+            c.Speed = data.CompSpeed[1];
+            c.Cooldown = data.CompCd[1];
+            c.Damage = data.CompDamage[1];
+            c.Live = data.CompLive[1];
+            c.Number = data.CompNumber[1];
+        }
     }
 
     private GamesItem FindItems(int id)
@@ -180,7 +203,6 @@ public class PlayerManager : MonoBehaviour
 
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
-            _playerData.TotalXp += gap;
             
             _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
             
@@ -191,9 +213,6 @@ public class PlayerManager : MonoBehaviour
         }
         
         _playerData.Xp += amout;
-        _playerData.TotalXp += amout;
-        //playerXp.Raise(new EventArgsInt(_playerData.Xp));
-
     }
 
     #endregion

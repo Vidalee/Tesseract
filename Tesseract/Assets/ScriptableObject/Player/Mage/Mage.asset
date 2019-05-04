@@ -16,7 +16,7 @@ MonoBehaviour:
   PlayerHpBarAth: {fileID: 11400000, guid: c0a3c13ea0e4dcc41bc88e3ef175b439, type: 2}
   PlayerManaAth: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
   PlayerManaBarAth: {fileID: 11400000, guid: e931a3a5c22850e478c75dca9eb1e299, type: 2}
-  PlayerXpAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
+  PlayerXpAth: {fileID: 11400000, guid: 00ce6df57c6864747b01b2990273df0b, type: 2}
   PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Mage
@@ -29,7 +29,6 @@ MonoBehaviour:
   _MagicDamage: 100
   _MoveSpeed: 4
   _MaxXp: 100
-  _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1

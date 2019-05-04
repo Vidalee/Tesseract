@@ -30,7 +30,6 @@ public class PlayerData : ScriptableObject
     
     [SerializeField] protected int _MaxXp;
 
-    public int _TotalXp;
     public int _Xp;
     [SerializeField] protected int _MaxLvl;
     public int _Lvl;
@@ -162,12 +161,6 @@ public class PlayerData : ScriptableObject
         set => _MoveSpeed = value;
     }
     
-    public int TotalXp
-    {
-        get => _TotalXp;
-        set => _TotalXp = value;
-    }
-
     public int MaxXp
     {
         get => _MaxXp;
