@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class Pikes : MonoBehaviour

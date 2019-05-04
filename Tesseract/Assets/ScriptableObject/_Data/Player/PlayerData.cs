@@ -1,4 +1,5 @@
 using System;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -6,6 +7,14 @@ public class PlayerData : ScriptableObject
 {
     #region Variable
 
+    public GameEvent PlayerHpAth;
+    public GameEvent PlayerHpBarAth;
+    public GameEvent PlayerManaAth;
+    public GameEvent PlayerManaBarAth;
+    public GameEvent PlayerXpAth;
+    public GameEvent PlayerXpBarAth;
+    public GameEvent PlayerLevelAth;
+    
     [SerializeField] protected string _Name;
     
     [SerializeField] protected int _MaxHp;
@@ -73,12 +82,6 @@ public class PlayerData : ScriptableObject
         get => _MaxHp;
         set => _MaxHp = value;
     }
-    
-    public int Hp
-    {
-        get => _Hp;
-        set => _Hp = value;
-    }
 
     public int MaxMana
     {
@@ -86,16 +89,57 @@ public class PlayerData : ScriptableObject
         set => _MaxMana = value;
     }
 
-    public int Mana
-    {
-        get => _Mana;
-        set => _Mana = value;
-    }
-
     public bool CanMove
     {
         get => _CanMove;
         set => _CanMove = value;
+    }
+
+    public int Hp
+    {
+        get => _Hp;
+        set
+        {
+            _Hp = value;
+
+            PlayerHpAth.Raise(new EventArgsString(_Hp + ""));
+            PlayerHpBarAth.Raise(new EventArgsFloat((float) Hp/MaxHp));
+        }
+    }
+
+    public int Mana
+    {
+        get => _Mana;
+        set
+        {
+            _Mana = value;
+
+            PlayerManaAth.Raise(new EventArgsString(_Mana + ""));
+            PlayerManaBarAth.Raise(new EventArgsFloat((float) _Mana/_MaxMana));
+        }
+    }
+
+    public int Xp
+    {
+        get => _Xp;
+        set
+        {
+            _Xp = value;
+
+            PlayerXpAth.Raise(new EventArgsString(_Xp + ""));
+            PlayerXpBarAth.Raise(new EventArgsFloat((float) _Xp/_MaxXp));
+        }
+    }
+
+    public int Lvl
+    {
+        get => _Lvl;
+        set
+        {
+            _Lvl = value;
+
+            PlayerLevelAth.Raise(new EventArgsString(_Lvl + ""));
+        }
     }
 
     public float PotionsCooldown => _PotionsCooldown;
@@ -117,13 +161,7 @@ public class PlayerData : ScriptableObject
         get => _MoveSpeed;
         set => _MoveSpeed = value;
     }
-
-    public int Xp
-    {
-        get => _Xp;
-        set => _Xp = value;
-    }
-
+    
     public int TotalXp
     {
         get => _TotalXp;
@@ -134,12 +172,6 @@ public class PlayerData : ScriptableObject
     {
         get => _MaxXp;
         set => _MaxXp = value;
-    }
-
-    public int Lvl
-    {
-        get => _Lvl;
-        set => _Lvl = value;
     }
 
     public int MaxLvl => _MaxLvl;

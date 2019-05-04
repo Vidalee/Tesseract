@@ -1,3 +1,5 @@
+using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;

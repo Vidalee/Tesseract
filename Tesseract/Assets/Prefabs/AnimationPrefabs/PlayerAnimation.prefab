@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152487511598381141}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -145,8 +145,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &8218540654901021826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +174,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &1939641728932715430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,8 +203,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &4452106418284186545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,11 +212,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5037516936518131200}
     m_Modifications:
-    - target: {fileID: 9220056421674131140, guid: 540e96a07a0c10d47b9306f2dc016e60,
-        type: 3}
-      propertyPath: m_Name
-      value: Point Light
-      objectReference: {fileID: 0}
     - target: {fileID: 1134923070609144597, guid: 540e96a07a0c10d47b9306f2dc016e60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,6 +267,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9220056421674131140, guid: 540e96a07a0c10d47b9306f2dc016e60,
+        type: 3}
+      propertyPath: m_Name
+      value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924356976617456162, guid: 540e96a07a0c10d47b9306f2dc016e60,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540e96a07a0c10d47b9306f2dc016e60, type: 3}
 --- !u!4 &3605414866390446244 stripped
@@ -287,11 +292,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5037516936518131200}
     m_Modifications:
-    - target: {fileID: 3161295189171542663, guid: d09c4a08c0173cf4b82100d744af17c5,
-        type: 3}
-      propertyPath: m_Name
-      value: DashAnim
-      objectReference: {fileID: 0}
     - target: {fileID: 3352723691694149852, guid: d09c4a08c0173cf4b82100d744af17c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -347,6 +347,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3161295189171542663, guid: d09c4a08c0173cf4b82100d744af17c5,
+        type: 3}
+      propertyPath: m_Name
+      value: DashAnim
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161295189171542663, guid: d09c4a08c0173cf4b82100d744af17c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472377339843976233, guid: d09c4a08c0173cf4b82100d744af17c5,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8336861419344824870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09c4a08c0173cf4b82100d744af17c5, type: 3}
 --- !u!4 &8966389657102171430 stripped
@@ -355,3 +370,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5974103573338320378}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8336861419344824870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2403300174094788572, guid: d09c4a08c0173cf4b82100d744af17c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5974103573338320378}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec08b6e96ab7ac4aab8cb39acac32bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

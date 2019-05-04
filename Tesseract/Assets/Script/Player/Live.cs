@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class Live : MonoBehaviour
@@ -6,7 +8,6 @@ public class Live : MonoBehaviour
     #region Variable
 
     public PlayerData _playerData;
-    public GameEvent PlayerLive;
 
     #endregion
 
@@ -28,7 +29,6 @@ public class Live : MonoBehaviour
         int damage = ((EventArgsInt) args).X;
         
         _playerData.Hp -= damage;
-        PlayerLive.Raise(new EventArgsInt(_playerData.Hp));
         Death();
     }
     

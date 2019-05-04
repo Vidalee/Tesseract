@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
   - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
-  choice: Mage
+  choice: Assassin
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
 --- !u!114 &6434590799956567368
 MonoBehaviour:
@@ -94,8 +94,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &9058914715773683575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +123,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &56691220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,5 +152,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

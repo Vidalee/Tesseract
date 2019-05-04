@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class MiniMapFog : MonoBehaviour

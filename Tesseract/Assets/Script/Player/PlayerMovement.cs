@@ -1,4 +1,5 @@
 using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
