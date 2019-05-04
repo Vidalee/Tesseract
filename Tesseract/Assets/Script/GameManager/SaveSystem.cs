@@ -29,7 +29,6 @@ public static class SaveSystem
             
             return data;
         }
-        Debug.Log("No path for the save");
         return null;
     }
 }

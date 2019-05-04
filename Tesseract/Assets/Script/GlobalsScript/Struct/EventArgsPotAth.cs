@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EventArgsPotAth : IEventArgs
+namespace Script.GlobalsScript.Struct
 {
-    readonly Sprite _sprite;
-    readonly int _x;
-
-    public EventArgsPotAth(int x, Sprite sprite)
+    public class EventArgsPotAth : IEventArgs
     {
-        _x = x;
-        _sprite = sprite;
-    }
+        readonly Sprite _sprite;
+        readonly int _x;
 
-    public int X => _x;
-    public Sprite Sprite => _sprite;
+        public EventArgsPotAth(int x, Sprite sprite)
+        {
+            _x = x;
+            _sprite = sprite;
+        }
+
+        public int X => _x;
+        public Sprite Sprite => _sprite;
+    }
 }

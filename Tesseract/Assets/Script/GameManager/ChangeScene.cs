@@ -1,15 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour
+public static class ChangeScene 
 {
-
-    public void ChangeToScene(string scene)
+    public static void ChangeToScene(string scene)
     {
-        Debug.Log(scene);
         SceneManager.LoadScene(scene);
     }
-    
 }
