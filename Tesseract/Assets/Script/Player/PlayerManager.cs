@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
 
     private int FindClass(string choice)
     {
-        int index = 0;
+        int index = 2;
         switch (choice)
         {
             case "Archer":

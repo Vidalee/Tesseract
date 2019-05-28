@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
+  weapon: {fileID: 3877816231457508458, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}
+  weaponData: {fileID: 0}
   SendPlayerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
 --- !u!114 &8045352632920282649
 MonoBehaviour:

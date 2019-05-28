@@ -621,5 +621,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: Enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: weapons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: MapHeight
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: MapWidth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: seed
+      value: 1337
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: BlockingLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85,
+        type: 3}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: Enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e15a1638fd49f4fbe8c77e5140966dd1,
+        type: 2}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: Enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: efa6a1f4050934f13b99596757a553ad,
+        type: 2}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 06a548ab34b6d4441aac758fbe0c19dc,
+        type: 2}
+    - target: {fileID: 4563870081298182394, guid: 06c5b93b76d9a1c40bedb592981aa7a8,
+        type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: feb1c996adca684428c9693e4766abb2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06c5b93b76d9a1c40bedb592981aa7a8, type: 3}

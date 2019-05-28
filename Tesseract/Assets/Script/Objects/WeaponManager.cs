@@ -13,10 +13,10 @@ public class WeaponManager : MonoBehaviour
     public void Create(Weapons weapon)
     {
         _sprite = GetComponent<SpriteRenderer>();
+        _sprite.sprite = weapon.icon;
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
-        
     }
 
     
