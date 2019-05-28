@@ -18,13 +18,25 @@ namespace Script.Enemies
         [SerializeField] protected EnemyData Enemy;
         
         [SerializeField] protected List<Transform> Players;
+        [SerializeField] protected List<PlayerData> playerDatas;
         
         public LayerMask BlockingLayer;
         
  
         private void FixedUpdate()
         {
+            bool TriggeredState = Enemy.Triggered;
             FindTarget();
+            if (TriggeredState != Enemy.Triggered)
+            {
+                int maxLvl = 0;
+                foreach (PlayerData playerData in playerDatas)
+                {
+                    maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
+                }
+
+                Enemy.UpdateStats(maxLvl);
+            }
         }
         
         private void FindTarget()
@@ -143,10 +155,11 @@ namespace Script.Enemies
                 Enemy.Path.Remove(nextNode);
         }
 
-        public void Create(EnemyData enemy, List<Transform> players, LayerMask blockingLayer)
+        public void Create(EnemyData enemy, List<Transform> players, List<PlayerData> playerDatas, LayerMask blockingLayer)
         {
             Enemy = enemy;
             Players = players;
+            this.playerDatas = playerDatas;
             BlockingLayer = blockingLayer;
         }
     }

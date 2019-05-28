@@ -23,7 +23,13 @@ public class GenerateEnemies : MonoBehaviour
     [SerializeField] protected List<Weapons> weapons;
     private void Start()
     {
-        //players.Add(PlayerManager.Player);
+        List<PlayerData> playerDatas = new List<PlayerData>();
+        foreach (Transform player in players)
+        {
+            Debug.Log(player);
+            playerDatas.Add(player.parent.GetComponent<PlayerManager>().PlayerData);
+        }
+        
         _grid = new EnemyData[MapHeight, MapWidth];
         int weaponsNbr = weapons.Count;
         Random.InitState(seed); 
@@ -44,7 +50,7 @@ public class GenerateEnemies : MonoBehaviour
                     
                     enemy.GetComponent<Attack>().Create(newEnemy, players[0]);
                     enemy.GetComponent<EnemiesLive>().Create(newEnemy, weapons[Random.Range(0, weaponsNbr)]); 
-                    enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, BlockingLayer);
+                    enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, playerDatas, BlockingLayer);
                     enemy.GetComponent<Pathfinding>().Create(newEnemy);
                     enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
 

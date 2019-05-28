@@ -82,7 +82,7 @@ namespace Script.Pathfinding
             foreach (Node node in NodesGrid)
             {
                 if (node != null)
-                {
+                { 
                     nbrNoeuds++;
                     foreach (Node neighbor in node.Neighbors)
                     {
