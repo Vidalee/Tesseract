@@ -113,11 +113,6 @@ public class PlayerManager : MonoBehaviour
         _playerData.Inventory.AddItem(FindItems(data.weapon));
         
         _playerData.Inventory.Potions = new Potions[4];
-        
-        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
-        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
     }
 
     private void ResetStats(int index)
