@@ -1966,7 +1966,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8841730517460495721}
   - component: {fileID: 8841730517460495720}
-  - component: {fileID: 8841730515794100920}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -2038,25 +2037,3 @@ MonoBehaviour:
   - {fileID: 4876235577063164033}
   - {fileID: 6670432360654348833}
   MapTextureData: {fileID: 11400000, guid: 1d6fe0cb736f3d644944c9b4c13d9b24, type: 2}
---- !u!114 &8841730515794100920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8841730517460495723}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf33493429974dabb9d562c86369080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MapHeight: 100
-  MapWidth: 100
-  seed: 1337
-  BlockingLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  Enemy: {fileID: 7149161332187119876, guid: 9ded2bf79fe1d47a29ad1dfa1916f7ec, type: 3}
-  Enemies:
-  - {fileID: 11400000, guid: efa6a1f4050934f13b99596757a553ad, type: 2}
-  - {fileID: 11400000, guid: e15a1638fd49f4fbe8c77e5140966dd1, type: 2}
