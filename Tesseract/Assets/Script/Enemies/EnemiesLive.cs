@@ -1,11 +1,13 @@
-﻿using Script.GlobalsScript.Struct;
+﻿using System.Collections.Generic;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class EnemiesLive : MonoBehaviour
 {
     [SerializeField] protected EnemyData Enemy;
     [SerializeField] protected GameObject weapon;
-    [SerializeField] protected Weapons weaponData;
+    [SerializeField] protected GameObject armory;
+    [SerializeField] protected List<PlayerData> playerDatas;
     public GameEvent SendPlayerXp;
     private bool alive = true;
     
@@ -23,6 +25,8 @@ public class EnemiesLive : MonoBehaviour
         if (alive)
         {
             alive = false;
+
+            Weapons weaponData = armory.GetComponent<ArmoryManager>().GetWeapon(playerDatas[Random.Range(0, playerDatas.Count)].Name);
             GameObject newWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
             Weapons newWeaponData = ScriptableObject.CreateInstance<Weapons>();
             newWeaponData.Create(weaponData);
@@ -32,9 +36,9 @@ public class EnemiesLive : MonoBehaviour
         }
     }
 
-    public void Create(EnemyData enemy, Weapons weapon)
+    public void Create(EnemyData enemy, List<PlayerData> playerDatas)
     {
         Enemy = enemy;
-        weaponData = weapon;
+        this.playerDatas = playerDatas;
     }
 }

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2463668023115033791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2463668023115033789}
+  - component: {fileID: 2463668023115033790}
+  m_Layer: 0
+  m_Name: Armory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2463668023115033789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463668023115033791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.71543, y: 72.52527, z: 0.044921875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2463668023115033790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463668023115033791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfc1720b8efc174aa79152e890cf2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archerWeapons:
+  - {fileID: 11400000, guid: c0fba505347c60948afaaa01f9195e23, type: 2}
+  assassinWeapons:
+  - {fileID: 11400000, guid: bb067b85516888f488760787d65d1ff3, type: 2}
+  mageWeapons:
+  - {fileID: 11400000, guid: 9369a7edf73716243af9f24dd37d7071, type: 2}
+  warriorWeapons:
+  - {fileID: 11400000, guid: feb1c996adca684428c9693e4766abb2, type: 2}
+  - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
