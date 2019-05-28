@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class Attack : MonoBehaviour

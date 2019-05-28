@@ -145,7 +145,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983476957}
-  - component: {fileID: 983476956}
   - component: {fileID: 983476958}
   m_Layer: 0
   m_Name: Manager
@@ -154,18 +153,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &983476956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 983476955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d20da4e6e954c945956fb0e212468b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &983476957
 Transform:
   m_ObjectHideFlags: 0
@@ -348,22 +335,22 @@ PrefabInstance:
     - target: {fileID: 5911999358957156729, guid: 74953027c0178474c8d7d56c2ff8e2ff,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 517
+      value: 409.5
       objectReference: {fileID: 0}
     - target: {fileID: 5911999358957156729, guid: 74953027c0178474c8d7d56c2ff8e2ff,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 33
+      value: 186.5
       objectReference: {fileID: 0}
     - target: {fileID: 5911999358957156729, guid: 74953027c0178474c8d7d56c2ff8e2ff,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1025.6
+      value: 819
       objectReference: {fileID: 0}
     - target: {fileID: 5911999358957156729, guid: 74953027c0178474c8d7d56c2ff8e2ff,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 773.4
+      value: 373
       objectReference: {fileID: 0}
     - target: {fileID: 5911999358957156729, guid: 74953027c0178474c8d7d56c2ff8e2ff,
         type: 3}
@@ -400,11 +387,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 983476958}
-    - target: {fileID: 4192734631896159761, guid: 74953027c0178474c8d7d56c2ff8e2ff,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 983476956}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74953027c0178474c8d7d56c2ff8e2ff, type: 3}
 --- !u!114 &7504177818089800512 stripped

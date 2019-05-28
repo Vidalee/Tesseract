@@ -1,3 +1,5 @@
+using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
+
+        StartCoroutine(UpdatePlayerPos());
     }
 
 
@@ -46,13 +50,20 @@ public class PlayerMovement : MonoBehaviour
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
 
         if (xDir == 0 && yDir == 0) return;
-        
-        Vector3 position = transform.position;
-        PlayerPos.Raise(new EventArgsCoor((int) position.x, (int) position.y));
 
         Vector3 distance = GetDistance(xDir, yDir);
 
         transform.Translate(distance * _playerData.MoveSpeed *Time.deltaTime);
+    }
+
+    private IEnumerator UpdatePlayerPos()
+    {
+        for(;;)
+        {
+            Vector3 position = transform.position;
+            PlayerPos.Raise(new EventArgsCoor((int) position.x, (int) position.y));
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     #endregion

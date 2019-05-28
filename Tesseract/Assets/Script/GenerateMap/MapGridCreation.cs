@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,7 +9,9 @@ using Random = UnityEngine.Random;
 
 public class MapGridCreation : MonoBehaviour
 {
-    public GameEvent PlayerSpawn;
+
+    public Transform Player;
+    
     public int MapHeight;
     public int MapWidth;
     public int RoomNumber;
@@ -238,8 +241,7 @@ public class MapGridCreation : MonoBehaviour
         
             if (!Instances[y, x] && _grid[y, x])
             {
-                PlayerSpawn.Raise(new EventArgsCoor(x, y));
-                AddToInstance(y, x, true, true);
+                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y);
                 return;
             }
 

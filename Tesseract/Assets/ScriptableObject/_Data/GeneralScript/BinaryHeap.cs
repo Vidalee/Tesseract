@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Script.GlobalsScript;
 using UnityEngine;
 
 public static class BinaryHeap

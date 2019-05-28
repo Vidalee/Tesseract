@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Script.GlobalsScript;
+using Script.GlobalsScript.EventScript;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvent")]
