@@ -20,6 +20,7 @@ public class PlayerDataSave
     public int[] CompDamage;
     public int[] CompLive;
     public int[] CompNumber;
+    public int[] CompManaCost;
     
     public int weapon;
 
@@ -45,6 +46,7 @@ public class PlayerDataSave
         CompDamage = new int[length];
         CompLive = new int[length];
         CompNumber = new int[length];
+        CompManaCost = new int[length];
         
         for (int i = 0; i < length; i++)
         {
@@ -55,6 +57,7 @@ public class PlayerDataSave
             CompDamage[i] = c.Damage;
             CompLive[i] = c.Live;
             CompNumber[i] = c.Number;
+            CompManaCost[i] = c.ManaCost;
         }
 
         weapon = ItemNull(player.Inventory.Weapon);

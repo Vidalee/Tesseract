@@ -8,7 +8,14 @@ public class PlayerManager : MonoBehaviour
 {
     #region Variable
 
-
+    public GameEvent SetXpBar;
+    public GameEvent SetXp;
+    public GameEvent SetHpBar;
+    public GameEvent SetHp;
+    public GameEvent SetManaBar;
+    public GameEvent SetMana;
+    public GameEvent SetLvl;
+    
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public GamesItem[] Items;
@@ -40,8 +47,9 @@ public class PlayerManager : MonoBehaviour
 
     public void Create(int x, int y)
     {
-        if (StaticData.ActualFloor == 1)
+        if (StaticData.ActualFloor == 0)
         {
+            StaticData.ActualFloor = 1;
             string type = Perso != "" ? Perso : StaticData.PlayerChoice;
             int pers = FindClass(type);
 
@@ -58,8 +66,16 @@ public class PlayerManager : MonoBehaviour
     }
     
     private void InstantiatePlayer(int x, int y)
-    {        
+    {
         Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
+        
+        SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
+        SetXpBar.Raise(new EventArgsFloat(_playerData.Xp / _playerData.MaxXp));
+        SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
+        SetHpBar.Raise(new EventArgsFloat(_playerData.Hp / _playerData.MaxHp));
+        SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
+        SetManaBar.Raise(new EventArgsFloat(_playerData.Mana / _playerData.MaxMana));
+        SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
@@ -148,15 +164,16 @@ public class PlayerManager : MonoBehaviour
             c.Damage = cc.Damage;
             c.Live = cc.Live;
             c.Number = cc.Number;
+            c.ManaCost = cc.ManaCost;
         }
     }
 
     private void LoadStats(PlayerDataSave data)
     {
         _playerData.MaxHp = data.MaxHp;
-        _playerData.Hp = data.Hp;
+        _playerData.Hp = data.MaxHp;
         _playerData.MaxMana = data.MaxMana;
-        _playerData.Mana = data.Mana;
+        _playerData.Mana = data.MaxMana;
         _playerData.PhysicsDamage = data.PhysicsDamage;
         _playerData.MagicDamage = data.MagicDamage;
         _playerData.MoveSpeed = data.MoveSpeed;
@@ -169,11 +186,12 @@ public class PlayerManager : MonoBehaviour
         {
             CompetencesData c = _playerData.Competences[i];
 
-            c.Speed = data.CompSpeed[1];
-            c.Cooldown = data.CompCd[1];
-            c.Damage = data.CompDamage[1];
-            c.Live = data.CompLive[1];
-            c.Number = data.CompNumber[1];
+            c.Speed = data.CompSpeed[i];
+            c.Cooldown = data.CompCd[i];
+            c.Damage = data.CompDamage[i];
+            c.Live = data.CompLive[i];
+            c.Number = data.CompNumber[i];
+            c.ManaCost = data.CompManaCost[i];
         }
     }
 

@@ -116,7 +116,7 @@ public class RoomInstance : MonoBehaviour
         if (!script.Instances[y, x])
         {
             Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
-            o.GetComponent<Portal>().Create(PortalDatas[Random.Range(0, PortalDatas.Length)], pos);
+            o.GetComponent<Portal>().Create(PortalDatas[0], pos);
 
             script.AddToInstance(y, x, true, true);
             _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
@@ -131,7 +131,7 @@ public class RoomInstance : MonoBehaviour
         if (!script.Instances[y, x])
         {
             Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
-            o.GetComponent<Portal>().Create(PortalDatas[Random.Range(0, PortalDatas.Length)], new Vector3());
+            o.GetComponent<Portal>().Create(PortalDatas[1], new Vector3());
 
             script.AddToInstance(y, x, true, true);
             _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);

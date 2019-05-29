@@ -36,17 +36,18 @@ public class Portal : MonoBehaviour
             if (_portalData.IsBoss && StaticData.ActualFloor == StaticData.NumberFloor)
             {
                 StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
-                Random.InitState(StaticData.Seed);
-
-                StaticData.Seed = Random.Range(0, 1000000);
-                ChangeScene.ChangeToScene("Dungeon");
+                StaticData.ActualFloor++;
+                ChangeScene.ChangeToScene("Boss");
                 return;
             }
             if (_portalData.IsBoss)
             {
                 StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
+                Random.InitState(StaticData.Seed);
+
                 StaticData.ActualFloor++;
-                ChangeScene.ChangeToScene("Boss");
+                StaticData.Seed = Random.Range(0, 1000000);
+                ChangeScene.ChangeToScene("Dungeon");
                 return;
             }
             
