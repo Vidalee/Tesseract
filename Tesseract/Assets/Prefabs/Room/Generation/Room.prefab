@@ -62,6 +62,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e1b6d2a9be59181409be6efd0d07b130, type: 2}
   PortalDatas:
   - {fileID: 11400000, guid: 8d4c9fe65672afa46b0c673a6554b866, type: 2}
+  - {fileID: 11400000, guid: 635f912a24c7fa2429dd55eb93890dc8, type: 2}
   SimpleDecoration:
   - {fileID: 11400000, guid: a2a008cfdbad3fd4f8ccc15da96274c8, type: 2}
   - {fileID: 11400000, guid: 9619cf5fff5c7a14597da96a6c17e840, type: 2}

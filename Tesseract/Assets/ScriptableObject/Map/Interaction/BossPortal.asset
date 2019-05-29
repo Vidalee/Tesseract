@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea4df1b64c598e24a9ebe8e24e3862fa, type: 3}
-  m_Name: SimplePortal
+  m_Name: BossPortal
   m_EditorClassIdentifier: 
   col:
   - {x: -0.25, y: -0.5}
@@ -18,5 +18,5 @@ MonoBehaviour:
   - {x: 0.25, y: -0.45}
   - {x: 0.25, y: -0.5}
   - {x: -0.25, y: -0.5}
-  animation: {fileID: 7400000, guid: 80372a4838a2acc49b658c1d97312675, type: 2}
-  isBoss: 0
+  animation: {fileID: 7400000, guid: 24a401b847804314bb22fd2090ed0cf6, type: 2}
+  isBoss: 1

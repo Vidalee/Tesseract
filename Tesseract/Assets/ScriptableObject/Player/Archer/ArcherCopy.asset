@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: ArcherCopy
   m_EditorClassIdentifier: 
+  PlayerHpAth: {fileID: 0}
+  PlayerHpBarAth: {fileID: 0}
+  PlayerManaAth: {fileID: 0}
+  PlayerManaBarAth: {fileID: 0}
+  PlayerXpAth: {fileID: 0}
+  PlayerXpBarAth: {fileID: 0}
+  PlayerLevelAth: {fileID: 0}
   _Name: Archer
   _MaxHp: 100
   _Hp: 100
   _MaxMana: 100
   _Mana: 100
+  _ManaRegen: 2
   _PhysicsDamage: 100
   _MagicDamage: 50
   _MoveSpeed: 3.5
   _MaxXp: 100
-  _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
@@ -39,3 +46,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac1344389bedcda4babf84ab418434e8, type: 2}
   _Inventory: {fileID: 11400000, guid: 243c8b6e04768e04f8dd183884a6986c, type: 2}
   _PotionsCooldown: 10
+  PositionChanged: 0

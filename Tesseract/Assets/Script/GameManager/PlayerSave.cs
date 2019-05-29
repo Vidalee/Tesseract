@@ -20,9 +20,9 @@ public class PlayerDataSave
     public int[] CompDamage;
     public int[] CompLive;
     public int[] CompNumber;
+    public int[] CompManaCost;
     
     public int weapon;
-    public int[] inventory;
 
 
     public PlayerDataSave(PlayerData player)
@@ -46,6 +46,7 @@ public class PlayerDataSave
         CompDamage = new int[length];
         CompLive = new int[length];
         CompNumber = new int[length];
+        CompManaCost = new int[length];
         
         for (int i = 0; i < length; i++)
         {
@@ -56,22 +57,14 @@ public class PlayerDataSave
             CompDamage[i] = c.Damage;
             CompLive[i] = c.Live;
             CompNumber[i] = c.Number;
+            CompManaCost[i] = c.ManaCost;
         }
 
         weapon = ItemNull(player.Inventory.Weapon);
-        
-        inventory = new[]
-        {
-            ItemNull(player.Inventory.Potions[0]),
-            ItemNull(player.Inventory.Potions[1]),
-            ItemNull(player.Inventory.Potions[2]),
-            ItemNull(player.Inventory.Potions[3]),
-        };
     }
 
     private int ItemNull(GamesItem item)
     {
-        if (item == null) return 0;
-        return item.id;
+        return item == null ? 0 : item.id;
     }
 }
