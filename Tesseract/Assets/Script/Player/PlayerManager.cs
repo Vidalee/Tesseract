@@ -37,7 +37,6 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetKey("k")) SavePlayer();
-        if(Input.GetKey("l")) LoadPlayer();
         if(Input.GetKey("x")) GetXp(10);
     }
 
