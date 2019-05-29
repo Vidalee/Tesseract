@@ -55,12 +55,14 @@ public class PlayerManager : MonoBehaviour
 
             _playerData = _PlayersData[pers];
             LoadPlayer();
+            Debug.Log(_playerData.Hp);
         
             InstantiatePlayer(x, y);
         }
         else
         {
             _playerData = StaticData.actualData;
+            Debug.Log(_playerData.Hp);
             InstantiatePlayer(x, y);
         }
     }
@@ -70,11 +72,11 @@ public class PlayerManager : MonoBehaviour
         Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
         
         SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
-        SetXpBar.Raise(new EventArgsFloat(_playerData.Xp / _playerData.MaxXp));
+        SetXpBar.Raise(new EventArgsFloat((float) _playerData.Xp / _playerData.MaxXp));
         SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
-        SetHpBar.Raise(new EventArgsFloat(_playerData.Hp / _playerData.MaxHp));
+        SetHpBar.Raise(new EventArgsFloat((float) _playerData.Hp / _playerData.MaxHp));
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
-        SetManaBar.Raise(new EventArgsFloat(_playerData.Mana / _playerData.MaxMana));
+        SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
