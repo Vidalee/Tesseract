@@ -20,27 +20,24 @@ public class GenerateWall : MonoBehaviour
     private Tilemap _shadWMap;
     private Tilemap[] _shadCMap;
     private Tilemap[] _shadSMap;
-    private Tilemap _miniMap;
     private Tile _tile;
     
     
-    public void Create(bool[,] grid, Tilemap wallMap, Tilemap perspMap, Tilemap colMap, Tilemap shadMap,
-        Tilemap[] shadSMap, Tilemap[] shadCMap, Tilemap miniMap)
+    public void Create(bool[,] grid, Tilemap perspMap, Tilemap colMap, Tilemap shadMap,
+        Tilemap[] shadSMap, Tilemap[] shadCMap)
     {
         _wallTextureLength = MapTextureData.Wall.Length;
         _grid = grid;
         _wallPos = new bool[_grid.GetLength(0),_grid.GetLength(1)];
         
-        _wallMap = wallMap;
         _perspMap = perspMap;
         _wallMap = colMap;
         _shadWMap = shadMap;
         _shadCMap = shadCMap;
         _shadSMap = shadSMap;
-        _miniMap = miniMap;
         
         _tile = ScriptableObject.CreateInstance<Tile>();
-        
+                
         InstantiateSimpleWall();
         ChooseWall();
         CornerShadow();
@@ -217,9 +214,6 @@ public class GenerateWall : MonoBehaviour
         {
             if (w[i] == "" || i > 0 && w[i].Contains('C') && (w[0].Contains(w[i][2])|| w[0].Contains(w[i][3]))) continue;
             
-            _tile.sprite = MapTextureData.MiniMap[1];
-            _miniMap.SetTile(new Vector3Int(y, x, 0), _tile);
-            
             _tile.sprite =  FindRotationObject(w[i]);
 
             if (w[i].Contains("W"))
@@ -326,7 +320,6 @@ public class GenerateWall : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void CreateTorch(Vector3 pos, SimpleDecoration deco)

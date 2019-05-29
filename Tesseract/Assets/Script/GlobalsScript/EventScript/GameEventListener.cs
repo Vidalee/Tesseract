@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
-namespace Script.GlobalsScript
+namespace Script.GlobalsScript.EventScript
 {
     [Serializable]
     public class UnityEventWithArgs : UnityEvent<IEventArgs>{}

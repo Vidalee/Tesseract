@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Script.GlobalsScript.Struct;
+using UnityEngine;
 
 public class EnemiesLive : MonoBehaviour
 {

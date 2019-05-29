@@ -1996,6 +1996,21 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3450212169459330383, guid: 333b277654c841f4a93afe4f68d1d86f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -388.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450212169459330383, guid: 333b277654c841f4a93afe4f68d1d86f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -252
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450212169459330383, guid: 333b277654c841f4a93afe4f68d1d86f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 414.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3450212169459330381, guid: 333b277654c841f4a93afe4f68d1d86f,
         type: 3}
       propertyPath: m_FontData.m_FontSize

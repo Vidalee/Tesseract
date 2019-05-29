@@ -1,11 +1,14 @@
-﻿public class EventArgsInt : IEventArgs
+﻿namespace Script.GlobalsScript.Struct
 {
-    readonly int _x;
-
-    public EventArgsInt(int x)
+    public class EventArgsInt : IEventArgs
     {
-        _x = x;
-    }
+        readonly int _x;
 
-    public int X => _x;
+        public EventArgsInt(int x)
+        {
+            _x = x;
+        }
+
+        public int X => _x;
+    }
 }

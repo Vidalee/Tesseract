@@ -1,11 +1,14 @@
-﻿public class EventArgsItem : IEventArgs
+﻿namespace Script.GlobalsScript.Struct
 {
-    private readonly GamesItem _item;
-    
-    public EventArgsItem(GamesItem item)
+    public class EventArgsItem : IEventArgs
     {
-        _item = item;
-    }
+        private readonly GamesItem _item;
+    
+        public EventArgsItem(GamesItem item)
+        {
+            _item = item;
+        }
 
-    public GamesItem Item => _item;
+        public GamesItem Item => _item;
+    }
 }

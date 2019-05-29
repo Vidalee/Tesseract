@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
