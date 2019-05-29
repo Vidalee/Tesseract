@@ -35,7 +35,7 @@ namespace Script.Enemies
                     maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
                 }
 
-                Enemy.UpdateStats(maxLvl);
+                Enemy.UpdateStats(maxLvl, 1); //TODO Récupérer l'étage
             }
         }
         

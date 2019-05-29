@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
-  m_Name: Axe
+  m_Name: Bow5
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  displayName: Axe
-  description: This is an axe
+  icon: {fileID: 21300008, guid: ae7d1ae91c872db4e8ec1906907135af, type: 3}
+  displayName: Bow5
+  description: 
   id: 0
-  colliderPoints:
-  - {x: 0, y: 0}
-  - {x: 0.16, y: 0.16}
+  physicsDamage: 0
+  colliderPoints: []

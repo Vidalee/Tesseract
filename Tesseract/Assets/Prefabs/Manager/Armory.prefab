@@ -44,7 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   archerWeapons:
-  - {fileID: 11400000, guid: c0fba505347c60948afaaa01f9195e23, type: 2}
+  - {fileID: 11400000, guid: 02916fb75326e694e88350b2f6d18e5a, type: 2}
+  - {fileID: 11400000, guid: 1b8a6928a451ff94d971cae1dde2439e, type: 2}
+  - {fileID: 11400000, guid: 86c3afb8dcaf8c544845479b192c3954, type: 2}
+  - {fileID: 11400000, guid: 41801dc285474e6458bc235967548ece, type: 2}
+  - {fileID: 11400000, guid: ebe2d0f87a0b83e4f98bff4123851ee9, type: 2}
+  - {fileID: 11400000, guid: 60a2f728d66fc0a4e86fed768aded96c, type: 2}
   assassinWeapons:
   - {fileID: 11400000, guid: bb067b85516888f488760787d65d1ff3, type: 2}
   mageWeapons:

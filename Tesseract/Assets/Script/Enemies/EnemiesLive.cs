@@ -25,11 +25,11 @@ public class EnemiesLive : MonoBehaviour
         if (alive)
         {
             alive = false;
-
-            Weapons weaponData = armory.GetComponent<ArmoryManager>().GetWeapon(playerDatas[Random.Range(0, playerDatas.Count)].Name);
+            PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
+            Weapons weaponData = armory.GetComponent<ArmoryManager>().GetWeapon(player.Name);
             GameObject newWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
             Weapons newWeaponData = ScriptableObject.CreateInstance<Weapons>();
-            newWeaponData.Create(weaponData);
+            newWeaponData.Create(weaponData, player.Lvl + 1); //TODO Remplacer 1 par l'étage
             newWeapon.GetComponent<WeaponManager>().Create(weaponData);
             Destroy(gameObject);
             SendPlayerXp.Raise(new EventArgsInt(Enemy.XpValue));
