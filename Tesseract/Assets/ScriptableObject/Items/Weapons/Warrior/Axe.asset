@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
-  m_Name: Axe1
+  m_Name: Axe
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  displayName: 
-  description: 
+  displayName: Axe
+  description: This is an axe
   id: 0
-  physicsDamage: 0
-  colliderPoints: []
+  colliderPoints:
+  - {x: 0, y: 0}
+  - {x: 0.16, y: 0.16}

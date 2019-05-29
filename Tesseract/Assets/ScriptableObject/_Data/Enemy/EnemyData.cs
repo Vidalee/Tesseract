@@ -101,4 +101,13 @@ public class EnemyData : ScriptableObject
     }
 
     public Vector3 StartPos => _StartPos;
+
+    public void UpdateStats(int lvl, int floor)
+    {
+        _MaxHp += _MaxHp / 10 * lvl + (floor - 1) * _MaxHp;
+        _Hp += _Hp / 10 * lvl + (floor - 1) * _Hp;
+        //_XpValue += _XpValue / 10 * lvl + (floor - 1) * _XpValue;
+        _PhysicsDamage += (int)(((float)_PhysicsDamage) / 10 * lvl) + (floor - 1) * _PhysicsDamage;
+        _MagicDamage += _MagicDamage / 10 * lvl + (floor - 1) * _MagicDamage;
+    }
 }
