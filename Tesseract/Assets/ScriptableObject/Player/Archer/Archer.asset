@@ -12,27 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
+  PlayerHpAth: {fileID: 11400000, guid: dd3bf4f205e112545acef28afda5b3f1, type: 2}
+  PlayerHpBarAth: {fileID: 11400000, guid: c0a3c13ea0e4dcc41bc88e3ef175b439, type: 2}
+  PlayerManaAth: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
+  PlayerManaBarAth: {fileID: 11400000, guid: e931a3a5c22850e478c75dca9eb1e299, type: 2}
+  PlayerXpAth: {fileID: 11400000, guid: 00ce6df57c6864747b01b2990273df0b, type: 2}
+  PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
+  PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Archer
   _MaxHp: 100
   _Hp: 100
   _MaxMana: 100
   _Mana: 100
   _ManaRegen: 0
-  _PhysicsDamage: 100
-  _MagicDamage: 0
-  _MoveSpeed: 3.5
-  _MaxXp: 0
-  _TotalXp: 0
+  _PhysicsDamage: 109
+  _MagicDamage: 59
+  _MoveSpeed: 3.8587496
+  _MaxXp: 233
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06
-  _Move: []
-  _Idle: []
-  _Attack: []
-  _Dash: []
+  _Move:
+  - {fileID: 7400000, guid: 60d81811282b11f4497398d68207fe08, type: 2}
+  - {fileID: 7400000, guid: 9dff62cee0ffa514c8951f70d06e38f1, type: 2}
+  - {fileID: 7400000, guid: 363b2d8de0bd6454fbb2d57523a1e43b, type: 2}
+  - {fileID: 7400000, guid: 3cc374dcc4091d54b88ccbf08d9c3d23, type: 2}
+  _Idle:
+  - {fileID: 7400000, guid: 0466c7087ee4d4140b62d22d25dd46c9, type: 2}
+  - {fileID: 7400000, guid: dece37273e7572d46b413f816aac4fdd, type: 2}
+  - {fileID: 7400000, guid: d86c364288aa85d418139b1c4af8fe93, type: 2}
+  - {fileID: 7400000, guid: a10da31ce91e040438845213ec9c7703, type: 2}
+  _Attack:
+  - {fileID: 7400000, guid: fd6fe4b947816ec4289f6e100a4e98ef, type: 2}
+  - {fileID: 7400000, guid: 32c264e1492f41341a6e935281430632, type: 2}
+  - {fileID: 7400000, guid: b13abf18b37a22a458bfa881b585af22, type: 2}
+  - {fileID: 7400000, guid: bd4f2f0149a896843a05cd9c8e5b3346, type: 2}
+  _Dash:
+  - {fileID: 7400000, guid: 0f48c20aa510cc247b09d7dcfcf640de, type: 2}
+  - {fileID: 7400000, guid: c7234678ca1e28d48adfe65ad3b3ce52, type: 2}
+  - {fileID: 7400000, guid: e611919aafa16784fb1241c3d196d54a, type: 2}
+  - {fileID: 7400000, guid: 5dc5852e42d4bac48a2b2e3904c06def, type: 2}
   _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
   _Competences:
   - {fileID: 11400000, guid: cad668a5bd52a1241ad850cd3b0941fe, type: 2}

@@ -1,6 +1,9 @@
-﻿public interface IEventArgs {}
-
-public interface IHeapNode
+﻿namespace Script.GlobalsScript
 {
-    int Comparable();
+    public interface IEventArgs {}
+
+    public interface IHeapNode
+    {
+        int Comparable();
+    }
 }

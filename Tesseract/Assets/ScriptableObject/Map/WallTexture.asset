@@ -13,44 +13,56 @@ MonoBehaviour:
   m_Name: WallTexture
   m_EditorClassIdentifier: 
   floor:
-  - {fileID: 21300000, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
-  - {fileID: 21300002, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
-  - {fileID: 21300004, guid: 152c2bdcf7ff6a841a598ff2ce2ffb12, type: 3}
+  - {fileID: 21300000, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300002, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300004, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300006, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300008, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300010, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300012, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300014, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300016, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300018, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300020, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
+  - {fileID: 21300022, guid: 50ce2e6f4d18b1241b2795b8471a8fa3, type: 3}
   wall:
   - {fileID: 21300000, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   - {fileID: 21300002, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wall1Side: {fileID: 21300004, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wall2Side: {fileID: 21300008, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wall3Side: {fileID: 21300010, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall1Side:
+  - {fileID: 21300004, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300016, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300026, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300034, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall2Side:
+  - {fileID: 21300008, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300020, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300030, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300038, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wall3Side:
+  - {fileID: 21300010, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300022, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300032, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300040, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
   wall4Side: {fileID: 21300014, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wallCorner: {fileID: 21300006, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wallDoubleSide: {fileID: 21300012, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
-  wallPerspective1Col:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
-  wallPerspective2Col:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
-  - {x: 0.5, y: -0.5}
-  cubeCol:
-  - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: 0.5}
-  - {x: 0.5, y: 0.5}
-  - {x: 0.5, y: -0.5}
-  - {x: -0.5, y: -0.5}
-  cornerCol:
-  - {x: 0, y: 0.5}
-  - {x: 0.5, y: 0.5}
-  - {x: 0.5, y: 0}
-  demiCol:
-  - {x: 0, y: -0.5}
-  - {x: 0, y: 0.5}
-  - {x: 0.5, y: 0.5}
-  - {x: 0.5, y: -0.5}
-  - {x: 0, y: -0.5}
-  demiCol2:
-  - {x: -0.5, y: -0.5}
-  - {x: -0.5, y: 0.5}
-  - {x: 0, y: 0.5}
-  - {x: 0, y: -0.5}
-  - {x: -0.5, y: -0.5}
+  wallCorner:
+  - {fileID: 21300006, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300018, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300028, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300036, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  wallDoubleSide:
+  - {fileID: 21300012, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  - {fileID: 21300024, guid: 07df756bad788744fbcacbc8cce21a29, type: 3}
+  shadowSide:
+  - {fileID: 21300000, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300006, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300010, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300014, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  shadowCorner:
+  - {fileID: 21300002, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300008, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300012, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  - {fileID: 21300016, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  shadowWall: {fileID: 21300004, guid: d42678e7899f12c42877b862aa67eeb6, type: 3}
+  miniMap:
+  - {fileID: 21300000, guid: a17a472c3215c8f4ea19d9eb99974a55, type: 3}
+  - {fileID: 21300002, guid: a17a472c3215c8f4ea19d9eb99974a55, type: 3}

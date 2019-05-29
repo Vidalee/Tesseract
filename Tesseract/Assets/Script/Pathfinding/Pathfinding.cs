@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Script.GlobalsScript;
 using UnityEngine;
 
 namespace Script.Pathfinding
@@ -41,13 +42,12 @@ namespace Script.Pathfinding
                   start.DistanceToPlayer = Math.Abs((destination.position - start.position).magnitude);
 
                   int lastIndex = 1;
-                  BinaryHeap binaryHeap = ScriptableObject.CreateInstance<BinaryHeap>();
                   List<IHeapNode> openList = new List<IHeapNode>();
-                  binaryHeap.MinPush(openList, start);
+                  BinaryHeap.MinPush(openList, start);
                    
                   while (lastIndex != 0)
                   {
-                        Node node = (Node) binaryHeap.MinPop(openList);
+                        Node node = (Node) BinaryHeap.MinPop(openList);
                         lastIndex--;
                         
                         if (node == destination)
@@ -63,7 +63,7 @@ namespace Script.Pathfinding
                               neighbor.DistanceToEnemy = newDistance;
                               neighbor.DistanceToPlayer = newDistance + Math.Abs((destination.position - node.position).magnitude);
                               neighbor.Parent = node;
-                              binaryHeap.MinPush(openList, neighbor);
+                              BinaryHeap.MinPush(openList, neighbor);
                               lastIndex++;
                         }
                   }
@@ -73,7 +73,7 @@ namespace Script.Pathfinding
             
             public void FindPathToPlayer(Transform player)
             {
-                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().GetPlayerData;
+                  PlayerData playerData = player.parent.GetComponent<PlayerManager>().PlayerData;
                   if (playerData.PositionChanged)
                   {
                         start = AllNodes.PositionToNode(transform.position);

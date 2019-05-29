@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3544a8fc33c26147912c5ba19ecd35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
-  _sprite: {fileID: 7042582422253373219}
+  Weapon: {fileID: 0}
+  _sprite: {fileID: 0}
 --- !u!212 &7042582422253373219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -141,5 +141,5 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

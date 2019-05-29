@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f7ef3393b3cf24faf9549a3a85bd0a, type: 3}
   m_Name: TorchL
   m_EditorClassIdentifier: 
-  anim: {fileID: 7400000, guid: 0352d72a8016d824c9ec043fcaaef698, type: 2}
+  anim: {fileID: 7400000, guid: e529e17a16b37d147be6d2f8e18c99e0, type: 2}
   col: []
   asCol: 0
   color: fa000000fa000000f0000000
-  name: TorchL
-  range: 5
+  range: 10
   intensity: 0.005
-  sortingOrder: 91
   material: {fileID: 2100000, guid: 7d43882fd52601d45974344acbdf2ac1, type: 2}
   rot: 0
+  behind: 0

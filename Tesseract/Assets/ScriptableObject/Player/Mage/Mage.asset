@@ -12,20 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: 
+  PlayerHpAth: {fileID: 11400000, guid: dd3bf4f205e112545acef28afda5b3f1, type: 2}
+  PlayerHpBarAth: {fileID: 11400000, guid: c0a3c13ea0e4dcc41bc88e3ef175b439, type: 2}
+  PlayerManaAth: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
+  PlayerManaBarAth: {fileID: 11400000, guid: e931a3a5c22850e478c75dca9eb1e299, type: 2}
+  PlayerXpAth: {fileID: 11400000, guid: 00ce6df57c6864747b01b2990273df0b, type: 2}
+  PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
+  PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Mage
   _MaxHp: 100
-  _Hp: 90
+  _Hp: 100
   _MaxMana: 100
   _Mana: 100
-  _ManaRegen: 0
+  _ManaRegen: 5
   _PhysicsDamage: 20
   _MagicDamage: 100
   _MoveSpeed: 4
   _MaxXp: 100
-  _TotalXp: 0
   _Xp: 0
   _MaxLvl: 100
-  _Lvl: 3
+  _Lvl: 1
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06

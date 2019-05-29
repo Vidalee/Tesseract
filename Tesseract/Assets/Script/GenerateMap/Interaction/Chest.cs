@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour
     private void Awake()
     {
         Create(_chestData);
+        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
     }
 
     public void Create(ChestData chestData)
@@ -29,6 +30,5 @@ public class Chest : MonoBehaviour
         GetComponentInChildren<ChestInteraction>().Create(_chestData);
         
         GetComponent<EdgeCollider2D>().points = _chestData.BoxCol;
-        GetComponentInChildren<Perspective>().Create(_chestData.PersCol);
     }
 }

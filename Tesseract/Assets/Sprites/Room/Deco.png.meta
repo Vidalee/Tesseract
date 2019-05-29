@@ -14,6 +14,20 @@ TextureImporter:
     21300018: elements_spritesheet_9
     21300020: elements_spritesheet_10
     21300022: elements_spritesheet_11
+    21300024: Deco_0
+    21300026: Deco_1
+    21300028: Deco_2
+    21300030: Deco_3
+    21300032: Deco_4
+    21300034: Deco_5
+    21300036: Deco_6
+    21300038: Deco_7
+    21300040: Deco_8
+    21300042: Deco_9
+    21300044: Deco_10
+    21300046: Deco_11
+    21300048: Deco_12
+    21300050: Deco_13
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -118,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elements_spritesheet_0
+      name: Deco_0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,13 +146,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a11f5fb4acfecb64b99046ef73647a98
+      spriteID: ea2a80da13fce5845b26c4e2dd1f133a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_1
+      name: Deco_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,13 +166,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac3d5c79e9443e0469f4c220e1f26f68
+      spriteID: 252772b018112d34e96d3a3d0345895e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_2
+      name: Deco_2
       rect:
         serializedVersion: 2
         x: 64
@@ -172,13 +186,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b15bf6a366a11a46bc32714d5aa455c
+      spriteID: 6801f6ae00cd28947997f9cade2d6d59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_3
+      name: Deco_3
       rect:
         serializedVersion: 2
         x: 0
@@ -192,13 +206,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a95ebabf5502db4081aeee43bd66099
+      spriteID: 184f6bf413cabfe418fa87a891861d78
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_4
+      name: Deco_4
       rect:
         serializedVersion: 2
         x: 32
@@ -212,13 +226,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04deb74e7bd468846945141b8d37b419
+      spriteID: b06173bd94436c74ba8ee0254dc908f2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_5
+      name: Deco_5
       rect:
         serializedVersion: 2
         x: 64
@@ -232,13 +246,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa11e1df3096fe345b77d143e12019e0
+      spriteID: 85b0a2a99195e07439cd8e10c047355b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_6
+      name: Deco_6
       rect:
         serializedVersion: 2
         x: 0
@@ -252,13 +266,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 451409add95ab1b48a6d02a489b9765c
+      spriteID: b95a0049e30f83041af9df0f7cf6f0de
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_7
+      name: Deco_7
       rect:
         serializedVersion: 2
         x: 32
@@ -272,13 +286,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b62a037eb63fd241b1a29378b973fa8
+      spriteID: 1b8486fec40e1564c96e1246b74e44dc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_8
+      name: Deco_8
       rect:
         serializedVersion: 2
         x: 64
@@ -292,13 +306,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c20317f3949198748925d1be94807764
+      spriteID: c00318879f5ccc94c8614d08e2924f25
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_9
+      name: Deco_9
       rect:
         serializedVersion: 2
         x: 0
@@ -312,13 +326,53 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0620882263b2de34891433ecbe45d02a
+      spriteID: 48bebc90e738651449229f44e8852a79
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_10
+      name: Deco_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a11ef7c2b92154f9d84b430b665804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee1f5fd4bc82f94c85c85446b2c74f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Deco_12
       rect:
         serializedVersion: 2
         x: 0
@@ -332,13 +386,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3b958afea18a1446badef9fe2073b09
+      spriteID: d093c7009a860cf4b9eb5df6de738582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elements_spritesheet_11
+      name: Deco_13
       rect:
         serializedVersion: 2
         x: 32
@@ -352,7 +406,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97edfe75a0f592e449ff39cc638c05a7
+      spriteID: 64f4ad283f8541141b70c02573485318
       vertices: []
       indices: 
       edges: []

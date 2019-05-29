@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c8b78f5aeddd645adbc384dfa4a77e, type: 3}
   m_Name: SimpleChest
   m_EditorClassIdentifier: 
-  chestClose: {fileID: 21300020, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
-  chestOpen: {fileID: 21300022, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
+  chestClose: {fileID: 21300048, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
+  chestOpen: {fileID: 21300050, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
   boxCol:
   - {x: -0.5, y: -0.5}
   - {x: -0.5, y: 0.1875}

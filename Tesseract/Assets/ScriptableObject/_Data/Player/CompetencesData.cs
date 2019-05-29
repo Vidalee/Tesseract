@@ -96,7 +96,11 @@ public class CompetencesData : ScriptableObject
 
     public int[] Color => color;
 
-    public int ManaCost => manaCost;
+    public int ManaCost
+    {
+        get => manaCost;
+        set => manaCost = value;
+    }
 
     public int Number
     {

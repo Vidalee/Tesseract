@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scene/Rooms.unity
     guid: 4bfd310dc84b08740b5f983597f23da8
   - enabled: 1
-    path: Assets/Scene/MapV2.unity
+    path: Assets/Scene/Map.unity
     guid: fde80234acaad9d47b9e4c3aa3cc4145
+  - enabled: 1
+    path: Assets/Scene/MenuPlayer.unity
+    guid: 371c549bc2dbdf045931531c9a790018
+  - enabled: 1
+    path: Assets/Scene/Dungeon.unity
+    guid: 871ca543eaca5484ea95a7893eed6366
   m_configObjects: {}
