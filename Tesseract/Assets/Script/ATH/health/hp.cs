@@ -19,6 +19,6 @@ public class hp : MonoBehaviour
     }
     void Update()
     {
-        txt_sante.text = playerData.Hp + ""; 
+        txt_sante.text = playerData.Hp + " / " + playerData.MaxHp; 
     }
 }

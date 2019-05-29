@@ -19,7 +19,10 @@ public class mana_bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManaPercent = (float) PlayerData.Mana / PlayerData.MaxMana;
-        transform.localScale = new Vector3(ManaPercent, transform.localScale.y);
+        if (transform.parent.gameObject.activeSelf)
+        {
+            ManaPercent = (float) PlayerData.Mana / PlayerData.MaxMana;
+            transform.localScale = new Vector3(ManaPercent, transform.localScale.y);
+        }
     }
 }
