@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7447967311768191375}
   - component: {fileID: 6434590799956567368}
   - component: {fileID: 9058914715773683575}
-  - component: {fileID: 56691220}
+  - component: {fileID: 7302507570464481710}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -125,7 +125,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &56691220
+--- !u!114 &7302507570464481710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
