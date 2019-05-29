@@ -15,11 +15,6 @@ public class Inventory : ScriptableObject
     }
 
     public GameEvent PotionsAth;
-
-    public void Update()
-    {
-        
-    }
     
     public Potions UsePotion(int index)
     {
@@ -52,6 +47,8 @@ public class Inventory : ScriptableObject
     {
         switch (item)
         {
+            case null:
+                return false;
             case Potions _:
                 return AddPotion(item as Potions);
             case Weapons _:
