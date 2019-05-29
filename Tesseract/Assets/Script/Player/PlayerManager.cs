@@ -54,7 +54,6 @@ public class PlayerManager : MonoBehaviour
 
             _playerData = _PlayersData[pers];
             LoadPlayer();
-            Debug.Log(_playerData.Hp);
         
             InstantiatePlayer(x, y);
         }
@@ -200,6 +199,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (var it in Items)
         {
+            if (it == null) return null;
             if (it.id == id) return it;
         }
 

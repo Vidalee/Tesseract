@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
