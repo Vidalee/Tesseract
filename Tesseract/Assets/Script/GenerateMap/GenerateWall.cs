@@ -23,14 +23,13 @@ public class GenerateWall : MonoBehaviour
     private Tile _tile;
     
     
-    public void Create(bool[,] grid, Tilemap wallMap, Tilemap perspMap, Tilemap colMap, Tilemap shadMap,
+    public void Create(bool[,] grid, Tilemap perspMap, Tilemap colMap, Tilemap shadMap,
         Tilemap[] shadSMap, Tilemap[] shadCMap)
     {
         _wallTextureLength = MapTextureData.Wall.Length;
         _grid = grid;
         _wallPos = new bool[_grid.GetLength(0),_grid.GetLength(1)];
         
-        _wallMap = wallMap;
         _perspMap = perspMap;
         _wallMap = colMap;
         _shadWMap = shadMap;
@@ -321,7 +320,6 @@ public class GenerateWall : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void CreateTorch(Vector3 pos, SimpleDecoration deco)

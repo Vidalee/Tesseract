@@ -18,4 +18,5 @@ MonoBehaviour:
   - {x: 0.25, y: -0.45}
   - {x: 0.25, y: -0.5}
   - {x: -0.25, y: -0.5}
-  _animation: {fileID: 7400000, guid: 24a401b847804314bb22fd2090ed0cf6, type: 2}
+  animation: {fileID: 0}
+  isBoss: 1

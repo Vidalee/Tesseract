@@ -77,6 +77,8 @@ public class MapGridCreation : MonoBehaviour
         AddPikes();
         
         AddPortal();
+        AddBossPortal();
+        
         AddPlayer();
 
         GenerateEnemies.RoomData = _roomData;
@@ -249,6 +251,14 @@ public class MapGridCreation : MonoBehaviour
         }
     }
     
+    //Add boss portal
+    private void AddBossPortal()
+    {
+        Transform room = _rooms[Random.Range(0, _roomData.Count)];
+        
+        room.GetComponent<RoomInstance>().AddBossPortal();
+    }
+    
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {
@@ -405,7 +415,7 @@ public class MapGridCreation : MonoBehaviour
         GenerateWall script = o.GetComponent<GenerateWall>();
         
         WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
-        script.Create(_grid, FloorMap, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
+        script.Create(_grid, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 
     //Debug show graph before mst

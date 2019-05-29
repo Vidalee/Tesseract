@@ -22,7 +22,6 @@ public class PlayerDataSave
     public int[] CompNumber;
     
     public int weapon;
-    public int[] inventory;
 
 
     public PlayerDataSave(PlayerData player)
@@ -59,19 +58,10 @@ public class PlayerDataSave
         }
 
         weapon = ItemNull(player.Inventory.Weapon);
-        
-        inventory = new[]
-        {
-            ItemNull(player.Inventory.Potions[0]),
-            ItemNull(player.Inventory.Potions[1]),
-            ItemNull(player.Inventory.Potions[2]),
-            ItemNull(player.Inventory.Potions[3]),
-        };
     }
 
     private int ItemNull(GamesItem item)
     {
-        if (item == null) return 0;
-        return item.id;
+        return item == null ? 0 : item.id;
     }
 }

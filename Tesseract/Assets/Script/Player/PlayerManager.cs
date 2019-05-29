@@ -40,13 +40,21 @@ public class PlayerManager : MonoBehaviour
 
     public void Create(int x, int y)
     {
-        string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-        int pers = FindClass(type);
+        if (StaticData.ActualFloor == 1)
+        {
+            string type = Perso != "" ? Perso : StaticData.PlayerChoice;
+            int pers = FindClass(type);
 
-        _playerData = _PlayersData[pers];
-        LoadPlayer();
+            _playerData = _PlayersData[pers];
+            LoadPlayer();
         
-        InstantiatePlayer(x, y);
+            InstantiatePlayer(x, y);
+        }
+        else
+        {
+            _playerData = StaticData.actualData;
+            InstantiatePlayer(x, y);
+        }
     }
     
     private void InstantiatePlayer(int x, int y)

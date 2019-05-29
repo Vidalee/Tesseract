@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Script.GlobalsScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -31,6 +33,23 @@ public class Portal : MonoBehaviour
     {
         if (other.transform.CompareTag("PlayerFeet"))
         {
+            if (_portalData.IsBoss && StaticData.ActualFloor == StaticData.NumberFloor)
+            {
+                StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
+                Random.InitState(StaticData.Seed);
+
+                StaticData.Seed = Random.Range(0, 1000000);
+                ChangeScene.ChangeToScene("Dungeon");
+                return;
+            }
+            if (_portalData.IsBoss)
+            {
+                StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
+                StaticData.ActualFloor++;
+                ChangeScene.ChangeToScene("Boss");
+                return;
+            }
+            
             other.transform.parent.position = _pos;
         }
     }

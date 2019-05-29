@@ -123,6 +123,21 @@ public class RoomInstance : MonoBehaviour
         }
     }
 
+    public void AddBossPortal()
+    {
+        int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+        int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+        
+        if (!script.Instances[y, x])
+        {
+            Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
+            o.GetComponent<Portal>().Create(PortalDatas[Random.Range(0, PortalDatas.Length)], new Vector3());
+
+            script.AddToInstance(y, x, true, true);
+            _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
+        }
+    }
+
     public void AddPikes()
     {
         for (int i = 0; i < PikeProb; i++)
