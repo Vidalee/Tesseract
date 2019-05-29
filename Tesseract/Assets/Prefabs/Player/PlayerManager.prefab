@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7447967311768191375}
   - component: {fileID: 6434590799956567368}
   - component: {fileID: 9058914715773683575}
+  - component: {fileID: 7302507570464481710}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -45,6 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f3b9616b5f42c4fbf56cd038644017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetXpBar: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
+  SetXp: {fileID: 11400000, guid: 00ce6df57c6864747b01b2990273df0b, type: 2}
+  SetHpBar: {fileID: 11400000, guid: c0a3c13ea0e4dcc41bc88e3ef175b439, type: 2}
+  SetHp: {fileID: 11400000, guid: dd3bf4f205e112545acef28afda5b3f1, type: 2}
+  SetManaBar: {fileID: 11400000, guid: e931a3a5c22850e478c75dca9eb1e299, type: 2}
+  SetMana: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
+  SetLvl: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _PlayersData:
   - {fileID: 11400000, guid: 4c097147e9829d74d94a7f53901eab19, type: 2}
   - {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
@@ -122,5 +130,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &7302507570464481710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 688fcaecfedd57442967e71d6b79bc38, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: InstantiatePlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.UnityEventWithArgs, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
