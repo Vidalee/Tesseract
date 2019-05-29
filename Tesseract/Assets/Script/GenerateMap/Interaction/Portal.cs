@@ -6,12 +6,14 @@ public class Portal : MonoBehaviour
 {
     private PortalData _portalData;
     private Vector3 _pos;
+    private Animator _a;
 
     public void Create(PortalData portalData, Vector3 pos)
     {
         _portalData = portalData;
         _pos = pos;
         GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
+        _a = GetComponent<Animator>();
 
         Initiate();
     }
@@ -19,7 +21,10 @@ public class Portal : MonoBehaviour
     private void Initiate()
     {
         GetComponent<EdgeCollider2D>().points = _portalData.Col;
-        GetComponent<SpriteRenderer>().sprite = _portalData.Sprite;
+        
+        AnimatorOverrideController aoc = new AnimatorOverrideController(_a.runtimeAnimatorController);
+        AnimatorOverride.AnimationOverride("Default", _portalData.Animation, aoc, _a);
+        _a.speed = 0.6f;
     }
 
     public void OnTriggerEnter2D(Collider2D other)

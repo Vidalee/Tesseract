@@ -3,13 +3,10 @@
 [CreateAssetMenu(fileName = "Portal", menuName = "Map/Portal")]
 public class PortalData : ScriptableObject
 {
-    [SerializeField] protected Sprite _sprite;
     [SerializeField] protected Vector2[] col;
-    [SerializeField] protected Vector2[] persCol;
+    [SerializeField] protected AnimationClip _animation;
 
-    public Sprite Sprite => _sprite;
+    public AnimationClip Animation => _animation;
 
     public Vector2[] Col => col;
-
-    public Vector2[] PersCol => persCol;
 }

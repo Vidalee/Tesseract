@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4df1b64c598e24a9ebe8e24e3862fa, type: 3}
   m_Name: BossPortal
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300046, guid: c5557c40539d59542bf52dfa7ca6e73b, type: 3}
-  col: []
-  persCol: []
+  col:
+  - {x: -0.25, y: -0.5}
+  - {x: -0.25, y: -0.45}
+  - {x: 0.25, y: -0.45}
+  - {x: 0.25, y: -0.5}
+  - {x: -0.25, y: -0.5}
+  _animation: {fileID: 7400000, guid: 24a401b847804314bb22fd2090ed0cf6, type: 2}
