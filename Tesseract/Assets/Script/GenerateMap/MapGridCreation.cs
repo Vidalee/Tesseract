@@ -52,6 +52,7 @@ public class MapGridCreation : MonoBehaviour
     
     private void Awake()
     {
+        Coffre.Créer();
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _instances = new bool[MapHeight, MapWidth];

@@ -16,7 +16,8 @@ public class PlayerData : ScriptableObject
     public GameEvent PlayerLevelAth;
     
     [SerializeField] protected string _Name;
-    
+    [SerializeField] protected int _MultiID;
+
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
     [SerializeField] protected int _MaxMana;
@@ -69,6 +70,12 @@ public class PlayerData : ScriptableObject
     #endregion
 
     #region Set/Get
+
+    public int MultiID
+    {
+        get => _MultiID;
+        set => _MultiID = value;
+    }
 
     public int ManaRegen
     {

@@ -27,6 +27,7 @@ public class UDPClient : MonoBehaviour, UDPEventListener
         if(text == "PONG") connected = true;
         if (text == "WPASS") wpass = true;
         if (text == "CPASS") cpass = true;
+        
     }
 
     void Start()

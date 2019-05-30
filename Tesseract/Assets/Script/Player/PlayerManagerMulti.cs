@@ -4,7 +4,7 @@ using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManagerMulti : MonoBehaviour
 {
     #region Variable
 
@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     #region Initialise
 
-    public void Create(int x, int y)
+    public void Create(int x, int y, int id, string choice)
     {
         string type = Perso != "" ? Perso : StaticData.PlayerChoice;
         int pers = FindClass(type);
@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
         InstantiatePlayer(x, y);
     }
 
-    private void InstantiatePlayer(int x, int y)
+    private void InstantiatePlayer(int x, int y, int id)
     {        
         Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
         

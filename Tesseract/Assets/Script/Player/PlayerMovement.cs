@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask BlockingLayer;
     public GameEvent PlayerMoveEvent;
     public GameEvent PlayerPos;
-    
+
 
     #endregion
 
@@ -37,31 +37,64 @@ public class PlayerMovement : MonoBehaviour
 
     #region Movement
 
-        private void PlayerMove()
+    private void PlayerMove()
     {
         if (!_playerData.CanMove)
         {
             return;
         }
-        
-        int xDir = (int) Input.GetAxisRaw("Horizontal");
-        int yDir = (int) Input.GetAxisRaw("Vertical");
+
+        int xDir = (int)Input.GetAxisRaw("Horizontal");
+        int yDir = (int)Input.GetAxisRaw("Vertical");
+
+        if ((string)Coffre.Regarder("mode") == "solo")
+        {
+            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+
+            if (xDir == 0 && yDir == 0) return;
+
+            Vector3 distance = GetDistance(xDir, yDir);
+
+            transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
+        }
+        else if (_playerData.MultiID == (int)Coffre.Regarder("id"))
+        {
+            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+
+            if (xDir == 0 && yDir == 0) return;
+
+            Vector3 distance = GetDistance(xDir, yDir);
+
+            transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
+
+            //TODO Send au multi que j'ai bougé + la position
+        }
+    }
+
+    public void Move(int xDir, int yDir, Vector3 final)
+    {
+        if (!_playerData.CanMove)
+        {
+            return;
+        }
 
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
 
         if (xDir == 0 && yDir == 0) return;
 
         Vector3 distance = GetDistance(xDir, yDir);
+        
+        transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
 
-        transform.Translate(distance * _playerData.MoveSpeed *Time.deltaTime);
+        //transform.position = final;
     }
 
     private IEnumerator UpdatePlayerPos()
     {
-        for(;;)
+        for (; ; )
         {
             Vector3 position = transform.position;
-            PlayerPos.Raise(new EventArgsCoor((int) position.x, (int) position.y));
+            PlayerPos.Raise(new EventArgsCoor((int)position.x, (int)position.y));
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -75,19 +108,19 @@ public class PlayerMovement : MonoBehaviour
         Vector3 playerPos = transform.position;
         playerPos.y += -_playerData.Height / 2;
         Vector3 playerWidth = new Vector3(_playerData.Width / 2, 0, 0);
-        Vector3 direction = new Vector3(xDir,yDir,0);
-        
+        Vector3 direction = new Vector3(xDir, yDir, 0);
+
         RaycastHit2D xLinecastUp = Physics2D.Linecast(playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth,
             playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight), BlockingLayer);
         RaycastHit2D xLinecastDown = Physics2D.Linecast(playerPos + xDir * playerWidth, playerPos + xDir * playerWidth + new Vector3(xDir, 0), BlockingLayer);
-        
+
         /* DEBUG
         Vector3 s = playerPos + new Vector3(0, _playerData.FeetHeight) + xDir * playerWidth;
         Vector3 en = playerPos + xDir * playerWidth + new Vector3(xDir, _playerData.FeetHeight);
         Vector3 dir3 = (en - s);
         Debug.DrawRay(s, dir3, Color.red, 1000f, false);
         */
-        
+
         if (yDir > 0)
         {
             playerPos.y += _playerData.FeetHeight;
@@ -104,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (xLinecastDown)
         {
-             direction.x *= xLinecastDown.distance - 0.01f;
+            direction.x *= xLinecastDown.distance - 0.01f;
         }
         else if (xLinecastUp)
         {
@@ -145,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 if (diagLinecastLeft) direction *= diagLinecastLeft.distance - 0.01f;
-                else if(diagLinecastRight) direction *= diagLinecastRight.distance - 0.01f;
+                else if (diagLinecastRight) direction *= diagLinecastRight.distance - 0.01f;
             }
         }
 

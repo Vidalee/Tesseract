@@ -60,6 +60,13 @@ public class UDPSocket
             Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
             string msg = Encoding.ASCII.GetString(so.buffer, 0, bytes);
             UDPEvent.Receive(msg);
+            if (msg.StartsWith("SET"))
+            {
+                string[] args = msg.Split(' ');
+                if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);
+                Coffre.Remplir(args[0], args[1]);
+            }
+
         }, state);
 
     }
