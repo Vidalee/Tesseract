@@ -19,5 +19,7 @@ namespace Script.GlobalsScript
         }
         
         public static int Seed;
+
+        public static bool pause;
     }
 }
