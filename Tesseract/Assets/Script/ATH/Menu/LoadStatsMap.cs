@@ -6,7 +6,8 @@ public class LoadStatsMap : MonoBehaviour
 {
     private void Start()
     {
-        GetComponentInChildren<Text>().text = "Level : " + transform.parent.name;
+        if(!transform.parent.name.Contains("M"))
+            GetComponentInChildren<Text>().text = "Level : " + transform.parent.name;
     }
 
     public void SetMapLevel()
@@ -19,5 +20,13 @@ public class LoadStatsMap : MonoBehaviour
         StaticData.NumberFloor = 1 + StaticData.RandomLevel() / 5;
 
         ChangeScene.ChangeToScene("Dungeon");
+    }
+
+    public void ReturnChampSelect()
+    {
+        StaticData.Reset();
+        GlobalInfo.Reset();
+        
+        ChangeScene.ChangeToScene("MenuPlayer");
     }
 }
