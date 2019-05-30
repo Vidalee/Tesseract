@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour
     {
         _portalData = portalData;
         _pos = pos;
-        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
+        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -10);
         _a = GetComponent<Animator>();
 
         Initiate();

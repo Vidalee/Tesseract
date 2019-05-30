@@ -393,7 +393,7 @@ public class MapGridCreation : MonoBehaviour
     //Instantiate floor with the bool grid
     private void CreateFloor()
     {
-        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        FloorMap.GetComponent<Renderer>().sortingOrder = -10500;
         
         Tile tile = ScriptableObject.CreateInstance<Tile>();
 
@@ -433,7 +433,7 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -10500;
         script.Create(_grid, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 

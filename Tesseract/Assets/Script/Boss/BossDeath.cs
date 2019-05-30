@@ -75,8 +75,6 @@ public class BossDeath : MonoBehaviour
 
         string test = StaticData.LevelMap[0] + "-" + StaticData.LevelMap[1];
         int index = text.IndexOf(test) + 1;
-        Debug.Log(index);
-        Debug.Log(GlobalInfo.MaxLvl);
 
         if (index != 0 && index == save.maxLvl && index < 15)
         {

@@ -24,20 +24,15 @@ public class SimpleDeco : MonoBehaviour
             gameObject.AddComponent<EdgeCollider2D>().points = _simpleDecoration.Col;
         }
         
-        int mult = -100;
+        int mult = -10;
         if (_simpleDecoration.Behind)
         {
-            mult = -105;
+            mult = -12;
         }
 
         SpriteRenderer s = GetComponent<SpriteRenderer>();
         s.material = _simpleDecoration.Material;
         s.sortingOrder = (int) ((transform.parent.position.y + transform.position.y) * mult);
-        if (s.sortingOrder > 10000)
-        {
-            Debug.Log(s.sortingOrder);
-
-        }
 
         if (_simpleDecoration.Color.Length != 0)
         {
