@@ -13,7 +13,7 @@ public class Pikes : MonoBehaviour
         _pikesData = pikesData;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _pikesData.NonTrig;
-        _spriteRenderer.sortingOrder = (int) (transform.position.y * -105);
+        _spriteRenderer.sortingOrder = (int) (transform.position.y * -15);
 
     }
 

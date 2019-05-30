@@ -840,6 +840,7 @@ GameObject:
   - component: {fileID: 8553684504118742181}
   - component: {fileID: 1650446065634931984}
   - component: {fileID: 1670173992585586625}
+  - component: {fileID: 9078675640080118105}
   m_Layer: 11
   m_Name: MiniMapCam
   m_TagString: Untagged
@@ -911,6 +912,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4581201631684176509}
   m_Enabled: 1
+--- !u!114 &9078675640080118105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4581201631684176509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2277e6781f8a7d44f807f8548903242c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4628917745134885996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,20 +2016,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 4236175760814717961, guid: 500983a92f18e1e4e9612b4b727d1f9b, type: 3}
-  MapHeight: 100
-  MapWidth: 100
-  RoomNumber: 20
-  DistanceRoom: 50
+  MapHeight: 150
+  MapWidth: 150
+  RoomNumber: 30
+  DistanceRoom: 200
   maxTry: 100
-  fusion: 5
+  fusion: 10
   maxH: 20
   minH: 10
   maxW: 20
   minW: 10
   forcePath: 5
   prob: 10
-  portalChance: 0
-  simpleDecoration: 1
   seed: 1
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,
     type: 3}

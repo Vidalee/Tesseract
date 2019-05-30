@@ -24,10 +24,10 @@ public class SimpleDeco : MonoBehaviour
             gameObject.AddComponent<EdgeCollider2D>().points = _simpleDecoration.Col;
         }
         
-        int mult = -100;
+        int mult = -10;
         if (_simpleDecoration.Behind)
         {
-            mult -= 5;
+            mult = -12;
         }
 
         SpriteRenderer s = GetComponent<SpriteRenderer>();

@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Script.GlobalsScript;
+﻿using Script.GlobalsScript;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class Portal : MonoBehaviour
     {
         _portalData = portalData;
         _pos = pos;
-        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -100);
+        GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -10);
         _a = GetComponent<Animator>();
 
         Initiate();
@@ -33,19 +30,27 @@ public class Portal : MonoBehaviour
     {
         if (other.transform.CompareTag("PlayerFeet"))
         {
-            if (_portalData.IsBoss && StaticData.ActualFloor == StaticData.NumberFloor)
+            StaticData.ActualFloor += 1;
+
+            if (_portalData.IsBoss && StaticData.ActualFloor > StaticData.NumberFloor)
             {
                 StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
-                StaticData.ActualFloor++;
                 ChangeScene.ChangeToScene("Boss");
                 return;
             }
-            if (_portalData.IsBoss)
+            if (_portalData.IsBoss && StaticData.ActualFloor < 0)
+            {
+                StaticData.ActualFloor = 0;
+                SaveSystem.SavePlayer(other.GetComponentInParent<PlayerManager>().PlayerData);
+                SaveSystem.SaveGlobal();
+                ChangeScene.ChangeToScene("LevelSelection");
+                return;
+            }
+            if(_portalData.IsBoss)
             {
                 StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
                 Random.InitState(StaticData.Seed);
 
-                StaticData.ActualFloor++;
                 StaticData.Seed = Random.Range(0, 1000000);
                 ChangeScene.ChangeToScene("Dungeon");
                 return;

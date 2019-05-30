@@ -3,8 +3,9 @@
 
 public class Weapons : GamesItem
 {
-    [SerializeField] private int physicsDamage { get; set; }
-    [SerializeField] private int magicDamage { get; set; }
+    private int physicsDamage { get; set; }
+    private int magicDamage { get; set; }
+    
     [SerializeField] protected Vector2[] colliderPoints;
 
     public Vector2[] ColliderPoints => colliderPoints;

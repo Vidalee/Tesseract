@@ -12,7 +12,7 @@ public class EnemyData : ScriptableObject
 {
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
-
+    private int _lvl;
     [SerializeField] protected int _XpValue;
 
     
@@ -66,6 +66,12 @@ public class EnemyData : ScriptableObject
         set => _Hp = value;
     }
 
+    public int Lvl
+    {
+        get => _lvl;
+        set => _lvl = value;
+    }
+
     public int XpValue => _XpValue;
 
     public int PhysicsDamage => _PhysicsDamage;
@@ -79,7 +85,6 @@ public class EnemyData : ScriptableObject
     public int DetectionRange => _DetectionRange;
 
     public int MaxCooldown => _MaxCooldown;
-    
 
     public CompetencesData[] Competences => _Competences;
     
@@ -109,5 +114,14 @@ public class EnemyData : ScriptableObject
         //_XpValue += _XpValue / 10 * lvl + (floor - 1) * _XpValue;
         _PhysicsDamage += (int)(((float)_PhysicsDamage) / 10 * lvl) + (floor - 1) * _PhysicsDamage;
         _MagicDamage += _MagicDamage / 10 * lvl + (floor - 1) * _MagicDamage;
+    }
+
+    public void SetStats()
+    {
+        _MaxHp += 10 * _lvl;
+        _Hp = _MaxHp;
+        _XpValue += 10 * _lvl;
+        _PhysicsDamage += _lvl;
+        _MagicDamage += _lvl;
     }
 }

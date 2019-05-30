@@ -2,6 +2,7 @@ using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerManager : MonoBehaviour
@@ -60,7 +61,6 @@ public class PlayerManager : MonoBehaviour
         else
         {
             _playerData = StaticData.actualData;
-            Debug.Log(_playerData.Hp);
             InstantiatePlayer(x, y);
         }
     }
