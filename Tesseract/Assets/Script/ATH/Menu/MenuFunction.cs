@@ -12,4 +12,9 @@ public class MenuFunction : MonoBehaviour
     {
         StaticData.PlayerChoice = player;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
