@@ -6,10 +6,10 @@
 
         public static PlayerData actualData;
 
-        public static int NumberFloor;
+        public static int NumberFloor = 2;
         public static int ActualFloor;
 
-        public static int Level;
+        public static int LevelMap;
         public static int Seed;
     }
 }

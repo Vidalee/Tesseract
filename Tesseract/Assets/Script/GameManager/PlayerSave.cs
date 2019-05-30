@@ -4,9 +4,7 @@
 public class PlayerDataSave
 {
     public int MaxHp;
-    public int Hp;
     public int MaxMana;
-    public int Mana;
     public int PhysicsDamage;
     public int MagicDamage;
     public float MoveSpeed;
@@ -24,13 +22,10 @@ public class PlayerDataSave
     
     public int weapon;
 
-
     public PlayerDataSave(PlayerData player)
     {
         MaxHp = player.MaxHp;
-        Hp = player.Hp;
         MaxMana = player.MaxMana;
-        Mana = player.Mana;
         PhysicsDamage = player.PhysicsDamage;
         MagicDamage = player.MagicDamage;
         MoveSpeed = player.MoveSpeed;

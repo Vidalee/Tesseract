@@ -14,7 +14,7 @@ public static class SaveSystem
         formatter.Serialize(stream, data);
         stream.Close();
     }
-
+    
     public static PlayerDataSave LoadPlayer(string name)
     {
         string path = Application.persistentDataPath + "/" + name + ".txt";
