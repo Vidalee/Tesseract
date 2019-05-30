@@ -16,7 +16,10 @@ MonoBehaviour:
   displayName: Sword
   description: This is a sword
   id: 0
-  physicsDamage: 50
+  physicDamage: 100
+  magicDamage: 0
   colliderPoints:
   - {x: 0, y: 0}
   - {x: 0.16, y: 0.16}
+  inPlayerInventory: 0
+  _class: Warrior

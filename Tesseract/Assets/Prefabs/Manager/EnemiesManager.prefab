@@ -43,11 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf33493429974dabb9d562c86369080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapHeight: 0
-  MapWidth: 0
-  seed: 0
+  MapHeight: 150
+  MapWidth: 150
+  seed: 1337
   BlockingLayer:
     serializedVersion: 2
-    m_Bits: 0
-  Enemy: {fileID: 0}
-  Enemies: []
+    m_Bits: 256
+  Enemy: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85, type: 3}
+  Enemies:
+  - {fileID: 11400000, guid: e15a1638fd49f4fbe8c77e5140966dd1, type: 2}
+  - {fileID: 11400000, guid: efa6a1f4050934f13b99596757a553ad, type: 2}

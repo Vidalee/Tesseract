@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
@@ -9,8 +10,11 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] protected Weapons Weapon;
     [SerializeField] private SpriteRenderer _sprite;
-    
-    
+    public GameEvent PlayerMoveEvent;
+    public bool isAttacking = false;
+
+    public AnimationClip attack;
+    public int compteur = 0;
     public void Create(Weapons weapon)
     {
         _sprite = GetComponent<SpriteRenderer>();
@@ -23,50 +27,135 @@ public class WeaponManager : MonoBehaviour
     
     public void AttackWithWeapon(IEventArgs args)
     {
-        
-        Vector3 move = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        bool dir =  Math.Abs(move.x) < Math.Abs(move.y);
-        if (dir)
+        if (Weapon.inPlayerInventory)
         {
-            if (move.y < 0)
+            if (Weapon._class == "Warrior")
             {
-                StartCoroutine(Attack(-0.052f, -0.002f, -0.122f, -0.009f));
-            }
-            else
-            {
-                StartCoroutine(Attack(0.049f, -0.007f, -0.218f, -0.014f));
+                Vector3 move = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                bool dir = Math.Abs(move.x) < Math.Abs(move.y);
+                if (dir)
+                {
+                    if (move.y < 0)
+                    {
+                        StartCoroutine(Attack("up"));
+                    }
+                    else
+                    {
+                        StartCoroutine(Attack("down"));
+                    }
+                }
+                else
+                {
+                    if (move.x < 0)
+                    {
+                        StartCoroutine(Attack("left"));
+
+                    }
+                    else
+                    {
+                        StartCoroutine(Attack("right"));
+                        // Up -> x : 0.208 / y : 0.362
+                        // Down -> x : 0.246 / y : -0.065
+
+                        // Center -> x : 0.112 / y : 0.148
+
+                    }
+                }
             }
         }
-        else
+    }
+    
+    IEnumerator Attack(string dir)
+    {
+        isAttacking = true;
+        
+        WaitForSeconds frame = new WaitForSeconds(0.008f);
+        
+        PlaceWeapon(0.314f, 0.258f, 90);
+        yield return frame;
+        PlaceWeapon(0.349f, 0.229f, 70);
+        yield return frame;
+        PlaceWeapon(0.357f, 0.216f, 50);
+        yield return frame;
+        PlaceWeapon(0.357f, 0.216f, 30);
+        yield return frame;
+        PlaceWeapon(0.336f, 0.171f, 10);
+        yield return frame;
+        PlaceWeapon(0.299f, 0.131f, -10);
+        yield return frame;
+        PlaceWeapon(0.264f, 0.076f, -30);
+        yield return frame;
+        PlaceWeapon(0.244f, 0.07f, -50);
+        yield return frame;
+        PlaceWeapon(0.209f, 0.048f, -70);
+        yield return frame;
+        PlaceWeapon(0.165f, 0.018f, -90);
+        yield return frame;
+
+        isAttacking = false;
+        
+        switch (dir)
         {
-            if (move.x < 0)
-            {
-                StartCoroutine(Attack(0.049f, -0.007f, -0.218f, -0.014f));
-                
-            }
-            else 
-            {
-                StartCoroutine(Attack(0.049f, -0.007f, -0.218f, -0.014f));
-                // Up -> x : 0.208 / y : 0.362
-                // Down -> x : 0.246 / y : -0.065
-                
-                // Center -> x : 0.112 / y : 0.148
-                
-            }  
+            case "up" :
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
+                yield break;
+            case "down" :
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, 1));
+                yield break;
+            case "left" :
+                PlayerMoveEvent.Raise(new EventArgsCoor(-1, -1));
+                yield break;
+            case "right" :
+                PlayerMoveEvent.Raise(new EventArgsCoor(1, 1));
+                yield break;
         }
     }
 
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (isAttacking && col.CompareTag("Enemies"))
+            col.gameObject.GetComponent<EnemiesLive>().GetDamaged(Weapon.PhysicDamage);
+    }
+
     public void WeaponMovement(IEventArgs args)
     {
-        EventArgsCoor move = args as EventArgsCoor;
-        if (move.X == 0 && move.Y == 0) return;
-        bool dir =  Math.Abs(move.X) < Math.Abs(move.Y);
-        if (dir && move.Y > 0)
+        if (Weapon.inPlayerInventory)
         {
-            _sprite.enabled = true;
+            if (Weapon._class == "Warrior")
+            {
+                EventArgsCoor move = args as EventArgsCoor;
+                if (move.X == 0 && move.Y == 0) return;
+                bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
+                if (dir)
+                {
+                    if (move.Y > 0)
+                    {
+                        PlaceWeapon(-0.258f, 0.246f, -90);
+                        _sprite.sortingOrder = 101;
+                    }
+
+                    else
+                    {
+                        PlaceWeapon(0.261f, 0.246f, 180);
+                        _sprite.sortingOrder = -10000;
+                    }
+                }
+                else
+                {
+                    if (move.X < 0)
+                    {
+                        PlaceWeapon(0.223f, 0.353f, 195);
+                        _sprite.sortingOrder = -10000;
+                    }
+                    else
+                    {
+                        PlaceWeapon(0.062f, 0.431f, 205);
+                        _sprite.sortingOrder = -10000;
+                    }
+                }
+            }
         }
-        else _sprite.enabled = false;
     }
 
 
@@ -76,19 +165,33 @@ public class WeaponManager : MonoBehaviour
         transform.localPosition = new Vector3(x, y);
     }
     
-    IEnumerator Attack(float a, float b, float c, float d)
+    IEnumerator MageOrbMovement()
     {
-        _sprite.enabled = true;
-        var position = transform.position;
-        position = new Vector3(a, b);
-        yield return new WaitForSeconds(0.25f);
-        transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
-        position = new Vector3(c, d);
-        yield return new WaitForSeconds(0.25f);
-        transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
-        _sprite.enabled = false;
+        float y = 0.3f;
+        float a = 0.7f;
+        float b = 0.35f;
+        float alpha = 0;
+
+        while (Weapon.inPlayerInventory)
+        {
+            alpha += 0.04f;
+            float deltaY = (float)(b * Math.Sin(alpha));
+            transform.localScale = Vector3.one * (-deltaY / 5f + 1);
+            transform.localPosition = new Vector3((float)(a * Math.Cos(alpha)), (float)(y + deltaY), transform.position.z);
+             
+            yield return null;
+        }
     }
-    
-    
-    
+
+
+    private void Update()
+    {
+        if (Weapon.inPlayerInventory)
+        {
+            if (Weapon._class == "Mage")
+            {
+                StartCoroutine(MageOrbMovement());
+            }
+        }
+    }
 }

@@ -86,6 +86,8 @@ public class PlayerManager : MonoBehaviour
         
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
+        if (_playerData.Inventory.Weapon != null)
+            GameObject.Find("Armory").GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
     }
 
     #endregion
@@ -94,7 +96,7 @@ public class PlayerManager : MonoBehaviour
 
     private int FindClass(string choice)
     {
-        int index = 2;
+        int index = 3;
         switch (choice)
         {
             case "Archer":
