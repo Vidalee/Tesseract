@@ -38,12 +38,13 @@ public class PlayerManager : MonoBehaviour
 
     #region Initialise
 
-    public void Create(int x, int y)
+    public void Create(int x, int y, int id, bool solo)
     {
         string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-        int pers = FindClass(type);
+        int pers = solo ? FindClass(type) : id - 1;
 
         _playerData = _PlayersData[pers];
+        _playerData.MultiID = id;
         LoadPlayer();
         
         InstantiatePlayer(x, y);

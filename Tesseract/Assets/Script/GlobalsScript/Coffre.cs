@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 class Coffre
 {
@@ -12,11 +11,14 @@ class Coffre
     {
         //Si jamais on a des choses à ajouter quand on crée notre beau coffre
         //coffre.Remplir("étiquette", "valeur");
-        Remplir("mode", "solo");
+        Remplir("mode", "multi");
     }
 
     public static void Remplir(string étiquette, object objet)
     {
+        Debug.Log("remplir: " + étiquette + " | " + objet);
+        if (Existe(étiquette))
+            Vider(étiquette);
         coffre.Add(étiquette, objet);
     }
 

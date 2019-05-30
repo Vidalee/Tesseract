@@ -59,14 +59,16 @@ public class UDPSocket
             _socket.BeginReceiveFrom(so.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv, so);
             Console.WriteLine("RECV: {0}: {1}, {2}", epFrom.ToString(), bytes, Encoding.ASCII.GetString(so.buffer, 0, bytes));
             string msg = Encoding.ASCII.GetString(so.buffer, 0, bytes);
+            Debug.Log("RAW RECEIVE: " + msg);
             UDPEvent.Receive(msg);
             if (msg.StartsWith("SET"))
             {
+                
                 string[] args = msg.Split(' ');
+                if (args.Length != 3) return;
                 if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);
-                Coffre.Remplir(args[0], args[1]);
+                Coffre.Remplir(args[1], args[2]);
             }
-
         }, state);
 
     }

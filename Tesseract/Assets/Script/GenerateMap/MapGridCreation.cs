@@ -78,7 +78,7 @@ public class MapGridCreation : MonoBehaviour
         AddPikes();
         
         AddPortal();
-        AddPlayer();
+        if((string) Coffre.Regarder("mode") == "solo") AddPlayer(1, true);
 
         GenerateEnemies.RoomData = _roomData;
         GenerateEnemies.availablePosGrid = _grid;
@@ -229,7 +229,7 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Add player
-    private void AddPlayer()
+    public void AddPlayer(int id, bool solo)
     {
         int j = 0;
         while (j < 100)
@@ -242,14 +242,35 @@ public class MapGridCreation : MonoBehaviour
         
             if (!Instances[y, x] && _grid[y, x])
             {
-                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y);
+                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y, id, solo);
                 return;
             }
 
             j++;
         }
     }
-    
+
+    //Add multi player
+    public void AddMultiPlayer(int id)
+    {
+        int j = 0;
+        while (j < 100)
+        {
+            int i = Random.Range(0, _roomData.Count);
+            RoomData roomData = _roomData[i];
+
+            int x = roomData.X1 + Random.Range(1, roomData.Width - 2);
+            int y = roomData.Y1 + Random.Range(1, roomData.Height - 2);
+
+            if (!Instances[y, x] && _grid[y, x])
+            {
+                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManagerMulti>().Create(x, y, id);
+                return;
+            }
+
+            j++;
+        }
+    }
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {

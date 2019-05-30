@@ -57,17 +57,15 @@ public class PlayerMovement : MonoBehaviour
 
             transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
         }
-        else if (_playerData.MultiID == (int)Coffre.Regarder("id"))
+        else if (_playerData.MultiID + "" == (string) Coffre.Regarder("id"))
         {
             PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
 
             if (xDir == 0 && yDir == 0) return;
-
+            MultiManager.socket.Send("JINFO " + Coffre.Regarder("id") + " " + xDir + " " + yDir);
             Vector3 distance = GetDistance(xDir, yDir);
 
             transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
-
-            //TODO Send au multi que j'ai bougé + la position
         }
     }
 

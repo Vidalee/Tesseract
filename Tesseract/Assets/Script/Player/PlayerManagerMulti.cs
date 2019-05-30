@@ -38,18 +38,18 @@ public class PlayerManagerMulti : MonoBehaviour
 
     #region Initialise
 
-    public void Create(int x, int y, int id, string choice)
+    public void Create(int x, int y, int id)
     {
-        string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-        int pers = FindClass(type);
+        int pers = id - 1;
 
         _playerData = _PlayersData[pers];
+        _playerData.MultiID = id;
         LoadPlayer();
-        
+        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         InstantiatePlayer(x, y);
     }
 
-    private void InstantiatePlayer(int x, int y, int id)
+    private void InstantiatePlayer(int x, int y)
     {        
         Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
         
