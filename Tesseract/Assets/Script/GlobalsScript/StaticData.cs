@@ -21,5 +21,15 @@ namespace Script.GlobalsScript
         public static int Seed;
 
         public static bool pause;
+
+        public static void Reset()
+        {
+            PlayerChoice = "";
+            actualData = null;
+            NumberFloor = 0;
+            ActualFloor = 0;
+            LevelMap = new int[2];
+            Seed = 0;
+        }
     }
 }

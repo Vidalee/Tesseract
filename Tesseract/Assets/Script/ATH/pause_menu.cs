@@ -51,4 +51,14 @@ public class pause_menu : MonoBehaviour
         Canvas.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void LoadMenu()
+    {
+        StaticData.Reset();
+        GlobalInfo.Reset();
+        Time.timeScale = 1;
+        StaticData.pause = false;
+        
+        ChangeScene.ChangeToScene("Login");
+    }
 }
