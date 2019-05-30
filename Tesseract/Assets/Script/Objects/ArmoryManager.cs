@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class ArmoryManager : MonoBehaviour
@@ -8,8 +10,8 @@ public class ArmoryManager : MonoBehaviour
     [SerializeField] private List<Weapons> assassinWeapons;
     [SerializeField] private List<Weapons> mageWeapons;
     [SerializeField] private List<Weapons> warriorWeapons;
-
-    public Weapons GetWeapon(string category)
+    [SerializeField] protected GameObject weapon;
+    public Weapons GetWeaponData(string category)
     {
         switch (category)
         {
@@ -25,5 +27,18 @@ public class ArmoryManager : MonoBehaviour
                 Debug.Log("GetWeapon : not a class");
                 return warriorWeapons[0];
         }
+    }
+
+    public void CreateWeapon(Weapons weaponData, Transform transform, int lvl = 1, Transform parent = null)
+    {
+        GameObject newWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        Weapons newWeaponData = ScriptableObject.CreateInstance<Weapons>();
+        newWeaponData.Create(weaponData, lvl);
+        if (parent != null)
+        {
+            newWeaponData.inPlayerInventory = true;
+            newWeapon.transform.parent = transform;
+        }
+        newWeapon.GetComponent<WeaponManager>().Create(newWeaponData);
     }
 }

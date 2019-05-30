@@ -16,6 +16,10 @@ MonoBehaviour:
   displayName: Axe
   description: This is an axe
   id: 0
+  physicDamage: 100
+  magicDamage: 0
   colliderPoints:
   - {x: 0, y: 0}
   - {x: 0.16, y: 0.16}
+  inPlayerInventory: 0
+  _class: Warrior

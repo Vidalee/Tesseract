@@ -57,3 +57,4 @@ MonoBehaviour:
   warriorWeapons:
   - {fileID: 11400000, guid: feb1c996adca684428c9693e4766abb2, type: 2}
   - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
+  weapon: {fileID: 3877816231457508458, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}

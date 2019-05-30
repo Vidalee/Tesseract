@@ -16,5 +16,6 @@ MonoBehaviour:
   displayName: Bow6
   description: 
   id: 0
-  physicsDamage: 0
   colliderPoints: []
+  inPlayerInventory: 0
+  _class: Archer

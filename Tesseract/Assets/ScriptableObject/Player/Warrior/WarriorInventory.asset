@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
   m_Name: WarriorInventory
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
   potions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PotionsAth: {fileID: 0}
