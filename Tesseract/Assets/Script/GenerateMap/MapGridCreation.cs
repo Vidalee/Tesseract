@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Script.GlobalsScript;
-using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -25,9 +24,7 @@ public class MapGridCreation : MonoBehaviour
     public int minW;
     public int forcePath;
     public int prob;
-    public int portalChance;
 
-    public int simpleDecoration;
     public int seed;
 
     public Transform wallTexture;
@@ -40,18 +37,26 @@ public class MapGridCreation : MonoBehaviour
     public Tilemap MiniMap;
     public Tilemap[] ShadSMap;
     public Tilemap[] ShadCornMap;
-    
-    
+
     [SerializeField] protected MapTextureData MapTextureData;
 
     private List<RoomData> _roomData;
     private List<Transform> _rooms;
 
-    private bool[,] _grid;
+    public bool[,] _grid;
     private bool[,] _instances;
     
     private void Awake()
     {
+        int lvl = Random.Range(StaticData.LevelMap[0], StaticData.LevelMap[1]);
+
+        MapHeight = 100 + lvl / 2;
+        MapWidth = 100 + lvl / 2;
+        
+        RoomNumber = MapHeight / 5;
+        DistanceRoom = 100;
+        fusion = MapHeight / 20;
+        
         Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _instances = new bool[MapHeight, MapWidth];
@@ -60,6 +65,7 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
+        GetComponentInChildren<MiniMapPos>().Pos(new Vector3(MapHeight/2, MapHeight/2));
         
         GetComponentInChildren<MiniMapFog>().Create(MiniMap, _grid, MapTextureData);
 
@@ -188,7 +194,7 @@ public class MapGridCreation : MonoBehaviour
         for (int i = 0; i < _rooms.Count; i++)
         {
             RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
-            script.AddSimpleDecoration(Random.Range(0, simpleDecoration));
+            script.AddSimpleDecoration(Random.Range(0, 3));
         }
     }
     
@@ -207,15 +213,12 @@ public class MapGridCreation : MonoBehaviour
     {
         for (int i = 0; i < _rooms.Count; i++)
         {
-            if (Random.Range(0, portalChance + 1) == 0)
-            {
-                RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
-                Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
-                
-                if(pos == Vector3.zero) continue;
-                
-                script.AddPortal(pos);
-            }
+            RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
+            Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
+            
+            if(pos == Vector3.zero) continue;
+            
+            script.AddPortal(pos);
         }
     }
     
@@ -233,15 +236,26 @@ public class MapGridCreation : MonoBehaviour
     private void AddPlayer()
     {
         int j = 0;
-        while (j < 100)
+        while (j < 1000)
         {
             int i = Random.Range(0, _roomData.Count);
             RoomData roomData = _roomData[i];
             
             int x = roomData.X1 + Random.Range(1, roomData.Width - 2);
             int y = roomData.Y1 + Random.Range(1, roomData.Height - 2);
-        
-            if (!Instances[y, x] && _grid[y, x])
+
+            bool canSpawn = true;
+            
+            for (int k = 0; k < 6; k++)
+            {
+                if (y - k < 2 || Instances[y - k, x] || !_grid[y, x])
+                {
+                    canSpawn = false;
+                    break;
+                }
+            }
+            
+            if (canSpawn)
             {
                 Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y);
                 return;
@@ -256,7 +270,12 @@ public class MapGridCreation : MonoBehaviour
     {
         Transform room = _rooms[Random.Range(0, _roomData.Count)];
         
-        room.GetComponent<RoomInstance>().AddBossPortal();
+        bool b = room.GetComponent<RoomInstance>().AddBossPortal();
+
+        while (!b)
+        {
+            b = room.GetComponent<RoomInstance>().AddBossPortal();
+        }
     }
     
     //Build road between 2 position
@@ -374,7 +393,7 @@ public class MapGridCreation : MonoBehaviour
     //Instantiate floor with the bool grid
     private void CreateFloor()
     {
-        FloorMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        FloorMap.GetComponent<Renderer>().sortingOrder = -10500;
         
         Tile tile = ScriptableObject.CreateInstance<Tile>();
 
@@ -414,7 +433,7 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -105;
+        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -10500;
         script.Create(_grid, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 

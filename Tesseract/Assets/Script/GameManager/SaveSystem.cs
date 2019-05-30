@@ -14,7 +14,7 @@ public static class SaveSystem
         formatter.Serialize(stream, data);
         stream.Close();
     }
-
+    
     public static PlayerDataSave LoadPlayer(string name)
     {
         string path = Application.persistentDataPath + "/" + name + ".txt";
@@ -29,6 +29,38 @@ public static class SaveSystem
             
             return data;
         }
+        return null;
+    }
+
+    public static void SaveGlobal()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/lvl.txt";
+
+        FileStream stream =  new FileStream(path, FileMode.Create);
+        GlobalSave data = new GlobalSave();
+        stream.Position = 0;
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static GlobalSave LoadGlobal()
+    {
+        string path = Application.persistentDataPath + "/lvl.txt";
+
+        if (File.Exists(path))
+        {
+            FileStream stream = File.OpenRead(path);
+            BinaryFormatter formatter = new BinaryFormatter();
+         
+            stream.Position = 0;
+            GlobalSave data = formatter.Deserialize(stream) as GlobalSave;
+            stream.Close();
+            
+            return data;
+        }
+        
         return null;
     }
 }
