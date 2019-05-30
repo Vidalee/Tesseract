@@ -61,7 +61,6 @@ public class PlayerManager : MonoBehaviour
         else
         {
             _playerData = StaticData.actualData;
-            Debug.Log(_playerData.Hp);
             InstantiatePlayer(x, y);
         }
     }

@@ -27,12 +27,17 @@ public class SimpleDeco : MonoBehaviour
         int mult = -100;
         if (_simpleDecoration.Behind)
         {
-            mult -= 5;
+            mult = -105;
         }
 
         SpriteRenderer s = GetComponent<SpriteRenderer>();
         s.material = _simpleDecoration.Material;
         s.sortingOrder = (int) ((transform.parent.position.y + transform.position.y) * mult);
+        if (s.sortingOrder > 10000)
+        {
+            Debug.Log(s.sortingOrder);
+
+        }
 
         if (_simpleDecoration.Color.Length != 0)
         {

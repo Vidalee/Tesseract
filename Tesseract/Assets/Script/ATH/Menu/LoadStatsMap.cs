@@ -16,7 +16,7 @@ public class LoadStatsMap : MonoBehaviour
         StaticData.LevelMap[0] = int.Parse(value[0]);
         StaticData.LevelMap[1] = int.Parse(value[1]);
 
-        StaticData.NumberFloor = 3 + StaticData.RandomLevel() / 5;
+        StaticData.NumberFloor = 1 + StaticData.RandomLevel() / 5;
 
         ChangeScene.ChangeToScene("Dungeon");
     }

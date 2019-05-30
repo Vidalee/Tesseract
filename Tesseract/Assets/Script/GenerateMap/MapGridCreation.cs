@@ -261,7 +261,6 @@ public class MapGridCreation : MonoBehaviour
                 return;
             }
 
-            Debug.Log(j);
             j++;
         }
     }
@@ -271,7 +270,12 @@ public class MapGridCreation : MonoBehaviour
     {
         Transform room = _rooms[Random.Range(0, _roomData.Count)];
         
-        room.GetComponent<RoomInstance>().AddBossPortal();
+        bool b = room.GetComponent<RoomInstance>().AddBossPortal();
+
+        while (!b)
+        {
+            b = room.GetComponent<RoomInstance>().AddBossPortal();
+        }
     }
     
     //Build road between 2 position

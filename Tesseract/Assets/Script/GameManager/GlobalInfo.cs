@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class GlobalInfo
+﻿public static class GlobalInfo
 {
-    public static int MaxLvl;
+    public static int MaxLvl = 1;
 }

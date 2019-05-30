@@ -20,10 +20,18 @@ public class CreateLvlMapMenu : MonoBehaviour
 
     private void GenerateBar()
     {
-        GlobalSave save = SaveSystem.LoadGlabal();
+        double number = 1;
+        GlobalSave save = SaveSystem.LoadGlobal();
+        if (save == null)
+        {
+            GlobalInfo.MaxLvl = 1;
+            SaveSystem.SaveGlobal();
+        }
+        else
+        {
+            number = save.maxLvl == 0 ? 1 : save.maxLvl;
+        }
 
-        //int number = save.maxLvl / 5;
-        double number = 15;
         Vector3 init = new Vector3(-600, 330, 0);
         
         for (int i = 0; i < number; i++)
@@ -37,6 +45,7 @@ public class CreateLvlMapMenu : MonoBehaviour
             {
                 init = new Vector3(600, 330, 0);
             }
+            
             Transform o = Instantiate(lvl, init + new Vector3(0, -150 * (i % 5), 0), Quaternion.identity, transform);
 
             o.name = text[i];
