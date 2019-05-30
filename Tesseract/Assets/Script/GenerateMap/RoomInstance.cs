@@ -16,11 +16,9 @@ public class RoomInstance : MonoBehaviour
     public SimpleDecoration[] SimpleDecoration;
     
     private MapGridCreation script;
-    public int ChestChance;
 
     private RoomData _roomData;
     private int _prob;
-    public int PikeProb;
 
     public void Create(RoomData roomData, int prob)
     {
@@ -87,7 +85,7 @@ public class RoomInstance : MonoBehaviour
 
     public void AddChest()
     {
-        if (Random.Range(0, ChestChance + 1) == 0)
+        if (Random.Range(0, 5) == 0)
         {
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
             int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
@@ -127,20 +125,23 @@ public class RoomInstance : MonoBehaviour
     {
         int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
         int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
-        
-        if (!script.Instances[y, x])
-        {
-            Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
-            o.GetComponent<Portal>().Create(PortalDatas[1], new Vector3());
 
-            script.AddToInstance(y, x, true, true);
-            _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
+        while (script.Instances[y, x])
+        {
+            x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+            y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
         }
+        
+        Transform o = Instantiate(Portal, new Vector3(x, y, 0), Quaternion.identity, transform);
+        o.GetComponent<Portal>().Create(PortalDatas[1], new Vector3());
+
+        script.AddToInstance(y, x, true, true);
+        _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
     }
 
     public void AddPikes()
     {
-        for (int i = 0; i < PikeProb; i++)
+        for (int i = 0; i < 6; i++)
         {
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
             int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
@@ -161,12 +162,26 @@ public class RoomInstance : MonoBehaviour
         int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
         int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
 
+
+        
         while (maxTry < 10)
         {
-            if (!script.Instances[y, x])
+            bool canSpawn = true;
+            
+            for (int k = 0; k < 6; k++)
+            {
+                if (y - k < 2 || script.Instances[y, x] || !script._grid[y, x])
+                {
+                    canSpawn = false;
+                    break;
+                }
+            }
+            
+            if (canSpawn)
             {
                 return new Vector3(x, y, 0);
             }
+            
             maxTry++;
         }
 

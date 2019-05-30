@@ -31,4 +31,33 @@ public static class SaveSystem
         }
         return null;
     }
+
+    public static void SaveGlobal()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/GlobalSave.txt";
+
+        FileStream stream =  new FileStream(path, FileMode.Create);
+        GlobalSave data = new GlobalSave();
+        
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static GlobalSave LoadGlabal()
+    {
+        string path = Application.persistentDataPath + "/GlobalSave.txt";
+
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            GlobalSave data = formatter.Deserialize(stream) as GlobalSave ;
+            stream.Close();
+            
+            return data;
+        }
+        return null;
+    }
 }

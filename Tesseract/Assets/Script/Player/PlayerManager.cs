@@ -2,6 +2,7 @@ using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerManager : MonoBehaviour
