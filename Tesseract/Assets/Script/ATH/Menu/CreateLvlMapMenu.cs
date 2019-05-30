@@ -23,7 +23,7 @@ public class CreateLvlMapMenu : MonoBehaviour
         GlobalSave save = SaveSystem.LoadGlabal();
 
         //int number = save.maxLvl / 5;
-        double number = 12;
+        double number = 15;
         Vector3 init = new Vector3(-600, 330, 0);
         
         for (int i = 0; i < number; i++)

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.SocialPlatforms;
+using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -35,7 +37,8 @@ namespace Script.Enemies
                     maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
                 }
 
-                Enemy.UpdateStats(maxLvl, 1); //TODO Récupérer l'étage
+                Enemy.Lvl = StaticData.RandomLevel();
+                Enemy.SetStats();
             }
         }
         

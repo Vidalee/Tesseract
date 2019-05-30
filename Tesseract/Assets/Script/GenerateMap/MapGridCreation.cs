@@ -37,8 +37,7 @@ public class MapGridCreation : MonoBehaviour
     public Tilemap MiniMap;
     public Tilemap[] ShadSMap;
     public Tilemap[] ShadCornMap;
-    
-    
+
     [SerializeField] protected MapTextureData MapTextureData;
 
     private List<RoomData> _roomData;
@@ -49,8 +48,7 @@ public class MapGridCreation : MonoBehaviour
     
     private void Awake()
     {
-
-        int lvl = StaticData.LevelMap;
+        int lvl = Random.Range(StaticData.LevelMap[0], StaticData.LevelMap[1]);
 
         MapHeight = 100 + lvl / 2;
         MapWidth = 100 + lvl / 2;
@@ -67,6 +65,7 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Grid = _grid;
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
+        GetComponentInChildren<MiniMapPos>().Pos(new Vector3(MapHeight/2, MapHeight/2));
         
         GetComponentInChildren<MiniMapFog>().Create(MiniMap, _grid, MapTextureData);
 
