@@ -4,9 +4,12 @@
 public class Potions : GamesItem
 {
     [SerializeField] protected string type;
-    [SerializeField] protected int heal;
+    [SerializeField] protected int hpHeal;
+    [SerializeField] protected int manaHeal;
 
     public string Type => type;
 
-    public int Heal => heal;
+    public int HpHeal => hpHeal;
+
+    public int ManaHeal => manaHeal;
 }

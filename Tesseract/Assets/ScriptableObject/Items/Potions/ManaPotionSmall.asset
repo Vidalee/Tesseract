@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6514493b25a9e4e8e0488042be4c43, type: 3}
   m_Name: ManaPotionSmall
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300114, guid: d49a56bd7a7459245a275364763f3563, type: 3}
   displayName: Potion of mana
   description: It can give you some mana
   id: 104
   type: mana
-  heal: 20
+  hpHeal: 0
+  manaHeal: 25

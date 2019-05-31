@@ -4,16 +4,17 @@ namespace Script.GlobalsScript.Struct
 {
     public class EventArgsPotAth : IEventArgs
     {
-        readonly Sprite _sprite;
-        readonly int _x;
+        private readonly Potions _pot;
+        private readonly int _id;
 
-        public EventArgsPotAth(int x, Sprite sprite)
+        public EventArgsPotAth(Potions pot, int id)
         {
-            _x = x;
-            _sprite = sprite;
+            _pot = pot;
+            _id = id;
         }
 
-        public int X => _x;
-        public Sprite Sprite => _sprite;
+        public Potions Pot => _pot;
+
+        public int Id => _id;
     }
 }
