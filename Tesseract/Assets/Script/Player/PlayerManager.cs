@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
@@ -20,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
-    public GamesItem[] Items;
+    public List<GamesItem> Items;
     
     public string Perso;
         
@@ -148,7 +149,7 @@ public class PlayerManager : MonoBehaviour
 
         LoadStats(data);
         
-        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        _playerData.Inventory.AddItem(FindItems(data.weapon), Vector3.zero);
         
         _playerData.Inventory.Potions = new Potions[4];
     }
@@ -211,9 +212,15 @@ public class PlayerManager : MonoBehaviour
 
     private GamesItem FindItems(int id)
     {
+        if (id == 0)
+        {
+            if (_playerData.name == "Warrior") id = 31;
+            if (_playerData.name == "Mage") id = 21;
+            if (_playerData.name == "Assassin") id = 11;
+            if (_playerData.name == "Archer") id = 1;
+        }
         foreach (var it in Items)
         {
-            if (it == null) return null;
             if (it.id == id) return it;
         }
 
@@ -280,16 +287,33 @@ public class PlayerManager : MonoBehaviour
 
     public void AddItem(IEventArgs item)
     {
+        StartCoroutine(Wait(item));
+    }
+
+    IEnumerator Wait(IEventArgs item)
+    {
+        yield return new WaitForSeconds(0.2f);
         EventArgsItem itemArg = item as EventArgsItem;
-        bool added = _playerData.Inventory.AddItem(itemArg.Item);
+        bool added = _playerData.Inventory.AddItem(itemArg.Item, transform.GetChild(0).position);
         
         if(added) Destroy(itemArg.T.gameObject);
     }
 
     public void AddWeapons(IEventArgs args)
     {
+        StartCoroutine(FuckIt(args));
+    }
+
+    IEnumerator FuckIt(IEventArgs args)
+    {
         if ((args as EventArgsWeaponsAth).Weapons != null)
+        {
+            if (transform.childCount == 0)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
             armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+        }
     }
     
     public void RemoveWeapon(IEventArgs args)

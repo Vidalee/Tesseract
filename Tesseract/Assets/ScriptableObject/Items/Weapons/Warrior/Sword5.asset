@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300008, guid: 1dab46642d8a06a44b1043fd85a6bc6f, type: 3}
   displayName: Fire Sword
   description: 
-  id: 0
+  id: 35
   magicDamage: 20
   physicsDamage: 20
   cd: 5

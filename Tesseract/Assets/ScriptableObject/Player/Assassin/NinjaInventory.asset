@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
   m_Name: NinjaInventory
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: bb067b85516888f488760787d65d1ff3, type: 2}
+  weapon: {fileID: 0}
   potions:
   - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}

@@ -318,15 +318,19 @@ public class WeaponManager : MonoBehaviour
     {
         float y = 0.3f;
         float a = 0.7f;
-        float b = 0.35f;
+        float b = 0.15f;
         float alpha = 0;
+
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
 
         while (Weapon.inPlayerInventory)
         {
             alpha += 0.04f;
             float deltaY = (float)(b * Math.Sin(alpha));
+            if(deltaY > 0) sprite.sortingOrder = (int) transform.position.y * -11;
+            else sprite.sortingOrder = (int) transform.position.y * -9;
             transform.localScale = Vector3.one * (-deltaY / 5f + 1);
-            transform.localPosition = new Vector3((float)(a * Math.Cos(alpha)), (float)(y + deltaY), transform.position.z);
+            transform.localPosition = new Vector3((float)(a * Math.Cos(alpha)), (y + deltaY), transform.position.z);
              
             yield return null;
         }
@@ -370,7 +374,6 @@ public class WeaponManager : MonoBehaviour
             {
                 if (!wait && Input.GetKey(KeyCode.A))
                 {
-                    Debug.Log("Add");
                     StartCoroutine(Wait());
                     AddItem.Raise(new EventArgsItem(Weapon, transform));
                 }
@@ -387,6 +390,6 @@ public class WeaponManager : MonoBehaviour
     
     public void DestroyWeapon(IEventArgs args)
     {
-        if (Weapon.inPlayerInventory) Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

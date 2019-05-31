@@ -67,14 +67,35 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c52fdc37ef03ec48905391dbfd8552e, type: 2}
   - {fileID: 11400000, guid: 7eb9b995a267fb14eb8f1e516e09c250, type: 2}
   Items:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
+  - {fileID: 11400000, guid: 48074c2cb1b62e949be787b0b90db3c9, type: 2}
+  - {fileID: 11400000, guid: b686e23b13cb0dc4d8fd61d2bdc7162a, type: 2}
+  - {fileID: 11400000, guid: 53647d4eda7e76c41998ffcf53dcbf7c, type: 2}
+  - {fileID: 11400000, guid: 7ce5c29b3bc6ee047a98a9f878727eae, type: 2}
+  - {fileID: 11400000, guid: 9369a7edf73716243af9f24dd37d7071, type: 2}
+  - {fileID: 11400000, guid: 8a42d231abb577445827e8159bad2dbb, type: 2}
+  - {fileID: 11400000, guid: 4f11b5dfda47e954c9673154c3f4c4e3, type: 2}
+  - {fileID: 11400000, guid: 1fdf9879ab1b34e4d800ae41817442d3, type: 2}
+  - {fileID: 11400000, guid: 9045a2f182c0c1c44ac9538e6a1553f1, type: 2}
+  - {fileID: 11400000, guid: bb067b85516888f488760787d65d1ff3, type: 2}
+  - {fileID: 11400000, guid: 07fa5056748fb6c4bb5dc05d1d54d78a, type: 2}
+  - {fileID: 11400000, guid: df65251909794b542a136fb761f4ba90, type: 2}
+  - {fileID: 11400000, guid: 9ca5124dc53e9c749bc4b70e23043391, type: 2}
+  - {fileID: 11400000, guid: 2d89feb5f24784d4d84fec78b11b23f3, type: 2}
+  - {fileID: 11400000, guid: c0fba505347c60948afaaa01f9195e23, type: 2}
+  - {fileID: 11400000, guid: 1b8a6928a451ff94d971cae1dde2439e, type: 2}
+  - {fileID: 11400000, guid: 86c3afb8dcaf8c544845479b192c3954, type: 2}
+  - {fileID: 11400000, guid: 41801dc285474e6458bc235967548ece, type: 2}
+  - {fileID: 11400000, guid: ebe2d0f87a0b83e4f98bff4123851ee9, type: 2}
   - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
   - {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
   - {fileID: 11400000, guid: 76a599d7286b3fc469ba3c33e7faa8fc, type: 2}
   - {fileID: 11400000, guid: 3f73a4e484fc51b4db91c0c37f884960, type: 2}
   - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
-  - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
+  - {fileID: 11400000, guid: d448d4c56e0d2594893d25853ce481c2, type: 2}
+  - {fileID: 11400000, guid: e8c2b1bf2a4fd984f8da743138227c74, type: 2}
+  - {fileID: 11400000, guid: b06b77a4433852c43b9904002f36a125, type: 2}
   Perso: 
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
   armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}

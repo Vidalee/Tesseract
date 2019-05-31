@@ -11,17 +11,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Orb1
-  m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 1fd7cf469407be243b0a1df9a5e3db29, type: 3}
+  m_EditorClassIdentifier:
+  icon: {fileID: 21300000, guid: d3ffcf07ee7dedd418c25fef1ea6cade, type: 3}
   displayName: Magic Orb
   description: Simple magic orb
-  id: 0
+  id: 21
   magicDamage: 50
   physicsDamage: 0
   cd: 0
   effectDamage: 0
   effectProb: 0
-  effectType: 
+  effectType:
   effectSprite: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   lvl: 0
   colliderPoints: []

@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 21300006, guid: 1dab46642d8a06a44b1043fd85a6bc6f, type: 3}
   displayName: Lightning Sword
   description: 
-  id: 0
+  id: 34
   magicDamage: 30
   physicsDamage: 10
   cd: 5

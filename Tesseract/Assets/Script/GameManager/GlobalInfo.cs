@@ -1,6 +1,6 @@
 ﻿public static class GlobalInfo
 {
-    public static int MaxLvl = 1;
+    public static int MaxLvl;
 
     public static void Reset()
     {
