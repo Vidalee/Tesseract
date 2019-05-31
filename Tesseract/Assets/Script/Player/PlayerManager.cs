@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour
     private MapData _mapData;
     private TileData _miniMap;
 
+    public GameObject armory;
+
     #endregion
 
     public PlayerData PlayerData => _playerData;
@@ -90,9 +92,12 @@ public class PlayerManager : MonoBehaviour
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
 
-        //TODO Fix ce truc qui crash (le GameObject.Find c'est pas ouf si tu peux trouver mieux, sinon trouve pq il trouve pas xD
+        Weapons newWeapon = ScriptableObject.CreateInstance<Weapons>();
+        newWeapon.Create(_playerData.Inventory.Weapon, 1);
+        _playerData.Inventory.Weapon = newWeapon;
+        
         //if (_playerData.Inventory.Weapon != null)
-            //GameObject.Find("Armory").GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
+            //armory.GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
     }
 
     IEnumerator SetAth()
@@ -106,7 +111,7 @@ public class PlayerManager : MonoBehaviour
 
     private int FindClass(string choice)
     {
-        int index = 3;
+        int index = 2;
         switch (choice)
         {
             case "Archer":
@@ -284,6 +289,12 @@ public class PlayerManager : MonoBehaviour
         if(added) Destroy(itemArg.T.gameObject);
     }
 
+    public void AddWeapons(IEventArgs args)
+    {
+        if ((args as EventArgsWeaponsAth).Weapons != null)
+            armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+    }
+    
     public void RemoveWeapon(IEventArgs args)
     {
         _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);

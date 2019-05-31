@@ -37,7 +37,7 @@ public class ArmoryManager : MonoBehaviour
         if (parent != null)
         {
             newWeaponData.inPlayerInventory = true;
-            newWeapon.transform.parent = transform;
+            newWeapon.transform.parent = parent;
         }
         newWeapon.GetComponent<WeaponManager>().Create(newWeaponData);
     }

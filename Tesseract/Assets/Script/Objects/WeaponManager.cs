@@ -26,7 +26,7 @@ public class WeaponManager : MonoBehaviour
     {
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
-        _sprite.sortingOrder = (int) transform.position.y * -15;
+        if (!weapon.inPlayerInventory) _sprite.sortingOrder = (int) transform.position.y * -15;
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
@@ -235,4 +235,11 @@ public class WeaponManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         wait = false;
     }
+    
+    public void DestroyWeapon(IEventArgs args)
+    {
+        if (Weapon.inPlayerInventory) Destroy(gameObject);
+    }
+
+
 }

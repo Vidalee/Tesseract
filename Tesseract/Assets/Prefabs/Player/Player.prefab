@@ -94,7 +94,9 @@ GameObject:
   - component: {fileID: 4606261879900217901}
   - component: {fileID: 1467376448}
   - component: {fileID: 106657716}
+  - component: {fileID: 5199779318021239220}
   - component: {fileID: 6628841850606644196}
+  - component: {fileID: 6552128492747783312}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -217,6 +219,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 0}
+--- !u!114 &5199779318021239220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606261879900217905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fce3df10a795c04fb0f62eba6a5d0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}
+  playerData: {fileID: 0}
 --- !u!114 &6628841850606644196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +251,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4606261879900217901}
         m_MethodName: Damage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &6552128492747783312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606261879900217905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5199779318021239220}
+        m_MethodName: GetWeapon
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -335,11 +380,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
-    - target: {fileID: 2554246551499141741, guid: 86d19bd09298f474a800fb381a2d1a92,
-        type: 3}
-      propertyPath: m_Name
-      value: LayerSorter
-      objectReference: {fileID: 0}
     - target: {fileID: 2554246551499141730, guid: 86d19bd09298f474a800fb381a2d1a92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -395,6 +435,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2554246551499141741, guid: 86d19bd09298f474a800fb381a2d1a92,
+        type: 3}
+      propertyPath: m_Name
+      value: LayerSorter
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d19bd09298f474a800fb381a2d1a92, type: 3}
 --- !u!4 &4606261878733752742 stripped
@@ -410,26 +455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
     - target: {fileID: 9094924654389468839, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -485,6 +510,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9094924654389468832, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
@@ -501,11 +546,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
-    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerAnimation
-      objectReference: {fileID: 0}
     - target: {fileID: 5037516936518131200, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -560,6 +600,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 5074799785781877805, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
