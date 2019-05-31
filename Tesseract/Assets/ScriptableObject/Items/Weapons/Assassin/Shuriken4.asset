@@ -16,11 +16,14 @@ MonoBehaviour:
   displayName: Lightning Shuriken
   description: 
   id: 0
-  physicsDamage: 10
   magicDamage: 30
+  physicsDamage: 10
   cd: 5
   effectDamage: 10
-  effetType: lightning
+  effectProb: 0
+  effectType: 
   effectSprite: {fileID: 21300000, guid: 1363730b71954d14c9a624bea17eed7f, type: 3}
   lvl: 0
   colliderPoints: []
+  inPlayerInventory: 0
+  _class: Assassin

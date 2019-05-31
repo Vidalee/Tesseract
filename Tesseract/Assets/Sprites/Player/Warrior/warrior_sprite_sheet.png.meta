@@ -1,17 +1,18 @@
 fileFormatVersion: 2
-guid: f1849a653ab6ac445b10b456f4b71e17
+guid: c78de8213344c6f4f90803a793f0951e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: animShuriken_0
-    21300002: animShuriken_1
-    21300004: animShuriken_2
-    21300006: animShuriken_3
-    21300008: animShuriken_4
-    21300010: animShuriken_5
-    21300012: animShuriken_6
-    21300014: animShuriken_7
-    21300016: animShuriken_8
-    21300018: animShuriken_9
+    21300000: warrior_sprite_sheet_0
+    21300002: warrior_sprite_sheet_1
+    21300004: warrior_sprite_sheet_2
+    21300006: warrior_sprite_sheet_3
+    21300008: warrior_sprite_sheet_4
+    21300010: warrior_sprite_sheet_5
+    21300012: warrior_sprite_sheet_6
+    21300014: warrior_sprite_sheet_7
+    21300016: warrior_sprite_sheet_8
+    21300018: warrior_sprite_sheet_9
+    21300020: warrior_sprite_sheet_10
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -73,7 +74,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -84,29 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -116,93 +95,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animShuriken_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e2f91339af2bfb48a56adb9ec9057e6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2b405cda68d9df439261640147540a8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a13859345427814b99353b3afff403a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b64c0a63feee51345a6deb4651f0c4d0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_4
+      name: warrior_sprite_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 64
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,19 +109,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6251d8fc811430948ab20823e8d48c25
+      spriteID: b2515d322c64de34b9b83f78e744ca35
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_5
+      name: warrior_sprite_sheet_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 64
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,19 +129,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f971a3b7ca8eccf48874b22b571c6d64
+      spriteID: 8ecc2ce7550ecb44caf1712b82e81eac
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_6
+      name: warrior_sprite_sheet_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,19 +149,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6293677f9bf65564aaaa85c3de5e0f19
+      spriteID: 50e056de78d24c84295821879e51b173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_7
+      name: warrior_sprite_sheet_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -270,19 +169,139 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8c3607487c17ce468882767c862da7d
+      spriteID: 7d66a8dbaf502f0408f637bddb223385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_8
+      name: warrior_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e71fc3a2057b18e45a59788b203e5e8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b04d1dad1ae3be459b4036192d2e255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f12060ff66e70a418bcade7cb93134e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f4ed21d37caf5c4c827da58e20240d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb298986ec8f6c542912e584479fd8c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3dcc8aa2567be45b77db658376886b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sprite_sheet_10
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,27 +309,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734bdfba019b6764d886d60e9a89f9df
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7a7ecb70daf6ac4cb05898733307bbb
+      spriteID: 99e073e3a5462154d987acf78fe994a3
       vertices: []
       indices: 
       edges: []
@@ -318,7 +317,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 710394fdd132f7a4f8b837b8cc0e8bf8
+    spriteID: cc733734fa5d6c341bfa0889a2875011
     vertices: []
     indices: 
     edges: []

@@ -21,7 +21,7 @@ MonoBehaviour:
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Warrior
   _MaxHp: 100
-  _Hp: 100
+  _Hp: 60
   _MaxMana: 100
   _Mana: 100
   _ManaRegen: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   _MagicDamage: 20
   _MoveSpeed: 3
   _MaxXp: 100
-  _Xp: 0
+  _Xp: 50
   _MaxLvl: 100
   _Lvl: 1
   _Width: 0.5
@@ -46,10 +46,10 @@ MonoBehaviour:
   - {fileID: 7400000, guid: c07e86fc2f73d434fa806f6961bcec8e, type: 2}
   - {fileID: 7400000, guid: 8d0b20178590a334ca4295e45a7d5e49, type: 2}
   _Attack:
-  - {fileID: 7400000, guid: b5c5ba55b2f2651449fa28c09897783b, type: 2}
-  - {fileID: 7400000, guid: 3461e7fe2a4aa4d4688f5e0288ca30ec, type: 2}
-  - {fileID: 7400000, guid: fc365fb04519a604eb093c6c022edad1, type: 2}
-  - {fileID: 7400000, guid: 52ebe426eed469340ab9da23f758f32a, type: 2}
+  - {fileID: 7400000, guid: c6ec72855e385eb4dbaef2e88cc9add5, type: 2}
+  - {fileID: 7400000, guid: 1f7647c471a2af4409e6b6caccb4721c, type: 2}
+  - {fileID: 7400000, guid: 514a35e2fcef8f64790c2a326c69a70e, type: 2}
+  - {fileID: 7400000, guid: a0d647efc35407548883f1f785ca7005, type: 2}
   _Dash:
   - {fileID: 7400000, guid: 6fc0d196287b74d4e92e642b4923b147, type: 2}
   - {fileID: 7400000, guid: 55301b0e47f087149994e16d4f684b4e, type: 2}

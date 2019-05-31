@@ -36,7 +36,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Weapon.inPlayerInventory)
         {
-            if (Weapon._class == "Warrior")
+            if (Weapon._class == "Warrior" || Weapon._class == "Archer")
             {
                 Vector3 move = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 bool dir = Math.Abs(move.x) < Math.Abs(move.y);
@@ -44,11 +44,11 @@ public class WeaponManager : MonoBehaviour
                 {
                     if (move.y < 0)
                     {
-                        StartCoroutine(Attack("up"));
+                        StartCoroutine(Attack("down"));
                     }
                     else
                     {
-                        StartCoroutine(Attack("down"));
+                        StartCoroutine(Attack("up"));
                     }
                 }
                 else
@@ -61,11 +61,6 @@ public class WeaponManager : MonoBehaviour
                     else
                     {
                         StartCoroutine(Attack("right"));
-                        // Up -> x : 0.208 / y : 0.362
-                        // Down -> x : 0.246 / y : -0.065
-
-                        // Center -> x : 0.112 / y : 0.148
-
                     }
                 }
             }
@@ -74,39 +69,139 @@ public class WeaponManager : MonoBehaviour
     
     IEnumerator Attack(string dir)
     {
-        isAttacking = true;
-        
-        WaitForSeconds frame = new WaitForSeconds(0.008f);
-        
-        PlaceWeapon(0.314f, 0.258f, 90);
-        yield return frame;
-        PlaceWeapon(0.349f, 0.229f, 70);
-        yield return frame;
-        PlaceWeapon(0.357f, 0.216f, 50);
-        yield return frame;
-        PlaceWeapon(0.357f, 0.216f, 30);
-        yield return frame;
-        PlaceWeapon(0.336f, 0.171f, 10);
-        yield return frame;
-        PlaceWeapon(0.299f, 0.131f, -10);
-        yield return frame;
-        PlaceWeapon(0.264f, 0.076f, -30);
-        yield return frame;
-        PlaceWeapon(0.244f, 0.07f, -50);
-        yield return frame;
-        PlaceWeapon(0.209f, 0.048f, -70);
-        yield return frame;
-        PlaceWeapon(0.165f, 0.018f, -90);
-        yield return frame;
+        if (Weapon._class == "Warrior")
+        {
+            isAttacking = true;
+            WaitForSeconds frame = new WaitForSeconds(0.008f);
 
-        isAttacking = false;
+            switch (dir)
+            {
+                case "right":
+                    PlaceWeapon(0.314f, 0.258f, 90);
+                    yield return frame;
+                    PlaceWeapon(0.349f, 0.229f, 70);
+                    yield return frame;
+                    PlaceWeapon(0.357f, 0.216f, 50);
+                    yield return frame;
+                    PlaceWeapon(0.357f, 0.216f, 30);
+                    yield return frame;
+                    PlaceWeapon(0.336f, 0.171f, 10);
+                    yield return frame;
+                    PlaceWeapon(0.299f, 0.131f, -10);
+                    yield return frame;
+                    PlaceWeapon(0.264f, 0.076f, -30);
+                    yield return frame;
+                    PlaceWeapon(0.244f, 0.07f, -50);
+                    yield return frame;
+                    PlaceWeapon(0.209f, 0.048f, -70);
+                    yield return frame;
+                    PlaceWeapon(0.165f, 0.018f, -90);
+                    yield return frame;
+                    break;
+                case "down":
+                    PlaceWeapon(-0.004f, -0.011f, 26);
+                    yield return frame;
+                    PlaceWeapon(0.082f, -0.021f, 2);
+                    yield return frame;
+                    PlaceWeapon(0.12f, -0.049f, -22);
+                    yield return frame;
+                    PlaceWeapon(0.106f, -0.097f, -46);
+                    yield return frame;
+                    PlaceWeapon(0.072f, -0.124f, -70);
+                    yield return frame;
+                    PlaceWeapon(0.012f, -0.106f, -94);
+                    yield return frame;
+                    PlaceWeapon(-0.101f, -0.12f, 252);
+                    yield return frame;
+                    PlaceWeapon(-0.126f, -0.086f, 228);
+                    yield return frame;
+                    PlaceWeapon(-0.197f, -0.062f, 204);
+                    yield return frame;
+                    PlaceWeapon(-0.232f, -0.007f, 180);
+                    yield return frame;
+                    break;
+                case "up":
+                    PlaceWeapon(-0.113f, 0.264f, 90);
+                    yield return frame;
+                    PlaceWeapon(-0.091f, 0.383f, 70);
+                    yield return frame;
+                    PlaceWeapon(-0.007f, 0.461f, 50);
+                    yield return frame;
+                    PlaceWeapon(0.09f, 0.476f, 30);
+                    yield return frame;
+                    PlaceWeapon(0.208f, 0.432f, 10);
+                    yield return frame;
+                    PlaceWeapon(0.307f, 0.364f, -10);
+                    yield return frame;
+                    PlaceWeapon(0.373f, 0.258f, -30);
+                    yield return frame;
+                    PlaceWeapon(0.388f, 0.161f, -50);
+                    yield return frame;
+                    PlaceWeapon(0.346f, 0.04f, -70);
+                    yield return frame;
+                    PlaceWeapon(0.265f, -0.041f, -90);
+                    yield return frame;
+                    break;
+                case "left":
+                    PlaceWeapon(-0.314f, 0.258f, 45 + (45 - 90));
+                    yield return frame;
+                    PlaceWeapon(-0.349f, 0.229f, 45 + (45 - 70));
+                    yield return frame;
+                    PlaceWeapon(-0.357f, 0.216f, 45 + (45 - 50));
+                    yield return frame;
+                    PlaceWeapon(-0.357f, 0.216f, 45 + (45 - 30));
+                    yield return frame;
+                    PlaceWeapon(-0.336f, 0.171f, 45 + (45 - 10));
+                    yield return frame;
+                    PlaceWeapon(-0.299f, 0.131f, 45 + (45 - -10));
+                    yield return frame;
+                    PlaceWeapon(-0.264f, 0.076f, 45 + (45 - -30));
+                    yield return frame;
+                    PlaceWeapon(-0.244f, 0.07f, 45 + (45 - -50));
+                    yield return frame;
+                    PlaceWeapon(-0.209f, 0.048f, 45 + (45 - -70));
+                    yield return frame;
+                    PlaceWeapon(-0.165f, 0.018f, 45 + (45 - -90));
+                    yield return frame;
+                    break;
+            }
+            isAttacking = false;
+        }
+
+        if (Weapon._class == "Archer")
+        {
+            switch (dir)
+            {
+                case "right":
+                    _sprite.sortingOrder = 100;
+                    PlaceWeapon(0.369f, 0.146f, 0);
+                    yield return new WaitForSeconds(0.16f);
+                    break;
+                case "up":
+                    PlaceWeapon(0.008f, 0.396f, 90);
+                    _sprite.sortingOrder = -10000;
+                    yield return new WaitForSeconds(0.16f);
+                    break;
+                case "down":
+                    _sprite.sortingOrder = 100;
+                    PlaceWeapon(-0.032f, -0.19f, -90);
+                    yield return new WaitForSeconds(0.16f);
+                    break;
+                case "left":
+                    _sprite.sortingOrder = 100;
+                    PlaceWeapon(-0.359f, 0.157f, 180);
+                    yield return new WaitForSeconds(0.16f);
+                    break;
+            }
+        }
+        
         
         switch (dir)
         {
-            case "up" :
+            case "down" :
                 PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
                 yield break;
-            case "down" :
+            case "up" :
                 PlayerMoveEvent.Raise(new EventArgsCoor(0, 1));
                 yield break;
             case "left" :
@@ -129,7 +224,7 @@ public class WeaponManager : MonoBehaviour
                 bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
                 if (dir)
                 {
-                    if (move.Y > 0)
+                    if (move.Y > 0) //up
                     {
                         PlaceWeapon(-0.258f, 0.246f, -90);
                         _sprite.sortingOrder = 101;
@@ -156,7 +251,58 @@ public class WeaponManager : MonoBehaviour
                 }
             }
         }
+        
+        if (Weapon._class == "Archer")
+        {
+            EventArgsCoor move = args as EventArgsCoor;
+            if (move.X == 0 && move.Y == 0) return;
+            bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
+            if (dir)
+            {
+                if (move.Y > 0) //up
+                {
+                    PlaceWeapon(0.118f, 0.117f, 45);
+                    _sprite.sortingOrder = 101;
+                }
+
+                else // down
+                {
+                    PlaceWeapon(-0.11f, 0.178f, 135);
+                    _sprite.sortingOrder = -10000;
+                }
+            }
+            else
+            {
+                if (move.X < 0) //right
+                {
+                    PlaceWeapon(-0.143f, 0.163f, 150);
+                    _sprite.sortingOrder = -10000;
+                }
+                else //left
+                {
+                    PlaceWeapon(-0.094f, 0.095f, 165);
+                    _sprite.sortingOrder = -10000;
+                }
+            }
+        }
+        if (Weapon._class == "Assassin")
+        {
+            EventArgsCoor move = args as EventArgsCoor;
+            if (move.X == 0 && move.Y == 0) return;
+            bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
+            if (dir && move.Y > 0)
+            {
+                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                PlaceWeapon(0f, -0.04f, 90);
+                _sprite.sortingOrder = 1000;
+            }
+            else
+            {
+                transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+            }
+        }
     }
+    
 
 
     public void PlaceWeapon(float x, float y, float angle)
@@ -240,6 +386,4 @@ public class WeaponManager : MonoBehaviour
     {
         if (Weapon.inPlayerInventory) Destroy(gameObject);
     }
-
-
 }
