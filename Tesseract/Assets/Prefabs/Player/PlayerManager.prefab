@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9058914715773683575}
   - component: {fileID: 1020800974033700846}
   - component: {fileID: 4674886665878625378}
+  - component: {fileID: 203647103045875556}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -96,6 +97,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b06b77a4433852c43b9904002f36a125, type: 2}
   Perso: 
   Player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}
+  armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}
 --- !u!114 &6434590799956567368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +203,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7447967311768191375}
         m_MethodName: RemovePotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &203647103045875556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: AddWeapons
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
