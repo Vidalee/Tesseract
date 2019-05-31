@@ -27,6 +27,7 @@ public class WeaponsAth : MonoBehaviour
     
     public void SetWeapons(Weapons weapons)
     {
+        Debug.Log("take2");
         if (weapons == null)
         {
             _sprite.sprite = None;

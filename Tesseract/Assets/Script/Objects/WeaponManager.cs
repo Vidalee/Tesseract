@@ -23,7 +23,6 @@ public class WeaponManager : MonoBehaviour
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
     }
-
     
     public void AttackWithWeapon(IEventArgs args)
     {
@@ -113,11 +112,11 @@ public class WeaponManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if ((other.transform.position - transform.position).sqrMagnitude < 1)
+            if ((other.transform.position - transform.position).sqrMagnitude < 0.5)
             {
                 if (!wait && Input.GetKey(KeyCode.A))
                 {
-
+                    Debug.Log("Take1");
                     StartCoroutine(Wait());
                     AddItem.Raise(new EventArgsItem(Weapon, transform));
                 }

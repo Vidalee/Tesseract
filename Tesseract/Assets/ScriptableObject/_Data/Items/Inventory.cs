@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript.Struct;
+﻿using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
@@ -30,7 +31,7 @@ public class Inventory : ScriptableObject
 
     private bool AddPotion(Potions potion)
     {
-        int index = 0;
+        int index;
         
         if (potions[0] == null) index = 0;
         else if (potions[1] == null) index = 1;
@@ -68,9 +69,9 @@ public class Inventory : ScriptableObject
                 return false;
         }
     }
-
+    
     public void SetAth()
-    {
+    {        
         WeaponsAth.Raise(new EventArgsWeaponsAth(weapon));
 
         for (int i = 0; i < 4; i++)
@@ -87,6 +88,8 @@ public class Inventory : ScriptableObject
 
     public void RemoveWeapon(Vector3 pos)
     {
+        if(weapon == null) return;
+        
         Transform o = Instantiate(W, pos, Quaternion.identity);
         o.GetComponent<WeaponManager>().Create(weapon);
         
@@ -96,6 +99,7 @@ public class Inventory : ScriptableObject
     
     public void RemovePotion(int id, Vector3 pos)
     {
+        if (potions[id] == null) return;
         Transform o = Instantiate(P, pos, Quaternion.identity);
         o.GetComponent<PotionManager>().Create(potions[id]);
         

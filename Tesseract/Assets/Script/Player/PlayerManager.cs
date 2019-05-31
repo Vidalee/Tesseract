@@ -1,3 +1,4 @@
+using System.Collections;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
@@ -83,11 +84,19 @@ public class PlayerManager : MonoBehaviour
         o.GetComponent<PlayerAttack>().Create(_playerData);
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
+
+        StartCoroutine(SetAth());
         
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
+        
     }
 
+    IEnumerator SetAth()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _playerData.Inventory.SetAth();   
+    }
     #endregion
 
     #region Player save and load

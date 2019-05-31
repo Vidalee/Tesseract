@@ -78,16 +78,25 @@ MonoBehaviour:
   portal: {fileID: 11400000, guid: 635f912a24c7fa2429dd55eb93890dc8, type: 2}
   assassinW:
   - {fileID: 11400000, guid: bb067b85516888f488760787d65d1ff3, type: 2}
+  - {fileID: 11400000, guid: 07fa5056748fb6c4bb5dc05d1d54d78a, type: 2}
+  - {fileID: 11400000, guid: df65251909794b542a136fb761f4ba90, type: 2}
+  - {fileID: 11400000, guid: 9ca5124dc53e9c749bc4b70e23043391, type: 2}
+  - {fileID: 11400000, guid: 2d89feb5f24784d4d84fec78b11b23f3, type: 2}
   mageW:
   - {fileID: 11400000, guid: 9369a7edf73716243af9f24dd37d7071, type: 2}
+  - {fileID: 11400000, guid: 8a42d231abb577445827e8159bad2dbb, type: 2}
+  - {fileID: 11400000, guid: 4f11b5dfda47e954c9673154c3f4c4e3, type: 2}
+  - {fileID: 11400000, guid: 1fdf9879ab1b34e4d800ae41817442d3, type: 2}
+  - {fileID: 11400000, guid: 9045a2f182c0c1c44ac9538e6a1553f1, type: 2}
   archerW:
   - {fileID: 11400000, guid: c0fba505347c60948afaaa01f9195e23, type: 2}
-  - {fileID: 11400000, guid: 02916fb75326e694e88350b2f6d18e5a, type: 2}
   - {fileID: 11400000, guid: 1b8a6928a451ff94d971cae1dde2439e, type: 2}
   - {fileID: 11400000, guid: 86c3afb8dcaf8c544845479b192c3954, type: 2}
   - {fileID: 11400000, guid: 41801dc285474e6458bc235967548ece, type: 2}
   - {fileID: 11400000, guid: ebe2d0f87a0b83e4f98bff4123851ee9, type: 2}
-  - {fileID: 11400000, guid: 60a2f728d66fc0a4e86fed768aded96c, type: 2}
   warriorW:
-  - {fileID: 11400000, guid: feb1c996adca684428c9693e4766abb2, type: 2}
   - {fileID: 11400000, guid: 17454170fa66511459298dd51c7cf575, type: 2}
+  - {fileID: 11400000, guid: 48074c2cb1b62e949be787b0b90db3c9, type: 2}
+  - {fileID: 11400000, guid: b686e23b13cb0dc4d8fd61d2bdc7162a, type: 2}
+  - {fileID: 11400000, guid: 53647d4eda7e76c41998ffcf53dcbf7c, type: 2}
+  - {fileID: 11400000, guid: 7ce5c29b3bc6ee047a98a9f878727eae, type: 2}
