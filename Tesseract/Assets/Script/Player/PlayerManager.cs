@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
@@ -20,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
-    public GamesItem[] Items;
+    public List<GamesItem> Items;
     
     public string Perso;
         
@@ -95,9 +96,6 @@ public class PlayerManager : MonoBehaviour
         Weapons newWeapon = ScriptableObject.CreateInstance<Weapons>();
         newWeapon.Create(_playerData.Inventory.Weapon, 1);
         _playerData.Inventory.Weapon = newWeapon;
-        
-        //if (_playerData.Inventory.Weapon != null)
-            //armory.GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
     }
 
     IEnumerator SetAth()
@@ -214,9 +212,15 @@ public class PlayerManager : MonoBehaviour
 
     private GamesItem FindItems(int id)
     {
+        if (id == 0)
+        {
+            if (_playerData.name == "Warrior") id = 31;
+            if (_playerData.name == "Mage") id = 21;
+            if (_playerData.name == "Assassin") id = 11;
+            if (_playerData.name == "Archer") id = 1;
+        }
         foreach (var it in Items)
         {
-            if (it == null) return null;
             if (it.id == id) return it;
         }
 
@@ -297,8 +301,19 @@ public class PlayerManager : MonoBehaviour
 
     public void AddWeapons(IEventArgs args)
     {
+        StartCoroutine(FuckIt(args));
+    }
+
+    IEnumerator FuckIt(IEventArgs args)
+    {
         if ((args as EventArgsWeaponsAth).Weapons != null)
+        {
+            if (transform.childCount == 0)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
             armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+        }
     }
     
     public void RemoveWeapon(IEventArgs args)
