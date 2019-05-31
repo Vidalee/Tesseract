@@ -21,7 +21,6 @@ public class MiniBarPotionAth : MonoBehaviour
     public void SetPotion(IEventArgs args)
     {
         EventArgsPotAth potAth = args as EventArgsPotAth;
-        Debug.Log(potAth.Pot);
         slot[potAth.Id].sprite = potAth.Pot == null ? None : potAth.Pot.icon;
     }
 }

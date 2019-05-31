@@ -1,12 +1,15 @@
-﻿using Script.GlobalsScript.Struct;
+﻿using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class PotionManager : MonoBehaviour
 {
     private Potions _potion;
     private SpriteRenderer _spriteRenderer;
+    public GameEvent AddItem;
     public GameEvent AthItem;
     public GameEvent AthItemS;
+    public bool wait;
 
     public void Awake()
     {
@@ -35,5 +38,28 @@ public class PotionManager : MonoBehaviour
         {
             AthItemS.Raise(new EventArgsItemAth(_potion));
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if ((other.transform.position - transform.position).sqrMagnitude < 2)
+            {
+                if (!wait && Input.GetKey(KeyCode.A))
+                {
+
+                    StartCoroutine(Wait());
+                    AddItem.Raise(new EventArgsItem(_potion, transform));
+                }
+            }
+        }
+    }
+
+    IEnumerator Wait()
+    {
+        wait = true;
+        yield return new WaitForSeconds(0.5f);
+        wait = false;
     }
 }

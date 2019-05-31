@@ -266,6 +266,9 @@ public class PlayerManager : MonoBehaviour
 
     public void AddItem(IEventArgs item)
     {
-        _playerData.Inventory.AddItem((item as EventArgsItem).Item);
+        EventArgsItem itemArg = item as EventArgsItem;
+        bool added = _playerData.Inventory.AddItem(itemArg.Item);
+        
+        if(added) Destroy(itemArg.T.gameObject);
     }
 }

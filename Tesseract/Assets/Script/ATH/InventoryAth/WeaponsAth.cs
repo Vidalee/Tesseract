@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Script.GlobalsScript.Struct;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponsAth : MonoBehaviour
@@ -11,6 +13,8 @@ public class WeaponsAth : MonoBehaviour
     private Image _effectI;
     private Text _effectT;
     public Weapons Weapons;
+
+    public GameEvent RemoveWeapons;
 
     private void Awake()
     {
@@ -43,5 +47,10 @@ public class WeaponsAth : MonoBehaviour
         _cd.text = weapons.Cd + "%";
         _effectT.text = weapons.EffectDamage == 0 ? "" : weapons.EffectDamage.ToString();
         _effectI.sprite = weapons.EffectSprite;
+    }
+
+    public void RemoveWeapon()
+    {
+        RemoveWeapons.Raise(new EventArgsNull());
     }
 }
