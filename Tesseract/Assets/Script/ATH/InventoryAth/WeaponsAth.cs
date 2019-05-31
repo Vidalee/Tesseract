@@ -12,7 +12,7 @@ public class WeaponsAth : MonoBehaviour
     private Text _effectT;
     public Weapons Weapons;
 
-    private void Start()
+    private void Awake()
     {
         _sprite = transform.GetChild(0).GetComponent<Image>();
         _ad = transform.GetChild(1).GetComponentInChildren<Text>();

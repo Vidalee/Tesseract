@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
   PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
+  WeaponsAth: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}

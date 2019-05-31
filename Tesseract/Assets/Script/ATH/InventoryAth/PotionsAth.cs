@@ -9,7 +9,7 @@ public class PotionsAth : MonoBehaviour
     private Text _Hp;
     public Potions Pot;
 
-    private void Start()
+    private void Awake()
     {
         _sprite = transform.GetChild(0).GetComponent<Image>();
         _Hp = transform.GetChild(1).GetComponentInChildren<Text>();

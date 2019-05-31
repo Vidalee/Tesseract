@@ -6,7 +6,9 @@ public class Inventory : ScriptableObject
 {
     [SerializeField] protected Weapons weapon;
     [SerializeField] protected Potions[] potions;
+    
     public GameEvent PotionsAth;
+    public GameEvent WeaponsAth;
 
     public Potions[] Potions
     {
@@ -59,6 +61,16 @@ public class Inventory : ScriptableObject
         }
     }
 
+    public void SetAth()
+    {
+        WeaponsAth.Raise(new EventArgsWeaponsAth(weapon));
+
+        for (int i = 0; i < 4; i++)
+        {
+            PotionsAth.Raise(new EventArgsPotAth(potions[i], i));
+        }
+    }
+    
     public Weapons Weapon
     {
         get => weapon;

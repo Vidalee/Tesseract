@@ -15,6 +15,7 @@ public class PotionUsable : MonoBehaviour
     public void Create(PlayerData playerData)
     {
         _playerData = playerData;
+        playerData.Inventory.SetAth();
     }
 
     #endregion

@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
     
     private bool wait;
 
-    private void Start()
+    private void Awake()
     {
         Canvas = GetComponent<Canvas>();
         Canvas.enabled = false;
