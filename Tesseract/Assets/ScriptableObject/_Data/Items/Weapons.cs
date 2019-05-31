@@ -10,7 +10,6 @@ public class Weapons : GamesItem
     [SerializeField] protected string effetType;
     [SerializeField] protected Sprite effectSprite;
     [SerializeField] protected int lvl;
-    [SerializeField] private AnimationClip ObjAnimation;
     
     [SerializeField] protected Vector2[] colliderPoints;
 

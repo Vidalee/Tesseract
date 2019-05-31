@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
+  m_Name: Orb2
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  displayName: 
+  description: 
+  id: 0
+  physicsDamage: 0
+  magicDamage: 0
+  cd: 0
+  effectDamage: 0
+  effetType: 
+  effectSprite: {fileID: 0}
+  lvl: 0
+  ObjAnimation: {fileID: 0}
+  colliderPoints: []
