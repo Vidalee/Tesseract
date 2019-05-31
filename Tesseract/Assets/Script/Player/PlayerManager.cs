@@ -146,7 +146,7 @@ public class PlayerManager : MonoBehaviour
 
         LoadStats(data);
         
-        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        _playerData.Inventory.AddItem(FindItems(data.weapon), Vector3.zero);
         
         _playerData.Inventory.Potions = new Potions[4];
     }
@@ -278,12 +278,18 @@ public class PlayerManager : MonoBehaviour
 
     public void AddItem(IEventArgs item)
     {
+        StartCoroutine(Wait(item));
+    }
+
+    IEnumerator Wait(IEventArgs item)
+    {
+        yield return new WaitForSeconds(0.2f);
         EventArgsItem itemArg = item as EventArgsItem;
-        bool added = _playerData.Inventory.AddItem(itemArg.Item);
+        bool added = _playerData.Inventory.AddItem(itemArg.Item, transform.GetChild(0).position);
         
         if(added) Destroy(itemArg.T.gameObject);
     }
-
+    
     public void RemoveWeapon(IEventArgs args)
     {
         _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);
