@@ -1,25 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PotionManager : MonoBehaviour
 {
-    [SerializeField] protected Potions Potion;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Potions _potion;
+    private SpriteRenderer _spriteRenderer;
 
-    // Update is called once per frame
-    void Update()
+    public void Awake()
     {
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log(_spriteRenderer);
     }
 
     public void Create(Potions potion)
     {
-        Potion = potion;
+        _potion = potion;
+        _spriteRenderer.sprite = potion.icon;
+        transform.localScale *= 2;
     }
 }

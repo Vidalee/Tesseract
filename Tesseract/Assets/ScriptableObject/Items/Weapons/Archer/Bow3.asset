@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Bow3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300004, guid: ae7d1ae91c872db4e8ec1906907135af, type: 3}
-  displayName: Bow3
-  description: 
+  icon: {fileID: 21300006, guid: ae7d1ae91c872db4e8ec1906907135af, type: 3}
+  displayName: Rose Bow
+  description: A rose bow mafe from the strongest rose in the world, It can poisoned
+    enemies
   id: 0
-  physicsDamage: 0
+  physicsDamage: 20
+  magicDamage: 20
+  cd: 5
+  effectDamage: 10
+  effetType: poison
+  effectSprite: {fileID: 21300000, guid: d2a40cde207e9fa469b89abe0b77e75c, type: 3}
+  lvl: 0
   colliderPoints: []

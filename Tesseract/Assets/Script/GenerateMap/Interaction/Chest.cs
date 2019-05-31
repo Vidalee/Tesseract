@@ -7,7 +7,6 @@ public class Chest : MonoBehaviour
 
     private void Awake()
     {
-        Create(_chestData);
         GetComponent<SpriteRenderer>().sortingOrder = (int) (transform.position.y * -10);
     }
 
