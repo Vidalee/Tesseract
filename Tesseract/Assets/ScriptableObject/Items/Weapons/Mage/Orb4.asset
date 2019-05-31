@@ -26,4 +26,4 @@ MonoBehaviour:
   lvl: 0
   colliderPoints: []
   inPlayerInventory: 0
-  _class: 
+  _class: Mage
