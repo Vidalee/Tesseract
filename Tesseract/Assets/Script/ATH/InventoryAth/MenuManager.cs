@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript;
+﻿using System.Collections;
+using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Canvas = GetComponent<Canvas>();
+        Canvas.enabled = false;
 
         _weapons = GetComponentInChildren<WeaponsAth>();
         _otherWeapons = GetComponentInChildren<WeaponsAth>();
@@ -26,14 +28,16 @@ public class MenuManager : MonoBehaviour
     {
         if (!wait && Input.GetKey(KeyCode.M))
         {
-            wait = true;
-            Canvas.enabled = false;
+            Canvas.enabled = !Canvas.enabled;
+            StartCoroutine(Wait());
         }
-        
-        if(Input.GetKey(KeyCode.C)) AddPotion(new EventArgsPotAth(null, 0));
-        if(Input.GetKey(KeyCode.V)) AddPotion(new EventArgsPotAth(null, 1));
-        if(Input.GetKey(KeyCode.B)) AddPotion(new EventArgsPotAth(null, 2));
-        if(Input.GetKey(KeyCode.N)) AddPotion(new EventArgsPotAth(null, 3));
+    }
+
+    IEnumerator Wait()
+    {
+        wait = true;
+        yield return new WaitForSeconds(0.5f);
+        wait = false;
     }
 
     public void AddPotion(IEventArgs potion)
@@ -43,5 +47,18 @@ public class MenuManager : MonoBehaviour
         int id = potAth.Id;
 
         _potions[id].SetPotion(pot);
+    }
+
+
+    public void AddWeapons(IEventArgs weapons)
+    {
+        EventArgsWeaponsAth weaponsAth = weapons as EventArgsWeaponsAth;
+        _weapons.SetWeapons(weaponsAth.Weapons);
+    }
+    
+    public void AddOtherWeapons(IEventArgs weapons)
+    {
+        EventArgsWeaponsAth weaponsAth = weapons as EventArgsWeaponsAth;
+        _otherWeapons.SetWeapons(weaponsAth.Weapons);
     }
 }

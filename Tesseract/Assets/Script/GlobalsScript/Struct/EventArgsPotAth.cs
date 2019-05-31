@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Script.GlobalsScript.Struct
+﻿namespace Script.GlobalsScript.Struct
 {
     public class EventArgsPotAth : IEventArgs
     {
