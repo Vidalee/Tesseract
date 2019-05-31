@@ -134,7 +134,6 @@ public class PlayerManager : MonoBehaviour
         PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
         if (data == null || data.CompCd == null || data.CompCd.Length == 0)
         {
-            Debug.Log(1);
             ResetStats(FindClass(_playerData.Name));
 
             GamesItem ite = FindItems(0);
