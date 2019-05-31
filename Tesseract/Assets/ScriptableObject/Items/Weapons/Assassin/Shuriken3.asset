@@ -11,19 +11,19 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Shuriken3
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   icon: {fileID: 21300012, guid: 32d41c615db92cc469c4a041e7dff95d, type: 3}
   displayName: Rose Shuriken
-  description: 
+  description:
   id: 13
   magicDamage: 20
   physicsDamage: 20
   cd: 5
   effectDamage: 10
   effectProb: 0
-  effectType: 
+  effectType:
   effectSprite: {fileID: 21300000, guid: d2a40cde207e9fa469b89abe0b77e75c, type: 3}
   lvl: 0
   colliderPoints: []
   inPlayerInventory: 0
-  _class: 
+  _class: Assassin

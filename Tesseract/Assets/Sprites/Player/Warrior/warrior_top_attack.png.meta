@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: ae7d1ae91c872db4e8ec1906907135af
+guid: 3430b2f6c83d79b4499588342a668e8c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bow_0
-    21300002: bow_1
-    21300004: bow_2
-    21300006: bow_3
-    21300008: bow_4
-    21300010: bow_5
+    21300000: warrior_top_attack_0
+    21300002: warrior_top_attack_1
+    21300004: warrior_top_attack_2
+    21300006: warrior_top_attack_3
+    21300008: warrior_top_attack_4
+    21300010: warrior_top_attack_5
+    21300012: warrior_top_attack_6
+    21300014: warrior_top_attack_7
+    21300016: warrior_top_attack_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 60
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -80,29 +83,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,121 +93,181 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bow_0
+      name: warrior_top_attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.689418, y: 0.51410943}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aab279b8404c7e94c8fb4435287dbe3f
+      spriteID: f2f9af5750b8a8a449a90a3a08231dad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_1
+      name: warrior_top_attack_1
       rect:
         serializedVersion: 2
-        x: 39
+        x: 64
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.70352757, y: 0.5000001}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3a735502755d643ad6297d4bda014e
+      spriteID: 81430ea467f775e44a8b7d2abfecfb6f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_2
+      name: warrior_top_attack_2
       rect:
         serializedVersion: 2
-        x: 78
+        x: 128
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.6682544, y: 0.50352746}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6f00f5e9fe689b43bc1dbd7a7fadee5
+      spriteID: 9484af9d334c7914c891986451d8c2e4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_3
+      name: warrior_top_attack_3
       rect:
         serializedVersion: 2
-        x: 117
+        x: 192
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.7141098, y: 0.46472672}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cb906cc5bc6e2e43bdac33b2beae674
+      spriteID: 0a446202fad3e7c49ad088145864c9f2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_4
+      name: warrior_top_attack_4
       rect:
         serializedVersion: 2
-        x: 156
+        x: 256
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.65061796, y: 0.49647278}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a40b57e5df681244da6a7636d0e13442
+      spriteID: a4bc456a4a7ca2848bb6ff3d342938ae
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_5
+      name: warrior_top_attack_5
       rect:
         serializedVersion: 2
-        x: 195
+        x: 320
         y: 0
-        width: 39
-        height: 39
-      alignment: 9
-      pivot: {x: 0.70352954, y: 0.5}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19bff756e1460e645aa76017f9b4060a
+      spriteID: 6d9553fc22b04784ea89153a8377452c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_top_attack_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3adc6ea8ded66b4582c1861fea40d09
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_top_attack_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9368b53de6b3b428b50947fecfc7f6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_top_attack_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f23588f3aa5bcf046a00f260b991a6ac
       vertices: []
       indices: 
       edges: []
@@ -234,7 +275,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9a16323801cff8e4c8b41a199015357e
+    spriteID: e7e972e56546d4747bc4c712cff1a913
     vertices: []
     indices: 
     edges: []
