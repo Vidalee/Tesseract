@@ -101,6 +101,8 @@ public class PlayerAnimation : MonoBehaviour
         _a.SetBool("OtherAction", true);
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         bool dir = Math.Abs(diff.x) > Math.Abs(diff.y);
+        
+        if (_playerData.Name == "Warrior") _a.speed = 10f;
 
         if (dir)
         {
@@ -113,6 +115,7 @@ public class PlayerAnimation : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         _a.SetBool("OtherAction", false);
+        _a.speed = 1;
     }
 
     #endregion

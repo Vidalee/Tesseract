@@ -24,11 +24,11 @@ MonoBehaviour:
   _Hp: 100
   _MaxMana: 100
   _Mana: 100
-  _ManaRegen: 0
-  _PhysicsDamage: 109
-  _MagicDamage: 59
-  _MoveSpeed: 3.8587496
-  _MaxXp: 233
+  _ManaRegen: 2
+  _PhysicsDamage: 100
+  _MagicDamage: 50
+  _MoveSpeed: 3.5
+  _MaxXp: 100
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: fd6fe4b947816ec4289f6e100a4e98ef, type: 2}
   - {fileID: 7400000, guid: 32c264e1492f41341a6e935281430632, type: 2}
   - {fileID: 7400000, guid: b13abf18b37a22a458bfa881b585af22, type: 2}
-  - {fileID: 7400000, guid: bd4f2f0149a896843a05cd9c8e5b3346, type: 2}
+  - {fileID: 7400000, guid: 8ae851311c9000c449ecfc1c59a2ec6d, type: 2}
   _Dash:
   - {fileID: 7400000, guid: 0f48c20aa510cc247b09d7dcfcf640de, type: 2}
   - {fileID: 7400000, guid: c7234678ca1e28d48adfe65ad3b3ce52, type: 2}
