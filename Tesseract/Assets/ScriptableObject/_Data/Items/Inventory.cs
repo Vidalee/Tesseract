@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 
