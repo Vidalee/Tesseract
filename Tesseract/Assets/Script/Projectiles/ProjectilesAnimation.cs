@@ -41,8 +41,7 @@ public class ProjectilesAnimation : MonoBehaviour
     private void LightColor()
     {
         Light light = GetComponentInChildren<Light>();
-        int[] col = _projectilesData.Color;
-        light.color = new Color(col[0], col[1], col[2]);
+        light.color = _projectilesData.Color;
     }
 
     #endregion

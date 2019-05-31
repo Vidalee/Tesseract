@@ -57,10 +57,16 @@ public class PlayerData : ScriptableObject
     public Script.Pathfinding.Node Node;
 
     private int stateProj;
+    private Color[] color;
 
     public AnimationClip AnimProj()
     {
         return compAnim[stateProj];
+    }
+
+    public Color AnimColor()
+    {
+        return color[stateProj];
     }
     
     private void OnEnable()
@@ -71,6 +77,11 @@ public class PlayerData : ScriptableObject
         _Hp = _MaxHp;
         _Mana = _MaxMana;
         _CanMove = true;
+
+        color = new[]
+        {
+            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),   
+        };
     }
 
     #endregion
