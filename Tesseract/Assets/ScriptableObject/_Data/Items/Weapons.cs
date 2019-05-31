@@ -7,7 +7,8 @@ public class Weapons : GamesItem
     [SerializeField] protected int magicDamage;
     [SerializeField] protected float cd;
     [SerializeField] protected int effectDamage;
-    [SerializeField] protected string effetType;
+    [SerializeField] protected int effectProb;
+    [SerializeField] protected string effectType;
     [SerializeField] protected Sprite effectSprite;
     [SerializeField] protected int lvl;
     
@@ -25,7 +26,7 @@ public class Weapons : GamesItem
         colliderPoints = weapon.colliderPoints;
         cd = weapon.cd;
         effectDamage = weapon.effectDamage;
-        effetType = weapon.effetType;
+        effectType = weapon.effectType;
         effectSprite = weapon.effectSprite;
     }
 
@@ -37,7 +38,9 @@ public class Weapons : GamesItem
 
     public int EffectDamage => effectDamage;
 
-    public string EffetType => effetType;
+    public string EffectType => effectType;
+
+    public int EffectProb => effectProb;
 
     public Sprite EffectSprite => effectSprite;
 
