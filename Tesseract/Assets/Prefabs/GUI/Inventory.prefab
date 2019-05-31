@@ -410,7 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   None: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   Pot: {fileID: 0}
-  RemovePotion: {fileID: 0}
+  RemovePotion: {fileID: 11400000, guid: 955be9301f2a6f642b8f7eb82e282ba4, type: 2}
 --- !u!114 &1643045253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,7 +450,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406812801333658117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1902842603}
+        m_MethodName: RemovePot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1406812801384187992
@@ -1093,7 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   None: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   Pot: {fileID: 0}
-  RemovePotion: {fileID: 0}
+  RemovePotion: {fileID: 11400000, guid: 955be9301f2a6f642b8f7eb82e282ba4, type: 2}
 --- !u!114 &1963127792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,7 +1144,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406812801718519600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 504903829}
+        m_MethodName: RemovePot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1406812801775525920
@@ -1767,7 +1789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   None: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   Pot: {fileID: 0}
-  RemovePotion: {fileID: 0}
+  RemovePotion: {fileID: 11400000, guid: 955be9301f2a6f642b8f7eb82e282ba4, type: 2}
 --- !u!114 &698124023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,7 +1829,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406812802239883100}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 574467505}
+        m_MethodName: RemovePot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1406812802266676670
@@ -2213,7 +2246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   None: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   Weapons: {fileID: 0}
-  RemoveWeapons: {fileID: 0}
+  RemoveWeapons: {fileID: 11400000, guid: 768902906a9da2c40ba30db3a9b89cc7, type: 2}
 --- !u!114 &2086198844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,7 +2286,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406812802527044246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2086198843}
+        m_MethodName: RemoveWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1406812802534707443
@@ -3734,7 +3778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   None: {fileID: 21300000, guid: c4d2fd7435c8eb34f8b5ab18e74305ae, type: 3}
   Pot: {fileID: 0}
-  RemovePotion: {fileID: 0}
+  RemovePotion: {fileID: 11400000, guid: 955be9301f2a6f642b8f7eb82e282ba4, type: 2}
 --- !u!114 &1581929352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3774,7 +3818,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1406812803226414970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1924023763}
+        m_MethodName: RemovePot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1406812803265110794

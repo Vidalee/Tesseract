@@ -1,5 +1,4 @@
-﻿using System;
-using Script.GlobalsScript.Struct;
+﻿using Script.GlobalsScript.Struct;
 using UnityEngine;
 using UnityEngine.UI;
 

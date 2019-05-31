@@ -44,7 +44,7 @@ public class PotionManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if ((other.transform.position - transform.position).sqrMagnitude < 2)
+            if ((other.transform.position - transform.position).sqrMagnitude < 1)
             {
                 if (!wait && Input.GetKey(KeyCode.A))
                 {

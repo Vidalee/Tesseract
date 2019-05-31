@@ -271,4 +271,14 @@ public class PlayerManager : MonoBehaviour
         
         if(added) Destroy(itemArg.T.gameObject);
     }
+
+    public void RemoveWeapon(IEventArgs args)
+    {
+        _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);
+    }
+
+    public void RemovePotion(IEventArgs args)
+    {
+        _playerData.Inventory.RemovePotion((args as EventArgsInt).X, transform.GetChild(0).position);
+    }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
   m_Name: MageInventory
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 8a42d231abb577445827e8159bad2dbb, type: 2}
+  weapon: {fileID: 11400000, guid: 1fdf9879ab1b34e4d800ae41817442d3, type: 2}
   potions:
-  - {fileID: 11400000, guid: 411c3dcf17c99244e8fe65b91ce688fa, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -22,4 +22,3 @@ MonoBehaviour:
   WeaponsAth: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}
   P: {fileID: 7324059128177605007, guid: 5ad71978f4c996a45bc3cb9f546fb64a, type: 3}
   W: {fileID: 4652922308742600826, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}
-  player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}

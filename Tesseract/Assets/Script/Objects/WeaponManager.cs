@@ -11,12 +11,14 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private SpriteRenderer _sprite;
     public GameEvent AthItem;
     public GameEvent AthItemS;
-    
+    public GameEvent AddItem;
+    public bool wait;
     
     public void Create(Weapons weapon)
     {
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
+        _sprite.sortingOrder = (int) transform.position.y * -15;
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
@@ -105,5 +107,28 @@ public class WeaponManager : MonoBehaviour
         {
             AthItemS.Raise(new EventArgsItemAth(Weapon));
         }
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if ((other.transform.position - transform.position).sqrMagnitude < 1)
+            {
+                if (!wait && Input.GetKey(KeyCode.A))
+                {
+
+                    StartCoroutine(Wait());
+                    AddItem.Raise(new EventArgsItem(Weapon, transform));
+                }
+            }
+        }
+    }
+    
+    IEnumerator Wait()
+    {
+        wait = true;
+        yield return new WaitForSeconds(0.5f);
+        wait = false;
     }
 }
