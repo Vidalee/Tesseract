@@ -9,14 +9,19 @@ public class ProjectilesData : ScriptableObject
     private  float _speed;
     private  int _damage;
     private  string _tag;
-    private int[] _color;
+    private Color _color;
     private  AnimationClip _anim;
+    private int _prob;
+    private int _effect;
+    private int _effectDamage;
+    private float _duration;
 
     #endregion
 
     #region Initialise
 
-    public void Created(Vector3 direction, float speed, int damage, string tag, AnimationClip anim, int live, int[] color)
+    public void Created(Vector3 direction, float speed, int damage, string tag, AnimationClip anim, int live,
+        Color color, int prob, int effect, int effectDamage, float duration)
     {
         _direction = direction;
         _speed = speed;
@@ -25,6 +30,10 @@ public class ProjectilesData : ScriptableObject
         _anim = anim;
         _live = live;
         _color = color;
+        _prob = prob;
+        _effect = effect;
+        _effectDamage = effectDamage;
+        _duration = duration;
     }
 
     #endregion
@@ -39,7 +48,7 @@ public class ProjectilesData : ScriptableObject
         set => _live = value;
     }
 
-    public int[] Color => _color;
+    public Color Color => _color;
 
     public float Speed => _speed;
 
@@ -48,6 +57,14 @@ public class ProjectilesData : ScriptableObject
     public string Tag => _tag;
 
     public AnimationClip Anim => _anim;
+
+    public int Prob => _prob;
+
+    public int Effect => _effect;
+
+    public int EffectDamage => _effectDamage;
+
+    public float Duration => _duration;
 
     #endregion
 }

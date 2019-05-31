@@ -56,6 +56,12 @@ MonoBehaviour:
   - {fileID: 7400000, guid: b5e440e968ea1e842a8a127532e43fd9, type: 2}
   - {fileID: 7400000, guid: 51675173953f45c49bffdac334f52dd5, type: 2}
   _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
+  compAnim:
+  - {fileID: 7400000, guid: 561f0a48bd8a3884eac2b78fe153c55c, type: 2}
+  - {fileID: 7400000, guid: d8d71c149e1e0164a9575b7ec3ac845e, type: 2}
+  - {fileID: 7400000, guid: 7d490878b01ed8b4b89ed13e4c6fd40e, type: 2}
+  - {fileID: 7400000, guid: 8d6c0ddc4ca1e1740b377e1e374b965b, type: 2}
+  - {fileID: 7400000, guid: 9d9109333afcc78428271f8a1a7c7162, type: 2}
   _Competences:
   - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
   - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}

@@ -20,11 +20,11 @@ MonoBehaviour:
   _DamageUpgrade: 0a0000000a0000000a0000000a000000
   _SpeedUpgrade: 05000000050000000500000005000000
   _CooldownUpgrade: 05000000050000000500000005000000
-  _Speed: 7
-  _Damage: 100
+  manaCost: 0
+  _Speed: 5
+  _Damage: 15
   live: 1
   number: 1
   color: 000000000000000000000000
   _Object: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
   _Tag: Enemies
-  _AnimationClip: {fileID: 7400000, guid: 8bf9b57f5f657cf43b8fcf683cba5ee2, type: 2}

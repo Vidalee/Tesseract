@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 public class PotionUsable : MonoBehaviour
@@ -72,6 +74,10 @@ public class PotionUsable : MonoBehaviour
         if (_playerData.Hp >= _playerData.MaxHp) _playerData.Hp = _playerData.MaxHp;
     }
 
+    public void AddHp(IEventArgs args)
+    {
+        AddHp((args as EventArgsInt).X);
+    }
     private void AddMana(int mana)
     {
         _playerData.Mana += mana;

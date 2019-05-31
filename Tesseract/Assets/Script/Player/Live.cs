@@ -41,9 +41,7 @@ public class Live : MonoBehaviour
     {
         if (_playerData.Hp <= 0)
         {
-            Destroy(gameObject);
-            GameObject map = GameObject.Find("Map");
-            Destroy(map);
+            ChangeScene.ChangeToScene("Game_Over");
         }
     }
 
