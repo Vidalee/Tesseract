@@ -95,9 +95,6 @@ public class PlayerManager : MonoBehaviour
         Weapons newWeapon = ScriptableObject.CreateInstance<Weapons>();
         newWeapon.Create(_playerData.Inventory.Weapon, 1);
         _playerData.Inventory.Weapon = newWeapon;
-        
-        //if (_playerData.Inventory.Weapon != null)
-            //armory.GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
     }
 
     IEnumerator SetAth()
@@ -111,7 +108,7 @@ public class PlayerManager : MonoBehaviour
 
     private int FindClass(string choice)
     {
-        int index = 3;
+        int index = 2;
         switch (choice)
         {
             case "Archer":

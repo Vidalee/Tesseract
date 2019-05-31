@@ -30,6 +30,8 @@ public class WeaponManager : MonoBehaviour
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
+                
+        PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
     }
     
     public void AttackWithWeapon(IEventArgs args)
@@ -99,6 +101,7 @@ public class WeaponManager : MonoBehaviour
                     yield return frame;
                     break;
                 case "down":
+                    _sprite.sortingOrder = 1000;
                     PlaceWeapon(-0.004f, -0.011f, 26);
                     yield return frame;
                     PlaceWeapon(0.082f, -0.021f, 2);
@@ -125,17 +128,17 @@ public class WeaponManager : MonoBehaviour
                     yield return frame;
                     PlaceWeapon(-0.091f, 0.383f, 70);
                     yield return frame;
-                    PlaceWeapon(-0.007f, 0.461f, 50);
+                    PlaceWeapon(-0.002f, 0.455f, 50);
                     yield return frame;
-                    PlaceWeapon(0.09f, 0.476f, 30);
+                    PlaceWeapon(0.09f, 0.47f, 30);
                     yield return frame;
-                    PlaceWeapon(0.208f, 0.432f, 10);
+                    PlaceWeapon(0.208f, 0.426f, 10);
                     yield return frame;
-                    PlaceWeapon(0.307f, 0.364f, -10);
+                    PlaceWeapon(0.307f, 0.358f, -10);
                     yield return frame;
-                    PlaceWeapon(0.373f, 0.258f, -30);
+                    PlaceWeapon(0.365f, 0.258f, -30);
                     yield return frame;
-                    PlaceWeapon(0.388f, 0.161f, -50);
+                    PlaceWeapon(0.382f, 0.161f, -50);
                     yield return frame;
                     PlaceWeapon(0.346f, 0.04f, -70);
                     yield return frame;
@@ -184,7 +187,7 @@ public class WeaponManager : MonoBehaviour
                     break;
                 case "down":
                     _sprite.sortingOrder = 100;
-                    PlaceWeapon(-0.032f, -0.19f, -90);
+                    PlaceWeapon(-0.06f, -0.18f, -90);
                     yield return new WaitForSeconds(0.16f);
                     break;
                 case "left":

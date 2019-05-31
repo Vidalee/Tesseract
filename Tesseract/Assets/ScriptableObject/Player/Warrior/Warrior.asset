@@ -21,7 +21,7 @@ MonoBehaviour:
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Warrior
   _MaxHp: 100
-  _Hp: 60
+  _Hp: 100
   _MaxMana: 100
   _Mana: 100
   _ManaRegen: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   _MagicDamage: 20
   _MoveSpeed: 3
   _MaxXp: 100
-  _Xp: 50
+  _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
   _Width: 0.5
@@ -47,7 +47,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 8d0b20178590a334ca4295e45a7d5e49, type: 2}
   _Attack:
   - {fileID: 7400000, guid: c6ec72855e385eb4dbaef2e88cc9add5, type: 2}
-  - {fileID: 7400000, guid: 1f7647c471a2af4409e6b6caccb4721c, type: 2}
+  - {fileID: 7400000, guid: 696bfc1d6486395409abdd2a69b69603, type: 2}
   - {fileID: 7400000, guid: 514a35e2fcef8f64790c2a326c69a70e, type: 2}
   - {fileID: 7400000, guid: a0d647efc35407548883f1f785ca7005, type: 2}
   _Dash:
