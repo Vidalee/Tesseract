@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6739017189898232660}
   - component: {fileID: 6891264439473119496}
   - component: {fileID: 700305830372789256}
+  - component: {fileID: 4927898001369744459}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -50,8 +51,13 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   _sprite: {fileID: 0}
   PlayerMoveEvent: {fileID: 11400000, guid: 8b07c3cfc8dea9342b456e5bea798cb6, type: 2}
+  isAttacking: 0
   attack: {fileID: 7400000, guid: fc365fb04519a604eb093c6c022edad1, type: 2}
   compteur: 0
+  AthItem: {fileID: 11400000, guid: 7eefe18a3274b57438452d2d83d0a6da, type: 2}
+  AthItemS: {fileID: 11400000, guid: c67a6a7fafbfcd54a94c5413a76f1e0c, type: 2}
+  AddItem: {fileID: 11400000, guid: 32b35486695acb543b37503ea11de54e, type: 2}
+  wait: 0
 --- !u!212 &7042582422253373219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,15 +95,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300016, guid: f1849a653ab6ac445b10b456f4b71e17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!68 &6739017189898232660
@@ -174,3 +180,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!58 &4927898001369744459
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877816231457508458}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25

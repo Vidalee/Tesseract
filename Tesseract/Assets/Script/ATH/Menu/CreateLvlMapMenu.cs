@@ -32,21 +32,21 @@ public class CreateLvlMapMenu : MonoBehaviour
             number = save.maxLvl == 0 ? 1 : save.maxLvl;
         }
 
-        Vector3 init = new Vector3(-600, 330, 0);
+        Vector3 init = new Vector3(-600, 380, 0);
         
         for (int i = 0; i < number; i++)
         {
             if (i > 4)
             {
-                init = new Vector3(0, 330, 0);
+                init = new Vector3(0, 380, 0);
             }
 
             if (i > 9)
             {
-                init = new Vector3(600, 330, 0);
+                init = new Vector3(600, 380, 0);
             }
             
-            Transform o = Instantiate(lvl, init + new Vector3(0, -150 * (i % 5), 0), Quaternion.identity, transform);
+            Transform o = Instantiate(lvl, init + new Vector3(0, -140 * (i % 5), 0), Quaternion.identity, transform);
 
             o.name = text[i];
         }

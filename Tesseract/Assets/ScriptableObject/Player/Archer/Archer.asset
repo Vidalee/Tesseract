@@ -61,5 +61,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a076720d7f50f540be0c7527a5c457d, type: 2}
   - {fileID: 11400000, guid: dadab51ec64b6a947b87bcb6fa8dfe26, type: 2}
   _Inventory: {fileID: 11400000, guid: 243c8b6e04768e04f8dd183884a6986c, type: 2}
-  _PotionsCooldown: 0
+  _PotionsCooldown: 2
   PositionChanged: 0

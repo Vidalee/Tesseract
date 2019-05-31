@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: AssassinInventory
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
   potions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
+  WeaponsAth: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}
+  P: {fileID: 0}
+  W: {fileID: 0}

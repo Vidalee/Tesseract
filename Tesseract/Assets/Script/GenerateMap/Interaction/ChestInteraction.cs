@@ -7,8 +7,8 @@ public class ChestInteraction : MonoBehaviour
 {
     private ChestData _chestData;
     private bool _canOpen;
-    public GameEvent ItemEvent;
-
+    public Transform Potion;
+    
     public void Create(ChestData chestData)
     {
         _chestData = chestData;
@@ -24,7 +24,9 @@ public class ChestInteraction : MonoBehaviour
     {
         if (_canOpen && !_chestData.IsOpen && Input.GetKey("a"))
         {
-            ItemEvent.Raise(new EventArgsItem(_chestData.Item));
+            Transform o = Instantiate(Potion, transform.position - new Vector3(0, 1, 0), Quaternion.identity);
+            o.GetComponent<PotionManager>().Create(_chestData.Item as Potions);
+            
             _chestData.IsOpen = true;
             transform.parent.GetComponent<Chest>().OpenChest();
         }    

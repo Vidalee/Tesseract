@@ -1,4 +1,5 @@
 using System.Collections;
+using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         private void PlayerMove()
     {
-        if (!_playerData.CanMove)
+        if (!_playerData.CanMove || StaticData.pause)
         {
             return;
         }

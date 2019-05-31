@@ -1,3 +1,4 @@
+using System.Collections;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
@@ -83,13 +84,22 @@ public class PlayerManager : MonoBehaviour
         o.GetComponent<PlayerAttack>().Create(_playerData);
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
+
+        StartCoroutine(SetAth());
         
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
-        if (_playerData.Inventory.Weapon != null)
-            GameObject.Find("Armory").GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
+
+        //TODO Fix ce truc qui crash (le GameObject.Find c'est pas ouf si tu peux trouver mieux, sinon trouve pq il trouve pas xD
+        //if (_playerData.Inventory.Weapon != null)
+            //GameObject.Find("Armory").GetComponent<ArmoryManager>().CreateWeapon(_playerData.Inventory.Weapon, o, 1, o);
     }
 
+    IEnumerator SetAth()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _playerData.Inventory.SetAth();   
+    }
     #endregion
 
     #region Player save and load
@@ -268,6 +278,19 @@ public class PlayerManager : MonoBehaviour
 
     public void AddItem(IEventArgs item)
     {
-        _playerData.Inventory.AddItem((item as EventArgsItem).Item);
+        EventArgsItem itemArg = item as EventArgsItem;
+        bool added = _playerData.Inventory.AddItem(itemArg.Item);
+        
+        if(added) Destroy(itemArg.T.gameObject);
+    }
+
+    public void RemoveWeapon(IEventArgs args)
+    {
+        _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);
+    }
+
+    public void RemovePotion(IEventArgs args)
+    {
+        _playerData.Inventory.RemovePotion((args as EventArgsInt).X, transform.GetChild(0).position);
     }
 }

@@ -50,10 +50,14 @@ public class PotionUsable : MonoBehaviour
         switch (potion.Type)
         {
             case "live":
-                AddHp(potion.Heal);
+                AddHp(potion.HpHeal);
                 break;
             case "mana":
-                AddMana(potion.Heal);
+                AddMana(potion.ManaHeal);
+                break;
+            case"livemana":
+                AddHp(potion.HpHeal);
+                AddMana(potion.ManaHeal);
                 break;
         }
     }

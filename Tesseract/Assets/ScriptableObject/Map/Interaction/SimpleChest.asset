@@ -32,4 +32,4 @@ MonoBehaviour:
   - {x: 0.5, y: 0.5}
   - {x: -0.5, y: 0.5}
   - {x: -0.5, y: 0.1875}
-  item: {fileID: 11400000, guid: f2afed7bb5137174fbe87bde53cdaf22, type: 2}
+  item: {fileID: 0}

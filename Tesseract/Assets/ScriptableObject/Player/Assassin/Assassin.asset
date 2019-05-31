@@ -29,7 +29,6 @@ MonoBehaviour:
   _MagicDamage: 40
   _MoveSpeed: 4.4099994
   _MaxXp: 256
-  _TotalXp: 1630
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
@@ -62,5 +61,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
   - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
   _Inventory: {fileID: 11400000, guid: c2cb697ee6a1e4c4c8dc9ac0913e9db3, type: 2}
-  _PotionsCooldown: 0
+  _PotionsCooldown: 2
   PositionChanged: 0

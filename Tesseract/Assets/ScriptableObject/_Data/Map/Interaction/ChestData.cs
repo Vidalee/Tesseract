@@ -49,8 +49,6 @@ public class ChestData : ScriptableObject
 
     public Vector2[] TriggerCol => triggerCol;
 
-    public Vector2[] PersCol => persCol;
-
     public GamesItem Item
     {
         get => item;

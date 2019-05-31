@@ -10,20 +10,27 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] protected Weapons Weapon;
     [SerializeField] private SpriteRenderer _sprite;
+
     public GameEvent PlayerMoveEvent;
     public bool isAttacking = false;
 
     public AnimationClip attack;
     public int compteur = 0;
+
+    public GameEvent AthItem;
+    public GameEvent AthItemS;
+    public GameEvent AddItem;
+    public bool wait;
+    
     public void Create(Weapons weapon)
     {
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
+        _sprite.sortingOrder = (int) transform.position.y * -15;
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
     }
-
     
     public void AttackWithWeapon(IEventArgs args)
     {
@@ -111,13 +118,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (isAttacking && col.CompareTag("Enemies"))
-            col.gameObject.GetComponent<EnemiesLive>().GetDamaged(Weapon.PhysicDamage);
-    }
-
     public void WeaponMovement(IEventArgs args)
     {
         if (Weapon.inPlayerInventory)
@@ -183,7 +183,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (Weapon.inPlayerInventory)
@@ -193,5 +192,47 @@ public class WeaponManager : MonoBehaviour
                 StartCoroutine(MageOrbMovement());
             }
         }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItem.Raise(new EventArgsItemAth(Weapon));
+        }
+        
+        if (isAttacking && other.CompareTag("Enemies"))
+            other.gameObject.GetComponent<EnemiesLive>().GetDamaged(Weapon.PhysicsDamage);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItemS.Raise(new EventArgsItemAth(Weapon));
+        }
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if ((other.transform.position - transform.position).sqrMagnitude < 0.5)
+            {
+                if (!wait && Input.GetKey(KeyCode.A))
+                {
+                    Debug.Log("Add");
+                    StartCoroutine(Wait());
+                    AddItem.Raise(new EventArgsItem(Weapon, transform));
+                }
+            }
+        }
+    }
+    
+    IEnumerator Wait()
+    {
+        wait = true;
+        yield return new WaitForSeconds(0.5f);
+        wait = false;
     }
 }

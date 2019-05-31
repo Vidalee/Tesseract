@@ -433,7 +433,7 @@ public class MapGridCreation : MonoBehaviour
         Transform o = Instantiate(wallTexture, transform.position, Quaternion.identity, transform);
         GenerateWall script = o.GetComponent<GenerateWall>();
         
-        WallMap.GetComponent<Renderer>().sortingOrder = MapHeight * -10500;
+        WallMap.GetComponent<Renderer>().sortingOrder = -10500;
         script.Create(_grid, PerspMap, WallMap, ShadWMap, ShadSMap, ShadCornMap);
     }
 

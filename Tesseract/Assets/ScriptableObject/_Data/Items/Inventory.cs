@@ -1,20 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
 public class Inventory : ScriptableObject
 {
     [SerializeField] protected Weapons weapon;
     [SerializeField] protected Potions[] potions;
+    
+    public GameEvent PotionsAth;
+    public GameEvent WeaponsAth;
+    public Transform P;
+    public Transform W;
 
     public Potions[] Potions
     {
         get => potions;
         set => potions = value;
     }
-
-    public GameEvent PotionsAth;
     
     public Potions UsePotion(int index)
     {
@@ -22,25 +25,36 @@ public class Inventory : ScriptableObject
         Potions pot = potions[index];
         potions[index] = null;
 
-        //PotionsAth.Raise(new EventArgsPotAth(index, null));
+        PotionsAth.Raise(new EventArgsPotAth(null, index));
         return pot;
     }
 
     private bool AddPotion(Potions potion)
     {
-        if (potions[0] == null) potions[0] = potion;
-        else if (potions[1] == null) potions[1] = potion;
-        else if (potions[2] == null) potions[2] = potion;
-        else if (potions[3] == null) potions[3] = potion;
+        int index;
+        
+        if (potions[0] == null) index = 0;
+        else if (potions[1] == null) index = 1;
+        else if (potions[2] == null) index = 2;
+        else if (potions[3] == null) index = 3;
         else return false;
 
-        //PotionsAth.Raise(new EventArgsPotAth(potions.Length, potion.icon));
+        potions[index] = potion;
+        PotionsAth.Raise(new EventArgsPotAth(potion, index));
         return true;
     }
 
     private bool AddWeapons(Weapons weapons)
     {
-        return true;
+        if (weapon == null && weapons != null)
+        {
+            Debug.Log("test");
+            WeaponsAth.Raise(new EventArgsWeaponsAth(weapons));
+            weapon = weapons;
+            return true;
+        }
+
+        return false;
     }
 
     public bool AddItem(GamesItem item)
@@ -57,10 +71,41 @@ public class Inventory : ScriptableObject
                 return false;
         }
     }
+    
+    public void SetAth()
+    {        
+        WeaponsAth.Raise(new EventArgsWeaponsAth(weapon));
 
+        for (int i = 0; i < 4; i++)
+        {
+            PotionsAth.Raise(new EventArgsPotAth(potions[i], i));
+        }
+    }
+    
     public Weapons Weapon
     {
         get => weapon;
         set => weapon = value;
+    }
+
+    public void RemoveWeapon(Vector3 pos)
+    {
+        if(weapon == null) return;
+        
+        Transform o = Instantiate(W, pos, Quaternion.identity);
+        o.GetComponent<WeaponManager>().Create(weapon);
+        
+        weapon = null;
+        WeaponsAth.Raise(new EventArgsWeaponsAth(null));
+    }
+    
+    public void RemovePotion(int id, Vector3 pos)
+    {
+        if (potions[id] == null) return;
+        Transform o = Instantiate(P, pos, Quaternion.identity);
+        o.GetComponent<PotionManager>().Create(potions[id]);
+        
+        potions[id] = null;
+        PotionsAth.Raise(new EventArgsPotAth(null, id));
     }
 }

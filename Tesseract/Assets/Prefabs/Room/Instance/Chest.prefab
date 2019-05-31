@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb120945c3833b458e0395f1380ba65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemEvent: {fileID: 11400000, guid: 32b35486695acb543b37503ea11de54e, type: 2}
+  Potion: {fileID: 7324059128177605007, guid: 5ad71978f4c996a45bc3cb9f546fb64a, type: 3}
 --- !u!68 &4379669246405527257
 EdgeCollider2D:
   m_ObjectHideFlags: 0

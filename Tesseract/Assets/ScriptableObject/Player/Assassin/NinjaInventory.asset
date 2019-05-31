@@ -18,3 +18,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
   - {fileID: 11400000, guid: 2b34c00c46c9f00418feca95d3f777c4, type: 2}
   - {fileID: 11400000, guid: fe1cb8c2f84600941802bbb07c9f30f8, type: 2}
+  PotionsAth: {fileID: 11400000, guid: cb1e2770034c34eecba7ca991327da51, type: 2}
+  WeaponsAth: {fileID: 11400000, guid: 57a43c0c6ed843b45ba4c3f184659597, type: 2}
+  P: {fileID: 7324059128177605007, guid: 5ad71978f4c996a45bc3cb9f546fb64a, type: 3}
+  W: {fileID: 4652922308742600826, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}
+  player: {fileID: 4606261879900217897, guid: 68892088666f8824483dd80a89cd19a9, type: 3}

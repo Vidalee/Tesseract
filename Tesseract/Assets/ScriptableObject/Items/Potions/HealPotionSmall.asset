@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe6514493b25a9e4e8e0488042be4c43, type: 3}
   m_Name: HealPotionSmall
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300014, guid: d49a56bd7a7459245a275364763f3563, type: 3}
   displayName: Potion of heal
   description: It can give you some hp
   id: 100
   type: live
-  heal: 20
+  hpHeal: 25
+  manaHeal: 0
