@@ -32,6 +32,7 @@ public class ProjectilesAnimation : MonoBehaviour
 
     private void Animation()
     {
+        Debug.Log("test");
         Animator animator = GetComponent<Animator>();
         AnimatorOverrideController aoc = new AnimatorOverrideController(animator.runtimeAnimatorController);
         AnimatorOverride.AnimationOverride("DefaultProjectiles", _projectilesData.Anim, aoc, animator);
