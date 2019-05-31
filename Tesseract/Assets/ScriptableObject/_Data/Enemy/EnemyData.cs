@@ -19,7 +19,7 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected int _MaxCooldown;
-
+    [SerializeField] public AnimationClip compAnim;
 
     
     [SerializeField] protected int _MoveSpeed;

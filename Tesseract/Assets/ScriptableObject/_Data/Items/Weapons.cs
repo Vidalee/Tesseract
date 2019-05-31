@@ -9,7 +9,7 @@ public class Weapons : GamesItem
     [SerializeField] protected float cd;
     [SerializeField] protected int effectDamage;
     [SerializeField] protected int effectProb;
-    [SerializeField] protected string effectType;
+    [SerializeField] protected int effectType;
     [SerializeField] protected Sprite effectSprite;
     [SerializeField] protected int lvl;
     
@@ -42,7 +42,7 @@ public class Weapons : GamesItem
 
     public int EffectDamage => effectDamage;
 
-    public string EffectType => effectType;
+    public int EffectType => effectType;
 
     public int EffectProb => effectProb;
 

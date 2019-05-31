@@ -295,6 +295,10 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         EventArgsItem itemArg = item as EventArgsItem;
         bool added = _playerData.Inventory.AddItem(itemArg.Item, transform.GetChild(0).position);
+        if (itemArg.Item is Weapons w)
+        {
+            _playerData.StateProj = w.EffectType;
+        }
         
         if(added) Destroy(itemArg.T.gameObject);
     }
@@ -319,6 +323,7 @@ public class PlayerManager : MonoBehaviour
     public void RemoveWeapon(IEventArgs args)
     {
         _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);
+        _playerData.StateProj = 0;
     }
 
     public void RemovePotion(IEventArgs args)

@@ -1,5 +1,6 @@
 using System;
 using Script.GlobalsScript.Struct;
+using UnityEditor.U2D;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -45,16 +46,22 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Attack;
     [SerializeField] protected AnimationClip[] _Dash;
     [SerializeField] protected AnimationClip _DashParticles;
+    [SerializeField] protected AnimationClip[] compAnim;
     
     [SerializeField] protected CompetencesData[] _Competences;
     [SerializeField] protected Inventory _Inventory;
-
 
     [SerializeField] protected float _PotionsCooldown;
 
     public bool PositionChanged;
     public Script.Pathfinding.Node Node;
-    
+
+    private int stateProj;
+
+    public AnimationClip AnimProj()
+    {
+        return compAnim[stateProj];
+    }
     
     private void OnEnable()
     {
@@ -69,6 +76,12 @@ public class PlayerData : ScriptableObject
     #endregion
 
     #region Set/Get
+
+    public int StateProj
+    {
+        get => stateProj;
+        set => stateProj = value;
+    }
 
     public int ManaRegen
     {

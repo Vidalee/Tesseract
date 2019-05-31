@@ -46,7 +46,7 @@ public class Attack : MonoBehaviour
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, competence.AnimationClip, competence.Live, competence.Color);
+        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, Enemy.compAnim, competence.Live, competence.Color);
         
         Projectiles script = o.GetComponent<Projectiles>();
 
