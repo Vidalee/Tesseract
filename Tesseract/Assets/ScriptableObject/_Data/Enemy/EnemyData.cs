@@ -19,13 +19,10 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected int _MaxCooldown;
-    [SerializeField] public AnimationClip compAnim;
-
     
-    [SerializeField] protected int _MoveSpeed;
+    [SerializeField] protected float _MoveSpeed;
     [SerializeField] protected int _AttackRange;
     [SerializeField] protected int _DetectionRange;
-    
     
     [SerializeField] protected Vector3 _StartPos;
 
@@ -78,7 +75,11 @@ public class EnemyData : ScriptableObject
 
     public int MagicDamage => _MagicDamage;
 
-    public int MoveSpeed => _MoveSpeed;
+    public float MoveSpeed
+    {
+        get => _MoveSpeed;
+        set => _MoveSpeed = value;
+    }
 
     public int AttackRange => _AttackRange;
 

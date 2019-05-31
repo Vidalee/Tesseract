@@ -139,7 +139,7 @@ public class PlayerAttack : MonoBehaviour
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
         projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, _playerData.AnimProj(),
-            competence.Live, _playerData.AnimColor());
+            competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
         
         Projectiles script = o.GetComponent<Projectiles>();
 

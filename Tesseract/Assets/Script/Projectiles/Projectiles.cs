@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Projectiles : MonoBehaviour
 {
@@ -45,7 +46,9 @@ public class Projectiles : MonoBehaviour
             try
             {
                 if(--_projectilesData.Live <= 0) Destroy(gameObject);
-                other.transform.GetComponent<EnemiesLive>().GetDamaged(_projectilesData.Damage);
+                EnemiesLive e = other.transform.GetComponent<EnemiesLive>();
+                e.GetDamaged(_projectilesData.Damage);
+                if (Random.Range(0, 100) < _projectilesData.Prob) e.Effect(_projectilesData.Effect, _projectilesData.EffectDamage, _projectilesData.Duration);
             }
             catch (Exception)
             {

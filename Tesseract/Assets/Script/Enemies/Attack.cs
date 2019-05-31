@@ -10,17 +10,18 @@ public class Attack : MonoBehaviour
 
     private float cooldown;
     private Transform player;
+    public bool CanAttack;
 
     private void Start()
     {
         StartCoroutine(Cooldown());
+        CanAttack = true;
     }
 
     public void TryAttack()
     {
-        if ((transform.position - player.transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.5f)
+        if (CanAttack && (transform.position - player.transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.5f)
         {
-            if (Enemy.MaxHp == 100) InstantiateProjectiles(Enemy.GetCompetence("AutoAttack"), (player.position - transform.position).normalized);
             PlayerDamage.Raise(new EventArgsInt(Enemy.PhysicsDamage));
         }
     }
@@ -38,18 +39,5 @@ public class Attack : MonoBehaviour
     {
         Enemy = enemy;
         this.player = player;
-    }
-    
-    private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)
-    {
-        Transform o = Instantiate(competence.Object, transform.position + dir + new Vector3(0, 0.5f), Quaternion.identity);
-        o.name = competence.Name;
-                
-        ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, Enemy.compAnim, competence.Live, new Color(255, 255, 255));
-        
-        Projectiles script = o.GetComponent<Projectiles>();
-
-        script.Create(projectilesData);
     }
 }

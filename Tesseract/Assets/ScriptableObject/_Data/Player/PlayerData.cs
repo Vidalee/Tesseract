@@ -68,6 +68,29 @@ public class PlayerData : ScriptableObject
     {
         return color[stateProj];
     }
+
+    public int Effect()
+    {
+        return stateProj;
+    }
+
+    public int Prob()
+    {
+        if (stateProj != 0) return Inventory.Weapon.EffectProb;
+        return 0;
+    }
+
+    public int EffectDamage()
+    {
+        if (stateProj == 0 || Inventory.Weapon == null) return 0;
+        return Inventory.Weapon.EffectDamage;
+    }
+
+    public float Duration()
+    {
+        if (stateProj == 0 || Inventory.Weapon == null) return 0;
+        return Inventory.Weapon.Duration;
+    }
     
     private void OnEnable()
     {
