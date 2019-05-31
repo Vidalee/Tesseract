@@ -48,7 +48,6 @@ public class Inventory : ScriptableObject
     {
         if (weapon == null && weapons != null)
         {
-            Debug.Log("test");
             WeaponsAth.Raise(new EventArgsWeaponsAth(weapons));
             weapon = weapons;
             weapons.inPlayerInventory = true;

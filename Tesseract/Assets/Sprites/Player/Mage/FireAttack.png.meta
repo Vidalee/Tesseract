@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: f1849a653ab6ac445b10b456f4b71e17
+guid: c571f554fa21a9b428b45e349b089c53
 TextureImporter:
   fileIDToRecycleName:
-    21300000: animShuriken_0
-    21300002: animShuriken_1
-    21300004: animShuriken_2
-    21300006: animShuriken_3
-    21300008: animShuriken_4
-    21300010: animShuriken_5
-    21300012: animShuriken_6
-    21300014: animShuriken_7
-    21300016: animShuriken_8
-    21300018: animShuriken_9
+    21300000: FireAttack_0
+    21300002: FireAttack_1
+    21300004: FireAttack_2
+    21300006: FireAttack_3
+    21300008: FireAttack_4
+    21300010: FireAttack_5
+    21300012: FireAttack_6
+    21300014: FireAttack_7
+    21300016: FireAttack_8
+    21300018: FireAttack_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -116,7 +116,87 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animShuriken_0
+      name: FireAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd6f305ffdf899a4799e2d5f609aae98
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3442754f6fda2e04f99fe52833fc8036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47e9ba050a2dc946affe62f75cdd6ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba2078e42d28915429651e39d4b617f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_4
       rect:
         serializedVersion: 2
         x: 0
@@ -130,13 +210,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e2f91339af2bfb48a56adb9ec9057e6
+      spriteID: 9de95bbbbcd015a4fa3b367d2d3a286d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_1
+      name: FireAttack_5
       rect:
         serializedVersion: 2
         x: 32
@@ -150,13 +230,53 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b405cda68d9df439261640147540a8
+      spriteID: 9b321851ba7aed448bf9cbf2a0a46070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_2
+      name: FireAttack_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1151f01f1b24949a58477f0d156fe6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eac1ea4b8d8c924a8739ba22fd11265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireAttack_8
       rect:
         serializedVersion: 2
         x: 0
@@ -170,13 +290,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a13859345427814b99353b3afff403a
+      spriteID: 6bcca4b9d831ea64aa10c4411e8b5421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animShuriken_3
+      name: FireAttack_9
       rect:
         serializedVersion: 2
         x: 32
@@ -190,127 +310,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b64c0a63feee51345a6deb4651f0c4d0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6251d8fc811430948ab20823e8d48c25
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f971a3b7ca8eccf48874b22b571c6d64
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6293677f9bf65564aaaa85c3de5e0f19
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8c3607487c17ce468882767c862da7d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 734bdfba019b6764d886d60e9a89f9df
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animShuriken_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7a7ecb70daf6ac4cb05898733307bbb
+      spriteID: 76dc1597c7b85a54aa81695fa880579c
       vertices: []
       indices: 
       edges: []
@@ -318,7 +318,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 710394fdd132f7a4f8b837b8cc0e8bf8
+    spriteID: 8396e782d0c94df4ab7d32c3d71b042d
     vertices: []
     indices: 
     edges: []
