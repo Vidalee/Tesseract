@@ -29,10 +29,11 @@ public class WeaponsAth : MonoBehaviour
             _sprite.sprite = None;
             _ad.text = 0.ToString();
             _ap.text = 0.ToString();
-            _cd.text = 0.ToString();
-            _effectT.text = 0.ToString();
+            _cd.text = 0 + "%";
+            _effectT.text = "";
             _effectI.sprite = None;
             Weapons = null;
+            return;
         }
 
         Weapons = weapons;
@@ -40,7 +41,7 @@ public class WeaponsAth : MonoBehaviour
         _ad.text = weapons.PhysicsDamage.ToString();
         _ap.text = weapons.MagicDamage.ToString();
         _cd.text = weapons.Cd + "%";
-        _effectT.text = weapons.EffectDamage.ToString();
+        _effectT.text = weapons.EffectDamage == 0 ? "" : weapons.EffectDamage.ToString();
         _effectI.sprite = weapons.EffectSprite;
     }
 }
