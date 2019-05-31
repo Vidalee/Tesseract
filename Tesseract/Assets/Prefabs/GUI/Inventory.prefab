@@ -4005,7 +4005,7 @@ GameObject:
   - component: {fileID: 596915592}
   - component: {fileID: 8477353446506975128}
   - component: {fileID: 7447930547636084881}
-  - component: {fileID: 6578362980319979027}
+  - component: {fileID: 1417175934}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -4192,7 +4192,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &6578362980319979027
+--- !u!114 &1417175934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

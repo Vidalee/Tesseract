@@ -116,7 +116,6 @@ public class WeaponManager : MonoBehaviour
             {
                 if (!wait && Input.GetKey(KeyCode.A))
                 {
-                    Debug.Log("Take1");
                     StartCoroutine(Wait());
                     AddItem.Raise(new EventArgsItem(Weapon, transform));
                 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf06a5ef8c3fd444dab05f9329f77157, type: 3}
   m_Name: MageInventory
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 41801dc285474e6458bc235967548ece, type: 2}
   potions:
   - {fileID: 0}
   - {fileID: 0}

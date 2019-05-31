@@ -27,7 +27,6 @@ public class WeaponsAth : MonoBehaviour
     
     public void SetWeapons(Weapons weapons)
     {
-        Debug.Log("take2");
         if (weapons == null)
         {
             _sprite.sprite = None;
@@ -40,6 +39,13 @@ public class WeaponsAth : MonoBehaviour
             return;
         }
 
+        WeaponsAth otherWeapon = transform.parent.GetChild(1).GetComponent<WeaponsAth>();
+        
+        if (otherWeapon.Weapons == weapons)
+        {
+            otherWeapon.SetWeapons(null);
+        }
+        
         Weapons = weapons;
         _sprite.sprite = weapons.icon;
         _ad.text = weapons.PhysicsDamage.ToString();

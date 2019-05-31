@@ -68,7 +68,6 @@ public class MenuManager : MonoBehaviour
 
     public void AddWeapons(IEventArgs weapons)
     {
-        Debug.Log("take3");
         EventArgsWeaponsAth weaponsAth = weapons as EventArgsWeaponsAth;
         _weapons.SetWeapons(weaponsAth.Weapons);
     }

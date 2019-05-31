@@ -46,8 +46,9 @@ public class Inventory : ScriptableObject
 
     private bool AddWeapons(Weapons weapons)
     {
-        if (weapon == null)
+        if (weapon == null && weapons != null)
         {
+            WeaponsAth.Raise(new EventArgsWeaponsAth(weapons));
             weapon = weapons;
             return true;
         }
