@@ -19,7 +19,7 @@ MonoBehaviour:
   magicDamage: 20
   physicsDamage: 20
   cd: 5
-  effectDamage: 10
+  effectDamage: 5
   effectProb: 10
   effectType: 2
   effectSprite: {fileID: 21300000, guid: d2a40cde207e9fa469b89abe0b77e75c, type: 3}
@@ -27,4 +27,4 @@ MonoBehaviour:
   duration: 5
   colliderPoints: []
   inPlayerInventory: 0
-  _class: 
+  _class: Assassin

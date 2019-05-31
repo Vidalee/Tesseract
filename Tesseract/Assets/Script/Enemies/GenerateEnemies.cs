@@ -30,7 +30,7 @@ public class GenerateEnemies : MonoBehaviour
         
         _grid = new EnemyData[MapHeight, MapWidth];
         Random.InitState(seed); 
-        
+                
         foreach (RoomData roomData in RoomData)
         {
             //int roomSpace = roomData.Width * roomData.Height;

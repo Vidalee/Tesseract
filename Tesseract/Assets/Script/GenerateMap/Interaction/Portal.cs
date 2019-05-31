@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript;
+﻿using System.Collections;
+using Script.GlobalsScript;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
@@ -30,33 +31,44 @@ public class Portal : MonoBehaviour
     {
         if (other.transform.CompareTag("PlayerFeet"))
         {
-            StaticData.ActualFloor += 1;
-
-            if (_portalData.IsBoss && StaticData.ActualFloor > StaticData.NumberFloor)
-            {
-                StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
-                ChangeScene.ChangeToScene("Boss");
-                return;
-            }
-            if (_portalData.IsBoss && StaticData.ActualFloor < 0)
-            {
-                StaticData.ActualFloor = 0;
-                SaveSystem.SavePlayer(other.GetComponentInParent<PlayerManager>().PlayerData);
-                SaveSystem.SaveGlobal();
-                ChangeScene.ChangeToScene("LevelSelection");
-                return;
-            }
-            if(_portalData.IsBoss)
-            {
-                StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
-                Random.InitState(StaticData.Seed);
-
-                StaticData.Seed = Random.Range(0, 1000000);
-                ChangeScene.ChangeToScene("Dungeon");
-                return;
-            }
-            
-            other.transform.parent.position = _pos;
+            StartCoroutine(Wait(other));
         }
+    }
+
+    public IEnumerator Wait(Collider2D other)
+    {
+        yield return new WaitForSeconds(0.1f);
+        
+        if (_portalData.IsBoss && StaticData.ActualFloor > StaticData.NumberFloor)
+        {
+            Debug.Log(StaticData.ActualFloor);
+
+            StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
+            ChangeScene.ChangeToScene("Boss");
+        }
+        
+        else if (_portalData.IsBoss && StaticData.ActualFloor < 0)
+        {
+            StaticData.ActualFloor = 1;
+
+            SaveSystem.SavePlayer(other.GetComponentInParent<PlayerManager>().PlayerData);
+            
+            ChangeScene.ChangeToScene("LevelSelection");
+        }
+        
+        else if(_portalData.IsBoss)
+        {
+            StaticData.ActualFloor += 1;
+            Debug.Log(StaticData.ActualFloor);
+
+            StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
+            Random.InitState(StaticData.Seed);
+
+            StaticData.Seed = Random.Range(0, 1000000);
+            ChangeScene.ChangeToScene("Dungeon");
+        }
+        
+        other.transform.parent.position = _pos;
+
     }
 }

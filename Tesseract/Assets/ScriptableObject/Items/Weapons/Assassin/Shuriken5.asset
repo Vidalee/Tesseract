@@ -27,4 +27,4 @@ MonoBehaviour:
   duration: 5
   colliderPoints: []
   inPlayerInventory: 0
-  _class: Archer
+  _class: Assassin

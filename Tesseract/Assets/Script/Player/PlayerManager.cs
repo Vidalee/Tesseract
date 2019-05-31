@@ -41,7 +41,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey("k")) SavePlayer();
         if(Input.GetKey("x")) GetXp(10);
     }
 
@@ -58,6 +57,7 @@ public class PlayerManager : MonoBehaviour
             int pers = FindClass(type);
 
             _playerData = _PlayersData[pers];
+
             LoadPlayer();
         
             InstantiatePlayer(x, y);
@@ -87,15 +87,12 @@ public class PlayerManager : MonoBehaviour
         o.GetComponent<PlayerAttack>().Create(_playerData);
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
-
+        
         StartCoroutine(SetAth());
         
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
-
-        Weapons newWeapon = ScriptableObject.CreateInstance<Weapons>();
-        newWeapon.Create(_playerData.Inventory.Weapon, 1);
-        _playerData.Inventory.Weapon = newWeapon;
+        
     }
 
     IEnumerator SetAth()
@@ -132,24 +129,32 @@ public class PlayerManager : MonoBehaviour
         return index;
     }
 
-    private void SavePlayer()
-    {
-        SaveSystem.SavePlayer(_playerData);
-    }
-
     private void LoadPlayer()
     {
-        
         PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
         if (data == null || data.CompCd == null || data.CompCd.Length == 0)
         {
+            Debug.Log(1);
             ResetStats(FindClass(_playerData.Name));
+
+            GamesItem ite = FindItems(0);
+            Weapons i = ScriptableObject.CreateInstance<Weapons>();
+            i.Create(ite as Weapons, 1);
+        
+            _playerData.Inventory.Weapon = i;
+        
+            _playerData.Inventory.Potions = new Potions[4];
+            
             return;
         }
 
         LoadStats(data);
+
+        GamesItem item = FindItems(data.weapon);
+        Weapons it = ScriptableObject.CreateInstance<Weapons>();
+        it.Create(item as Weapons, data.weaponLvl);
         
-        _playerData.Inventory.AddItem(FindItems(data.weapon), Vector3.zero);
+        _playerData.Inventory.AddItem(it, Vector3.zero);
         
         _playerData.Inventory.Potions = new Potions[4];
     }
@@ -316,7 +321,10 @@ public class PlayerManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.5f);
             }
-            armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+            else
+            {
+                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+            }
         }
     }
     

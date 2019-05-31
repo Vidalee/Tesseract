@@ -48,6 +48,9 @@ public class MapGridCreation : MonoBehaviour
     
     private void Awake()
     {
+        seed = StaticData.Seed;
+        Random.InitState(seed);
+        
         int lvl = Random.Range(StaticData.LevelMap[0], StaticData.LevelMap[1]);
 
         MapHeight = 100 + lvl / 2;
@@ -57,7 +60,6 @@ public class MapGridCreation : MonoBehaviour
         DistanceRoom = 100;
         fusion = MapHeight / 20;
         
-        Random.InitState(seed);
         _grid = new bool[MapHeight, MapWidth];
         _instances = new bool[MapHeight, MapWidth];
         _roomData = new List<RoomData>();

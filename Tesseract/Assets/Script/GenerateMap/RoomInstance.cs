@@ -90,7 +90,7 @@ public class RoomInstance : MonoBehaviour
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
             int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
 
-            if (!script.Instances[y, x])
+            if (!script.Instances[y, x] && !script.Instances[y + 1, x] && !script.Instances[y - 1, x])
             {
                 Transform o = Instantiate(Chest, new Vector3(x, y, 0), Quaternion.identity, transform);
                 ChestData chest = ScriptableObject.CreateInstance<ChestData>();

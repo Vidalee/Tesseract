@@ -27,4 +27,4 @@ MonoBehaviour:
   duration: 2
   colliderPoints: []
   inPlayerInventory: 0
-  _class: 
+  _class: Assassin

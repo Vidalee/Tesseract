@@ -22,6 +22,7 @@ public class PlayerDataSave
     public int[] CompManaCost;
     
     public int weapon;
+    public int weaponLvl;
 
     public PlayerDataSave(PlayerData player)
     {
@@ -57,12 +58,11 @@ public class PlayerDataSave
         }
 
         weapon = ItemNull(player.Inventory.Weapon);
+        weaponLvl = player.Inventory.Weapon == null ? 0 : Lvl;
     }
 
     private int ItemNull(GamesItem item)
     {
-        Debug.Log(item);
-
         return item == null ? 0 : item.id;
     }
 }

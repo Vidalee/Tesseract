@@ -21,13 +21,9 @@ public class Pikes : MonoBehaviour
     {
         if (other.CompareTag("PlayerFeet"))
         {
-            yield return new WaitForSeconds(1);
             _spriteRenderer.sprite = _pikesData.Trig;
 
-            if ((other.transform.position - transform.position - new Vector3(0, 0.5f, 0)).magnitude < 0.5f)
-            {
-                PlayerDamage.Raise(new EventArgsInt(_pikesData.Damage));
-            }
+            PlayerDamage.Raise(new EventArgsInt(_pikesData.Damage));
             
             yield return new WaitForSeconds(1);
             _spriteRenderer.sprite = _pikesData.NonTrig;

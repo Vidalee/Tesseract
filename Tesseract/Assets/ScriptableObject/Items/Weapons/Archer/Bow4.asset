@@ -20,7 +20,7 @@ MonoBehaviour:
   magicDamage: 30
   physicsDamage: 10
   cd: 5
-  effectDamage: 50
+  effectDamage: 0
   effectProb: 10
   effectType: 3
   effectSprite: {fileID: 21300000, guid: 1363730b71954d14c9a624bea17eed7f, type: 3}
