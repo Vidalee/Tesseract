@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class PlayerDataSave
@@ -60,6 +61,8 @@ public class PlayerDataSave
 
     private int ItemNull(GamesItem item)
     {
+        Debug.Log(item);
+
         return item == null ? 0 : item.id;
     }
 }

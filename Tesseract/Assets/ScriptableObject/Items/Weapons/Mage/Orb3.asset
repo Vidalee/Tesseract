@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Orb3
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300004, guid: 1fd7cf469407be243b0a1df9a5e3db29, type: 3}
+  icon: {fileID: 21300006, guid: d3ffcf07ee7dedd418c25fef1ea6cade, type: 3}
   displayName: Poison Orb
   description: 
-  id: 0
-  physicsDamage: 20
+  id: 23
   magicDamage: 20
+  physicsDamage: 20
   cd: 0
   effectDamage: 10
-  effetType: poison
+  effectProb: 0
+  effectType: 
   effectSprite: {fileID: 21300000, guid: d2a40cde207e9fa469b89abe0b77e75c, type: 3}
   lvl: 0
   colliderPoints: []
+  inPlayerInventory: 0
+  _class: 

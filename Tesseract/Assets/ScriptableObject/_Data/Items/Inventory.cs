@@ -45,20 +45,22 @@ public class Inventory : ScriptableObject
         return true;
     }
 
-    private bool AddWeapons(Weapons weapons)
+    private bool AddWeapons(Weapons weapons, Vector3 pos)
     {
         if (weapon == null && weapons != null)
         {
-            Debug.Log("test");
             WeaponsAth.Raise(new EventArgsWeaponsAth(weapons));
             weapon = weapons;
+            weapons.inPlayerInventory = true;
+            
             return true;
         }
-
-        return false;
+        
+        RemoveWeapon(pos);
+        return AddWeapons(weapons, pos);
     }
 
-    public bool AddItem(GamesItem item)
+    public bool AddItem(GamesItem item, Vector3 pos)
     {
         switch (item)
         {
@@ -67,7 +69,7 @@ public class Inventory : ScriptableObject
             case Potions _:
                 return AddPotion(item as Potions);
             case Weapons _:
-                return AddWeapons(item as Weapons);
+                return AddWeapons(item as Weapons, pos);
             default:
                 return false;
         }
@@ -95,6 +97,7 @@ public class Inventory : ScriptableObject
         
         Transform o = Instantiate(W, pos, Quaternion.identity);
         o.GetComponent<WeaponManager>().Create(weapon);
+        weapon.inPlayerInventory = false;
         
         weapon = null;
         WeaponsAth.Raise(new EventArgsWeaponsAth(null));
