@@ -1,10 +1,10 @@
 ﻿namespace Script.GlobalsScript.Struct
 {
-    public class eventArgsItemAth : IEventArgs
+    public class EventArgsItemAth : IEventArgs
     {
         private readonly GamesItem _item;
 
-        public eventArgsItemAth(GamesItem item)
+        public EventArgsItemAth(GamesItem item)
         {
             _item = item;
         }

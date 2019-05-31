@@ -6,11 +6,11 @@ public class PotionManager : MonoBehaviour
     private Potions _potion;
     private SpriteRenderer _spriteRenderer;
     public GameEvent AthItem;
+    public GameEvent AthItemS;
 
     public void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log(_spriteRenderer);
     }
 
     public void Create(Potions potion)
@@ -25,7 +25,15 @@ public class PotionManager : MonoBehaviour
     {
         if (other.CompareTag("Mouse"))
         {
-            AthItem.Raise(new eventArgsItemAth(_potion));
+            AthItem.Raise(new EventArgsItemAth(_potion));
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItemS.Raise(new EventArgsItemAth(_potion));
         }
     }
 }

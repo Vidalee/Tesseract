@@ -7,6 +7,7 @@ public class PotionsAth : MonoBehaviour
     private Image _sprite;
     private Text _mana;
     private Text _Hp;
+    public Potions Pot;
 
     private void Start()
     {
@@ -22,9 +23,11 @@ public class PotionsAth : MonoBehaviour
             _sprite.sprite = None;
             _Hp.text = 0.ToString();
             _mana.text = 0.ToString();
+            Pot = null;
             return;
         }
 
+        Pot = pot;
         _sprite.sprite = pot.icon;
         _Hp.text = pot.HpHeal.ToString();
         _mana.text = pot.ManaHeal.ToString();

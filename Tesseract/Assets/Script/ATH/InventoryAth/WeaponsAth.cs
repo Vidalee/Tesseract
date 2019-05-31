@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class WeaponsAth : MonoBehaviour
 {
-
     public Sprite None;
     private Image _sprite;
     private Text _ad;
@@ -11,7 +10,7 @@ public class WeaponsAth : MonoBehaviour
     private Text _cd;
     private Image _effectI;
     private Text _effectT;
-
+    public Weapons Weapons;
 
     private void Start()
     {
@@ -21,7 +20,6 @@ public class WeaponsAth : MonoBehaviour
         _cd = transform.GetChild(3).GetComponentInChildren<Text>();
         _effectT = transform.GetChild(4).GetComponentInChildren<Text>();
         _effectI = transform.GetChild(4).GetComponent<Image>();
-
     }
     
     public void SetWeapons(Weapons weapons)
@@ -34,8 +32,10 @@ public class WeaponsAth : MonoBehaviour
             _cd.text = 0.ToString();
             _effectT.text = 0.ToString();
             _effectI.sprite = None;
+            Weapons = null;
         }
-        
+
+        Weapons = weapons;
         _sprite.sprite = weapons.icon;
         _ad.text = weapons.PhysicsDamage.ToString();
         _ap.text = weapons.MagicDamage.ToString();

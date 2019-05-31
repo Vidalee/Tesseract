@@ -8,7 +8,13 @@ public class MenuManager : MonoBehaviour
     private Canvas Canvas;
     
     private WeaponsAth _weapons;
-    private WeaponsAth _otherWeapons;
+    
+    private GameObject _otherWeaponsT;
+    private WeaponsAth _otherWeaponsA;
+    
+    private GameObject _otherPotionsT;
+    private PotionsAth _otherPotionsA;
+
     private PotionsAth[] _potions;
     
     private bool wait;
@@ -17,11 +23,22 @@ public class MenuManager : MonoBehaviour
     {
         Canvas = GetComponent<Canvas>();
         Canvas.enabled = false;
+        Transform t = transform.GetChild(0);
 
-        _weapons = GetComponentInChildren<WeaponsAth>();
-        _otherWeapons = GetComponentInChildren<WeaponsAth>();
+        _otherPotionsT = t.GetChild(0).gameObject;
+        _otherWeaponsT = t.GetChild(1).gameObject;
+        _otherWeaponsA = _otherWeaponsT.GetComponent<WeaponsAth>();
+        _otherPotionsA = _otherPotionsT.GetComponent<PotionsAth>();
+        
+        _weapons = t.GetChild(3).GetComponentInChildren<WeaponsAth>();
 
-        _potions = GetComponentsInChildren<PotionsAth>();
+        _potions = new PotionsAth[4];
+        _potions[0] = t.GetChild(4).GetComponent<PotionsAth>();
+        _potions[1] = t.GetChild(5).GetComponent<PotionsAth>();
+        _potions[2] = t.GetChild(6).GetComponent<PotionsAth>();
+        _potions[3] = t.GetChild(7).GetComponent<PotionsAth>();
+        
+        Clear();
     }
 
     private void Update()
@@ -56,9 +73,45 @@ public class MenuManager : MonoBehaviour
         _weapons.SetWeapons(weaponsAth.Weapons);
     }
     
-    public void AddOtherWeapons(IEventArgs weapons)
+    public void AddOtherWeapons(IEventArgs itemArg)
+     {
+         GamesItem item = (itemArg as EventArgsItemAth).Item;
+         
+         if (item is Potions potions)
+         {
+             _otherPotionsT.SetActive(true);
+             _otherWeaponsT.SetActive(false);
+             
+             _otherPotionsA.SetPotion(potions);
+         }
+         else if (item is Weapons weapons)
+         {
+             _otherPotionsT.SetActive(false);
+             _otherWeaponsT.SetActive(true);
+             
+             _otherWeaponsA.SetWeapons(weapons);
+         }
+     }
+    
+    public void RemoveOtherWeapons(IEventArgs itemArg)
     {
-        EventArgsWeaponsAth weaponsAth = weapons as EventArgsWeaponsAth;
-        _otherWeapons.SetWeapons(weaponsAth.Weapons);
+        GamesItem item = (itemArg as EventArgsItemAth).Item;
+        
+        if (item is Potions potions && _otherPotionsA.Pot == potions)
+        {
+            _otherPotionsA.SetPotion(null);
+            _otherPotionsT.SetActive(false);
+        }
+        else if (item is Weapons weapons && _otherWeaponsA.Weapons == weapons)
+        {
+            _otherWeaponsA.SetWeapons(null);
+            _otherWeaponsT.SetActive(false);
+        }
+    }
+
+    public void Clear()
+    {
+        _otherPotionsT.SetActive(false);
+        _otherWeaponsT.SetActive(false);
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7324059128177605007}
   - component: {fileID: 8146411142200886498}
   - component: {fileID: 8254949922740998440}
+  - component: {fileID: 3620893499841692319}
   m_Layer: 0
   m_Name: Potion
   m_TagString: Untagged
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300018, guid: f1849a653ab6ac445b10b456f4b71e17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8254949922740998440
@@ -92,3 +93,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddc2b4d358d7a540b1a0456a22f20d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AthItem: {fileID: 11400000, guid: 7eefe18a3274b57438452d2d83d0a6da, type: 2}
+  AthItemS: {fileID: 11400000, guid: c67a6a7fafbfcd54a94c5413a76f1e0c, type: 2}
+--- !u!58 &3620893499841692319
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7286134054251638067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25

@@ -9,6 +9,8 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] protected Weapons Weapon;
     [SerializeField] private SpriteRenderer _sprite;
+    public GameEvent AthItem;
+    public GameEvent AthItemS;
     
     
     public void Create(Weapons weapon)
@@ -89,6 +91,19 @@ public class WeaponManager : MonoBehaviour
         _sprite.enabled = false;
     }
     
-    
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItem.Raise(new EventArgsItemAth(Weapon));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItemS.Raise(new EventArgsItemAth(Weapon));
+        }
+    }
 }
