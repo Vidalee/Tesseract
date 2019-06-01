@@ -18,9 +18,12 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected float _XpValue;
 
     
-    [SerializeField] protected float _PhysicsDamage;
-    [SerializeField] protected float _MagicDamage;
-    [SerializeField] protected float _MaxCooldown;
+    [SerializeField] protected int _physicsDamage;
+    [SerializeField] protected int _magicDamage;
+    [SerializeField] protected int _MaxCooldown;
+
+    [SerializeField] protected int _ArmorP;
+    [SerializeField] protected int _ArmorM;
     
     [SerializeField] protected float _MoveSpeed;
     [SerializeField] protected float _AttackRange;
@@ -47,14 +50,16 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected float effectY;
 
     [SerializeField] protected Vector3 feetPos;
-    public void Create(EnemyData enemy, float x, float y)
-    {
+
+    public void Create(EnemyData enemy, int x, int y, int lvl)
+    { 
         name = enemy.name;
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp;
         _XpValue = enemy.XpValue;
-        _PhysicsDamage = enemy.PhysicsDamage;
-        _MagicDamage = enemy.MagicDamage;
+        _physicsDamage = enemy.PhysicsDamage;
+        _magicDamage = enemy.MagicDamage;
+        _ArmorM = enemy._ArmorM;
         _MaxCooldown = enemy.MaxCooldown;
         _MoveSpeed = enemy.MoveSpeed;
         _AttackRange = enemy.AttackRange;
@@ -90,9 +95,13 @@ public class EnemyData : ScriptableObject
 
     public float XpValue => _XpValue;
 
-    public float PhysicsDamage => _PhysicsDamage;
+    public int PhysicsDamage => _physicsDamage;
 
-    public float MagicDamage => _MagicDamage;
+    public int MagicDamage => _magicDamage;
+
+    public int ArmorP => _ArmorP;
+
+    public int ArmorM => _ArmorM;
 
     public float MoveSpeed
     {
@@ -140,13 +149,4 @@ public class EnemyData : ScriptableObject
     public float EffectY => effectY;
 
     public Vector3 FeetPos => feetPos;
-
-    public void SetStats()
-    {
-        _MaxHp += 10 * _lvl;
-        _Hp = _MaxHp;
-        _XpValue += _XpValue / 4 * _lvl;
-        _PhysicsDamage += _lvl;
-        _MagicDamage += _lvl;
-    }
 }

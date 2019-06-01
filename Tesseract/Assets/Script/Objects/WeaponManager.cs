@@ -21,9 +21,15 @@ public class WeaponManager : MonoBehaviour
     public GameEvent AthItemS;
     public GameEvent AddItem;
     public bool wait;
+
+    private PlayerData _playerData;
+    private CacComp comp;
     
     public void Create(Weapons weapon)
     {
+        _playerData = StaticData.actualData;
+        comp = null; //_playerData.Competences[1] as CacComp;
+        
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
         if (!weapon.inPlayerInventory) _sprite.sortingOrder = (int) transform.position.y * -15;
@@ -31,7 +37,7 @@ public class WeaponManager : MonoBehaviour
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
                 
-        PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
+        PlayerMoveEvent.Raise(new EventArgsCoor(0, -1, int.Parse((string) Coffre.Regarder("id"))));
     }
     
     public void AttackWithWeapon(IEventArgs args)
@@ -202,16 +208,16 @@ public class WeaponManager : MonoBehaviour
         switch (dir)
         {
             case "down" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, -1, int.Parse((string) Coffre.Regarder("id"))));
                 yield break;
             case "up" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(0, 1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, 1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
             case "left" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(-1, -1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(-1, -1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
             case "right" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(1, 1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(1, 1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
         }
     }
@@ -359,7 +365,7 @@ public class WeaponManager : MonoBehaviour
         if (isAttacking && other.CompareTag("Enemies"))
         {
             EnemiesLive s = other.gameObject.GetComponent<EnemiesLive>();
-            s.GetDamaged(Weapon.PhysicsDamage + Weapon.MagicDamage);
+            s.GetDamaged(_playerData.PhysicsDamage + Weapon.PhysicsDamage + comp.AdDamage, _playerData.MagicDamage + Weapon.MagicDamage);
             if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
         }
     }

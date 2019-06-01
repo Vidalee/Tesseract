@@ -85,7 +85,7 @@ public class RoomInstance : MonoBehaviour
 
     public void AddChest()
     {
-        if (Random.Range(0, 5) == 0)
+        if (Random.Range(0, 3) == 0)
         {
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
             int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
@@ -130,7 +130,7 @@ public class RoomInstance : MonoBehaviour
 
         for (int k = 0; k < 3; k++)
         {
-            if (y - k < 3 || y + k > _roomData.Height - 3 || 
+            if (y - k < 3 || y + k > script.MapHeight - 3 || 
                 script.Instances[y + k, x] || !script._grid[y + k, x] ||
                 script.Instances[y - k, x] || !script._grid[y - k, x])
             {
@@ -179,7 +179,7 @@ public class RoomInstance : MonoBehaviour
             
             for (int k = 0; k < 3; k++)
             {
-                if (y - k < 3 || y + k > _roomData.Height - 3 || 
+                if (y - k < 3 || y + k > script.MapHeight || 
                     script.Instances[y + k, x] || !script._grid[y + k, x] ||
                     script.Instances[y - k, x] || !script._grid[y - k, x])
                 {

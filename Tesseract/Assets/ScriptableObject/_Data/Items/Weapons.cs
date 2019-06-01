@@ -15,7 +15,7 @@ public class Weapons : GamesItem
     [SerializeField] protected int duration;
     
     [SerializeField] protected Vector2[] colliderPoints;
-    [SerializeField] public bool inPlayerInventory = false;
+    [SerializeField] public bool inPlayerInventory;
     public string _class;
 
     public Vector2[] ColliderPoints => colliderPoints;
@@ -50,8 +50,6 @@ public class Weapons : GamesItem
     public int EffectProb => effectProb;
 
     public Sprite EffectSprite => effectSprite;
-
-    public int Lvl => lvl;
 
     public int Duration => duration;
 }

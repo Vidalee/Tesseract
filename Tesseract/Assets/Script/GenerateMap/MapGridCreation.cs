@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ public class MapGridCreation : MonoBehaviour
 {
 
     public Transform Player;
-    
+    public Transform PlayerMulti;
     public int MapHeight;
     public int MapWidth;
     public int RoomNumber;
@@ -48,7 +49,12 @@ public class MapGridCreation : MonoBehaviour
     
     private void Awake()
     {
-        seed = StaticData.Seed;
+        Coffre.Créer();
+        if ((string)Coffre.Regarder("mode") == "solo")
+            seed = Random.Range(1, int.MaxValue);
+        else
+            seed = (int) Coffre.Regarder("seed");
+
         Random.InitState(seed);
         
         int lvl = Random.Range(StaticData.LevelMap[0], StaticData.LevelMap[1]);
@@ -68,27 +74,29 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
         GetComponentInChildren<MiniMapPos>().Pos(new Vector3(MapHeight/2, MapHeight/2));
-        
         GetComponentInChildren<MiniMapFog>().Create(MiniMap, _grid, MapTextureData);
 
-        CreateGrid();
-        ConstructCorridor();
-        
-        RoomInstanceWall();
+        try
+        {
+            CreateGrid();
+            ConstructCorridor();
+            RoomInstanceWall();
+            FillGap();
+            CreateFloor();
+            CreateWall();
+            RoomInstanceDeco();
+            AddChest();
+            AddPikes();
 
-        FillGap();
-        CreateFloor();
-        CreateWall();
-
-        RoomInstanceDeco();
-        AddChest();
-        AddPikes();
-        
-        AddPortal();
-        AddBossPortal();
-        
-        AddPlayer();
-
+            AddPortal();
+            if ((string)Coffre.Regarder("mode") == "solo") AddPlayer(1, true);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Err");
+            Console.WriteLine(e);
+            throw;
+        }
         GenerateEnemies.RoomData = _roomData;
         GenerateEnemies.availablePosGrid = _grid;
     }
@@ -215,6 +223,8 @@ public class MapGridCreation : MonoBehaviour
     {
         for (int i = 0; i < _rooms.Count; i++)
         {
+            if(Random.Range(0, 2) == 0) continue;
+            
             RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
             Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
             
@@ -235,7 +245,7 @@ public class MapGridCreation : MonoBehaviour
     }
     
     //Add player
-    private void AddPlayer()
+    public void AddPlayer(int id, bool solo)
     {
         int j = 0;
         while (j < 1000)
@@ -248,9 +258,9 @@ public class MapGridCreation : MonoBehaviour
 
             bool canSpawn = true;
             
-            for (int k = 0; k < 6; k++)
+            for (int k = 0; k < 3; k++)
             {
-                if (y - k < 2 || Instances[y - k, x] || !_grid[y, x])
+                if (y - k < 2 || y + k > MapHeight - 2 || Instances[y - k, x] || !_grid[y - k, x] || _instances[y + k, x] || !_grid[y + k, x])
                 {
                     canSpawn = false;
                     break;
@@ -259,7 +269,29 @@ public class MapGridCreation : MonoBehaviour
             
             if (canSpawn)
             {
-                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y);
+                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManager>().Create(x, y, id, solo);
+                return;
+            }
+
+            j++;
+        }
+    }
+
+    //Add multi player
+    public void AddMultiPlayer(int id)
+    {
+        int j = 0;
+        while (j < 100)
+        {
+            int i = Random.Range(0, _roomData.Count);
+            RoomData roomData = _roomData[i];
+
+            int x = roomData.X1 + Random.Range(1, roomData.Width - 2);
+            int y = roomData.Y1 + Random.Range(1, roomData.Height - 2);
+
+            if (!Instances[y, x] && _grid[y, x])
+            {
+                Instantiate(PlayerMulti, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManagerMulti>().Create(x, y, id);
                 return;
             }
 
@@ -270,20 +302,20 @@ public class MapGridCreation : MonoBehaviour
     //Add boss portal
     private void AddBossPortal()
     {
+        int stop = 0;
         Transform room = _rooms[Random.Range(0, _roomData.Count)];
         
         bool b = room.GetComponent<RoomInstance>().AddBossPortal();
 
-        while (!b)
+        while (!b && stop < 100)
         {
             b = room.GetComponent<RoomInstance>().AddBossPortal();
+            stop++;
         }
     }
-    
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {
-
         int x1 = pos1[0];
         int x2 = pos2[0];
 
@@ -386,6 +418,7 @@ public class MapGridCreation : MonoBehaviour
         }
 
         int size = _roomData.Count;
+
         for (int i = 0; i < forcePath; i++)
         {
             BuildRoad(_roomData[Random.Range(0, size)].Center, _roomData[Random.Range(0, size)].Center);

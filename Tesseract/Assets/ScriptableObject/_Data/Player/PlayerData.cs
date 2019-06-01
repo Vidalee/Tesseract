@@ -14,28 +14,29 @@ public class PlayerData : ScriptableObject
     public GameEvent PlayerXpAth;
     public GameEvent PlayerXpBarAth;
     public GameEvent PlayerLevelAth;
-    
+
     [SerializeField] protected string _Name;
-    
+    [SerializeField] protected int _MultiID;
+
     [SerializeField] protected int _MaxHp;
     [SerializeField] private int _Hp;
     [SerializeField] protected int _MaxMana;
     [SerializeField] private int _Mana;
-    
+
     [SerializeField] protected int _ManaRegen;
-    
+
     [SerializeField] protected int _PhysicsDamage;
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
-    
+
     [SerializeField] protected int _MaxXp;
 
     public int _Xp;
     [SerializeField] protected int _MaxLvl;
     public int _Lvl;
-    
+
     private bool _CanMove;
-    
+
     [SerializeField] protected float _Width ;
     [SerializeField] protected float _Height;
     [SerializeField] protected float _FeetHeight;
@@ -46,7 +47,7 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Dash;
     [SerializeField] protected AnimationClip _DashParticles;
     [SerializeField] protected AnimationClip[] compAnim;
-    
+
     [SerializeField] protected CompetencesData[] _Competences;
     [SerializeField] protected Inventory _Inventory;
 
@@ -90,7 +91,7 @@ public class PlayerData : ScriptableObject
         if (stateProj == 0 || Inventory.Weapon == null) return 0;
         return Inventory.Weapon.Duration;
     }
-    
+
     private void OnEnable()
     {
         _MaxLvl = 100;
@@ -102,18 +103,23 @@ public class PlayerData : ScriptableObject
 
         color = new[]
         {
-            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),   
+            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),
         };
     }
 
     #endregion
 
     #region Set/Get
-
     public int StateProj
     {
         get => stateProj;
         set => stateProj = value;
+    }
+
+    public int MultiID
+    {
+        get => _MultiID;
+        set => _MultiID = value;
     }
 
     public int ManaRegen
@@ -206,7 +212,7 @@ public class PlayerData : ScriptableObject
         get => _MoveSpeed;
         set => _MoveSpeed = value;
     }
-    
+
     public int MaxXp
     {
         get => _MaxXp;
@@ -229,7 +235,7 @@ public class PlayerData : ScriptableObject
     public float Width => _Width;
 
     public float Height => _Height;
-    
+
     public float FeetHeight => _FeetHeight;
 
     public CompetencesData[] Competences

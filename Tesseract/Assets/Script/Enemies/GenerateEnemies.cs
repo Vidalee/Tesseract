@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Script.Enemies;
+using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ public class GenerateEnemies : MonoBehaviour
                 if (availablePosGrid[y + 1, x] && availablePosGrid[y, x] && _grid[y, x] == null)
                 {
                     EnemyData enemyData = Enemies[Random.Range(0, Enemies.Count)];
-
+                    
                     if (enemyData.Name == "Bat")
                     {
                         CreateEnemy(enemyData, x, y, playerDatas);

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManagerMulti : MonoBehaviour
 {
     #region Variable
 
@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public string Perso;
 
-    public Transform Player;
+    public Transform PlayerMulti;
     private PlayerData _playerData;
 
     private MapData _mapData;
@@ -41,57 +41,33 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey("x")) GetXp(10);
+        if (Input.GetKey("x")) GetXp(10);
     }
 
     #endregion
 
     #region Initialise
 
-    public void Create(int x, int y, int id, bool solo)
+    public void Create(int x, int y, int id)
     {
-        if (solo)
-        {
-            if (StaticData.ActualFloor == 0)
-            {
-                StaticData.ActualFloor = 1;
-                string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-                int pers = FindClass(type);
+        int pers = id - 1;
 
-                _playerData = _PlayersData[pers];
-                _playerData.MultiID = id;
-
-                LoadPlayer();
-
-                InstantiatePlayer(x, y);
-            }
-            else
-            {
-                _playerData = StaticData.actualData;
-                InstantiatePlayer(x, y);
-            }
-        }
-        else
-        {
-            int pers = id - 1;
-
-            _playerData = _PlayersData[pers];
-            _playerData.MultiID = id;
-            LoadPlayer();
-            InstantiatePlayer(x, y);
-        }
+        _playerData = _PlayersData[pers];
+        _playerData.MultiID = id;
+        LoadPlayer();
+        InstantiatePlayer(x, y);
     }
 
     private void InstantiatePlayer(int x, int y)
     {
-        Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
+        Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
 
         SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
-        SetXpBar.Raise(new EventArgsFloat((float) _playerData.Xp / _playerData.MaxXp));
+        SetXpBar.Raise(new EventArgsFloat((float)_playerData.Xp / _playerData.MaxXp));
         SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
-        SetHpBar.Raise(new EventArgsFloat((float) _playerData.Hp / _playerData.MaxHp));
+        SetHpBar.Raise(new EventArgsFloat((float)_playerData.Hp / _playerData.MaxHp));
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
-        SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
+        SetManaBar.Raise(new EventArgsFloat((float)_playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
 
         o.GetComponent<PlayerMovement>().Create(_playerData);
@@ -133,6 +109,9 @@ public class PlayerManager : MonoBehaviour
                 break;
             case "Warrior":
                 index = 3;
+                break;
+            default:
+                Debug.Log("???");
                 break;
         }
 
@@ -181,8 +160,9 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
         _playerData.Xp = _PlayersDataCopy[index].Xp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
-        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;        
-        //Todo COMP SAVE
+        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
+
+        //TODO Save multi ?
     }
 
     private void LoadStats(PlayerDataSave data)
@@ -198,8 +178,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = data.MaxXp;
         _playerData.Lvl = data.Lvl;
         _playerData.ManaRegen = data.ManaRegen;
-        
-        //Todo COMP LOAD
+
+        //TODO Load multi ?
     }
 
     private GamesItem FindItems(int id)
@@ -221,7 +201,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GetXp(IEventArgs args)
     {
-        GetXp(((EventArgsInt) args).X);
+        GetXp(((EventArgsInt)args).X);
     }
 
     #endregion
@@ -239,8 +219,8 @@ public class PlayerManager : MonoBehaviour
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
 
-            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
-            
+            _playerData.MaxXp = (int)(_playerData.MaxXp * 1.1f);
+
             UpgradeStats();
 
             gap = _playerData.MaxXp - _playerData.Xp;
@@ -286,7 +266,7 @@ public class PlayerManager : MonoBehaviour
             _playerData.StateProj = w.EffectType;
         }
 
-        if(added) Destroy(itemArg.T.gameObject);
+        if (added) Destroy(itemArg.T.gameObject);
     }
 
     public void AddWeapons(IEventArgs args)
@@ -296,20 +276,15 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator FuckIt(IEventArgs args)
     {
-        if (transform.childCount == 0)
+        if ((args as EventArgsWeaponsAth).Weapons != null)
         {
-            yield return new WaitForSeconds(0.5f);
-        }
-        else
-        {
-            if ((args as EventArgsWeaponsAth).Weapons != null)
+            if (transform.childCount == 0)
             {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons,
-                    transform.GetChild(0), 1, transform.GetChild(0));
+                yield return new WaitForSeconds(0.5f);
             }
             else
             {
-                Destroy(transform.GetChild(0).GetChild(5).gameObject);
+                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
             }
         }
     }
