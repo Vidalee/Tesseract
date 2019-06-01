@@ -450,6 +450,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: PlayerFeet
       objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
     - target: {fileID: 9094924654389468839, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -504,26 +514,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9094924654389468832, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
@@ -626,6 +616,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1993994299713793108, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8f0d1fe8cdc255f478f556102ddffeb4, type: 2}
     - target: {fileID: 5778672053070383507, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_Enabled

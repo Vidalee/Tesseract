@@ -10,10 +10,12 @@ using Vector3 = UnityEngine.Vector3;
 [CreateAssetMenu(fileName = "Enemies", menuName = "Enemy")]
 public class EnemyData : ScriptableObject
 {
-    [SerializeField] protected int _MaxHp;
-    [SerializeField] private int _Hp;
+    [SerializeField] protected new string name;
+    
+    [SerializeField] protected float _MaxHp;
+    [SerializeField] private float _Hp;
     private int _lvl;
-    [SerializeField] protected int _XpValue;
+    [SerializeField] protected float _XpValue;
 
     
     [SerializeField] protected int _physicsDamage;
@@ -24,8 +26,8 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected int _ArmorM;
     
     [SerializeField] protected float _MoveSpeed;
-    [SerializeField] protected int _AttackRange;
-    [SerializeField] protected int _DetectionRange;
+    [SerializeField] protected float _AttackRange;
+    [SerializeField] protected float _DetectionRange;
     
     [SerializeField] protected Vector3 _StartPos;
 
@@ -37,10 +39,21 @@ public class EnemyData : ScriptableObject
 
     [SerializeField] protected bool _Triggered;
     public bool OnHisWayBack;
+    
+    [SerializeField] protected AnimationClip[] move;
+    [SerializeField] protected AnimationClip[] idle;
+    [SerializeField] protected AnimationClip[] attack;
 
+    [SerializeField] protected float colliderX;
+    [SerializeField] protected float colliderY;
+
+    [SerializeField] protected float effectY;
+
+    [SerializeField] protected Vector3 feetPos;
 
     public void Create(EnemyData enemy, int x, int y, int lvl)
     { 
+        name = enemy.name;
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp;
         _XpValue = enemy.XpValue;
@@ -57,11 +70,18 @@ public class EnemyData : ScriptableObject
         Path = new List<Node>();
         _Triggered = false;
         OnHisWayBack = false;
+        move = enemy.move;
+        idle = enemy.idle;
+        attack = enemy.attack;
+        colliderX = enemy.colliderX;
+        colliderY = enemy.colliderY;
+        feetPos = enemy.feetPos;
     }
 
-    public int MaxHp => _MaxHp;
+    public string Name => name;
+    public float MaxHp => _MaxHp;
 
-    public int Hp
+    public float Hp
     {
         get => _Hp;
         set => _Hp = value;
@@ -73,7 +93,7 @@ public class EnemyData : ScriptableObject
         set => _lvl = value;
     }
 
-    public int XpValue => _XpValue;
+    public float XpValue => _XpValue;
 
     public int PhysicsDamage => _physicsDamage;
 
@@ -89,11 +109,11 @@ public class EnemyData : ScriptableObject
         set => _MoveSpeed = value;
     }
 
-    public int AttackRange => _AttackRange;
+    public float AttackRange => _AttackRange;
 
-    public int DetectionRange => _DetectionRange;
+    public float DetectionRange => _DetectionRange;
 
-    public int MaxCooldown => _MaxCooldown;
+    public float MaxCooldown => _MaxCooldown;
 
     public CompetencesData[] Competences => _Competences;
     
@@ -115,4 +135,18 @@ public class EnemyData : ScriptableObject
     }
 
     public Vector3 StartPos => _StartPos;
+    
+    public AnimationClip[] Move => move;
+
+    public AnimationClip[] Idle => idle;
+
+    public AnimationClip[] Attack => attack;
+
+    public float ColliderX => colliderX;
+
+    public float ColliderY => colliderY;
+
+    public float EffectY => effectY;
+
+    public Vector3 FeetPos => feetPos;
 }

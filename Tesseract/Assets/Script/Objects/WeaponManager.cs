@@ -259,55 +259,57 @@ public class WeaponManager : MonoBehaviour
                     }
                 }
             }
-        }
-        
-        if (Weapon._class == "Archer")
-        {
-            EventArgsCoor move = args as EventArgsCoor;
-            if (move.X == 0 && move.Y == 0) return;
-            bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
-            if (dir)
-            {
-                if (move.Y > 0) //up
-                {
-                    PlaceWeapon(0.118f, 0.117f, 45);
-                    _sprite.sortingOrder = 101;
-                }
 
-                else // down
+
+            if (Weapon._class == "Archer")
+            {
+                EventArgsCoor move = args as EventArgsCoor;
+                if (move.X == 0 && move.Y == 0) return;
+                bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
+                if (dir)
                 {
-                    PlaceWeapon(-0.11f, 0.178f, 135);
-                    _sprite.sortingOrder = -10000;
+                    if (move.Y > 0) //up
+                    {
+                        PlaceWeapon(0.118f, 0.117f, 45);
+                        _sprite.sortingOrder = 101;
+                    }
+
+                    else // down
+                    {
+                        PlaceWeapon(-0.11f, 0.178f, 135);
+                        _sprite.sortingOrder = -10000;
+                    }
+                }
+                else
+                {
+                    if (move.X < 0) //right
+                    {
+                        PlaceWeapon(-0.143f, 0.163f, 150);
+                        _sprite.sortingOrder = -10000;
+                    }
+                    else //left
+                    {
+                        PlaceWeapon(-0.094f, 0.095f, 165);
+                        _sprite.sortingOrder = -10000;
+                    }
                 }
             }
-            else
+
+            if (Weapon._class == "Assassin")
             {
-                if (move.X < 0) //right
+                EventArgsCoor move = args as EventArgsCoor;
+                if (move.X == 0 && move.Y == 0) return;
+                bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
+                if (dir && move.Y > 0)
                 {
-                    PlaceWeapon(-0.143f, 0.163f, 150);
-                    _sprite.sortingOrder = -10000;
+                    transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+                    PlaceWeapon(0f, -0.04f, 90);
+                    _sprite.sortingOrder = 1000;
                 }
-                else //left
+                else
                 {
-                    PlaceWeapon(-0.094f, 0.095f, 165);
-                    _sprite.sortingOrder = -10000;
+                    transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
                 }
-            }
-        }
-        if (Weapon._class == "Assassin")
-        {
-            EventArgsCoor move = args as EventArgsCoor;
-            if (move.X == 0 && move.Y == 0) return;
-            bool dir = Math.Abs(move.X) < Math.Abs(move.Y);
-            if (dir && move.Y > 0)
-            {
-                transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-                PlaceWeapon(0f, -0.04f, 90);
-                _sprite.sortingOrder = 1000;
-            }
-            else
-            {
-                transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
             }
         }
     }
@@ -335,7 +337,7 @@ public class WeaponManager : MonoBehaviour
             float deltaY = (float)(b * Math.Sin(alpha));
             if(deltaY > 0) sprite.sortingOrder = (int) transform.position.y * -11;
             else sprite.sortingOrder = (int) transform.position.y * -9;
-            transform.localScale = Vector3.one * (-deltaY / 5f + 1);
+            transform.localScale = Vector3.one * (-deltaY / 1.5f + 1);
             transform.localPosition = new Vector3((float)(a * Math.Cos(alpha)), (y + deltaY), transform.position.z);
              
             yield return null;

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8079f63ec1b864f34b71f1beb691b04d, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
+  name: Archer
   _MaxHp: 100
   _Hp: 100
-  _XpValue: 50
+  _XpValue: 10
   _PhysicsDamage: 5
   _MagicDamage: 0
   _MaxCooldown: 2
@@ -24,6 +25,19 @@ MonoBehaviour:
   _StartPos: {x: 0, y: 0, z: 0}
   _Competences:
   - {fileID: 11400000, guid: 8177b743ae5cd4d48a42bec4db0b69e6, type: 2}
-  _Sprite: {fileID: 21300000, guid: 87a6a02512bf54bfa8329c1003935144, type: 3}
+  _Sprite: {fileID: 21300012, guid: d09985e565b04004dae0d270572eefb8, type: 3}
   _Triggered: 0
   OnHisWayBack: 0
+  move:
+  - {fileID: 7400000, guid: 8fb2488b1f9c5744896d6b6bc0f0051e, type: 2}
+  - {fileID: 7400000, guid: 11062ae2fb86e1847afa510ecaa0e7d7, type: 2}
+  idle:
+  - {fileID: 7400000, guid: ca7a18ded3ee0cd499025afec89b9f17, type: 2}
+  - {fileID: 7400000, guid: 899b9de3977556840b24fe4ba1d649f2, type: 2}
+  attack:
+  - {fileID: 7400000, guid: 67ed3a1d417a4674bb564115ad7f7265, type: 2}
+  - {fileID: 7400000, guid: 4f63f9241d1921643bb9a01056c22eaa, type: 2}
+  colliderX: 0.5
+  colliderY: 0.9
+  effectY: 1.002
+  feetPos: {x: 0, y: 0, z: 0}

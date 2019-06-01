@@ -306,11 +306,9 @@ public class MapGridCreation : MonoBehaviour
         Transform room = _rooms[Random.Range(0, _roomData.Count)];
         
         bool b = room.GetComponent<RoomInstance>().AddBossPortal();
-        Debug.Log(stop);
 
         while (!b && stop < 100)
         {
-            Debug.Log(stop);
             b = room.GetComponent<RoomInstance>().AddBossPortal();
             stop++;
         }

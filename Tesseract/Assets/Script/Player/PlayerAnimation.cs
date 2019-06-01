@@ -18,7 +18,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        _spriteRenderer.sortingOrder = (int) (transform.position.y * -10);
+        _spriteRenderer.sortingOrder = (int) ((transform.position.y - 0.5f) * -10);
     }
 
     private void Awake()
