@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Sword1
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   icon: {fileID: 21300000, guid: 1dab46642d8a06a44b1043fd85a6bc6f, type: 3}
   displayName: Sword
   description: This is a sword
@@ -28,5 +28,5 @@ MonoBehaviour:
   colliderPoints:
   - {x: 0, y: 0}
   - {x: 0.16, y: 0.16}
-  inPlayerInventory: 1
+  inPlayerInventory: 0
   _class: Warrior
