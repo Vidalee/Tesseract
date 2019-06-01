@@ -1,5 +1,6 @@
 using System;
 using Script.GlobalsScript.Struct;
+using UnityEditor.U2D;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -45,16 +46,51 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected AnimationClip[] _Attack;
     [SerializeField] protected AnimationClip[] _Dash;
     [SerializeField] protected AnimationClip _DashParticles;
+    [SerializeField] protected AnimationClip[] compAnim;
     
     [SerializeField] protected CompetencesData[] _Competences;
     [SerializeField] protected Inventory _Inventory;
-
 
     [SerializeField] protected float _PotionsCooldown;
 
     public bool PositionChanged;
     public Script.Pathfinding.Node Node;
-    
+
+    private int stateProj;
+    private Color[] color;
+
+    public AnimationClip AnimProj()
+    {
+        return compAnim[stateProj];
+    }
+
+    public Color AnimColor()
+    {
+        return color[stateProj];
+    }
+
+    public int Effect()
+    {
+        return stateProj;
+    }
+
+    public int Prob()
+    {
+        if (stateProj != 0) return Inventory.Weapon.EffectProb;
+        return 0;
+    }
+
+    public int EffectDamage()
+    {
+        if (stateProj == 0 || Inventory.Weapon == null) return 0;
+        return Inventory.Weapon.EffectDamage;
+    }
+
+    public float Duration()
+    {
+        if (stateProj == 0 || Inventory.Weapon == null) return 0;
+        return Inventory.Weapon.Duration;
+    }
     
     private void OnEnable()
     {
@@ -64,11 +100,22 @@ public class PlayerData : ScriptableObject
         _Hp = _MaxHp;
         _Mana = _MaxMana;
         _CanMove = true;
+
+        color = new[]
+        {
+            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),   
+        };
     }
 
     #endregion
 
     #region Set/Get
+
+    public int StateProj
+    {
+        get => stateProj;
+        set => stateProj = value;
+    }
 
     public int ManaRegen
     {

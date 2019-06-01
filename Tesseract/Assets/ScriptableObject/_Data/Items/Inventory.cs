@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
-using Script.GlobalsScript.Struct;
+﻿using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
@@ -50,6 +48,7 @@ public class Inventory : ScriptableObject
         if (weapon == null && weapons != null)
         {
             weapon = weapons;
+            
             weapons.inPlayerInventory = true;
             WeaponsAth.Raise(new EventArgsWeaponsAth(weapons));
             

@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript;
+﻿using System.IO;
+using Script.GlobalsScript;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,5 +29,13 @@ public class LoadStatsMap : MonoBehaviour
         GlobalInfo.Reset();
         
         ChangeScene.ChangeToScene("MenuPlayer");
+    }
+
+    public void Reset()
+    {
+        string path = Application.persistentDataPath + "/lvl.txt";
+        if(File.Exists(path)) File.Delete(path);
+
+        ChangeScene.ChangeToScene("LevelSelection");
     }
 }

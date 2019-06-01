@@ -90,7 +90,7 @@ public class RoomInstance : MonoBehaviour
             int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
             int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
 
-            if (!script.Instances[y, x])
+            if (!script.Instances[y, x] && !script.Instances[y + 1, x] && !script.Instances[y - 1, x])
             {
                 Transform o = Instantiate(Chest, new Vector3(x, y, 0), Quaternion.identity, transform);
                 ChestData chest = ScriptableObject.CreateInstance<ChestData>();
@@ -128,9 +128,11 @@ public class RoomInstance : MonoBehaviour
         int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
         int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
 
-        for (int k = 0; k < 6; k++)
+        for (int k = 0; k < 3; k++)
         {
-            if (y - k < 2 || script.Instances[y, x] || !script._grid[y, x])
+            if (y - k < 3 || y + k > _roomData.Height - 3 || 
+                script.Instances[y + k, x] || !script._grid[y + k, x] ||
+                script.Instances[y - k, x] || !script._grid[y - k, x])
             {
                 canSpawn = false;
                 break;
@@ -170,16 +172,16 @@ public class RoomInstance : MonoBehaviour
         int maxTry = 0;
         int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
         int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
-
-
         
         while (maxTry < 10)
         {
             bool canSpawn = true;
             
-            for (int k = 0; k < 6; k++)
+            for (int k = 0; k < 3; k++)
             {
-                if (y - k < 2 || script.Instances[y, x] || !script._grid[y, x])
+                if (y - k < 3 || y + k > _roomData.Height - 3 || 
+                    script.Instances[y + k, x] || !script._grid[y + k, x] ||
+                    script.Instances[y - k, x] || !script._grid[y - k, x])
                 {
                     canSpawn = false;
                     break;
@@ -190,6 +192,9 @@ public class RoomInstance : MonoBehaviour
             {
                 return new Vector3(x, y, 0);
             }
+            
+            x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+            y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
             
             maxTry++;
         }

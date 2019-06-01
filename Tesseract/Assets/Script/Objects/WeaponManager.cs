@@ -353,9 +353,13 @@ public class WeaponManager : MonoBehaviour
         {
             AthItem.Raise(new EventArgsItemAth(Weapon));
         }
-        
+
         if (isAttacking && other.CompareTag("Enemies"))
-            other.gameObject.GetComponent<EnemiesLive>().GetDamaged(Weapon.PhysicsDamage);
+        {
+            EnemiesLive s = other.gameObject.GetComponent<EnemiesLive>();
+            s.GetDamaged(Weapon.PhysicsDamage + Weapon.MagicDamage);
+            if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

@@ -24,7 +24,6 @@ public class CompetencesData : ScriptableObject
     
     [SerializeField] protected Transform _Object;
     [SerializeField] protected string _Tag;
-    [SerializeField] protected AnimationClip _AnimationClip;
 
     #endregion
 
@@ -109,8 +108,6 @@ public class CompetencesData : ScriptableObject
     }
 
     public string Name => _Name;
-
-    public AnimationClip AnimationClip => _AnimationClip;
 
     public Transform Object => _Object;
 
