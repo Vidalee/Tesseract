@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
@@ -68,26 +69,30 @@ public class MapGridCreation : MonoBehaviour
         AllNodes.Height = MapHeight - 1;
         AllNodes.Width = MapWidth - 1;
         GetComponentInChildren<MiniMapPos>().Pos(new Vector3(MapHeight/2, MapHeight/2));
-        
         GetComponentInChildren<MiniMapFog>().Create(MiniMap, _grid, MapTextureData);
 
-        CreateGrid();
-        ConstructCorridor();
-        
-        RoomInstanceWall();
+        try
+        {
+            CreateGrid();
+            ConstructCorridor();
+            RoomInstanceWall();
+            FillGap();
+            CreateFloor();
+            CreateWall();
+            RoomInstanceDeco();
+            AddChest();
+            AddPikes();
+            AddPortal();
+            AddBossPortal();
+            AddPlayer();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Err");
+            Console.WriteLine(e);
+            throw;
+        }
 
-        FillGap();
-        CreateFloor();
-        CreateWall();
-
-        RoomInstanceDeco();
-        AddChest();
-        AddPikes();
-        
-        AddPortal();
-        AddBossPortal();
-        
-        AddPlayer();
 
         GenerateEnemies.RoomData = _roomData;
         GenerateEnemies.availablePosGrid = _grid;
@@ -215,6 +220,8 @@ public class MapGridCreation : MonoBehaviour
     {
         for (int i = 0; i < _rooms.Count; i++)
         {
+            if(Random.Range(0, 2) == 0) continue;
+            
             RoomInstance script = _rooms[i].GetComponent<RoomInstance>();
             Vector3 pos = _rooms[Random.Range(0, _rooms.Count)].GetComponent<RoomInstance>().GetFreePos();
             
@@ -248,9 +255,9 @@ public class MapGridCreation : MonoBehaviour
 
             bool canSpawn = true;
             
-            for (int k = 0; k < 6; k++)
+            for (int k = 0; k < 3; k++)
             {
-                if (y - k < 2 || Instances[y - k, x] || !_grid[y, x])
+                if (y - k < 2 || y + k > MapHeight - 2 || Instances[y - k, x] || !_grid[y - k, x] || _instances[y + k, x] || !_grid[y + k, x])
                 {
                     canSpawn = false;
                     break;
@@ -270,22 +277,23 @@ public class MapGridCreation : MonoBehaviour
     //Add boss portal
     private void AddBossPortal()
     {
+        int stop = 0;
         Transform room = _rooms[Random.Range(0, _roomData.Count)];
         
         bool b = room.GetComponent<RoomInstance>().AddBossPortal();
-        Debug.Log("try");
+        Debug.Log(stop);
 
-        while (!b)
+        while (!b && stop < 100)
         {
-            Debug.Log("try");
+            Debug.Log(stop);
             b = room.GetComponent<RoomInstance>().AddBossPortal();
+            stop++;
         }
     }
     
     //Build road between 2 position
     private void BuildRoad(int[] pos1, int[] pos2)
     {
-
         int x1 = pos1[0];
         int x2 = pos2[0];
 
@@ -388,6 +396,7 @@ public class MapGridCreation : MonoBehaviour
         }
 
         int size = _roomData.Count;
+
         for (int i = 0; i < forcePath; i++)
         {
             BuildRoad(_roomData[Random.Range(0, size)].Center, _roomData[Random.Range(0, size)].Center);
