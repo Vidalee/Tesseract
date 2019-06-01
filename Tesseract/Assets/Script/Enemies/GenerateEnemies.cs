@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Script.Enemies;
+using Script.GlobalsScript;
 using Script.Pathfinding;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ public class GenerateEnemies : MonoBehaviour
                 {
                     GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
                     EnemyData newEnemy = ScriptableObject.CreateInstance<EnemyData>();
-                    newEnemy.Create(Enemies[Random.Range(0, 2)], x, y);
+                    newEnemy.Create(Enemies[Random.Range(0, 2)], x, y, StaticData.RandomLevel());
                     
                     enemy.GetComponent<Attack>().Create(newEnemy, players[0]);
                     enemy.GetComponent<EnemiesLive>().Create(newEnemy, playerDatas); 

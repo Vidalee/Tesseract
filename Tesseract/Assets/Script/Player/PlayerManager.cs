@@ -132,7 +132,7 @@ public class PlayerManager : MonoBehaviour
     private void LoadPlayer()
     {
         PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
-        if (data == null || data.CompCd == null || data.CompCd.Length == 0)
+        if (data == null)
         {
             ResetStats(FindClass(_playerData.Name));
 
@@ -173,18 +173,7 @@ public class PlayerManager : MonoBehaviour
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
         _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
         
-        for (int i = 0; i < _playerData.Competences.Length; i++)
-        {
-            CompetencesData c = _playerData.Competences[i];
-            CompetencesData cc = _PlayersDataCopy[index].Competences[i];
-
-            c.Speed = cc.Speed;
-            c.Cooldown = cc.Cooldown;
-            c.Damage = cc.Damage;
-            c.Live = cc.Live;
-            c.Number = cc.Number;
-            c.ManaCost = cc.ManaCost;
-        }
+        //Todo COMP SAVE
     }
 
     private void LoadStats(PlayerDataSave data)
@@ -201,17 +190,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.Lvl = data.Lvl;
         _playerData.ManaRegen = data.ManaRegen;
         
-        for (int i = 0; i < _playerData.Competences.Length; i++)
-        {
-            CompetencesData c = _playerData.Competences[i];
+        //Todo COMP LOAD
 
-            c.Speed = data.CompSpeed[i];
-            c.Cooldown = data.CompCd[i];
-            c.Damage = data.CompDamage[i];
-            c.Live = data.CompLive[i];
-            c.Number = data.CompNumber[i];
-            c.ManaCost = data.CompManaCost[i];
-        }
     }
 
     private GamesItem FindItems(int id)
@@ -253,7 +233,6 @@ public class PlayerManager : MonoBehaviour
             
             _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
             
-            UpgradeCompetence();
             UpgradeStats();
             
             gap = _playerData.MaxXp - _playerData.Xp;
@@ -280,11 +259,6 @@ public class PlayerManager : MonoBehaviour
 
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;
-    }
-
-    private void UpgradeCompetence()
-    {
-        CompetenceTree.CompetenceLvlUp(_playerData.Competences, _playerData.Lvl);
     }
 
     #endregion

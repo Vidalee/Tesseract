@@ -1,5 +1,4 @@
-﻿ using System;
- using System.Collections;
+﻿ using System.Collections;
  using Script.GlobalsScript.Struct;
  using UnityEngine;
 
@@ -52,19 +51,19 @@ public class PlayerAttack : MonoBehaviour
             switch (competence.Name)
             {
                 case "AutoAttack":
-                    AutoAttack(competence);
+                    AutoAttack(competence as ProjComp);
                     break;
                 case "MultipleProjectiles":
-                    MultipleAttack(competence);
+                    MultipleAttack(competence as ProjComp);
                     break;
                 case "CirclesProjectiles":
-                    CircleAttack(competence);
+                    CircleAttack(competence as ProjComp);
                     break;
             }
         }
     }
 
-    private void AutoAttack(CompetencesData competence)
+    private void AutoAttack(ProjComp competence)
     {
         AttackEvent.Raise(new EventArgsNull());
         StartCoroutine(CoolDownCoroutine(competence, true));
@@ -73,7 +72,7 @@ public class PlayerAttack : MonoBehaviour
  
     }
     
-    private void MultipleAttack(CompetencesData competence)
+    private void MultipleAttack(ProjComp competence)
     {
         AttackEvent.Raise(new EventArgsNull());
         if (_playerData.Name == "Warrior") return;
@@ -93,7 +92,7 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
     
-    private void CircleAttack(CompetencesData competence)
+    private void CircleAttack(ProjComp competence)
     {
         if (_playerData.Mana < competence.ManaCost)
         {
@@ -132,13 +131,17 @@ public class PlayerAttack : MonoBehaviour
         competence.Usable = true;
     }
     
-    private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)
+    private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
     {
         Transform o = Instantiate(competence.Object, transform.position + dir/4, Quaternion.identity);
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, _playerData.AnimProj(),
+
+        int dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
+        int dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
+        
+        projectilesData.Created(dir, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
             competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
         
         Projectiles script = o.GetComponent<Projectiles>();

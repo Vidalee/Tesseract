@@ -25,15 +25,23 @@ public class EnemiesLive : MonoBehaviour
         Icon = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void GetDamaged(int damage)
+    public void GetDamaged(int damageP, int damageM)
     {
-        Enemy.Hp -= damage;
-        hpBar.transform.localScale = new Vector3((float) Enemy.Hp/Enemy.MaxHp * 0.01581096f, hpBar.transform.localScale.y);
 
+        int dP = damageP - Enemy.ArmorP;
+        int dM = damageM - Enemy.ArmorM;
+        
+        if(dP < 0) dP = 0;
+        if (dM < 0) dM = 0;
+
+        Enemy.Hp -= dP + dM;
+            
         if (Enemy.Hp <= 0)
         {
             Death();
         }
+        
+        hpBar.transform.localScale = new Vector3((float) Enemy.Hp/Enemy.MaxHp * 0.01581096f, hpBar.transform.localScale.y);
     }
 
     public void Death()
@@ -93,7 +101,7 @@ public class EnemiesLive : MonoBehaviour
     {
         for (int i = 0; i < duration; i++)
         {
-            GetDamaged(damage);
+            GetDamaged(0, damage);
             SendPlayerHp.Raise(new EventArgsInt(damage / 2));
             yield return new WaitForSeconds(1f);
         }
@@ -113,7 +121,7 @@ public class EnemiesLive : MonoBehaviour
     {
         for (int i = 0; i < duration; i++)
         {
-            GetDamaged(damage);
+            GetDamaged(damage, 0);
             yield return new WaitForSeconds(0.5f);
         }
     }

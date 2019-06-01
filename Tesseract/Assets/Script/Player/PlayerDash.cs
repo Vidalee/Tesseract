@@ -29,8 +29,8 @@ public class PlayerDash : MonoBehaviour
         
         if (Input.GetKey("space") && _playerData.GetCompetence("Dash").Usable)
         {
-            if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.GetCompetence("Dash")));
-            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash")));
+            if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.GetCompetence("Dash") as DashComp));
+            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp));
         }
     }
 
@@ -39,7 +39,7 @@ public class PlayerDash : MonoBehaviour
 
     #region Dash
 
-    private IEnumerator Dash(CompetencesData competence)
+    private IEnumerator Dash(DashComp competence)
     {
         competence.Usable = false;
         _playerData.CanMove = false;
@@ -55,13 +55,13 @@ public class PlayerDash : MonoBehaviour
         competence.Usable = true;
     }
     
-    private IEnumerator SmoothDash(CompetencesData competence)
+    private IEnumerator SmoothDash(DashComp competence)
     {
         competence.Usable = false;
         _playerData.CanMove = false;
         
         Vector3 direction = CheckObstacles(Direction(), competence);
-        float step = competence.Speed * Time.fixedDeltaTime;
+        float step = competence.DistDash * Time.fixedDeltaTime;
         float t = 0;
         Vector3 end = transform.position + direction - direction * 0.01f;
         
@@ -89,7 +89,7 @@ public class PlayerDash : MonoBehaviour
         return (cursorPos - transform.position).normalized;
     }
 
-    private Vector3 CheckObstacles(Vector3 dir, CompetencesData competence)
+    private Vector3 CheckObstacles(Vector3 dir, DashComp competence)
     {
         int xDir = dir.x > 0 ? 1 : -1;
         int yDir = dir.y > 0 ? 1 : -1;
@@ -102,8 +102,8 @@ public class PlayerDash : MonoBehaviour
         Vector3 playerPosleft = playerPos + new Vector3(_playerData.Width / 2 * xDir, 0, 0);
         Vector3 playerPosRight = playerPos + new Vector3(-_playerData.Width / 2 * xDir, 0, 0);
         
-        RaycastHit2D rayL = Physics2D.Raycast(playerPosleft, dir * competence.Speed, competence.Speed, BlockingLayer);
-        RaycastHit2D rayR = Physics2D.Raycast(playerPosRight, dir * competence.Speed, competence.Speed, BlockingLayer);
+        RaycastHit2D rayL = Physics2D.Raycast(playerPosleft, dir * competence.DistDash, competence.DistDash, BlockingLayer);
+        RaycastHit2D rayR = Physics2D.Raycast(playerPosRight, dir * competence.DistDash, competence.DistDash, BlockingLayer);
 
         if (rayL && rayR)
         {
@@ -118,7 +118,7 @@ public class PlayerDash : MonoBehaviour
         if (rayL) return dir * rayL.distance;
         if (rayR) return dir * rayR.distance;
 
-        return dir * competence.Speed;
+        return dir * competence.DistDash;
     }
 
     #endregion
