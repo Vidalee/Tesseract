@@ -45,6 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f7d1784ea9e7714b8024d7720635d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetXpBar: {fileID: 0}
+  SetXp: {fileID: 0}
+  SetHpBar: {fileID: 0}
+  SetHp: {fileID: 0}
+  SetManaBar: {fileID: 0}
+  SetMana: {fileID: 0}
+  SetLvl: {fileID: 0}
   _PlayersData:
   - {fileID: 11400000, guid: 4c097147e9829d74d94a7f53901eab19, type: 2}
   - {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
@@ -59,6 +66,7 @@ MonoBehaviour:
   Perso: 
   PlayerMulti: {fileID: 9175653220263017935, guid: c32f104b8fe4c654296a57e89d0fd92b,
     type: 3}
+  armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}
 --- !u!114 &5204549337763703507
 MonoBehaviour:
   m_ObjectHideFlags: 0

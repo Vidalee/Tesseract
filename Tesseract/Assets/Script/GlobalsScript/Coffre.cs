@@ -13,7 +13,7 @@ class Coffre
     //coffre.Remplir("étiquette", "valeur");
     public static void Créer()
     {
-
+        Remplir("seed", 2);
         Remplir("mode", "multi");
         Remplir("id", "1");
     }
