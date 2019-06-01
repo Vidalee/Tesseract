@@ -11,10 +11,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Shuriken2
-  m_EditorClassIdentifier:
-  icon: {fileID: 21300004, guid: 32d41c615db92cc469c4a041e7dff95d, type: 3}
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300006, guid: 32d41c615db92cc469c4a041e7dff95d, type: 3}
   displayName: Ice Shuriken
-  description:
+  description: 
   id: 12
   magicDamage: 10
   physicsDamage: 30

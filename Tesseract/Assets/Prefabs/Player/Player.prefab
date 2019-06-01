@@ -365,6 +365,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
+    - target: {fileID: 2554246551499141741, guid: 86d19bd09298f474a800fb381a2d1a92,
+        type: 3}
+      propertyPath: m_Name
+      value: LayerSorter
+      objectReference: {fileID: 0}
     - target: {fileID: 2554246551499141730, guid: 86d19bd09298f474a800fb381a2d1a92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -420,11 +425,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2554246551499141741, guid: 86d19bd09298f474a800fb381a2d1a92,
-        type: 3}
-      propertyPath: m_Name
-      value: LayerSorter
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86d19bd09298f474a800fb381a2d1a92, type: 3}
 --- !u!4 &4606261878733752742 stripped
@@ -440,6 +440,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_Name
+      value: FeetSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerFeet
+      objectReference: {fileID: 0}
     - target: {fileID: 9094924654389468839, guid: 48b65933cafca0749a4e427f06a7abca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -495,26 +515,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_Name
-      value: FeetSorter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9094924654389468838, guid: 48b65933cafca0749a4e427f06a7abca,
-        type: 3}
-      propertyPath: m_TagString
-      value: PlayerFeet
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9094924654389468832, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 48b65933cafca0749a4e427f06a7abca, type: 3}
@@ -531,6 +531,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4606261879900217897}
     m_Modifications:
+    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerAnimation
+      objectReference: {fileID: 0}
     - target: {fileID: 5037516936518131200, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -586,11 +591,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 152487511598381141, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerAnimation
-      objectReference: {fileID: 0}
     - target: {fileID: 5074799785781877805, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_Sprite
@@ -606,6 +606,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1993994299713793108, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8f0d1fe8cdc255f478f556102ddffeb4, type: 2}
     - target: {fileID: 5778672053070383507, guid: 1a2bd87cfefe0c24cbf836ac8c55dd93,
         type: 3}
       propertyPath: m_Enabled

@@ -10,19 +10,21 @@ using Vector3 = UnityEngine.Vector3;
 [CreateAssetMenu(fileName = "Enemies", menuName = "Enemy")]
 public class EnemyData : ScriptableObject
 {
-    [SerializeField] protected int _MaxHp;
-    [SerializeField] private int _Hp;
+    [SerializeField] protected new string name;
+    
+    [SerializeField] protected float _MaxHp;
+    [SerializeField] private float _Hp;
     private int _lvl;
-    [SerializeField] protected int _XpValue;
+    [SerializeField] protected float _XpValue;
 
     
-    [SerializeField] protected int _PhysicsDamage;
-    [SerializeField] protected int _MagicDamage;
-    [SerializeField] protected int _MaxCooldown;
+    [SerializeField] protected float _PhysicsDamage;
+    [SerializeField] protected float _MagicDamage;
+    [SerializeField] protected float _MaxCooldown;
     
     [SerializeField] protected float _MoveSpeed;
-    [SerializeField] protected int _AttackRange;
-    [SerializeField] protected int _DetectionRange;
+    [SerializeField] protected float _AttackRange;
+    [SerializeField] protected float _DetectionRange;
     
     [SerializeField] protected Vector3 _StartPos;
 
@@ -34,10 +36,20 @@ public class EnemyData : ScriptableObject
 
     [SerializeField] protected bool _Triggered;
     public bool OnHisWayBack;
+    
+    [SerializeField] protected AnimationClip[] move;
+    [SerializeField] protected AnimationClip[] idle;
+    [SerializeField] protected AnimationClip[] attack;
 
+    [SerializeField] protected float colliderX;
+    [SerializeField] protected float colliderY;
 
-    public void Create(EnemyData enemy, int x, int y)
-    { 
+    [SerializeField] protected float effectY;
+
+    [SerializeField] protected Vector3 feetPos;
+    public void Create(EnemyData enemy, float x, float y)
+    {
+        name = enemy.name;
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp;
         _XpValue = enemy.XpValue;
@@ -53,11 +65,18 @@ public class EnemyData : ScriptableObject
         Path = new List<Node>();
         _Triggered = false;
         OnHisWayBack = false;
+        move = enemy.move;
+        idle = enemy.idle;
+        attack = enemy.attack;
+        colliderX = enemy.colliderX;
+        colliderY = enemy.colliderY;
+        feetPos = enemy.feetPos;
     }
 
-    public int MaxHp => _MaxHp;
+    public string Name => name;
+    public float MaxHp => _MaxHp;
 
-    public int Hp
+    public float Hp
     {
         get => _Hp;
         set => _Hp = value;
@@ -69,11 +88,11 @@ public class EnemyData : ScriptableObject
         set => _lvl = value;
     }
 
-    public int XpValue => _XpValue;
+    public float XpValue => _XpValue;
 
-    public int PhysicsDamage => _PhysicsDamage;
+    public float PhysicsDamage => _PhysicsDamage;
 
-    public int MagicDamage => _MagicDamage;
+    public float MagicDamage => _MagicDamage;
 
     public float MoveSpeed
     {
@@ -81,11 +100,11 @@ public class EnemyData : ScriptableObject
         set => _MoveSpeed = value;
     }
 
-    public int AttackRange => _AttackRange;
+    public float AttackRange => _AttackRange;
 
-    public int DetectionRange => _DetectionRange;
+    public float DetectionRange => _DetectionRange;
 
-    public int MaxCooldown => _MaxCooldown;
+    public float MaxCooldown => _MaxCooldown;
 
     public CompetencesData[] Competences => _Competences;
     
@@ -107,21 +126,26 @@ public class EnemyData : ScriptableObject
     }
 
     public Vector3 StartPos => _StartPos;
+    
+    public AnimationClip[] Move => move;
 
-    public void UpdateStats(int lvl, int floor)
-    {
-        _MaxHp += _MaxHp / 10 * lvl + (floor - 1) * _MaxHp;
-        _Hp += _Hp / 10 * lvl + (floor - 1) * _Hp;
-        //_XpValue += _XpValue / 10 * lvl + (floor - 1) * _XpValue;
-        _PhysicsDamage += (int)(((float)_PhysicsDamage) / 10 * lvl) + (floor - 1) * _PhysicsDamage;
-        _MagicDamage += _MagicDamage / 10 * lvl + (floor - 1) * _MagicDamage;
-    }
+    public AnimationClip[] Idle => idle;
+
+    public AnimationClip[] Attack => attack;
+
+    public float ColliderX => colliderX;
+
+    public float ColliderY => colliderY;
+
+    public float EffectY => effectY;
+
+    public Vector3 FeetPos => feetPos;
 
     public void SetStats()
     {
         _MaxHp += 10 * _lvl;
         _Hp = _MaxHp;
-        _XpValue += 10 * _lvl;
+        _XpValue += _XpValue / 4 * _lvl;
         _PhysicsDamage += _lvl;
         _MagicDamage += _lvl;
     }

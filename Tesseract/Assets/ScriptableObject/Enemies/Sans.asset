@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8079f63ec1b864f34b71f1beb691b04d, type: 3}
+  m_Name: Sans
+  m_EditorClassIdentifier: 
+  name: Ghost
+  _MaxHp: 100
+  _Hp: 100
+  _XpValue: 10
+  _PhysicsDamage: 0
+  _MagicDamage: 15
+  _MaxCooldown: 3
+  _MoveSpeed: 2
+  _AttackRange: 5
+  _DetectionRange: 20
+  _StartPos: {x: 0, y: 0, z: 0}
+  _Competences: []
+  _Sprite: {fileID: 21300000, guid: 6f4f951af3aee7847ba76e5d9160bfb9, type: 3}
+  _Triggered: 0
+  OnHisWayBack: 0
+  move:
+  - {fileID: 7400000, guid: 0cf0456f5e5f0f84c99c3ed42fbd1d0e, type: 2}
+  - {fileID: 7400000, guid: 0cf0456f5e5f0f84c99c3ed42fbd1d0e, type: 2}
+  idle:
+  - {fileID: 7400000, guid: 0cf0456f5e5f0f84c99c3ed42fbd1d0e, type: 2}
+  - {fileID: 7400000, guid: 0cf0456f5e5f0f84c99c3ed42fbd1d0e, type: 2}
+  attack:
+  - {fileID: 7400000, guid: db53ba4d873c19f439471757dcc1246a, type: 2}
+  - {fileID: 7400000, guid: db53ba4d873c19f439471757dcc1246a, type: 2}
+  colliderX: 0.4
+  colliderY: 0.94
+  effectY: 1.025
+  feetPos: {x: 0, y: 0, z: 0}

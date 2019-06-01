@@ -2026,7 +2026,7 @@ MonoBehaviour:
   minH: 10
   maxW: 20
   minW: 10
-  forcePath: 5
+  forcePath: 0
   prob: 10
   seed: 1
   wallTexture: {fileID: 3918407342419581001, guid: 0e59fe7398f5ce4429191e7bbdc1940f,

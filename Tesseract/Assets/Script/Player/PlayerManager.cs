@@ -121,9 +121,6 @@ public class PlayerManager : MonoBehaviour
             case "Warrior":
                 index = 3;
                 break;
-            default:
-                Debug.Log("???");
-                break;
         }
 
         return index;
@@ -314,15 +311,20 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator FuckIt(IEventArgs args)
     {
-        if ((args as EventArgsWeaponsAth).Weapons != null)
+        if (transform.childCount == 0)
         {
-            if (transform.childCount == 0)
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            if ((args as EventArgsWeaponsAth).Weapons != null)
             {
-                yield return new WaitForSeconds(0.5f);
+                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons,
+                    transform.GetChild(0), 1, transform.GetChild(0));
             }
             else
             {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+                Destroy(transform.GetChild(0).GetChild(5).gameObject);
             }
         }
     }
