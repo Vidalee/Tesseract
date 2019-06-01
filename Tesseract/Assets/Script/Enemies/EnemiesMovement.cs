@@ -29,17 +29,6 @@ namespace Script.Enemies
         {
             bool TriggeredState = Enemy.Triggered;
             FindTarget();
-            if (TriggeredState != Enemy.Triggered)
-            {
-                int maxLvl = 0;
-                foreach (PlayerData playerData in playerDatas)
-                {
-                    maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
-                }
-
-                Enemy.Lvl = StaticData.RandomLevel();
-                Enemy.SetStats();
-            }
         }
         
         private void FindTarget()

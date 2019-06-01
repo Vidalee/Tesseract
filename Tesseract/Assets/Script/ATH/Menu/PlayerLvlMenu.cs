@@ -13,7 +13,7 @@ public class PlayerLvlMenu : MonoBehaviour
         string lvl = "0";
         
         PlayerDataSave data = SaveSystem.LoadPlayer(transform.parent.name);
-        if (data != null && data.CompCd != null && data.CompCd.Length != 0)
+        if (data != null)
         {
             lvl = data.Lvl.ToString();
         }

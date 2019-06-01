@@ -134,8 +134,6 @@ public class RoomInstance : MonoBehaviour
                 script.Instances[y + k, x] || !script._grid[y + k, x] ||
                 script.Instances[y - k, x] || !script._grid[y - k, x])
             {
-                Debug.Log("test boss : y =" + y + " k = " + k + " rmH = " + _roomData.Height);
-
                 canSpawn = false;
                 break;
             }
@@ -185,8 +183,6 @@ public class RoomInstance : MonoBehaviour
                     script.Instances[y + k, x] || !script._grid[y + k, x] ||
                     script.Instances[y - k, x] || !script._grid[y - k, x])
                 {
-                    Debug.Log("test play : y =" + y + " k = " + k + " rmH = " + _roomData.Height);
-
                     canSpawn = false;
                     break;
                 }

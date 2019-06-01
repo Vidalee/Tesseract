@@ -16,9 +16,12 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected int _XpValue;
 
     
-    [SerializeField] protected int _PhysicsDamage;
-    [SerializeField] protected int _MagicDamage;
+    [SerializeField] protected int _physicsDamage;
+    [SerializeField] protected int _magicDamage;
     [SerializeField] protected int _MaxCooldown;
+
+    [SerializeField] protected int _ArmorP;
+    [SerializeField] protected int _ArmorM;
     
     [SerializeField] protected float _MoveSpeed;
     [SerializeField] protected int _AttackRange;
@@ -36,13 +39,14 @@ public class EnemyData : ScriptableObject
     public bool OnHisWayBack;
 
 
-    public void Create(EnemyData enemy, int x, int y)
+    public void Create(EnemyData enemy, int x, int y, int lvl)
     { 
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp;
         _XpValue = enemy.XpValue;
-        _PhysicsDamage = enemy.PhysicsDamage;
-        _MagicDamage = enemy.MagicDamage;
+        _physicsDamage = enemy.PhysicsDamage;
+        _magicDamage = enemy.MagicDamage;
+        _ArmorM = enemy._ArmorM;
         _MaxCooldown = enemy.MaxCooldown;
         _MoveSpeed = enemy.MoveSpeed;
         _AttackRange = enemy.AttackRange;
@@ -71,9 +75,13 @@ public class EnemyData : ScriptableObject
 
     public int XpValue => _XpValue;
 
-    public int PhysicsDamage => _PhysicsDamage;
+    public int PhysicsDamage => _physicsDamage;
 
-    public int MagicDamage => _MagicDamage;
+    public int MagicDamage => _magicDamage;
+
+    public int ArmorP => _ArmorP;
+
+    public int ArmorM => _ArmorM;
 
     public float MoveSpeed
     {
@@ -107,22 +115,4 @@ public class EnemyData : ScriptableObject
     }
 
     public Vector3 StartPos => _StartPos;
-
-    public void UpdateStats(int lvl, int floor)
-    {
-        _MaxHp += _MaxHp / 10 * lvl + (floor - 1) * _MaxHp;
-        _Hp += _Hp / 10 * lvl + (floor - 1) * _Hp;
-        //_XpValue += _XpValue / 10 * lvl + (floor - 1) * _XpValue;
-        _PhysicsDamage += (int)(((float)_PhysicsDamage) / 10 * lvl) + (floor - 1) * _PhysicsDamage;
-        _MagicDamage += _MagicDamage / 10 * lvl + (floor - 1) * _MagicDamage;
-    }
-
-    public void SetStats()
-    {
-        _MaxHp += 10 * _lvl;
-        _Hp = _MaxHp;
-        _XpValue += 10 * _lvl;
-        _PhysicsDamage += _lvl;
-        _MagicDamage += _lvl;
-    }
 }

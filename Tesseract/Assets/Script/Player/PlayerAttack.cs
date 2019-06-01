@@ -1,5 +1,4 @@
-﻿ using System;
- using System.Collections;
+﻿ using System.Collections;
  using Script.GlobalsScript.Struct;
  using UnityEngine;
 
@@ -113,19 +112,19 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             switch (competence.Name)
             {
                 case "AutoAttack":
-                    AutoAttack(competence, dx, dy);
+                    AutoAttack(competence as ProjComp, dx, dy);
                     break;
                 case "MultipleProjectiles":
-                    MultipleAttack(competence, dx, dy);
+                    MultipleAttack(competence as ProjComp, dx, dy);
                     break;
                 case "CirclesProjectiles":
-                    CircleAttack(competence, dx, dy);
+                    CircleAttack(competence as ProjComp, dx, dy);
                     break;
             }
         }
     }
 
-    private void AutoAttack(CompetencesData competence, float dx = 0, float dy = 0)
+    private void AutoAttack(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
         StartCoroutine(CoolDownCoroutine(competence, true));
@@ -133,7 +132,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         InstantiateProjectiles(competence, ProjectilesDirection(dx, dy));
     }
     
-    private void MultipleAttack(CompetencesData competence, float dx = 0, float dy = 0)
+    private void MultipleAttack(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
         if (_playerData.Name == "Warrior") return;
@@ -153,7 +152,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
     
-    private void CircleAttack(CompetencesData competence, float dx = 0, float dy = 0)
+    private void CircleAttack(ProjComp competence, float dx = 0, float dy = 0)
     {
         if (_playerData.Mana < competence.ManaCost)
         {
@@ -202,13 +201,17 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         competence.Usable = true;
     }
     
-    private void InstantiateProjectiles(CompetencesData competence, Vector3 dir)
+    private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
     {
         Transform o = Instantiate(competence.Object, transform.position + dir/4, Quaternion.identity);
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
-        projectilesData.Created(dir, competence.Speed, competence.Damage, competence.Tag, _playerData.AnimProj(),
+
+        int dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
+        int dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
+        
+        projectilesData.Created(dir, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
             competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
         
         Projectiles script = o.GetComponent<Projectiles>();

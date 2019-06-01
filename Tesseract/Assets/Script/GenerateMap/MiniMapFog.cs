@@ -15,7 +15,6 @@ public class MiniMapFog : MonoBehaviour
 
     public void Create(Tilemap miniMap, bool[,] grid, MapTextureData mapTextureData)
     {
-        
         _grid = grid;
         _miniMapCam = miniMap;
         _tile = ScriptableObject.CreateInstance<Tile>();
