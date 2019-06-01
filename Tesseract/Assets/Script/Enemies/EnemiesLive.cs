@@ -11,6 +11,8 @@ public class EnemiesLive : MonoBehaviour
     [SerializeField] protected GameObject weapon;
     [SerializeField] protected GameObject armory;
     [SerializeField] protected List<PlayerData> playerDatas;
+    [SerializeField] protected GameObject hpBar; 
+    
 
     private SpriteRenderer Icon;
 
@@ -26,6 +28,8 @@ public class EnemiesLive : MonoBehaviour
     public void GetDamaged(int damage)
     {
         Enemy.Hp -= damage;
+        hpBar.transform.localScale = new Vector3((float) Enemy.Hp/Enemy.MaxHp * 0.01581096f, hpBar.transform.localScale.y);
+
         if (Enemy.Hp <= 0)
         {
             Death();
