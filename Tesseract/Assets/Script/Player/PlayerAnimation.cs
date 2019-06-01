@@ -50,7 +50,8 @@ public class PlayerAnimation : MonoBehaviour
     public void PlayerMovingAnimation(IEventArgs args)
     {
         EventArgsCoor coor = args as EventArgsCoor;
-        
+        if (_playerData.MultiID != coor.Id) return;
+
         int speed = coor.X != 0 ? coor.X : coor.Y;
         bool dir = coor.X == 0;
         
@@ -64,8 +65,12 @@ public class PlayerAnimation : MonoBehaviour
         _a.SetBool("Direction",dir);
     }
 
-    public void PlayerDashAnimation()
+    public void PlayerDashAnimation(IEventArgs args)
     {
+        Debug.Log("dashanim?");
+        EventArgsInt i = args as EventArgsInt;
+        Debug.Log(_playerData.MultiID + " " + i.X);
+        if (_playerData.MultiID != i.X) return;
         StartCoroutine(PlayerDashCor());
     }
     
@@ -91,8 +96,12 @@ public class PlayerAnimation : MonoBehaviour
         _a.speed = 1;
     }
 
-    public void PlayerAttackAnimation()
+    public void PlayerAttackAnimation(IEventArgs args)
     {
+        Debug.Log("attackanim?");
+        EventArgsInt i = args as EventArgsInt;
+        Debug.Log(_playerData.MultiID + " " + i.X);
+        if (_playerData.MultiID != i.X) return;
         StartCoroutine(PlayerAttackCoroutine());
     }
     

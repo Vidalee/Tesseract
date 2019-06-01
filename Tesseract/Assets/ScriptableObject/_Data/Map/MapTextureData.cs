@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.WSA;
 
 [CreateAssetMenu(fileName = "Wall", menuName = "Map/Room/Textures")]
 public class MapTextureData : ScriptableObject

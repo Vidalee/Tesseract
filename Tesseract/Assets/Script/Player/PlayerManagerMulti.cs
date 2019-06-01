@@ -1,37 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using Script.Pathfinding;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManagerMulti : MonoBehaviour
 {
     #region Variable
 
-    public GameEvent SetXpBar;
-    public GameEvent SetXp;
-    public GameEvent SetHpBar;
-    public GameEvent SetHp;
-    public GameEvent SetManaBar;
-    public GameEvent SetMana;
-    public GameEvent SetLvl;
 
     [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
-    public List<GamesItem> Items;
-
+    public GamesItem[] Items;
+    
     public string Perso;
-
-    public Transform Player;
+        
+    public Transform PlayerMulti;
     private PlayerData _playerData;
 
     private MapData _mapData;
     private TileData _miniMap;
-
-    public GameObject armory;
 
     #endregion
 
@@ -41,6 +29,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKey("k")) SavePlayer();
+        if(Input.GetKey("l")) LoadPlayer();
         if(Input.GetKey("x")) GetXp(10);
     }
 
@@ -48,78 +38,38 @@ public class PlayerManager : MonoBehaviour
 
     #region Initialise
 
-    public void Create(int x, int y, int id, bool solo)
+    public void Create(int x, int y, int id)
     {
-        if (solo)
-        {
-            if (StaticData.ActualFloor == 0)
-            {
-                StaticData.ActualFloor = 1;
-                string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-                int pers = FindClass(type);
+        int pers = id - 1;
 
-                _playerData = _PlayersData[pers];
-                _playerData.MultiID = id;
-
-                LoadPlayer();
-
-                InstantiatePlayer(x, y);
-            }
-            else
-            {
-                _playerData = StaticData.actualData;
-                InstantiatePlayer(x, y);
-            }
-        }
-        else
-        {
-            int pers = id - 1;
-
-            _playerData = _PlayersData[pers];
-            _playerData.MultiID = id;
-            LoadPlayer();
-            InstantiatePlayer(x, y);
-        }
+        _playerData = _PlayersData[pers];
+        _playerData.MultiID = id;
+        LoadPlayer();
+        InstantiatePlayer(x, y);
     }
 
     private void InstantiatePlayer(int x, int y)
-    {
-        Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
-
-        SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
-        SetXpBar.Raise(new EventArgsFloat((float) _playerData.Xp / _playerData.MaxXp));
-        SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
-        SetHpBar.Raise(new EventArgsFloat((float) _playerData.Hp / _playerData.MaxHp));
-        SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
-        SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
-        SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
-
+    {        
+        Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
+        
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
         o.GetComponent<PotionUsable>().Create(_playerData);
         o.GetComponent<PlayerAttack>().Create(_playerData);
         o.GetComponent<Live>().Create(_playerData);
         o.GetComponentInChildren<PlayerAnimation>().Create(_playerData);
-
-        StartCoroutine(SetAth());
-
+        
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
-
     }
 
-    IEnumerator SetAth()
-    {
-        yield return new WaitForSeconds(0.1f);
-        _playerData.Inventory.SetAth();
-    }
     #endregion
 
     #region Player save and load
 
     private int FindClass(string choice)
     {
-        int index = 2;
+        int index = 0;
         switch (choice)
         {
             case "Archer":
@@ -142,33 +92,31 @@ public class PlayerManager : MonoBehaviour
         return index;
     }
 
+    private void SavePlayer()
+    {
+        SaveSystem.SavePlayer(_playerData);
+    }
+
     private void LoadPlayer()
     {
+        
         PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
         if (data == null || data.CompCd == null || data.CompCd.Length == 0)
         {
             ResetStats(FindClass(_playerData.Name));
-
-            GamesItem ite = FindItems(0);
-            Weapons i = ScriptableObject.CreateInstance<Weapons>();
-            i.Create(ite as Weapons, 1);
-
-            _playerData.Inventory.Weapon = i;
-
-            _playerData.Inventory.Potions = new Potions[4];
-
             return;
         }
 
         LoadStats(data);
-
-        GamesItem item = FindItems(data.weapon);
-        Weapons it = ScriptableObject.CreateInstance<Weapons>();
-        it.Create(item as Weapons, data.weaponLvl);
-
-        _playerData.Inventory.AddItem(it, Vector3.zero);
-
+        
+        _playerData.Inventory.AddItem(FindItems(data.weapon));
+        
         _playerData.Inventory.Potions = new Potions[4];
+        
+        _playerData.Inventory.AddItem(FindItems(data.inventory[0]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[1]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[2]));
+        _playerData.Inventory.AddItem(FindItems(data.inventory[3]));
     }
 
     private void ResetStats(int index)
@@ -185,7 +133,7 @@ public class PlayerManager : MonoBehaviour
         _playerData.Xp = _PlayersDataCopy[index].Xp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
         _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
-
+        
         for (int i = 0; i < _playerData.Competences.Length; i++)
         {
             CompetencesData c = _playerData.Competences[i];
@@ -196,16 +144,15 @@ public class PlayerManager : MonoBehaviour
             c.Damage = cc.Damage;
             c.Live = cc.Live;
             c.Number = cc.Number;
-            c.ManaCost = cc.ManaCost;
         }
     }
 
     private void LoadStats(PlayerDataSave data)
     {
         _playerData.MaxHp = data.MaxHp;
-        _playerData.Hp = data.MaxHp;
+        _playerData.Hp = data.Hp;
         _playerData.MaxMana = data.MaxMana;
-        _playerData.Mana = data.MaxMana;
+        _playerData.Mana = data.Mana;
         _playerData.PhysicsDamage = data.PhysicsDamage;
         _playerData.MagicDamage = data.MagicDamage;
         _playerData.MoveSpeed = data.MoveSpeed;
@@ -213,29 +160,21 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = data.MaxXp;
         _playerData.Lvl = data.Lvl;
         _playerData.ManaRegen = data.ManaRegen;
-
+        
         for (int i = 0; i < _playerData.Competences.Length; i++)
         {
             CompetencesData c = _playerData.Competences[i];
 
-            c.Speed = data.CompSpeed[i];
-            c.Cooldown = data.CompCd[i];
-            c.Damage = data.CompDamage[i];
-            c.Live = data.CompLive[i];
-            c.Number = data.CompNumber[i];
-            c.ManaCost = data.CompManaCost[i];
+            c.Speed = data.CompSpeed[1];
+            c.Cooldown = data.CompCd[1];
+            c.Damage = data.CompDamage[1];
+            c.Live = data.CompLive[1];
+            c.Number = data.CompNumber[1];
         }
     }
 
     private GamesItem FindItems(int id)
     {
-        if (id == 0)
-        {
-            if (_playerData.name == "Warrior") id = 31;
-            if (_playerData.name == "Mage") id = 21;
-            if (_playerData.name == "Assassin") id = 11;
-            if (_playerData.name == "Archer") id = 1;
-        }
         foreach (var it in Items)
         {
             if (it.id == id) return it;
@@ -248,7 +187,7 @@ public class PlayerManager : MonoBehaviour
     {
         GetXp(((EventArgsInt) args).X);
     }
-
+    
     #endregion
 
     #region PlayerStats
@@ -263,15 +202,15 @@ public class PlayerManager : MonoBehaviour
 
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
-
+            
             _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
-
+            
             UpgradeCompetence();
             UpgradeStats();
-
+            
             gap = _playerData.MaxXp - _playerData.Xp;
         }
-
+        
         _playerData.Xp += amout;
     }
 
@@ -304,50 +243,6 @@ public class PlayerManager : MonoBehaviour
 
     public void AddItem(IEventArgs item)
     {
-        StartCoroutine(Wait(item));
-    }
-
-    IEnumerator Wait(IEventArgs item)
-    {
-        yield return new WaitForSeconds(0.2f);
-        EventArgsItem itemArg = item as EventArgsItem;
-        bool added = _playerData.Inventory.AddItem(itemArg.Item, transform.GetChild(0).position);
-        if (itemArg.Item is Weapons w)
-        {
-            _playerData.StateProj = w.EffectType;
-        }
-
-        if(added) Destroy(itemArg.T.gameObject);
-    }
-
-    public void AddWeapons(IEventArgs args)
-    {
-        StartCoroutine(FuckIt(args));
-    }
-
-    IEnumerator FuckIt(IEventArgs args)
-    {
-        if ((args as EventArgsWeaponsAth).Weapons != null)
-        {
-            if (transform.childCount == 0)
-            {
-                yield return new WaitForSeconds(0.5f);
-            }
-            else
-            {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
-            }
-        }
-    }
-
-    public void RemoveWeapon(IEventArgs args)
-    {
-        _playerData.Inventory.RemoveWeapon(transform.GetChild(0).position);
-        _playerData.StateProj = 0;
-    }
-
-    public void RemovePotion(IEventArgs args)
-    {
-        _playerData.Inventory.RemovePotion((args as EventArgsInt).X, transform.GetChild(0).position);
+        _playerData.Inventory.AddItem((item as EventArgsItem).Item);
     }
 }
