@@ -14,7 +14,7 @@ class Coffre
     public static void Créer()
     {
         Remplir("seed", 2);
-        Remplir("mode", "multi");
+        Remplir("mode", "solo");
         Remplir("id", "1");
     }
 

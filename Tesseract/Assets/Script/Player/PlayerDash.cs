@@ -41,15 +41,15 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
             if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             {
                 if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.GetCompetence("Dash")  as DashComp));
-                else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash")));
+                else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp));
             }
         }
 
         if (shouldDash)
         {
             shouldDash = false;
-            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.GetCompetence("Dash"), dx, dy));
-            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash"), dx, dy));
+            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
+            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
         }
     }
 

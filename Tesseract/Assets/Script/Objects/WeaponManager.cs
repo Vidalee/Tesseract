@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour
     public void Create(Weapons weapon)
     {
         _playerData = StaticData.actualData;
-        comp = _playerData.Competences[1] as CacComp;
+        comp = null; //_playerData.Competences[1] as CacComp;
         
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
