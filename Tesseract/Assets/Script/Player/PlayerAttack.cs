@@ -190,7 +190,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             cursorPos.z = 0;
             Vector3 n = (cursorPos - transform.position).normalized;
-            MultiManager.socket.Send("PINFO " + action + " " + n.y + " " + n.x);
+            MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
             return n;
         }
     }

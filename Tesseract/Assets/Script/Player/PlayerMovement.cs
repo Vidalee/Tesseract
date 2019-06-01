@@ -19,7 +19,9 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
     bool moved = false;
     int mxDir = 0;
     int myDir = 0;
-
+    float fx = 0;
+    float fy = 0;
+    int c = 0;
     #endregion 
 
     #region Initialise
@@ -43,7 +45,7 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         if (moved)
         {
             moved = false;
-            Move(mxDir, myDir);
+            Move(mxDir, myDir, new Vector3(fx, fy));
         }
     }
 
@@ -71,41 +73,52 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
 
             transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
         }
-        else if (_playerData.MultiID + "" == (string) Coffre.Regarder("id"))
+        else if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
         {
+
             PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
             if (xDir == 0 && yDir == 0)
             {
-                if(moving)
+                if (moving)
                 {
-                    MultiManager.socket.Send("JINFO " + xDir + " " + yDir);
+                    MultiManager.socket.Send("JINFO " + xDir + " " + yDir + " " + transform.position.x + " " + transform.position.y);
                     moving = false;
                 }
                 return;
             }
             moving = true;
-            MultiManager.socket.Send("JINFO " + xDir + " " + yDir);
             Vector3 distance = GetDistance(xDir, yDir);
 
             transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
+            if (c != 3) c++;
+            else
+            {
+                c = 0;
+
+                MultiManager.socket.Send("JINFO " + xDir + " " + yDir + " " + transform.position.x + " " + transform.position.y);
+            }
+
         }
     }
 
     public void OnReceive(string text)
     {
         string[] args = text.Split(' ');
-        if(args[0] == "JINFO")
+        if (args[0] == "JINFO")
         {
-            if (args[1] == (_playerData.MultiID + "")){
+            if (args[1] == (_playerData.MultiID + ""))
+            {
                 moved = true;
                 mxDir = int.Parse(args[2]);
                 myDir = int.Parse(args[3]);
+                fx = float.Parse(args[4]);
+                fy = float.Parse(args[5]);
             }
         }
     }
 
-    public void Move(int xDir, int yDir)//, Vector3 final)
+    public void Move(int xDir, int yDir, Vector3 final)
     {
         Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
         if (!_playerData.CanMove)
@@ -118,10 +131,10 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         if (xDir == 0 && yDir == 0) return;
 
         Vector3 distance = GetDistance(xDir, yDir);
-        
+
         transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
 
-        //transform.position = final;
+        transform.position = final;
     }
 
     private IEnumerator UpdatePlayerPos()

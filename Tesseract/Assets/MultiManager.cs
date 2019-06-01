@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class MultiManager : MonoBehaviour, UDPEventListener
 {
+    public List<int> playersToAdd = new List<int>();
+    public List<int> playersAlreadyInGame = new List<int>();
+
+
     private bool ap = false;
     private bool ad = true;
     private bool s = false;
@@ -26,7 +30,11 @@ public class MultiManager : MonoBehaviour, UDPEventListener
         }if(args[0] == "SPAWN")
         {
             s = true;
-            next = int.Parse(args[1]);
+            playersToAdd.Add(int.Parse(args[1]));
+        }
+        if(text == "CPASS")
+        {
+            socket.Send("JOIN zeoijrzg");
         }
     }
 
@@ -38,31 +46,35 @@ public class MultiManager : MonoBehaviour, UDPEventListener
 
         UDPEvent.Register(this);
         socket.Client("127.0.0.1", 27000);
-        socket.Send("CONNECT Kira kira");
-        
-        socket.Send("JOIN zeoijrzg");
+        socket.Send("CONNECT Neo neo");
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ap && ad)
-        {
-            ad = false;
-            ap = false;
-            MapGridCreation mgc = GameObject.Find("MapManager").GetComponent<MapGridCreation>();
-
-            Debug.Log(mgc.seed);
-            mgc.AddPlayer(int.Parse((string) Coffre.Regarder("id")), false);
-        }
-
         if (s)
         {
             s = false;
-            MapGridCreation mgc = GameObject.Find("MapManager").GetComponent<MapGridCreation>();
-            mgc.AddMultiPlayer(3);
-
+            int[] copy = new int[playersToAdd.Count];
+            playersToAdd.CopyTo(copy);
+            foreach (int i in copy)
+            {
+                playersToAdd.Remove(i);
+                if (playersAlreadyInGame.Contains(i)) continue;
+                playersAlreadyInGame.Add(i);
+                Debug.Log("asked to add  " + i);
+                MapGridCreation mgc = GameObject.Find("MapManager").GetComponent<MapGridCreation>();
+                if (i + "" == (string)Coffre.Regarder("id"))
+                    mgc.AddPlayer(i, false);
+                else
+                {
+                    Debug.Log("Adding multi player: " + i);
+                    mgc.AddMultiPlayer(i);
+                }
+            }
         }
+
     }
 }

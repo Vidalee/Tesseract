@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+//Fait avec amour pour la langue française par Thomas
+//Sponsorisé par #ProjetVoltaire
 
 class Coffre
 {
     private static readonly Dictionary<string, object> coffre = new Dictionary<string, object>();
 
+    
+    //Si jamais on a des choses à ajouter quand on crée notre beau coffre
+    //coffre.Remplir("étiquette", "valeur");
     public static void Créer()
     {
-        //Si jamais on a des choses à ajouter quand on crée notre beau coffre
-        //coffre.Remplir("étiquette", "valeur");
+
         Remplir("mode", "multi");
         Remplir("id", "1");
     }
