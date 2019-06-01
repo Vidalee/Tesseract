@@ -12,6 +12,7 @@ class Coffre
         //Si jamais on a des choses à ajouter quand on crée notre beau coffre
         //coffre.Remplir("étiquette", "valeur");
         Remplir("mode", "multi");
+        Remplir("id", "1");
     }
 
     public static void Remplir(string étiquette, object objet)

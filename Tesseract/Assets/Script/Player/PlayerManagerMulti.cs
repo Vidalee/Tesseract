@@ -15,7 +15,7 @@ public class PlayerManagerMulti : MonoBehaviour
     
     public string Perso;
         
-    public Transform Player;
+    public Transform PlayerMulti;
     private PlayerData _playerData;
 
     private MapData _mapData;
@@ -51,7 +51,7 @@ public class PlayerManagerMulti : MonoBehaviour
 
     private void InstantiatePlayer(int x, int y)
     {        
-        Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
+        Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);

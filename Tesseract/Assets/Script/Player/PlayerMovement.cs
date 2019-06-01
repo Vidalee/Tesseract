@@ -2,7 +2,7 @@ using System.Collections;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, UDPEventListener
 {
     #region MyRegion
 
@@ -11,8 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public GameEvent PlayerMoveEvent;
     public GameEvent PlayerPos;
 
-
+    private bool moving = false;
     #endregion
+
+    #region Inter-Threads
+
+    bool moved = false;
+    int mxDir = 0;
+    int myDir = 0;
+
+    #endregion 
 
     #region Initialise
 
@@ -21,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         _playerData = playerData;
 
         StartCoroutine(UpdatePlayerPos());
+        UDPEvent.Register(this);
     }
 
 
@@ -31,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         PlayerMove();
+        if (moved)
+        {
+            moved = false;
+            Move(mxDir, myDir);
+        }
     }
 
     #endregion
@@ -49,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         if ((string)Coffre.Regarder("mode") == "solo")
         {
-            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
             if (xDir == 0 && yDir == 0) return;
 
@@ -59,24 +73,47 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (_playerData.MultiID + "" == (string) Coffre.Regarder("id"))
         {
-            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
-            if (xDir == 0 && yDir == 0) return;
-            MultiManager.socket.Send("JINFO " + Coffre.Regarder("id") + " " + xDir + " " + yDir);
+            if (xDir == 0 && yDir == 0)
+            {
+                if(moving)
+                {
+                    MultiManager.socket.Send("JINFO " + xDir + " " + yDir);
+                    moving = false;
+                }
+                return;
+            }
+            moving = true;
+            MultiManager.socket.Send("JINFO " + xDir + " " + yDir);
             Vector3 distance = GetDistance(xDir, yDir);
 
             transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
         }
     }
 
-    public void Move(int xDir, int yDir, Vector3 final)
+    public void OnReceive(string text)
     {
+        string[] args = text.Split(' ');
+        if(args[0] == "JINFO")
+        {
+            if (args[1] == (_playerData.MultiID + "")){
+                moved = true;
+                mxDir = int.Parse(args[2]);
+                myDir = int.Parse(args[3]);
+            }
+        }
+    }
+
+    public void Move(int xDir, int yDir)//, Vector3 final)
+    {
+        Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
         if (!_playerData.CanMove)
         {
             return;
         }
 
-        PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir));
+        PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
         if (xDir == 0 && yDir == 0) return;
 
@@ -92,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         for (; ; )
         {
             Vector3 position = transform.position;
-            PlayerPos.Raise(new EventArgsCoor((int)position.x, (int)position.y));
+            PlayerPos.Raise(new EventArgsCoor((int)position.x, (int)position.y, _playerData.MultiID));
             yield return new WaitForSeconds(0.1f);
         }
     }

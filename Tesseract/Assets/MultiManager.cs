@@ -6,19 +6,27 @@ using UnityEngine;
 public class MultiManager : MonoBehaviour, UDPEventListener
 {
     private bool ap = false;
+    private bool ad = true;
+    private bool s = false;
+    private int next = 0;
     public static UDPSocket socket;
+    
     public void OnReceive(string text)
     {
+        string[] args = text.Split(' ');
 
         if (text.StartsWith("SET"))
         {
-            string[] args = text.Split(' ');
             if(args[1] == "id")
             {
                
                 Debug.Log("pls work");
                 ap = true;
             }
+        }if(args[0] == "SPAWN")
+        {
+            s = true;
+            next = int.Parse(args[1]);
         }
     }
 
@@ -39,14 +47,22 @@ public class MultiManager : MonoBehaviour, UDPEventListener
     // Update is called once per frame
     void Update()
     {
-        if (ap)
+        if (ap && ad)
         {
+            ad = false;
             ap = false;
             MapGridCreation mgc = GameObject.Find("MapManager").GetComponent<MapGridCreation>();
 
             Debug.Log(mgc.seed);
-            mgc.AddPlayer(3, false);
-            mgc.AddMultiPlayer(2);
+            mgc.AddPlayer(int.Parse((string) Coffre.Regarder("id")), false);
+        }
+
+        if (s)
+        {
+            s = false;
+            MapGridCreation mgc = GameObject.Find("MapManager").GetComponent<MapGridCreation>();
+            mgc.AddMultiPlayer(3);
+
         }
     }
 }

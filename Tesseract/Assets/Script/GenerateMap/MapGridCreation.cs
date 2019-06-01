@@ -11,7 +11,7 @@ public class MapGridCreation : MonoBehaviour
 {
 
     public Transform Player;
-    
+    public Transform PlayerMulti;
     public int MapHeight;
     public int MapWidth;
     public int RoomNumber;
@@ -264,7 +264,7 @@ public class MapGridCreation : MonoBehaviour
 
             if (!Instances[y, x] && _grid[y, x])
             {
-                Instantiate(Player, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManagerMulti>().Create(x, y, id);
+                Instantiate(PlayerMulti, new Vector3(0, 0), Quaternion.identity).GetComponent<PlayerManagerMulti>().Create(x, y, id);
                 return;
             }
 
