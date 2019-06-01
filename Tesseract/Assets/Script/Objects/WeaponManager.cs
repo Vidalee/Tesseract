@@ -37,7 +37,7 @@ public class WeaponManager : MonoBehaviour
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;  
                 
-        PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
+        PlayerMoveEvent.Raise(new EventArgsCoor(0, -1, int.Parse((string) Coffre.Regarder("id"))));
     }
     
     public void AttackWithWeapon(IEventArgs args)
@@ -208,16 +208,16 @@ public class WeaponManager : MonoBehaviour
         switch (dir)
         {
             case "down" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(0, -1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, -1, int.Parse((string) Coffre.Regarder("id"))));
                 yield break;
             case "up" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(0, 1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(0, 1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
             case "left" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(-1, -1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(-1, -1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
             case "right" :
-                PlayerMoveEvent.Raise(new EventArgsCoor(1, 1));
+                PlayerMoveEvent.Raise(new EventArgsCoor(1, 1, int.Parse((string)Coffre.Regarder("id"))));
                 yield break;
         }
     }

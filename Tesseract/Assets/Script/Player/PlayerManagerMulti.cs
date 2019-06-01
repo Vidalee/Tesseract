@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManagerMulti : MonoBehaviour
 {
     #region Variable
 
@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
 
     public string Perso;
 
-    public Transform Player;
+    public Transform PlayerMulti;
     private PlayerData _playerData;
 
     private MapData _mapData;
@@ -41,57 +41,33 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey("x")) GetXp(10);
+        if (Input.GetKey("x")) GetXp(10);
     }
 
     #endregion
 
     #region Initialise
 
-    public void Create(int x, int y, int id, bool solo)
+    public void Create(int x, int y, int id)
     {
-        if (solo)
-        {
-            if (StaticData.ActualFloor == 0)
-            {
-                StaticData.ActualFloor = 1;
-                string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-                int pers = FindClass(type);
+        int pers = id - 1;
 
-                _playerData = _PlayersData[pers];
-                _playerData.MultiID = id;
-
-                LoadPlayer();
-
-                InstantiatePlayer(x, y);
-            }
-            else
-            {
-                _playerData = StaticData.actualData;
-                InstantiatePlayer(x, y);
-            }
-        }
-        else
-        {
-            int pers = id - 1;
-
-            _playerData = _PlayersData[pers];
-            _playerData.MultiID = id;
-            LoadPlayer();
-            InstantiatePlayer(x, y);
-        }
+        _playerData = _PlayersData[pers];
+        _playerData.MultiID = id;
+        LoadPlayer();
+        InstantiatePlayer(x, y);
     }
 
     private void InstantiatePlayer(int x, int y)
     {
-        Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
+        Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
 
         SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
-        SetXpBar.Raise(new EventArgsFloat((float) _playerData.Xp / _playerData.MaxXp));
+        SetXpBar.Raise(new EventArgsFloat((float)_playerData.Xp / _playerData.MaxXp));
         SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
-        SetHpBar.Raise(new EventArgsFloat((float) _playerData.Hp / _playerData.MaxHp));
+        SetHpBar.Raise(new EventArgsFloat((float)_playerData.Hp / _playerData.MaxHp));
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
-        SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
+        SetManaBar.Raise(new EventArgsFloat((float)_playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
 
         o.GetComponent<PlayerMovement>().Create(_playerData);
@@ -145,7 +121,7 @@ public class PlayerManager : MonoBehaviour
     private void LoadPlayer()
     {
         PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
-        if (data == null)
+        if (data == null || data.CompCd == null || data.CompCd.Length == 0)
         {
             ResetStats(FindClass(_playerData.Name));
 
@@ -184,8 +160,20 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
         _playerData.Xp = _PlayersDataCopy[index].Xp;
         _playerData.Lvl = _PlayersDataCopy[index].Lvl;
-        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;        
-        //Todo COMP SAVE
+        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
+
+        for (int i = 0; i < _playerData.Competences.Length; i++)
+        {
+            CompetencesData c = _playerData.Competences[i];
+            CompetencesData cc = _PlayersDataCopy[index].Competences[i];
+
+            c.Speed = cc.Speed;
+            c.Cooldown = cc.Cooldown;
+            c.Damage = cc.Damage;
+            c.Live = cc.Live;
+            c.Number = cc.Number;
+            c.ManaCost = cc.ManaCost;
+        }
     }
 
     private void LoadStats(PlayerDataSave data)
@@ -201,8 +189,18 @@ public class PlayerManager : MonoBehaviour
         _playerData.MaxXp = data.MaxXp;
         _playerData.Lvl = data.Lvl;
         _playerData.ManaRegen = data.ManaRegen;
-        
-        //Todo COMP LOAD
+
+        for (int i = 0; i < _playerData.Competences.Length; i++)
+        {
+            CompetencesData c = _playerData.Competences[i];
+
+            c.Speed = data.CompSpeed[i];
+            c.Cooldown = data.CompCd[i];
+            c.Damage = data.CompDamage[i];
+            c.Live = data.CompLive[i];
+            c.Number = data.CompNumber[i];
+            c.ManaCost = data.CompManaCost[i];
+        }
     }
 
     private GamesItem FindItems(int id)
@@ -224,7 +222,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GetXp(IEventArgs args)
     {
-        GetXp(((EventArgsInt) args).X);
+        GetXp(((EventArgsInt)args).X);
     }
 
     #endregion
@@ -242,8 +240,9 @@ public class PlayerManager : MonoBehaviour
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
 
-            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
-            
+            _playerData.MaxXp = (int)(_playerData.MaxXp * 1.1f);
+
+            UpgradeCompetence();
             UpgradeStats();
 
             gap = _playerData.MaxXp - _playerData.Xp;
@@ -272,6 +271,11 @@ public class PlayerManager : MonoBehaviour
         _playerData.MagicDamage++;
     }
 
+    private void UpgradeCompetence()
+    {
+        CompetenceTree.CompetenceLvlUp(_playerData.Competences, _playerData.Lvl);
+    }
+
     #endregion
 
     public void AddItem(IEventArgs item)
@@ -289,7 +293,7 @@ public class PlayerManager : MonoBehaviour
             _playerData.StateProj = w.EffectType;
         }
 
-        if(added) Destroy(itemArg.T.gameObject);
+        if (added) Destroy(itemArg.T.gameObject);
     }
 
     public void AddWeapons(IEventArgs args)
