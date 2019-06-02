@@ -37,14 +37,20 @@ public class BossAttack : MonoBehaviour
         StartCoroutine(bossMovement.CantMove());
         if (attack == "AttackBat")
         {
-            _a.Play("AttackBat");
+            _a.Play(_player.position.y - 0.5f < transform.position.y ? "AttackBat" : "AttackBatB");
             GenerateBats();
         }
         else
         {
-            _a.Play("AttackAxe");
-            PlayerDamage.Raise(new EventArgsInt(_damage));
+            _a.Play(_player.position.y - 0.5f < transform.position.y ? "AttackAxe" : "AttackAxeB");
+            StartCoroutine(AxeDamage());
         }
+    }
+
+    IEnumerator AxeDamage()
+    {
+        yield return new WaitForSeconds(0.25f);
+        PlayerDamage.Raise(new EventArgsInt(_damage));
     }
   
     IEnumerator BatCooldown()

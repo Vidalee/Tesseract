@@ -34,7 +34,7 @@ public class BossMovement : MonoBehaviour
             {
                 if (!_animationStarted || !_dashing)
                 {
-                    _a.Play("PreDash");
+                    _a.Play(_player.position.y - 0.5f < transform.position.y ? "PreDash" : "PreDashB");
                     _animationStarted = true;
                     _a.SetBool("Dashing", true);
                     _a.SetBool("Speed", false);
@@ -49,7 +49,7 @@ public class BossMovement : MonoBehaviour
                 if (!_animationStarted)
                 {
                     _a.SetBool("Speed", true);
-                    _a.Play("Move");
+                    _a.Play(_player.position.y - 0.5f < transform.position.y ? "Move" : "MoveB");
                     _animationStarted = true;
                 }
 
