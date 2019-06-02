@@ -111,7 +111,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         if (competence.Usable)
         {
             StartCoroutine(AfkCoroutine());
-            
+
             switch (competence.Id)
             {
                 case "OneProj":
@@ -234,7 +234,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     IEnumerator AfkCoroutine()
     {
         _playerData.CanMove = false;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.05f);
         _playerData.CanMove = true;
     }
     
