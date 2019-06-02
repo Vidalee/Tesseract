@@ -95,9 +95,7 @@ public class GenerateEnemies : MonoBehaviour
         
         Animator animator = enemy.GetComponentInChildren<Animator>();
         SetAnimation(newEnemy, animator);
-        
-        Debug.Log(newEnemy.Lvl);
-                    
+                            
         enemy.GetComponent<Attack>().Create(newEnemy, players, animator);
         enemy.GetComponent<EnemiesLive>().Create(newEnemy, playerDatas); 
         enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, playerDatas, BlockingLayer, animator);

@@ -16,7 +16,7 @@ public class ProjComp : CompetencesData
     {
         ProjComp comp = (ProjComp) competence;
 
-        manaCost = comp.manaCost + lvl;
+        manaCost = comp.manaCost + 2 * lvl;
         addNumber = Math.Abs(addNumber) < 0.01 ? 0 : 1 / comp.addNumber;
         adDamage = comp.adDamage + lvl;
         apDamage = comp.apDamage + lvl;
@@ -27,7 +27,7 @@ public class ProjComp : CompetencesData
 
     public void UpgradeStats()
     {
-        manaCost++;
+        manaCost += 2;
         Lvl++;
         adDamage++;
         apDamage++;

@@ -35,6 +35,7 @@ public class Weapons : GamesItem
         effectSprite = weapon.effectSprite;
         effectProb = weapon.effectProb + lvl / 2;
         duration = weapon.duration + lvl / 10;
+        id = weapon.id;
     }
 
     public int PhysicsDamage => physicsDamage;

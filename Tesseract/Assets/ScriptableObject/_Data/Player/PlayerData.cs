@@ -76,7 +76,7 @@ public class PlayerData : ScriptableObject
         
         _MaxHp = playerData.MaxHp + Lvl * 5;
         _Hp = _MaxHp;
-        _MaxMana = playerData.MaxMana;
+        _MaxMana = playerData.MaxMana + Lvl * 5;
         _Mana = MaxMana;
         _ManaRegen = playerData.ManaRegen + Lvl;
         _PhysicsDamage = playerData.PhysicsDamage + Lvl * 5;

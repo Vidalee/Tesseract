@@ -157,11 +157,14 @@ public class PlayerManager : MonoBehaviour
         }
 
         ResetStats(pers, data.Lvl);
+        _playerData.Xp = data.Xp;
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
         it.Create(item as Weapons, data.weaponLvl);
-
+        
+        Debug.Log(it.EffectDamage);
+        
         _playerData.Inventory.AddItem(it, Vector3.zero);
 
         _playerData.Inventory.Potions = new Potions[4];

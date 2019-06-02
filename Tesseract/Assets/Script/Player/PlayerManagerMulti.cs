@@ -167,15 +167,7 @@ public class PlayerManagerMulti : MonoBehaviour
 
     private void LoadStats(PlayerDataSave data)
     {
-        _playerData.MaxHp = data.MaxHp;
-        _playerData.Hp = data.MaxHp;
-        _playerData.MaxMana = data.MaxMana;
-        _playerData.Mana = data.MaxMana;
-        _playerData.PhysicsDamage = data.PhysicsDamage;
-        _playerData.MagicDamage = data.MagicDamage;
-        _playerData.MoveSpeed = data.MoveSpeed;
-        _playerData.Xp = data.Xp;
-        _playerData.MaxXp = data.MaxXp;
+
         _playerData.ManaRegen = data.ManaRegen;
 
         //TODO Load multi ?
