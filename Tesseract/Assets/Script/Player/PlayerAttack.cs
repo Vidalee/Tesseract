@@ -110,6 +110,8 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     {
         if (competence.Usable)
         {
+            StartCoroutine(AfkCoroutine());
+            
             switch (competence.Id)
             {
                 case "OneProj":
@@ -227,6 +229,13 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         competence.Usable = !use;
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
+    }
+
+    IEnumerator AfkCoroutine()
+    {
+        _playerData.CanMove = false;
+        yield return new WaitForSeconds(0.15f);
+        _playerData.CanMove = true;
     }
     
     private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
