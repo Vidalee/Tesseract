@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     public GameEvent SetMana;
     public GameEvent SetLvl;
     public GameEvent CompAth;
+    public GameEvent CompAthUp;
 
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public List<GamesItem> Items;
@@ -105,7 +106,6 @@ public class PlayerManager : MonoBehaviour
 
         AllNodes.players.Add(o);
         GenerateEnemies.players.Add(o);
-
     }
 
     IEnumerator SetAth()
@@ -154,12 +154,14 @@ public class PlayerManager : MonoBehaviour
             i.Create(ite as Weapons, 0);
 
             _playerData.Inventory.Weapon = i;
+            _playerData.CompPoint = 0;
 
             return;
         }
 
         ResetStats(pers, data.Lvl);
         _playerData.Xp = data.Xp;
+        _playerData.CompPoint = data.CompPoint;
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
@@ -231,7 +233,7 @@ public class PlayerManager : MonoBehaviour
 
     private void UpgradeStats()
     {
-
+        _playerData.CompPoint += 1;
         _playerData.MaxHp += 5;
         _playerData.Hp += 5;
         _playerData.MaxMana += 5;
@@ -239,6 +241,8 @@ public class PlayerManager : MonoBehaviour
         _playerData.ManaRegen++;
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;
+        
+        CompAthUp.Raise(new EventArgsComp(null, 0));
     }
 
     #endregion
@@ -295,5 +299,17 @@ public class PlayerManager : MonoBehaviour
     public void RemovePotion(IEventArgs args)
     {
         _playerData.Inventory.RemovePotion((args as EventArgsInt).X, transform.GetChild(0).position);
+    }
+
+    public void UpgradeCompetence(IEventArgs args)
+    {
+        int i = ((EventArgsInt) args).X;
+
+        if(_playerData.CompPoint <= 0) return;
+
+        _playerData.CompPoint--;
+        _playerData.Competences[i].UpgradeStats();
+        
+        CompAthUp.Raise(new EventArgsComp(_playerData.Competences[i], i));
     }
 }

@@ -25,16 +25,18 @@ public class ProjComp : CompetencesData
         number = comp.number + (int)(addNumber * lvl);
         speed = comp.speed;
         icon1 = comp.icon1;
+        AddLive = comp.AddLive;
+        addNumber = comp.addNumber;
     }
 
-    public void UpgradeStats()
+    public override void UpgradeStats()
     {
         manaCost += 2;
         Lvl++;
         adDamage++;
         apDamage++;
-        live += Lvl % (int) AddLive == 0 ? 1 : 0;
-        number += Lvl % (int) addNumber == 0 ? 1 : 0;
+        if((int) AddLive != 0) live += Lvl % ((int) AddLive) == 0 ? 1 : 0;
+        if((int) addNumber != 0)number += Lvl % ((int) addNumber) == 0 ? 1 : 0;
     }
     
     public int AdDamage => adDamage;

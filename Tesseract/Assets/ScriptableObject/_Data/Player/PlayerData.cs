@@ -54,6 +54,8 @@ public class PlayerData : ScriptableObject
 
     [SerializeField] protected float _PotionsCooldown;
 
+    public int CompPoint;
+
     public bool PositionChanged;
     public Node Node;
 
