@@ -1,4 +1,6 @@
 ﻿using System;
+using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +11,7 @@ public class Projectiles : MonoBehaviour
     private Animator _a;
     private ProjectilesData _projectilesData;
     public Transform projectilesAnimation;
+    public GameEvent Damage;
 
     #endregion
 
@@ -43,13 +46,18 @@ public class Projectiles : MonoBehaviour
             Destroy(gameObject);
         }
         
-        if (tag == _projectilesData.EnemyTag)
+        if (tag == _projectilesData.EnemyTag && tag == "Enemies")
         {
             if(--_projectilesData.Live <= 0) Destroy(gameObject);
             EnemiesLive e = other.transform.GetComponent<EnemiesLive>();
             
             e.GetDamaged(_projectilesData.DamageP, _projectilesData.DamageM);
             if (Random.Range(0, 100) < _projectilesData.Prob) e.Effect(_projectilesData.Effect, _projectilesData.EffectDamage, _projectilesData.Duration);
+        }
+        
+        else if (tag == "Player" && tag == _projectilesData.EnemyTag)
+        {
+            Damage.Raise(new EventArgsInt(_projectilesData.DamageP + _projectilesData.DamageM));
         }
     }
 

@@ -380,6 +380,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
+  Projectiles: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2,
+    type: 3}
+  Archer: {fileID: 7400000, guid: c2cfaba5405d50a418a8ea3432ab4118, type: 2}
+  Sans: {fileID: 7400000, guid: 303dbf4e1acf41b44a8e61ede9370183, type: 2}
   PlayerDamage: {fileID: 11400000, guid: 38a3ac4708b9036409d40e34fb291f04, type: 2}
   players: []
   CanAttack: 0
