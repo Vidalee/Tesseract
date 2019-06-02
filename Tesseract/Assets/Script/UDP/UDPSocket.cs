@@ -38,41 +38,49 @@ public class UDPSocket
     {
         new Thread(() =>
         {
-            const int PORT_NO = 27000;
-            const string SERVER_IP = "127.0.0.1";
-            //---data to send to the server---
-
-            //---create a TCPClient object at the IP and port no.---
-            TcpClient client = new TcpClient(SERVER_IP, PORT_NO);
-            NetworkStream nwStream = client.GetStream();
-            while (true)
+            try
             {
-                this.client = client;
-                this.ns = nwStream;
 
-                //---read back the text---
-                byte[] bytesToRead = new byte[client.ReceiveBufferSize];
-                int bytesRead = nwStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
-                string msg = Encoding.ASCII.GetString(bytesToRead, 0, bytesRead);
-                string[] p = msg.Split(';');
-                foreach(string m in p) {
-                    if (m == "") continue;
-                    Debug.Log("RAW RECEIVE: " + m);
-                    UDPEvent.Receive(m);
-                    if (m.StartsWith("SET"))
+                const int PORT_NO = 27000;
+                const string SERVER_IP = "127.0.0.1";
+                //---data to send to the server---
+
+                //---create a TCPClient object at the IP and port no.---
+                TcpClient client = new TcpClient(SERVER_IP, PORT_NO);
+                NetworkStream nwStream = client.GetStream();
+
+                while (true)
+                {
+                    this.client = client;
+                    this.ns = nwStream;
+
+                    //---read back the text---
+                    byte[] bytesToRead = new byte[client.ReceiveBufferSize];
+                    int bytesRead = nwStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
+                    string msg = Encoding.ASCII.GetString(bytesToRead, 0, bytesRead);
+                    string[] p = msg.Split(';');
+                    foreach (string m in p)
                     {
+                        if (m == "") continue;
+                        Debug.Log("RAW RECEIVE: " + m);
+                        UDPEvent.Receive(m);
+                        if (m.StartsWith("SET"))
+                        {
 
-                        string[] args = m.Split(' ');
-                        if (args.Length != 3) return;
-                        if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);
-                        Coffre.Remplir(args[1], args[2]);
+                            string[] args = m.Split(' ');
+                            if (args.Length != 3) return;
+                            if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);
+                            Coffre.Remplir(args[1], args[2]);
 
+                        }
                     }
                 }
+
+                client.Close();
+
             }
-            client.Close();
-
-
+            catch
+            {}
 
         }).Start();
 
