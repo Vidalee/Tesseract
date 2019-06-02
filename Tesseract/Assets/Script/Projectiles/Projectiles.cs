@@ -58,6 +58,7 @@ public class Projectiles : MonoBehaviour
         else if (tag == "Player" && tag == _projectilesData.EnemyTag)
         {
             Damage.Raise(new EventArgsInt(_projectilesData.DamageP + _projectilesData.DamageM));
+            Destroy(gameObject);
         }
     }
 

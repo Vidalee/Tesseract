@@ -41,8 +41,6 @@ public class EnemiesLive : MonoBehaviour
         }
         
         hpBar.transform.localScale = new Vector3((Enemy.Hp/Enemy.MaxHp) * 0.01581096f, hpBar.transform.localScale.y);
-        Debug.Log(Enemy.Hp);
-        Debug.Log(Enemy.MaxHp);
     }
 
     public void Death()
@@ -96,6 +94,7 @@ public class EnemiesLive : MonoBehaviour
     {
         float old = Enemy.MoveSpeed;
         Enemy.MoveSpeed -= 1 + damage / 100;
+        if (Enemy.MoveSpeed < 0) Enemy.MoveSpeed = 0;
         yield return new WaitForSeconds(duration);
         Enemy.MoveSpeed = old;
     }

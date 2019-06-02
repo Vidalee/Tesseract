@@ -32,14 +32,13 @@ public class Attack : MonoBehaviour
         if (Enemy.Name == "Archer")
         {
             _a.Play(player.position.x < transform.position.x ? "AttackL" : "AttackR");
-            AttackProj(Archer, dir,7);
+            AttackProj(Archer, dir, 4.5f);
         }
         else if (Enemy.Name == "Ghost")
         {
-            Debug.Log("deadezd");
             AttackProj(Sans, dir, 3);
-            AttackProj(Sans, Quaternion.Euler(0, 0, 10) * dir, 3);
-            AttackProj(Sans, Quaternion.Euler(0, 0, -10) * dir, 3);
+            AttackProj(Sans, Quaternion.Euler(0, 0, 10) * dir, 4);
+            AttackProj(Sans, Quaternion.Euler(0, 0, -10) * dir, 4);
         }
         else
         {
@@ -49,7 +48,7 @@ public class Attack : MonoBehaviour
         if (Enemy.Name != "Archer" && Enemy.Name != "Ghost") PlayerDamage.Raise(new EventArgsInt(Enemy.PhysicsDamage)); 
     }
 
-    public void AttackProj(AnimationClip clip, Vector3 dir, int speed)
+    public void AttackProj(AnimationClip clip, Vector3 dir, float speed)
     {
 
         Transform o = Instantiate(Projectiles, transform.position + dir/4, Quaternion.identity);
@@ -57,9 +56,10 @@ public class Attack : MonoBehaviour
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
 
         int dP = Enemy.PhysicsDamage;
-        int dM = Enemy.MagicDamage;
+        
+        Debug.Log(dP);
     
-        projectilesData.Created(dir.normalized, speed, dP, dM, "Player", clip,
+        projectilesData.Created(dir.normalized, speed, dP, 0, "Player", clip,
             1, Color.black, 0, 0, 0, 0);
     
         Projectiles script = o.GetComponent<Projectiles>();
