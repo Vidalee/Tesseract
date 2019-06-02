@@ -78,7 +78,8 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         }
         int xDir = (int)Input.GetAxisRaw("Horizontal");
         int yDir = (int)Input.GetAxisRaw("Vertical");
-        if (xDir != cX || yDir != cY)
+        if ((xDir != cX || yDir != cY) && "multi" == (string) Coffre.Regarder("mode") &&
+            _playerData.MultiID + "" == (string) Coffre.Regarder("id"))
         {
             cX = xDir;
             cY = yDir;

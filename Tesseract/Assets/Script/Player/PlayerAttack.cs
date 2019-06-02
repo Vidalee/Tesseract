@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq.Expressions;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
@@ -47,20 +48,28 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             if (Input.GetMouseButton(0))
             {
                 UseCompetence(_playerData.Competences[1], 1);
-                MultiManager.socket.Send("PINFO AA " + n.x + " " + n.y);
+                if ((string) Coffre.Regarder("mode") == "multi")
+                {
+                    MultiManager.socket.Send("PINFO AA " + n.x + " " + n.y);
+                }
             }
 
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 UseCompetence(_playerData.Competences[2], 2);
-                MultiManager.socket.Send("PINFO A1 " + n.x + " " + n.y);
+                if ((string) Coffre.Regarder("mode") == "multi")
+                {
+                    MultiManager.socket.Send("PINFO A1 " + n.x + " " + n.y);
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 UseCompetence(_playerData.Competences[3], 3);
-                MultiManager.socket.Send("PINFO A2 " + n.x + " " + n.y);
-
+                if ((string) Coffre.Regarder("mode") == "multi")
+                {
+                    MultiManager.socket.Send("PINFO A2 " + n.x + " " + n.y);
+                }
             }
         }
         if (aa)
