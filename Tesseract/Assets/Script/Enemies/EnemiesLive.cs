@@ -57,7 +57,7 @@ public class EnemiesLive : MonoBehaviour
             if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer) 
                                                                 && !circleCollider2D.IsTouchingLayers(bossLayer))
             {
-                if (Random.Range(0, 7) * 0 == 0)
+                if (Random.Range(0, 4) * 0 == 0)
                 {
                     PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
                     ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
