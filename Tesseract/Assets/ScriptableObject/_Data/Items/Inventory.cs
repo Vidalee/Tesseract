@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript.Struct;
+﻿using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
