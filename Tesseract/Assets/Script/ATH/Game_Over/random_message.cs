@@ -16,8 +16,9 @@ public class random_message : MonoBehaviour
             "Oops...",
             "Oops you did it again !",
             "Heroes never d... Oh wait...",
-            "Deja vu ! You've just been in this place before !"
-            
+            "Deja vu ! You've just been in this place before !",
+             "You s*ck boi",
+            "You better stop here and go outside"
         };
    
     // Start is called before the first frame update

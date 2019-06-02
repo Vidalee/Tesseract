@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1020800974033700846}
   - component: {fileID: 4674886665878625378}
   - component: {fileID: 203647103045875556}
+  - component: {fileID: 8822351977017218846}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Player
@@ -56,6 +57,7 @@ MonoBehaviour:
   SetMana: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
   SetLvl: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   CompAth: {fileID: 11400000, guid: a610a9d9332946a4392d6975dfa559e9, type: 2}
+  CompAthUp: {fileID: 11400000, guid: 3b317e9cfbaf416469546b02ddf1f4b7, type: 2}
   _PlayersDataCopy:
   - {fileID: 11400000, guid: 4c097147e9829d74d94a7f53901eab19, type: 2}
   - {fileID: 11400000, guid: e2d350f945b74404abb685721542ffc2, type: 2}
@@ -228,6 +230,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7447967311768191375}
         m_MethodName: AddWeapons
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &8822351977017218846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737344898176030325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d30d29e3421efb947ad6b9ac08203488, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7447967311768191375}
+        m_MethodName: UpgradeCompetence
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

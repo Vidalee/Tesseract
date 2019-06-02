@@ -21,6 +21,5 @@ public class Gam_Over : MonoBehaviour
             Time.timeScale = 0; 
             Canvas.SetActive(true);
         }
-        
     }
 }

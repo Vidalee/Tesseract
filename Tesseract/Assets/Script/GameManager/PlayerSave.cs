@@ -10,12 +10,14 @@ public class PlayerDataSave
     public long Xp;
     public int weapon;
     public int weaponLvl;
+    public int CompPoint;
 
     public PlayerDataSave(PlayerData player)
     {
         Xp = player.Xp;
         ManaRegen = player.ManaRegen;
         Lvl = new int[5];
+        CompPoint = player.CompPoint;
 
         Lvl[0] = player.Lvl;
         for (int i = 1; i < 4; i++)

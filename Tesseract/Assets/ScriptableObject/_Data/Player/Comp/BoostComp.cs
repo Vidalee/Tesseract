@@ -22,7 +22,7 @@ public class BoostComp : CompetencesData
         icon1 = comp.icon1;
     }
 
-    public void UpgradeStats()
+    public override void UpgradeStats()
     {
         manaCost += 2;
         Lvl += 1;

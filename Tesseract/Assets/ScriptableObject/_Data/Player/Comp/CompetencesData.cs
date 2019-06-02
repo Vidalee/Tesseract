@@ -44,6 +44,8 @@ public abstract class CompetencesData : ScriptableObject
 
     public abstract void ChildCreate(CompetencesData comp, int lvl);
 
+    public abstract void UpgradeStats();
+
     public string Name => name;
 
     public string EnemyTag => enemyTag;

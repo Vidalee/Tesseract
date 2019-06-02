@@ -4,6 +4,8 @@ using UnityEngine;
 public class pause_menu : MonoBehaviour
 {
     public GameObject Canvas;
+    public GameObject CompMenu;
+    
     public bool state;
     public int waitTime;
     public bool wait;
@@ -42,12 +44,14 @@ public class pause_menu : MonoBehaviour
     {
         StaticData.pause = true;
         Canvas.SetActive(true);
+        CompMenu.SetActive(false);
         Time.timeScale = 0;
     }
 
     public void Desactive()
     {
         StaticData.pause = false;
+        CompMenu.SetActive(false);
         Canvas.SetActive(false);
         Time.timeScale = 1;
     }
@@ -60,5 +64,18 @@ public class pause_menu : MonoBehaviour
         StaticData.pause = false;
         
         ChangeScene.ChangeToScene("Login");
+    }
+
+    public void ActiveComp()
+    {
+        Canvas.SetActive(false);
+        CompMenu.SetActive(true);
+        CompMenu.GetComponent<CompAthAdd>().SetCp();
+    }
+    
+    public void DesactiveComp()
+    {
+        Canvas.SetActive(true);
+        CompMenu.SetActive(false);
     }
 }
