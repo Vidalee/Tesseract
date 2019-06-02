@@ -21,14 +21,36 @@ namespace Script.Enemies
         
         [SerializeField] protected List<Transform> Players;
         [SerializeField] protected List<PlayerData> playerDatas;
-        
+        private Animator _a;
         public LayerMask BlockingLayer;
-        
+        private bool _isMoving = false;
+        private Transform _target;
  
         private void FixedUpdate()
         {
             bool TriggeredState = Enemy.Triggered;
             FindTarget();
+            if (TriggeredState != Enemy.Triggered)
+            {
+                int maxLvl = 0;
+                foreach (PlayerData playerData in playerDatas)
+                {
+                    maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
+                }
+            }
+
+            _a.SetBool("Speed", _isMoving);
+            if (_isMoving)
+            {
+                if (Enemy.OnHisWayBack)
+                {
+                    EnemyMovingAnimation(Enemy.StartPos);
+                }
+                else
+                {
+                    EnemyMovingAnimation(_target.position);
+                }
+            }
         }
         
         private void FindTarget()
@@ -50,11 +72,12 @@ namespace Script.Enemies
                 foreach (Transform potentialTarget in Targets)
                 {
                     Vector3 playerFeet = potentialTarget.transform.position + new Vector3(0, -0.375f);
-                    RaycastHit2D linecast = Physics2D.Linecast(EnemyPos, playerFeet, BlockingLayer);
-                    Debug.DrawRay(EnemyPos, playerFeet - EnemyPos, Color.green);
-                    if (!linecast)
+                    RaycastHit2D linecast1 = Physics2D.Linecast(EnemyPos - new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
+                    RaycastHit2D linecast2 = Physics2D.Linecast(EnemyPos + new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
+                                        
+                    if (!linecast1 && !linecast2) 
                     { 
-                        if (target == null)
+                        if (target is null)
                         {
                             target = potentialTarget; 
                             distance = (EnemyPos - playerFeet).magnitude;
@@ -71,11 +94,21 @@ namespace Script.Enemies
                     }
                 }
  
-                if (target != null)
+                if (!(target is null))
                 {
                     Enemy.Triggered = true;
                     Enemy.OnHisWayBack = false;
-                    StraightToPoint(target.transform.position + new Vector3(0, -0.375f), Enemy.AttackRange);
+                    _target = target;
+                    Vector3 distanceToPos = target.transform.position + new Vector3(0, -0.375f) - transform.position;
+                    if (distanceToPos.magnitude > Enemy.AttackRange)
+                    {
+                        _isMoving = true;
+                        StraightToPoint(distanceToPos.normalized);
+                    }
+                    else
+                    {
+                        _isMoving = false;
+                    }
                 }
                 else
                 {
@@ -88,6 +121,8 @@ namespace Script.Enemies
                         if (length < Enemy.DetectionRange && length != 0)
                         {
                             Enemy.OnHisWayBack = false;
+                            _target = potentialTarget;
+                            _isMoving = true;
                             FollowPath();
                             return;
                         }
@@ -101,11 +136,20 @@ namespace Script.Enemies
         private void ComeBackToDefensePoint()
         {
             Vector3 pos = transform.position;
-            RaycastHit2D linecast = Physics2D.Linecast(pos, Enemy.StartPos, BlockingLayer);
-
-            if (!linecast)
+            RaycastHit2D linecast1 = Physics2D.Linecast(pos - new Vector3(Enemy.ColliderX + 0.1f , 0), Enemy.StartPos, BlockingLayer);
+            RaycastHit2D linecast2 = Physics2D.Linecast(pos + new Vector3(Enemy.ColliderX + 0.1f , 0), Enemy.StartPos, BlockingLayer);
+            if (!linecast1 && !linecast2)
             {
-                StraightToPoint(Enemy.StartPos, 0.05f);
+                Vector3 distanceToPos = Enemy.StartPos - transform.position;
+                if (distanceToPos.magnitude > 0.05f)
+                {
+                    _isMoving = true;
+                    StraightToPoint(distanceToPos.normalized);
+                }
+                else
+                {
+                    _isMoving = false;
+                }
             }
             else
             {
@@ -127,13 +171,9 @@ namespace Script.Enemies
             }
         }
 
-        private void StraightToPoint(Vector3 position, float range)
+        private void StraightToPoint(Vector3 direction)
         {
-            Vector3 distanceToPos = position - transform.position;
-            if (distanceToPos.magnitude > range)
-            {
-                transform.Translate(distanceToPos.normalized * Time.deltaTime * Enemy.MoveSpeed);
-            }
+             transform.Translate(direction * Time.deltaTime * Enemy.MoveSpeed);
         }
         
         private void FollowPath()
@@ -147,12 +187,25 @@ namespace Script.Enemies
                 Enemy.Path.Remove(nextNode);
         }
 
-        public void Create(EnemyData enemy, List<Transform> players, List<PlayerData> playerDatas, LayerMask blockingLayer)
+        private void EnemyMovingAnimation(Vector3 position)
+        {
+            if (Enemy.Name == "Archer")
+            {
+                _a.Play(position.x < transform.position.x ? "WalkL" : "WalkR");
+            }
+            else
+            {
+                _a.Play("WalkL");
+            }
+        }
+        
+        public void Create(EnemyData enemy, List<Transform> players, List<PlayerData> playerDatas, LayerMask blockingLayer, Animator animator)
         {
             Enemy = enemy;
             Players = players;
             this.playerDatas = playerDatas;
             BlockingLayer = blockingLayer;
+            _a = animator;
         }
     }
 }

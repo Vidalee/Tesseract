@@ -32,7 +32,7 @@ MonoBehaviour:
   _MaxXp: 100
   _Xp: 0
   _MaxLvl: 100
-  _Lvl: 1
+  _Lvl: 20
   _Width: 0.5
   _Height: 0.75
   _FeetHeight: 0.06

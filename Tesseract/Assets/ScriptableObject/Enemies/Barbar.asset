@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8079f63ec1b864f34b71f1beb691b04d, type: 3}
   m_Name: Barbar
   m_EditorClassIdentifier: 
+  name: Barbarian
   _MaxHp: 200
   _Hp: 200
   _XpValue: 50
@@ -20,9 +21,21 @@ MonoBehaviour:
   _MaxCooldown: 2
   _MoveSpeed: 2
   _AttackRange: 1
-  _DetectionRange: 15
+  _DetectionRange: 12.5
   _StartPos: {x: 0, y: 0, z: 0}
   _Competences: []
   _Sprite: {fileID: 21300000, guid: 9227dd4023270574e9021754187fb4ad, type: 3}
   _Triggered: 0
   OnHisWayBack: 0
+  move:
+  - {fileID: 7400000, guid: d8b165a4146543544804089a8ea83679, type: 2}
+  - {fileID: 7400000, guid: d8b165a4146543544804089a8ea83679, type: 2}
+  idle:
+  - {fileID: 7400000, guid: 1636b27031b3fab4486add85a190f4e7, type: 2}
+  - {fileID: 7400000, guid: 1636b27031b3fab4486add85a190f4e7, type: 2}
+  attack:
+  - {fileID: 7400000, guid: 64c3e3c23a159164baf137285c5ec5fe, type: 2}
+  - {fileID: 7400000, guid: 64c3e3c23a159164baf137285c5ec5fe, type: 2}
+  colliderX: 0.9
+  colliderY: 1
+  effectY: 1.074

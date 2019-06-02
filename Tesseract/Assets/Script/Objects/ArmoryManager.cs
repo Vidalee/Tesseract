@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class ArmoryManager : MonoBehaviour
 {
-    [SerializeField] private List<Weapons> archerWeapons;
-    [SerializeField] private List<Weapons> assassinWeapons;
-    [SerializeField] private List<Weapons> mageWeapons;
-    [SerializeField] private List<Weapons> warriorWeapons;
-    [SerializeField] protected GameObject weapon;
+    [SerializeField] public List<Weapons> archerWeapons;
+    [SerializeField] public List<Weapons> assassinWeapons;
+    [SerializeField] public List<Weapons> mageWeapons;
+    [SerializeField] public List<Weapons> warriorWeapons;
+    [SerializeField] public GameObject weapon;
     public Weapons GetWeaponData(string category)
     {
         switch (category)

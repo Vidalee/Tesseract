@@ -13,21 +13,9 @@ public class BossDeath : MonoBehaviour
     public Weapons[] mageW;
     public Weapons[] archerW;
     public Weapons[] warriorW;
-    private bool t = true;
     
-    private void Update()
-    {
-        if (Input.GetKey("m"))
-        {
-            if (t)
-            {
-                t = false;
-                End();
-            }
-        }
-    }
-
-    public void End()
+    
+    public void End(IEventArgs args)
     {
         StaticData.ActualFloor = -1000;
         

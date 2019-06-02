@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,13 +50,15 @@ public class EnemiesLive : MonoBehaviour
         if (alive)
         {
             alive = false;
-            PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
-            ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
-            Weapons weaponData = armoryManager.GetWeaponData(player.Name);
-            armoryManager.CreateWeapon(weaponData, transform, player.Lvl + 1);
-            //TODO Remplacer 1 par l'étage
+            if (Random.Range(0,10) == 0)
+            {
+                PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
+                ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
+                Weapons weaponData = armoryManager.GetWeaponData(player.Name);
+                armoryManager.CreateWeapon(weaponData, transform, Enemy.Lvl);
+            }
             Destroy(gameObject);
-            SendPlayerXp.Raise(new EventArgsInt(Enemy.XpValue));
+            SendPlayerXp.Raise(new EventArgsInt((int)Enemy.XpValue));
         }
     }
 
