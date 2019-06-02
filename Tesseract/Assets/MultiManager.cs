@@ -41,12 +41,13 @@ public class MultiManager : MonoBehaviour, UDPEventListener
     // Start is called before the first frame update
     void Start()
     {
+        socket = UDPRoomManager._socket;
         Coffre.Remplir("mode", "multi");
-        socket = new UDPSocket();
+        /*socket = new UDPSocket();
 
-        UDPEvent.Register(this);
         socket.Client("127.0.0.1", 27000);
-        socket.Send("CONNECT Neo neo");
+        socket.Send("CONNECT Kira kira");*/
+        UDPEvent.Register(this);
 
 
     }

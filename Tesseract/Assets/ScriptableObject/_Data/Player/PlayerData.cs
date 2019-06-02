@@ -69,11 +69,11 @@ public class PlayerData : ScriptableObject
         PlayerXpAth = playerData.PlayerXpAth;
         PlayerXpBarAth = playerData.PlayerXpBarAth;
         PlayerLevelAth = playerData.PlayerLevelAth;
-        
+
         _Name = playerData.name;
-        
+
         _Lvl = lvl == null ? 0 : lvl[0];
-        
+
         _MaxHp = playerData.MaxHp + Lvl * 5;
         _Hp = _MaxHp;
         _MaxMana = playerData.MaxMana + Lvl * 5;
@@ -85,11 +85,11 @@ public class PlayerData : ScriptableObject
         _MaxXp = _Lvl == 0 ? playerData.MaxXp : (int) (Mathf.Pow(1.2f, Lvl) * playerData.MaxXp);
         _Xp = playerData.Xp;
         _MaxLvl = 99;
-        
+
         _Width = 0.5f;
         _Height = 0.75f;
         _FeetHeight = 0.06f;
-        
+
         _Move = playerData.Move;
         _Idle = playerData.Idle;
         _Attack = playerData.Attack;
@@ -107,13 +107,13 @@ public class PlayerData : ScriptableObject
 
         for (int i = 0; i < 4; i++)
             _Competences[i].Create(playerData.Competences[i], lvl == null ? 0 : lvl[i + 1]);
-        
+
         _Inventory = CreateInstance<Inventory>();
         _Inventory.Create(playerData._Inventory);
         _PotionsCooldown = playerData.PotionsCooldown;
-        
+
         stateProj = 0;
-        
+
         _CanMove = true;
 
         color = new[]
@@ -124,6 +124,7 @@ public class PlayerData : ScriptableObject
 
     public AnimationClip AnimProj()
     {
+        Debug.Log(stateProj);
         return compAnim[stateProj];
     }
 

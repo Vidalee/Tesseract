@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
@@ -12,17 +13,24 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
     public GameEvent PlayerMoveEvent;
     public GameEvent PlayerPos;
 
-    private bool moving = false;
+    private int cX = 0;
+    private int cY = 0;
     #endregion
 
     #region Inter-Threads
 
-    bool moved = false;
+    bool tp = false;
     int mxDir = 0;
     int myDir = 0;
     float fx = 0;
     float fy = 0;
     int c = 0;
+    private bool reset = false;
+
+    float lastx = 0;
+    float lasty = 0;
+
+    bool moving = false;
     #endregion 
 
     #region Initialise
@@ -33,20 +41,53 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
 
         StartCoroutine(UpdatePlayerPos());
         UDPEvent.Register(this);
+        /*if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
+        {
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    if (moving) 
+                        reset = true;
+                    Thread.Sleep(25);
+                }
+
+            }).Start();
+        }*/
     }
 
 
     #endregion
 
     #region Update
-
     private void Update()
     {
-        PlayerMove();
-        if (moved)
+        if (reset)
         {
-            moved = false;
-            Move(mxDir, myDir, new Vector3(fx, fy));
+            reset = false;
+            MultiManager.socket.Send("PINFO TP " + transform.position.x + " " + transform.position.y);
+
+        }
+        if ((string)Coffre.Regarder("mode") == "solo" || _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
+        {
+            PlayerMove();
+        }
+        else
+        {
+            Move(mxDir, myDir);
+        }
+        int xDir = (int)Input.GetAxisRaw("Horizontal");
+        int yDir = (int)Input.GetAxisRaw("Vertical");
+        if (xDir != cX || yDir != cY)
+        {
+            cX = xDir;
+            cY = yDir;
+            MultiManager.socket.Send("PINFO TP " + transform.position.x + " " + transform.position.y + ";JINFO " + xDir + " " + yDir);
+        }
+        if (tp)
+        {
+            tp = false;
+            transform.position = new Vector3(fx, fy);
         }
     }
 
@@ -64,43 +105,19 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         int xDir = (int)Input.GetAxisRaw("Horizontal");
         int yDir = (int)Input.GetAxisRaw("Vertical");
 
-        if ((string)Coffre.Regarder("mode") == "solo")
+
+        PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
+
+        if (xDir == 0 && yDir == 0)
         {
-            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
-
-            if (xDir == 0 && yDir == 0) return;
-
-            Vector3 distance = GetDistance(xDir, yDir);
-
-            transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
+            moving = false;
+            return;
         }
-        else if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
-        {
+        moving = true;
+        Vector3 distance = GetDistance(xDir, yDir);
 
-            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
+        transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
 
-            if (xDir == 0 && yDir == 0)
-            {
-                if (moving)
-                {
-                    MultiManager.socket.Send("JINFO " + xDir + " " + yDir + " " + transform.position.x + " " + transform.position.y);
-                    moving = false;
-                }
-                return;
-            }
-            moving = true;
-            Vector3 distance = GetDistance(xDir, yDir);
-
-            transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
-            if (c != 3) c++;
-            else
-            {
-                c = 0;
-
-                MultiManager.socket.Send("JINFO " + xDir + " " + yDir + " " + transform.position.x + " " + transform.position.y);
-            }
-
-        }
     }
 
     public void OnReceive(string text)
@@ -110,32 +127,30 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         {
             if (args[1] == (_playerData.MultiID + ""))
             {
-                moved = true;
                 mxDir = int.Parse(args[2]);
                 myDir = int.Parse(args[3]);
-                fx = float.Parse(args[4]);
-                fy = float.Parse(args[5]);
+
             }
+        }
+        if (args[0] == "PINFO" && args[1] == (_playerData.MultiID + "") && args[2] == "TP")
+        {
+            fx = float.Parse(args[3]);
+            fy = float.Parse(args[4]);
+            tp = true;
         }
     }
 
-    public void Move(int xDir, int yDir, Vector3 final)
+    public void Move(int xDir, int yDir)
     {
         Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
-        if (!_playerData.CanMove)
-        {
-            return;
-        }
-
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
-
+        
         if (xDir == 0 && yDir == 0) return;
 
         Vector3 distance = GetDistance(xDir, yDir);
 
         transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
 
-        transform.position = final;
     }
 
     private IEnumerator UpdatePlayerPos()

@@ -13,7 +13,14 @@ class UDPEvent
     {
         for (int i = _eventListeners.Count - 1; i >= 0; i--)
         {
-            _eventListeners[i].OnReceive(text);
+            try
+            {
+                _eventListeners[i].OnReceive(text);
+            }
+            catch
+            {
+                Debug.Log("TCP PACKED ERROR");
+            }
         }
     }
 

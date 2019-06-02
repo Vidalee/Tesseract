@@ -35,7 +35,8 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
 
     private void FixedUpdate()
     {
-        if (!_playerData.CanMove) return;
+        if(_playerData.MultiID +"" == (string) Coffre.Regarder("id"))
+            if (!_playerData.CanMove) return;
 
         if (Input.GetKey("space") && _playerData.Competences[0].Usable)
         {
@@ -46,10 +47,10 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
                 else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp));
             }
         }
-
-        if (shouldDash)
+        if (this.shouldDash)
         {
-            shouldDash = false;
+            this.shouldDash = false;
+            Debug.Log(_playerData.MultiID + " dash got true");
             if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.Competences[0] as DashComp, dx, dy));
             else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp, dx, dy));
         }
@@ -64,7 +65,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
             if (args[1] == (_playerData.MultiID + "") && args[2] == "DASH")
             {
                 Debug.Log(_playerData.MultiID + " dash!!!");
-                shouldDash = true;
+                this.shouldDash = true;
                 dx = float.Parse(args[3]);
                 dy = float.Parse(args[4]);
             }
@@ -81,7 +82,6 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
         Vector3 dir = dx == 0 && dy == 0 ? Direction() : new Vector3(dx, dy, 0);
         if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
-        //Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
 
         transform.position += direction - direction * 0.01f;
@@ -96,7 +96,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
         _playerData.CanMove = false;
         Vector3 dir = dx == 0 && dy == 0 ? Direction() : new Vector3(dx, dy, 0);
         if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
-            MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
+            MultiManager.socket.Send("PINFO DASH " + dir.x + " " + dir.y);
         Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
        
