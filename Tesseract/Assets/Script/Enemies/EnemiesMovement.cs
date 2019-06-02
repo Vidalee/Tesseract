@@ -37,9 +37,6 @@ namespace Script.Enemies
                 {
                     maxLvl = playerData.Lvl > maxLvl ? playerData.Lvl : maxLvl;
                 }
-
-                Enemy.Lvl = StaticData.RandomLevel();
-                Enemy.SetStats();
             }
 
             _a.SetBool("Speed", _isMoving);
@@ -77,20 +74,10 @@ namespace Script.Enemies
                     Vector3 playerFeet = potentialTarget.transform.position + new Vector3(0, -0.375f);
                     RaycastHit2D linecast1 = Physics2D.Linecast(EnemyPos - new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
                     RaycastHit2D linecast2 = Physics2D.Linecast(EnemyPos + new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
-                    
-                    
-                    Vector3 s1 = EnemyPos - new Vector3(Enemy.ColliderX / 2 + 0.1f, 0);
-                    Vector3 s2 = EnemyPos + new Vector3(Enemy.ColliderX / 2 + 0.1f, 0);
-                    Vector3 en = playerFeet;
-                    Vector3 dir1 = (en - s1);
-                    Vector3 dir2 = (en - s2);
-
-                    Debug.DrawRay(s1, dir1, Color.red);
-                    Debug.DrawRay(s2, dir2, Color.red);
-                    
+                                        
                     if (!linecast1 && !linecast2) 
                     { 
-                        if (target == null)
+                        if (target is null)
                         {
                             target = potentialTarget; 
                             distance = (EnemyPos - playerFeet).magnitude;
@@ -107,7 +94,7 @@ namespace Script.Enemies
                     }
                 }
  
-                if (target != null)
+                if (!(target is null))
                 {
                     Enemy.Triggered = true;
                     Enemy.OnHisWayBack = false;
@@ -117,7 +104,6 @@ namespace Script.Enemies
                     {
                         _isMoving = true;
                         StraightToPoint(distanceToPos.normalized);
-
                     }
                     else
                     {

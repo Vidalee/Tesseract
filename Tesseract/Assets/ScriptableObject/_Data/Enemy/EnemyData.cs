@@ -20,7 +20,7 @@ public class EnemyData : ScriptableObject
     
     [SerializeField] protected int _physicsDamage;
     [SerializeField] protected int _magicDamage;
-    [SerializeField] protected int _MaxCooldown;
+    [SerializeField] protected float _MaxCooldown;
 
     [SerializeField] protected int _ArmorP;
     [SerializeField] protected int _ArmorM;
@@ -51,7 +51,7 @@ public class EnemyData : ScriptableObject
 
     [SerializeField] protected Vector3 feetPos;
 
-    public void Create(EnemyData enemy, int x, int y, int lvl)
+    public void Create(EnemyData enemy, float x, float y, int lvl)
     { 
         name = enemy.name;
         _MaxHp = enemy.MaxHp;

@@ -16,29 +16,21 @@ public class Attack : MonoBehaviour
 
     private float cooldown;
     [SerializeField] protected List<Transform> players;
-    public bool CanAttack;
+    public bool CanAttack = true;
 
-    private void Start()
-    {
-        StartCoroutine(Cooldown());
-        CanAttack = true;
-    }
 
     public void TryAttack(Transform player)
     {
-        if (CanAttack && (transform.position - player.transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.5f)
+        if (Enemy.Name == "Archer")
         {
-            if (Enemy.Name == "Archer")
-            {
-                _a.Play(player.position.x < transform.position.x ? "AttackL" : "AttackR");
-            }
-            else
-            {
-                _a.Play("AttackL");
-            }
-            
-            if (Enemy.Name != "Archer" && Enemy.Name != "Ghost") PlayerDamage.Raise(new EventArgsInt((int)Enemy.PhysicsDamage));
+            _a.Play(player.position.x < transform.position.x ? "AttackL" : "AttackR");
         }
+        else
+        {
+            _a.Play("AttackL");
+        }
+        
+        if (Enemy.Name != "Archer" && Enemy.Name != "Ghost") PlayerDamage.Raise(new EventArgsInt((int)Enemy.PhysicsDamage)); 
     }
   
     IEnumerator Cooldown()
