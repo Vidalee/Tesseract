@@ -57,7 +57,7 @@ public class BossMovement : MonoBehaviour
             }
             else
             {
-                _moveSpeed = 1;
+                _moveSpeed = 2;
                 _a.SetBool("Speed", false);
                 _a.SetBool("Dashing", false);
                 _animationStarted = false;

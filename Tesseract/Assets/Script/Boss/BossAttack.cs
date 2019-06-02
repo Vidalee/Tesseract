@@ -81,7 +81,7 @@ public class BossAttack : MonoBehaviour
         
         _sprite.sortingOrder = (int) (transform.position.y * -10);
    
-        if (!waitingAxeCooldown && (_player.position - transform.position).sqrMagnitude < _attackRange * _attackRange + 0.2f)
+        if (!waitingAxeCooldown && (_player.position - new Vector3(0, 0.5f) - transform.position).magnitude < _attackRange + 0.001f)
         {
             TryAttack("AttackAxe");
             StartCoroutine(AxeCooldown());

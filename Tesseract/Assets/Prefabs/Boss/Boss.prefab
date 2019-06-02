@@ -114,9 +114,10 @@ GameObject:
   - component: {fileID: 3824718675619231397}
   - component: {fileID: 3922147731662384218}
   - component: {fileID: 1470228659477450105}
+  - component: {fileID: 492737968}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,10 +154,12 @@ MonoBehaviour:
   bossMovement: {fileID: 4255360054210686381}
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
-  waitingCooldown: 0
-  _cooldown: 5
+  waitingAxeCooldown: 0
+  waitingBatCooldown: 0
+  _batCooldown: 25
+  _axeCooldown: 6
   _damage: 20
-  _attackRange: 3
+  _attackRange: 1.5
   _enemy: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85, type: 3}
   batData: {fileID: 11400000, guid: e188e488d6a64064f86e1ea9831aad95, type: 2}
   _playerData: {fileID: 0}
@@ -179,10 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
-  _moveSpeed: 1
-  _attackRange: 1
-  _notCloseEnough: 5
-  _distDash: 7
+  _moveSpeed: 2
+  _attackRange: 1.5
+  _notCloseEnough: 9
+  _distDash: 6
   entityLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -201,8 +204,8 @@ MonoBehaviour:
   SendPlayerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
   BossDeath: {fileID: 11400000, guid: 339d87618f8a3f44fb7fbb74a7a4dac7, type: 2}
   _hp: 1000
-  _armorP: 500
-  _armorM: 500
+  _armorP: 40
+  _armorM: 40
   _xp: 500
 --- !u!114 &3824718675619231397
 MonoBehaviour:
@@ -299,6 +302,35 @@ PolygonCollider2D:
       - {x: 0.38, y: 0.1}
       - {x: 0.18, y: 0.2}
       - {x: 0.23, y: 0.48}
+--- !u!114 &492737968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3922147731662384217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 339d87618f8a3f44fb7fbb74a7a4dac7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3824718675619231397}
+        m_MethodName: End
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &6030753301531125248
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class ProjectilesData : ScriptableObject
     private int _damageM;
     private string _allyTag;
     private string _enemyTag;
+    private string _bossTag;
 
     private Color _color;
     private  AnimationClip _anim;
@@ -32,6 +33,7 @@ public class ProjectilesData : ScriptableObject
         _damageM = damageM;
         _allyTag = tag;
         _enemyTag = tag;
+        _bossTag = "Boss";
         _anim = anim;
         _live = live;
         _color = color;
@@ -64,6 +66,8 @@ public class ProjectilesData : ScriptableObject
     public string AllyTag => _allyTag;
 
     public string EnemyTag => _enemyTag;
+
+    public string BossTag => _bossTag;
 
     public AnimationClip Anim => _anim;
 
