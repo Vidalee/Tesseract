@@ -186,7 +186,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5235926722726482283}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -412,6 +412,9 @@ MonoBehaviour:
   Archer: {fileID: 7400000, guid: c2cfaba5405d50a418a8ea3432ab4118, type: 2}
   Sans: {fileID: 7400000, guid: 303dbf4e1acf41b44a8e61ede9370183, type: 2}
   PlayerDamage: {fileID: 11400000, guid: 38a3ac4708b9036409d40e34fb291f04, type: 2}
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
   players: []
   CanAttack: 0
 --- !u!114 &4040514636347099191
