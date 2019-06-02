@@ -16,19 +16,25 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
     private List<GameObject> cList = new List<GameObject>();
 
     private List<string> toAdd = new List<string>();
+    private bool start = false;
+    
     // Start is called before the first frame update
-    static UDPSocket _socket;
+    public static UDPSocket _socket;
 
 
     static bool refresh, joined;
     public void OnReceive(string text)
     {
+        string[] args = text.Split(' ');
         if (text == "CPASS") refresh = true;
         if (text.StartsWith("RINFO")) toAdd.Add(text.Substring(6));
+        if (args[0] == "PINFO" && args[2] == "START") start = true;
     }
 
     void Start()
     {
+        Coffre.Remplir("mode", "multi");
+
         playButton.gameObject.SetActive(false);
         _socket = UDPClient._socket;
         UDPEvent.Register(this);
@@ -55,15 +61,26 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
         }
     }
 
-    public void Refresh() => refresh = true;
-
+    public void Refresh()
+    {
+        refresh = true;
+    }
     // Update is called once per frame
     void Update()
     {
+        if (start)
+        {
+            start = false;
+            ChangeScene.ChangeToScene("MultiGame");
+        }
+        Debug.Log("refresh? " + refresh);
         if (refresh)
         {
+            _socket.resetLastR();
             refresh = false;
+
             foreach (GameObject c in cList) Destroy(c);
+            _socket.Send("");
             _socket.Send("LIST");
         }
         

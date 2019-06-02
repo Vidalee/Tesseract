@@ -20,6 +20,7 @@ MonoBehaviour:
   PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Archer
+  _MultiID: 0
   _MaxHp: 100
   _Hp: 100
   _MaxMana: 100
@@ -61,7 +62,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: b8307cb920445524090ce2aa7d172db0, type: 2}
   - {fileID: 7400000, guid: dff886c8407b23745bf6fd243a619a9d, type: 2}
   - {fileID: 7400000, guid: 7938add593add69458921c7d64efb703, type: 2}
-  - {fileID: 7400000, guid: 77984986e893b9744822e17972c0a068, type: 2}
   _Competences:
   - {fileID: 11400000, guid: cad668a5bd52a1241ad850cd3b0941fe, type: 2}
   - {fileID: 11400000, guid: 6a076720d7f50f540be0c7527a5c457d, type: 2}

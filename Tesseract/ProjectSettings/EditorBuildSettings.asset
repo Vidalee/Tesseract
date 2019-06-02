@@ -6,25 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path:
+    path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scene/important/Login.unity
+    guid: e5724211548233e4a9e667f6fb7dea06
   - enabled: 1
     path: Assets/Scene/MultiGame.unity
     guid: 0614da78c0385e344b73cc2ba100ab3d
-  - enabled: 0
-    path: Assets/Scene/Login.unity
-    guid: e5724211548233e4a9e667f6fb7dea06
-  - enabled: 0
-    path: Assets/Scene/Rooms.unity
+  - enabled: 1
+    path: Assets/Scene/important/Rooms.unity
     guid: 4bfd310dc84b08740b5f983597f23da8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scene/Map.unity
     guid: fde80234acaad9d47b9e4c3aa3cc4145
-  - enabled: 0
-    path: Assets/Scene/MenuPlayer.unity
+  - enabled: 1
+    path: Assets/Scene/important/MenuPlayer.unity
     guid: 371c549bc2dbdf045931531c9a790018
-  - enabled: 0
-    path: Assets/Scene/Dungeon.unity
+  - enabled: 1
+    path: Assets/Scene/important/Dungeon.unity
     guid: 871ca543eaca5484ea95a7893eed6366
   - enabled: 1
     path: Assets/Scene/important/LevelSelection.unity

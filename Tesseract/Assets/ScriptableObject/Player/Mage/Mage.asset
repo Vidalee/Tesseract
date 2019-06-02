@@ -20,15 +20,16 @@ MonoBehaviour:
   PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Mage
-  _MaxHp: 110
-  _Hp: 110
-  _MaxMana: 110
-  _Mana: 110
-  _ManaRegen: 6
-  _PhysicsDamage: 24
-  _MagicDamage: 104
-  _MoveSpeed: 4.2
-  _MaxXp: 146
+  _MultiID: 1
+  _MaxHp: 100
+  _Hp: -80
+  _MaxMana: 100
+  _Mana: 100
+  _ManaRegen: 5
+  _PhysicsDamage: 20
+  _MagicDamage: 100
+  _MoveSpeed: 4
+  _MaxXp: 100
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1

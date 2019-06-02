@@ -1,6 +1,5 @@
 using System;
 using Script.GlobalsScript.Struct;
-using UnityEditor.U2D;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -62,6 +61,7 @@ public class PlayerData : ScriptableObject
 
     public AnimationClip AnimProj()
     {
+        Debug.Log(stateProj);
         return compAnim[stateProj];
     }
 

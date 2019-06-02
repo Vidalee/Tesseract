@@ -78,7 +78,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
         _playerData.CanMove = false;
         Vector3 dir = dx == 0 && dy == 0 ? Direction() : new Vector3(dx, dy, 0);
         if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
-            MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
+            MultiManager.socket.Send("PINFO DASH " + dir.x + " " + dir.y);
         Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
         yield return new WaitForSeconds(0.5f);
@@ -96,7 +96,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
         _playerData.CanMove = false;
         Vector3 dir = dx == 0 && dy == 0 ? Direction() : new Vector3(dx, dy, 0);
         if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
-            MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
+            MultiManager.socket.Send("PINFO DASH " + dir.x + " " + dir.y);
         Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
        
