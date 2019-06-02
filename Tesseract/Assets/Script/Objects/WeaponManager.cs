@@ -301,7 +301,8 @@ public class WeaponManager : MonoBehaviour
                 {
                     transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
                     PlaceWeapon(0f, -0.04f, 90);
-                    _sprite.sortingOrder = 1000;
+                    //l_sprite.sortingOrder = 1000;
+                    _sprite.sortingOrder += 1;
                 }
                 else
                 {

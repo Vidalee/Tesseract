@@ -79,13 +79,14 @@ public class BossAttack : MonoBehaviour
 
     private void GenerateBats()
     {
-        int batsNbr = Random.Range(10, 20);
-        float rot = 360 / (float) batsNbr;
+        int batsNbr = Random.Range(5, 10);
+        float rot = 180 / (float) batsNbr;
 
         for (int i = 0; i < batsNbr; i += 2)
         {
-            Vector3 pos1 = transform.position + Quaternion.Euler(0, 0, rot * i) * new Vector3(0, -1, 0);
-            Vector3 pos2 = transform.position + Quaternion.Euler(0, 0, rot * i) * new Vector3(0, -1, 0);
+            Vector3 dir = (_player.position - transform.position).normalized * 2;
+            Vector3 pos1 = transform.position + Quaternion.Euler(0, 0, rot * i) * dir;
+            Vector3 pos2 = transform.position + Quaternion.Euler(0, 0, rot * i) * dir;
             if (pos1.x > 2 && pos1.x < 19 && pos1.y > 2)
             {
                 GenerateBat(pos1.x, pos1.y);

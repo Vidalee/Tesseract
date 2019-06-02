@@ -13,7 +13,8 @@ public class BossMovement : MonoBehaviour
     [SerializeField] protected float _distDash;
 
     private Transform _player;
-    
+    [SerializeField] protected LayerMask entityLayer;
+
     public void Update()
     {
         if (_player == null)
@@ -30,7 +31,7 @@ public class BossMovement : MonoBehaviour
             _a.SetBool("Dashing", true);
             _a.Play("PreDash");
             
-            RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position);
+            RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position, entityLayer);
             StartCoroutine(Dash(linecast.point));
         }
         else if (magnitude > _attackRange)
