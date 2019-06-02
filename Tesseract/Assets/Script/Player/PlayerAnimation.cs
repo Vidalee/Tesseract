@@ -98,9 +98,9 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerAttackAnimation(IEventArgs args)
     {
-        Debug.Log("attackanim?");
+        //Debug.Log("attackanim?");
         EventArgsInt i = args as EventArgsInt;
-        Debug.Log(_playerData.MultiID + " " + i.X);
+        //Debug.Log(_playerData.MultiID + " " + i.X);
         if (_playerData.MultiID != i.X) return;
         StartCoroutine(PlayerAttackCoroutine());
     }

@@ -41,7 +41,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Weapon.inPlayerInventory)
         {
-            if (Weapon._class == "Warrior" || Weapon._class == "Archer")
+            if (Weapon._class == "Warrior" || Weapon._class == "Archer" || Weapon._class == "Assassin")
             {
                 Vector3 move = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 bool dir = Math.Abs(move.x) < Math.Abs(move.y);
