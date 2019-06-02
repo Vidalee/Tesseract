@@ -22,8 +22,10 @@ public class EnemiesLive : MonoBehaviour
 
     [SerializeField] protected LayerMask weaponLayer;
     [SerializeField] protected LayerMask enemyLayer;
+    [SerializeField] protected LayerMask bossLayer;
     [SerializeField] protected CircleCollider2D circleCollider2D;
 
+    
     private void Start()
     {
         Icon = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
@@ -52,7 +54,8 @@ public class EnemiesLive : MonoBehaviour
         if (alive)
         {
             alive = false;
-            if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer))
+            if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer) 
+                                                                && !circleCollider2D.IsTouchingLayers(bossLayer))
             {
                 if (Random.Range(0, 7) * 0 == 0)
                 {

@@ -18,6 +18,7 @@ public class BossMovement : MonoBehaviour
     private bool _dashing = false;
     private bool _animationStarted = false;
     private bool _canmove = true;
+    private bool _goingTop = false;
     public void Update()
     {
         if (_player == null)
@@ -63,9 +64,28 @@ public class BossMovement : MonoBehaviour
                 _animationStarted = false;
                 _dashing = false;
             }
+            
+            if (_animationStarted)
+            {
+                if (_goingTop  != distanceToPos.y > 0)
+                {
+                    _goingTop = distanceToPos.y > 0;
+                    if (_dashing)
+                    {
+                        _a.Play(_player.position.y - 0.5f < transform.position.y ? "PreDash" : "PreDashB");
+                    }
+                    else
+                    {
+                        _a.Play(_player.position.y - 0.5f < transform.position.y ? "Move" : "MoveB");
+                    }
+                }
+            }
+
         }
     }
 
+    
+    
     public IEnumerator Dashing()
     {
         yield return new WaitForSeconds(0.5f);

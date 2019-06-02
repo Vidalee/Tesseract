@@ -27,10 +27,10 @@ TagManager:
   - 
   - BlockingLayer
   - Item
+  - Enemy
+  - Boss
+  - 
   - Player
-  - 
-  - 
-  - 
   - Weapon
   - 
   - 
@@ -41,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - Enemy
+  - 
   - 
   - 
   - 
