@@ -178,6 +178,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PlayerDashEvent: {fileID: 11400000, guid: e3018df61d53dde4097a9887a2cbc1a5, type: 2}
+  Comp: {fileID: 0}
 --- !u!114 &7971220279813323065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ccbe5c8f9e3d54486048b8d1a9b675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Proj: {fileID: 0}
   _playerData: {fileID: 0}
+  Comp: {fileID: 0}
   AttackEvent: {fileID: 11400000, guid: bd732cc18d24aa74b9f76e5a6538246a, type: 2}
 --- !u!114 &4350503602636783934
 MonoBehaviour:
@@ -875,12 +878,12 @@ PrefabInstance:
     - target: {fileID: 4652922308742600826, guid: 6d0fa32dbb257f047a16070147b42e3c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4652922308742600826, guid: 6d0fa32dbb257f047a16070147b42e3c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: -0.499
       objectReference: {fileID: 0}
     - target: {fileID: 4652922308742600826, guid: 6d0fa32dbb257f047a16070147b42e3c,
         type: 3}

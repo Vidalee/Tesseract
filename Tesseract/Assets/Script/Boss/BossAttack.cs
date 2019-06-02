@@ -9,12 +9,16 @@ using UnityEngine;
 public class BossAttack : MonoBehaviour
 {
     [SerializeField] public GameEvent PlayerDamage;
+
+    [SerializeField] protected BossMovement bossMovement;
     
     [SerializeField] protected Animator _a;
     [SerializeField] protected SpriteRenderer _sprite;
     
-    [SerializeField] protected bool waitingCooldown = false;
-    [SerializeField] protected float _cooldown;
+    [SerializeField] protected bool waitingAxeCooldown = false;
+    [SerializeField] protected bool waitingBatCooldown = false;
+    [SerializeField] protected float _batCooldown;
+    [SerializeField] protected float _axeCooldown;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _attackRange;
 
@@ -30,23 +34,37 @@ public class BossAttack : MonoBehaviour
 
     public void TryAttack(string attack)
     {
+        StartCoroutine(bossMovement.CantMove());
         if (attack == "AttackBat")
         {
-            _a.Play("AttackBat");
+            _a.Play(_player.position.y - 0.5f < transform.position.y ? "AttackBat" : "AttackBatB");
             GenerateBats();
         }
         else
         {
-            _a.Play("AttackAxe");
-            PlayerDamage.Raise(new EventArgsInt(_damage));
+            _a.Play(_player.position.y - 0.5f < transform.position.y ? "AttackAxe" : "AttackAxeB");
+            StartCoroutine(AxeDamage());
         }
     }
-  
-    IEnumerator Cooldown()
+
+    IEnumerator AxeDamage()
     {
-        waitingCooldown = true;
-        yield return new WaitForSeconds(_cooldown);
-        waitingCooldown = false;
+        yield return new WaitForSeconds(0.25f);
+        PlayerDamage.Raise(new EventArgsInt(_damage));
+    }
+  
+    IEnumerator BatCooldown()
+    {
+        waitingBatCooldown = true;
+        yield return new WaitForSeconds(_batCooldown);
+        waitingBatCooldown = false;
+    }
+
+    IEnumerator AxeCooldown()
+    {
+        waitingAxeCooldown = true;
+        yield return new WaitForSeconds(_axeCooldown);
+        waitingAxeCooldown = false;
     }
 
     private void Update()
@@ -62,30 +80,30 @@ public class BossAttack : MonoBehaviour
         }
         
         _sprite.sortingOrder = (int) (transform.position.y * -10);
-        if (!waitingCooldown)
+   
+        if (!waitingAxeCooldown && (_player.position - new Vector3(0, 0.5f) - transform.position).magnitude < _attackRange + 0.001f)
         {
-            if ((_player.position - transform.position).sqrMagnitude < _attackRange * _attackRange + 0.2f)
-            {
-                TryAttack("AttackAxe");
-            }
-            else
-            {
-                TryAttack("AttackBat");
-            }
-
-            StartCoroutine(Cooldown());
+            TryAttack("AttackAxe");
+            StartCoroutine(AxeCooldown());
+        }
+        else if (!waitingBatCooldown)
+        {
+            TryAttack("AttackBat");
+            StartCoroutine(BatCooldown());
         }
     }
+    
 
     private void GenerateBats()
     {
-        int batsNbr = Random.Range(10, 20);
-        float rot = 360 / (float) batsNbr;
+        int batsNbr = Random.Range(5, 10);
+        float rot = 90 / (float) batsNbr;
 
         for (int i = 0; i < batsNbr; i += 2)
         {
-            Vector3 pos1 = transform.position + Quaternion.Euler(0, 0, rot * i) * new Vector3(0, -1, 0);
-            Vector3 pos2 = transform.position + Quaternion.Euler(0, 0, rot * i) * new Vector3(0, -1, 0);
+            Vector3 dir = (_player.position - transform.position).normalized * 2;
+            Vector3 pos1 = transform.position + Quaternion.Euler(0, 0, rot * i) * dir;
+            Vector3 pos2 = transform.position + Quaternion.Euler(0, 0, rot * - i) * dir;
             if (pos1.x > 2 && pos1.x < 19 && pos1.y > 2)
             {
                 GenerateBat(pos1.x, pos1.y);
@@ -114,10 +132,11 @@ public class BossAttack : MonoBehaviour
         enemy.GetComponent<Pathfinding>().Create(newEnemy);
         enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
         enemy.GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
-        enemy.transform.GetChild(0).GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
-        enemy.transform.GetChild(2).transform.position = new Vector3(0, newEnemy.EffectY + 0.181f, 0);
-        enemy.transform.GetChild(3).transform.position = new Vector3(0, newEnemy.EffectY, 0);
-        enemy.transform.GetChild(4).transform.position = new Vector3(0, newEnemy.EffectY, 0);
+        enemy.GetComponent<BoxCollider2D>().offset = new Vector2(0, newEnemy.ColliderY / 2);
+        enemy.GetComponentInChildren<CircleCollider2D>().radius = 30f;
+        enemy.transform.GetChild(2).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY + 0.181f, 0);
+        enemy.transform.GetChild(3).transform.position = new Vector3(x, y, 0) + new Vector3(-0.44f, newEnemy.EffectY, 0);
+        enemy.transform.GetChild(4).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY, 0);
     }
 
     private void SetAnimation(EnemyData enemyData, Animator animator)

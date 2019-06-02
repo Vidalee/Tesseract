@@ -22,7 +22,7 @@ public class ChestInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (_canOpen && !_chestData.IsOpen && Input.GetKey("a"))
+        if (_canOpen && !_chestData.IsOpen && Input.GetKey("f"))
         {
             Transform o = Instantiate(Potion, transform.position - new Vector3(0, 1, 0), Quaternion.identity);
             o.GetComponent<PotionManager>().Create(_chestData.Item as Potions);

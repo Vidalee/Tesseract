@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
     private Animator _a;
     private SpriteRenderer _sprite;
     private bool waitingCooldown = false;
+    public LayerMask blockingLayer;
 
     private float cooldown;
     [SerializeField] protected List<Transform> players;
@@ -36,6 +37,7 @@ public class Attack : MonoBehaviour
         }
         else if (Enemy.Name == "Ghost")
         {
+            _a.Play("AttackL");
             AttackProj(Sans, dir, 3);
             AttackProj(Sans, Quaternion.Euler(0, 0, 10) * dir, 4);
             AttackProj(Sans, Quaternion.Euler(0, 0, -10) * dir, 4);
@@ -78,11 +80,23 @@ public class Attack : MonoBehaviour
         if (Enemy.Triggered)
         {
             Transform target = players.OrderBy(p => (p.position - transform.position).magnitude).ToList()[0];
-            if ((target.position - transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.5f &&
+            if ((target.position - transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.1f &&
                 !waitingCooldown)
             {
-                TryAttack(target);
-                StartCoroutine(Cooldown());
+                if (Enemy.Name == "Archer" || Enemy.Name == "Ghost")
+                {
+                    RaycastHit2D linecast = Physics2D.Linecast(transform.position + new Vector3(0, 0.5f), target.position, blockingLayer);
+                    if (!linecast)
+                    {
+                        TryAttack(target);
+                        StartCoroutine(Cooldown());
+                    }
+                }
+                else
+                {
+                    TryAttack(target);
+                    StartCoroutine(Cooldown());
+                }
             }
         }
     }

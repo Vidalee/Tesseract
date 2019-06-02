@@ -20,7 +20,7 @@ class Coffre
 
     public static void Remplir(string étiquette, object objet)
     {
-        Debug.Log("remplir: " + étiquette + " | " + objet);
+        //Debug.Log("remplir: " + étiquette + " | " + objet);
         if (Existe(étiquette))
             Vider(étiquette);
         coffre.Add(étiquette, objet);

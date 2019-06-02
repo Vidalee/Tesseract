@@ -50,13 +50,13 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                 MultiManager.socket.Send("PINFO AA " + n.x + " " + n.y);
             }
 
-            if (Input.GetKey("e"))
+            if (Input.GetKey(KeyCode.Mouse1))
             {
                 UseCompetence(_playerData.Competences[2], 2);
                 MultiManager.socket.Send("PINFO A1 " + n.x + " " + n.y);
             }
 
-            if (Input.GetKey("r"))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 UseCompetence(_playerData.Competences[3], 3);
                 MultiManager.socket.Send("PINFO A2 " + n.x + " " + n.y);

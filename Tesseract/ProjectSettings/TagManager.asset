@@ -15,6 +15,7 @@ TagManager:
   - PlayerFeet
   - Perspective
   - Mouse
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -25,11 +26,18 @@ TagManager:
   - 
   - 
   - BlockingLayer
-  - Player
   - Item
-  - Entity
-  - Minimap
   - Enemy
+  - Boss
+  - 
+  - Player
+  - Weapon
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Entity
   - 
   - 
   - 
@@ -40,14 +48,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Minimap
   m_SortingLayers:
   - name: Default
     uniqueID: 0

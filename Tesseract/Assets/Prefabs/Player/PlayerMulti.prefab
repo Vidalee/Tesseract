@@ -284,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105085307636752074}
   - component: {fileID: 7357869153207122772}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: LayerSorter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 1118064504444131882}
   - component: {fileID: 5600126419062235930}
   - component: {fileID: 1193238156143943454}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: PlayerMulti
   m_TagString: Player
   m_Icon: {fileID: 0}
