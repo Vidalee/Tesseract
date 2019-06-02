@@ -1,7 +1,7 @@
-﻿ using System.Collections;
- using System.Linq.Expressions;
- using Script.GlobalsScript.Struct;
- using UnityEngine;
+﻿using System.Collections;
+using System.Linq.Expressions;
+using Script.GlobalsScript.Struct;
+using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, UDPEventListener
 {
@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     public Transform Proj;
     public PlayerData _playerData;
     public GameEvent Comp;
-    
+
     [SerializeField] protected GameEvent AttackEvent;
 
     #endregion
@@ -22,7 +22,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     private bool a2 = false;
     private float dx = 0;
     private float dy = 0;
-    private string action = "DEF";
 
     #endregion
 
@@ -42,25 +41,28 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     {
         if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
         {
+            Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            cursorPos.z = 0;
+            Vector3 n = (cursorPos - transform.position).normalized;
             if (Input.GetMouseButton(0))
             {
-                action = "AA";
                 UseCompetence(_playerData.Competences[1], 1);
+                MultiManager.socket.Send("PINFO AA " + n.x + " " + n.y);
             }
 
             if (Input.GetKey("e"))
             {
-                action = "A1";
                 UseCompetence(_playerData.Competences[2], 2);
+                MultiManager.socket.Send("PINFO A1 " + n.x + " " + n.y);
             }
 
             if (Input.GetKey("r"))
             {
-                action = "A2";
                 UseCompetence(_playerData.Competences[3], 3);
+                MultiManager.socket.Send("PINFO A2 " + n.x + " " + n.y);
+
             }
         }
-
         if (aa)
         {
             aa = false;
@@ -89,13 +91,14 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                 dy = float.Parse(args[4]);
                 if (args[2] == "AA")
                 {
+                    Debug.Log("aa true");
                     aa = true;
                 }
                 else if (args[2] == "A1")
                 {
                     a1 = true;
                 }
-                else if(args[2] == "A2")
+                else if (args[2] == "A2")
                 {
                     a2 = true;
                 }
@@ -109,9 +112,12 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     private void UseCompetence(CompetencesData competence, int index, float dx = 0, float dy = 0)
     {
-        if (competence.Usable)
-        {       
-            Comp.Raise(new EventArgsDoubleInt((int) competence.Cooldown, index));
+        Debug.Log("on passe");
+        if (competence.Usable || _playerData.MultiID + "" != (string)Coffre.Regarder("id"))
+        {
+            Debug.Log("passé");
+            if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
+                Comp.Raise(new EventArgsDoubleInt((int)competence.Cooldown, index));
             StartCoroutine(AfkCoroutine());
 
             switch (competence.Id)
@@ -142,7 +148,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         StartCoroutine(CoolDownCoroutine(competence, true));
         InstantiateProjectiles(competence, ProjectilesDirection(dx, dy));
     }
-    
+
     private void InstantiateArcProjectiles(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
@@ -150,48 +156,31 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         float rot = rotDist;
         Vector3 dir = ProjectilesDirection(dx, dy);
         InstantiateProjectiles(competence, dir);
-        
+
         for (int i = 1; i < competence.Number / 2 + 1; i++)
         {
             InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot) * dir);
             InstantiateProjectiles(competence, Quaternion.Euler(0, 0, -rot) * dir);
-            
+
             rot += rotDist;
         }
-        
+
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
-<<<<<<< HEAD
-    
-    private void InstantiateCircleAttack(ProjComp competence, float dx = 0, float dy = 0)
-=======
 
-    private void CircleAttack(CompetencesData competence, float dx = 0, float dy = 0)
->>>>>>> MultiLink
+    private void InstantiateCircleAttack(ProjComp competence, float dx = 0, float dy = 0)
     {
         if (_playerData.Mana < competence.ManaCost)
         {
             return;
         }
-<<<<<<< HEAD
-        
-        if(dx == 0 && dy == 0)
-            if ((string) Coffre.Regarder("mode") == "multi")
-                MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
-=======
-        if ((string)Coffre.Regarder("mode") != "solo") {
->>>>>>> MultiLink
 
-            if (dx == 0 && dy == 0)
-                MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
-        }
-    
         _playerData.Mana -= competence.ManaCost;
 
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
         if (_playerData.Name == "Warrior") return;
         float rot = 360 / competence.Number;
-        
+
         for (int i = 0; i < competence.Number; i++)
         {
             InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot * i) * new Vector3(1, 1, 0));
@@ -201,7 +190,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     }
 
     private void BoostPlayer(BoostComp competence, float dx = 0, float dy = 0)
-    {        
+    {
         _playerData.PhysicsDamage += competence.AdBoost;
         _playerData.MagicDamage += competence.ApBoost;
         _playerData.ReduceCd(1 - competence.CoolDownBoost);
@@ -213,7 +202,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     private IEnumerator ResetBoost(BoostComp competence)
     {
         yield return new WaitForSeconds(competence.Duration);
-        
+
         _playerData.PhysicsDamage -= competence.AdBoost;
         _playerData.MagicDamage -= competence.ApBoost;
         _playerData.ReduceCd(1 / (1 - competence.CoolDownBoost));
@@ -230,11 +219,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             cursorPos.z = 0;
             Vector3 n = (cursorPos - transform.position).normalized;
-<<<<<<< HEAD
-            if ((string) Coffre.Regarder("mode") == "multi")
-                MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
-=======
->>>>>>> MultiLink
             return n;
         }
         else
@@ -247,7 +231,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                 Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 cursorPos.z = 0;
                 Vector3 n = (cursorPos - transform.position).normalized;
-                MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
                 return n;
             }
         }
@@ -266,20 +249,23 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         yield return new WaitForSeconds(0.05f);
         _playerData.CanMove = true;
     }
-    
+
     private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
     {
-        Transform o = Instantiate(Proj, transform.position + dir/4, Quaternion.identity);
+        Transform o = Instantiate(Proj, transform.position + dir / 4, Quaternion.identity);
         o.name = competence.Name;
-                
-        ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
 
-        int dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
-        int dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
-        
+        ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
+        int dP = 25;
+        int dM = 25;
+        if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
+        {
+            dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
+            dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
+        }
         projectilesData.Created(dir.normalized, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
             competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
-        
+
         Projectiles script = o.GetComponent<Projectiles>();
 
         script.Create(projectilesData);

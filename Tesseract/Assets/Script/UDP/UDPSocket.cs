@@ -56,6 +56,7 @@ public class UDPSocket
                 string msg = Encoding.ASCII.GetString(bytesToRead, 0, bytesRead);
                 string[] p = msg.Split(';');
                 foreach(string m in p) {
+                    if (m == "") continue;
                     Debug.Log("RAW RECEIVE: " + m);
                     UDPEvent.Receive(m);
                     if (m.StartsWith("SET"))

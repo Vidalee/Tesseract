@@ -142,14 +142,9 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
 
     public void Move(int xDir, int yDir)
     {
-        //Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
-        if (!_playerData.CanMove)
-        {
-            return;
-        }
-
+        Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
         PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
-
+        
         if (xDir == 0 && yDir == 0) return;
 
         Vector3 distance = GetDistance(xDir, yDir);

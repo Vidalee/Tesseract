@@ -61,8 +61,8 @@ public class PlayerManagerMulti : MonoBehaviour
     private void InstantiatePlayer(int x, int y)
     {
         Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
-        /*
-        SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
+        
+        /*SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
         SetXpBar.Raise(new EventArgsFloat((float)_playerData.Xp / _playerData.MaxXp));
         SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
         SetHpBar.Raise(new EventArgsFloat((float)_playerData.Hp / _playerData.MaxHp));
@@ -87,7 +87,7 @@ public class PlayerManagerMulti : MonoBehaviour
     IEnumerator SetAth()
     {
         yield return new WaitForSeconds(0.1f);
-        _playerData.Inventory.SetAth();
+        //_playerData.Inventory.SetAth();
     }
     #endregion
 
@@ -118,70 +118,54 @@ public class PlayerManagerMulti : MonoBehaviour
         return index;
     }
 
-    private void LoadPlayer()
+    private void LoadPlayer(int pers = 0)
     {
-        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
+        string type = Perso != "" ? Perso : StaticData.PlayerChoice;
+        pers = pers == 0 ? FindClass(type) : pers - 1;
+
+        PlayerDataSave data = SaveSystem.LoadPlayer(type);
         if (data == null)
         {
-            ResetStats(FindClass(_playerData.Name));
+           /* ResetStats(pers);
 
             GamesItem ite = FindItems(0);
             Weapons i = ScriptableObject.CreateInstance<Weapons>();
-           // i.Create(ite as Weapons, 1);
+            i.Create(ite as Weapons, 0);
 
             _playerData.Inventory.Weapon = i;
-
-            _playerData.Inventory.Potions = new Potions[4];
-
+            */
             return;
         }
 
-        LoadStats(data);
+        ResetStats(pers, data.Lvl);
+        _playerData.Xp = data.Xp;
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
         it.Create(item as Weapons, data.weaponLvl);
 
         _playerData.Inventory.AddItem(it, Vector3.zero);
+        _playerData.StateProj = it.EffectType;
 
         _playerData.Inventory.Potions = new Potions[4];
     }
 
-    private void ResetStats(int index)
+    private void ResetStats(int index, int[] lvl = null)
     {
-        _playerData = _PlayersData[index];
-        _playerData.MaxHp = _PlayersDataCopy[index].MaxHp;
-        _playerData.Hp = _PlayersDataCopy[index].Hp;
-        _playerData.MaxMana = _PlayersDataCopy[index].MaxMana;
-        _playerData.Mana = _PlayersDataCopy[index].Mana;
-        _playerData.PhysicsDamage = _PlayersDataCopy[index].PhysicsDamage;
-        _playerData.MagicDamage = _PlayersDataCopy[index].MagicDamage;
-        _playerData.MoveSpeed = _PlayersDataCopy[index].MoveSpeed;
-        _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
-        _playerData.Xp = _PlayersDataCopy[index].Xp;
-        _playerData.Lvl = _PlayersDataCopy[index].Lvl;
-        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;
-
-        //TODO Save multi ?
-    }
-
-    private void LoadStats(PlayerDataSave data)
-    {
-
-        _playerData.ManaRegen = data.ManaRegen;
-
-        //TODO Load multi ?
+        _playerData = ScriptableObject.CreateInstance<PlayerData>();
+        _playerData.Create(_PlayersDataCopy[index], lvl);
     }
 
     private GamesItem FindItems(int id)
     {
         if (id == 0)
         {
-            if (_playerData.name == "Warrior") id = 31;
-            if (_playerData.name == "Mage") id = 21;
-            if (_playerData.name == "Assassin") id = 11;
-            if (_playerData.name == "Archer") id = 1;
+            if (_playerData.Name == "Warrior") id = 31;
+            if (_playerData.Name == "Mage") id = 21;
+            if (_playerData.Name == "Assassin") id = 11;
+            if (_playerData.Name == "Archer") id = 1;
         }
+
         foreach (var it in Items)
         {
             if (it.id == id) return it;
@@ -226,16 +210,11 @@ public class PlayerManagerMulti : MonoBehaviour
 
     private void UpgradeStats()
     {
-        if (_playerData.Lvl % 5 == 0)
-        {
-            _playerData.MaxHp += 10;
-            _playerData.Hp = _playerData.MaxHp;
-            _playerData.MaxMana += 10;
-            _playerData.Mana = _playerData.MaxMana;
-            _playerData.MoveSpeed *= 1.05f;
-            _playerData.ManaRegen++;
-        }
-
+        _playerData.MaxHp += 5;
+        _playerData.Hp += 5;
+        _playerData.MaxMana += 5;
+        _playerData.Mana += 5;
+        _playerData.ManaRegen++;
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;
     }
@@ -275,7 +254,7 @@ public class PlayerManagerMulti : MonoBehaviour
             }
             else
             {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
+                //armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons, transform.GetChild(0), 1, transform.GetChild(0));
             }
         }
     }
