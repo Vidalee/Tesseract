@@ -25,8 +25,8 @@ public class Weapons : GamesItem
         icon = weapon.icon;
         displayName = weapon.displayName;
         description = weapon.description;
-        physicsDamage = weapon.physicsDamage + (int)((float) weapon.physicsDamage / 10 * lvl);
-        magicDamage = weapon.magicDamage + (int)((float) weapon.magicDamage / 10 * lvl);
+        physicsDamage = weapon.physicsDamage + lvl;
+        magicDamage = weapon.magicDamage + lvl;
         colliderPoints = weapon.colliderPoints;
         _class = weapon._class;
         cd = weapon.cd + lvl / 2;

@@ -91,8 +91,6 @@ namespace Script.Pathfinding
                     }
                 }
             }
-            print(nbrNoeuds);
-            print(nbrVoisins);
         }
 
         public static Node PositionToNode(Vector2 position)

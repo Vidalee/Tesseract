@@ -52,7 +52,8 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected Vector3 feetPos;
 
     public void Create(EnemyData enemy, float x, float y, int lvl)
-    { 
+    {
+        Lvl = lvl;
         name = enemy.name;
         _MaxHp = enemy.MaxHp;
         _Hp = enemy.Hp + 10 * lvl;

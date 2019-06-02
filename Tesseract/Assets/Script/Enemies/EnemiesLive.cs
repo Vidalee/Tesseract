@@ -28,7 +28,6 @@ public class EnemiesLive : MonoBehaviour
 
     public void GetDamaged(int damageP, int damageM)
     {
-
         int dP = damageP - Enemy.ArmorP;
         int dM = damageM - Enemy.ArmorM;
         
@@ -55,6 +54,8 @@ public class EnemiesLive : MonoBehaviour
                 PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
                 ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
                 Weapons weaponData = armoryManager.GetWeaponData(player.Name);
+                Debug.Log(weaponData.PhysicsDamage);
+                Debug.Log(Enemy.Lvl);
                 armoryManager.CreateWeapon(weaponData, transform, Enemy.Lvl);
             }
             Destroy(gameObject);

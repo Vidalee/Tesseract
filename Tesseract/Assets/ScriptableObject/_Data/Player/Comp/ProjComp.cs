@@ -10,6 +10,7 @@ public class ProjComp : CompetencesData
     [SerializeField] protected int number;
     [SerializeField] protected float speed;
     [SerializeField] protected float addNumber;
+    [SerializeField] protected float AddLive;
 
     public override void ChildCreate(CompetencesData competence, int lvl)
     {
@@ -19,7 +20,7 @@ public class ProjComp : CompetencesData
         addNumber = Math.Abs(addNumber) < 0.01 ? 0 : 1 / comp.addNumber;
         adDamage = comp.adDamage + lvl;
         apDamage = comp.apDamage + lvl;
-        live = comp.live + lvl / 5;
+        live = comp.live + (int) (AddLive * lvl);
         number = comp.number + (int)(addNumber * lvl);
         speed = comp.speed;
     }
@@ -30,7 +31,8 @@ public class ProjComp : CompetencesData
         Lvl++;
         adDamage++;
         apDamage++;
-        live += Lvl % 5 == 0 ? 1 : 0;
+        live += Lvl % (int) AddLive == 0 ? 1 : 0;
+        number += Lvl % (int) addNumber == 0 ? 1 : 0;
     }
     
     public int AdDamage => adDamage;

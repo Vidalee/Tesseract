@@ -89,12 +89,14 @@ public class GenerateEnemies : MonoBehaviour
     {
         EnemyData newEnemy = ScriptableObject.CreateInstance<EnemyData>();
         newEnemy.Create(enemyData, x, y, StaticData.RandomLevel());
-
+        
         GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
         enemiesList.Add(enemy);            
         
         Animator animator = enemy.GetComponentInChildren<Animator>();
         SetAnimation(newEnemy, animator);
+        
+        Debug.Log(newEnemy.Lvl);
                     
         enemy.GetComponent<Attack>().Create(newEnemy, players, animator);
         enemy.GetComponent<EnemiesLive>().Create(newEnemy, playerDatas); 
