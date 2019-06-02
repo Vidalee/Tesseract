@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -32,14 +33,21 @@ public class UDPClient : MonoBehaviour, UDPEventListener
 
     void Start()
     {
+        Coffre.Créer();
+
         UDPEvent.Register(this);
         error.text = "Server not reachable";
         //loginButton.enabled = false;
         loginButton.gameObject.SetActive(false);
+        try
+        {
+            _socket.Client(ip, 27000);
 
-        _socket.Client(ip, 27000);
-        _socket.Send("PING");
-
+            _socket.Send("PING");
+        }
+        catch
+        {
+        }
     }
 
     public void Login()

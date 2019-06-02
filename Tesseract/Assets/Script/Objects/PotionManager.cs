@@ -46,7 +46,7 @@ public class PotionManager : MonoBehaviour
         {
             if ((other.transform.position - transform.position).sqrMagnitude < 0.5)
             {
-                if (!wait && Input.GetKey(KeyCode.A))
+                if (!wait && Input.GetKey(KeyCode.F))
                 {
 
                     StartCoroutine(Wait());

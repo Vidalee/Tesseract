@@ -13,7 +13,12 @@ public class BossMovement : MonoBehaviour
     [SerializeField] protected float _distDash;
 
     private Transform _player;
-    
+    [SerializeField] protected LayerMask entityLayer;
+
+    private bool _dashing = false;
+    private bool _animationStarted = false;
+    private bool _canmove = true;
+    private bool _goingTop = false;
     public void Update()
     {
         if (_player == null)
@@ -21,46 +26,85 @@ public class BossMovement : MonoBehaviour
             _player = GameObject.Find("Player(Clone)").transform;
             return;
         }
-        
-        _sprite.sortingOrder = (int)(transform.position.y * -10);
-        Vector3 distanceToPos = _player.position + new Vector3(0, -0.375f) - transform.position;
-        float magnitude = distanceToPos.magnitude;
-        if (magnitude > _notCloseEnough)
+
+        if (_canmove)
         {
-            _a.SetBool("Dashing", true);
-            _a.Play("PreDash");
+            Vector3 distanceToPos = _player.position + new Vector3(0, -0.5f) - transform.position;
+            float magnitude = distanceToPos.magnitude;
+            if (magnitude > _notCloseEnough || (_dashing && magnitude > _attackRange))
+            {
+                if (!_animationStarted || !_dashing)
+                {
+                    _a.Play(_player.position.y - 0.5f < transform.position.y ? "PreDash" : "PreDashB");
+                    _animationStarted = true;
+                    _a.SetBool("Dashing", true);
+                    _a.SetBool("Speed", false);
+                    _dashing = true;
+                    StartCoroutine(Dashing());
+                }
+
+                _moveSpeed = _distDash;
+            }
+            else if (magnitude > _attackRange)
+            {
+                if (!_animationStarted)
+                {
+                    _a.SetBool("Speed", true);
+                    _a.Play(_player.position.y - 0.5f < transform.position.y ? "Move" : "MoveB");
+                    _animationStarted = true;
+                }
+
+                StraightToPoint(distanceToPos.normalized);
+            }
+            else
+            {
+                _moveSpeed = 2;
+                _a.SetBool("Speed", false);
+                _a.SetBool("Dashing", false);
+                _animationStarted = false;
+                _dashing = false;
+            }
             
-            RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position);
-            StartCoroutine(Dash(linecast.point));
-        }
-        else if (magnitude > _attackRange)
-        {
-            _a.SetBool("Speed", true);
-            StraightToPoint(distanceToPos.normalized);
-        }
-        else
-        {
-            _a.SetBool("Speed", false);
+            if (_animationStarted)
+            {
+                if (_goingTop  != distanceToPos.y > 0)
+                {
+                    _goingTop = distanceToPos.y > 0;
+                    if (_dashing)
+                    {
+                        _a.Play(_player.position.y - 0.5f < transform.position.y ? "PreDash" : "PreDashB");
+                    }
+                    else
+                    {
+                        _a.Play(_player.position.y - 0.5f < transform.position.y ? "Move" : "MoveB");
+                    }
+                }
+            }
+
         }
     }
 
-    public IEnumerator Dash(Vector3 direction)
-    {  
-        float step = _distDash * Time.fixedDeltaTime;
-        float t = 0;
-        Vector3 end = transform.position + direction - direction * 0.01f;
-
-        while ((end - transform.position).magnitude > 0.1f)
-        {
-            t += step;
-            transform.position = Vector3.Lerp(transform.position, end, t);
-            yield return new WaitForFixedUpdate();
-        }
-
-        transform.position = end;
-        _a.SetBool("Dashing", false);
-    }
     
+    
+    public IEnumerator Dashing()
+    {
+        yield return new WaitForSeconds(0.5f);
+        while (_dashing)
+        {
+            Vector3 pos = _player.position + new Vector3(0, -0.5f) - transform.position;
+            StraightToPoint(pos.normalized);
+            yield return null;
+        }
+    }
+
+
+    public IEnumerator CantMove()
+    {
+        _canmove = false;
+        _animationStarted = false;
+        yield return new WaitForSeconds(0.5f);
+        _canmove = true;
+    }
     private void StraightToPoint(Vector3 direction)
     {
         transform.Translate(direction * Time.deltaTime * _moveSpeed);

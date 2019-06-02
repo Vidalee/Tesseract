@@ -6,4 +6,5 @@ public static class ChangeScene
     {
         SceneManager.LoadScene(scene);
     }
+    
 }

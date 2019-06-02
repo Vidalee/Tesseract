@@ -101,8 +101,8 @@ public class GenerateEnemies : MonoBehaviour
         enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, playerDatas, BlockingLayer, animator);
         enemy.GetComponent<Pathfinding>().Create(newEnemy);
         enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
-        enemy.GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
-        enemy.transform.GetChild(0).GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
+        enemy.GetComponent<BoxCollider2D>().size = new Vector2(newEnemy.ColliderX, newEnemy.ColliderY);
+        enemy.GetComponent<BoxCollider2D>().offset = new Vector2(0, newEnemy.ColliderY / 2);
         enemy.transform.GetChild(2).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY + 0.181f, 0);
         enemy.transform.GetChild(3).transform.position = new Vector3(x, y, 0) + new Vector3(-0.44f, newEnemy.EffectY, 0);
         enemy.transform.GetChild(4).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY, 0);

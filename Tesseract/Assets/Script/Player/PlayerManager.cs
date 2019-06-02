@@ -38,16 +38,6 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerData PlayerData => _playerData;
 
-    #region Update
-
-    private void Update()
-    {
-        if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
-        if(Input.GetKey("x")) GetXp(10000);
-    }
-
-    #endregion
-
     #region Initialise
 
     public void Create(int x, int y, int id, bool solo)
@@ -280,8 +270,9 @@ public class PlayerManager : MonoBehaviour
         {
             if ((args as EventArgsWeaponsAth).Weapons != null)
             {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons,
-                    transform.GetChild(0), 1, transform.GetChild(0));
+                Weapons weapon = (args as EventArgsWeaponsAth).Weapons;
+                armory.GetComponent<ArmoryManager>().CreateWeapon(weapon,
+                    transform.GetChild(0), weapon.Lvl, transform.GetChild(0));
             }
             else
             {

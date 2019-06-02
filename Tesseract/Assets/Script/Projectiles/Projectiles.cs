@@ -55,6 +55,14 @@ public class Projectiles : MonoBehaviour
             if (Random.Range(0, 100) < _projectilesData.Prob) e.Effect(_projectilesData.Effect, _projectilesData.EffectDamage, _projectilesData.Duration);
         }
         
+        else if (tag == _projectilesData.BossTag && tag == "Boss")
+        {
+            if(--_projectilesData.Live <= 0) Destroy(gameObject);
+            BossLive e = other.transform.GetComponent<BossLive>();
+            
+            e.GetDamaged(_projectilesData.DamageP, _projectilesData.DamageM);
+        }
+        
         else if (tag == "Player" && tag == _projectilesData.EnemyTag)
         {
             Damage.Raise(new EventArgsInt(_projectilesData.DamageP + _projectilesData.DamageM));

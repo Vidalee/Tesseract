@@ -49,11 +49,12 @@ public class MapGridCreation : MonoBehaviour
     
     private void Awake()
     {
-        Coffre.Créer();
+        //Coffre.Remplir("seed", "1");
+
         if ((string)Coffre.Regarder("mode") == "solo")
             seed = Random.Range(1, int.MaxValue);
         else
-            seed = (int) Coffre.Regarder("seed");
+            seed = int.Parse((string) Coffre.Regarder("seed"));
 
         Random.InitState(seed);
         

@@ -20,6 +20,12 @@ public class EnemiesLive : MonoBehaviour
     public GameEvent SendPlayerXp;
     private bool alive = true;
 
+    [SerializeField] protected LayerMask weaponLayer;
+    [SerializeField] protected LayerMask enemyLayer;
+    [SerializeField] protected LayerMask bossLayer;
+    [SerializeField] protected CircleCollider2D circleCollider2D;
+
+    
     private void Start()
     {
         Icon = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
@@ -48,15 +54,18 @@ public class EnemiesLive : MonoBehaviour
         if (alive)
         {
             alive = false;
-            if (Random.Range(0,10) == 0)
+            if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer) 
+                                                                && !circleCollider2D.IsTouchingLayers(bossLayer))
             {
-                PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
-                ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
-                Weapons weaponData = armoryManager.GetWeaponData(player.Name);
-                Debug.Log(weaponData.PhysicsDamage);
-                Debug.Log(Enemy.Lvl);
-                armoryManager.CreateWeapon(weaponData, transform, Enemy.Lvl);
+                if (Random.Range(0, 4) * 0 == 0)
+                {
+                    PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
+                    ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
+                    Weapons weaponData = armoryManager.GetWeaponData(player.Name);
+                    armoryManager.CreateWeapon(weaponData, transform, Enemy.Lvl);
+                }
             }
+
             Destroy(gameObject);
             SendPlayerXp.Raise(new EventArgsInt((int)Enemy.XpValue));
         }

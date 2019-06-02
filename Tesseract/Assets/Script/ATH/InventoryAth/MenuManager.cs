@@ -43,7 +43,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (!wait && Input.GetKey(KeyCode.M))
+        if (!wait && Input.GetKey(KeyCode.E))
         {
             Canvas.enabled = !Canvas.enabled;
             StartCoroutine(Wait());

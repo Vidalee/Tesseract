@@ -841,7 +841,7 @@ GameObject:
   - component: {fileID: 1650446065634931984}
   - component: {fileID: 1670173992585586625}
   - component: {fileID: 9078675640080118105}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: MiniMapCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,6 +2016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 4236175760814717961, guid: 500983a92f18e1e4e9612b4b727d1f9b, type: 3}
+  PlayerMulti: {fileID: 0}
   MapHeight: 150
   MapWidth: 150
   RoomNumber: 30

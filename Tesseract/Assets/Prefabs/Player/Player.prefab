@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6628841850606644196}
   - component: {fileID: 3748817932605456480}
   - component: {fileID: 5519204527864142135}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 4606261880112502602}
   - component: {fileID: 4606261880112502600}
   - component: {fileID: 4606261880112502603}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -399,6 +399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LayerSorter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554246551499141741, guid: 86d19bd09298f474a800fb381a2d1a92,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2554246551499141730, guid: 86d19bd09298f474a800fb381a2d1a92,
         type: 3}

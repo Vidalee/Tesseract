@@ -32,6 +32,7 @@ public class BossLive : MonoBehaviour
             alive = false;
             SendPlayerXp.Raise(new EventArgsInt(_xp));
             BossDeath.Raise(null);
+            Destroy(transform.gameObject);
         }
     }
 }

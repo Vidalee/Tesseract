@@ -51,7 +51,6 @@ public class PlayerAnimation : MonoBehaviour
     {
         EventArgsCoor coor = args as EventArgsCoor;
         if (_playerData.MultiID != coor.Id && (string) Coffre.Regarder("mode") == "multi") return;
-
         int speed = coor.X != 0 ? coor.X : coor.Y;
         bool dir = coor.X == 0;
         
@@ -67,9 +66,9 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerDashAnimation(IEventArgs args)
     {
-        Debug.Log("dashanim?");
+        //Debug.Log("dashanim?");
         EventArgsInt i = args as EventArgsInt;
-        Debug.Log(_playerData.MultiID + " " + i.X);
+        //Debug.Log(_playerData.MultiID + " " + i.X);
         if (_playerData.MultiID != i.X) return;
         StartCoroutine(PlayerDashCor());
     }
@@ -98,9 +97,9 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayerAttackAnimation(IEventArgs args)
     {
-        Debug.Log("attackanim?");
+        //Debug.Log("attackanim?");
         EventArgsInt i = args as EventArgsInt;
-        Debug.Log(_playerData.MultiID + " " + i.X);
+        //Debug.Log(_playerData.MultiID + " " + i.X);
         if (_playerData.MultiID != i.X) return;
         StartCoroutine(PlayerAttackCoroutine());
     }

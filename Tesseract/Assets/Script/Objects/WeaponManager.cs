@@ -41,7 +41,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Weapon.inPlayerInventory)
         {
-            if (Weapon._class == "Warrior" || Weapon._class == "Archer")
+            if (Weapon._class == "Warrior" || Weapon._class == "Archer" || Weapon._class == "Assassin")
             {
                 Vector3 move = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 bool dir = Math.Abs(move.x) < Math.Abs(move.y);
@@ -301,7 +301,8 @@ public class WeaponManager : MonoBehaviour
                 {
                     transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
                     PlaceWeapon(0f, -0.04f, 90);
-                    _sprite.sortingOrder = 1000;
+                    //l_sprite.sortingOrder = 1000;
+                    _sprite.sortingOrder += 1;
                 }
                 else
                 {
@@ -382,7 +383,7 @@ public class WeaponManager : MonoBehaviour
         {
             if ((other.transform.position - transform.position).sqrMagnitude < 0.5)
             {
-                if (!wait && Input.GetKey(KeyCode.A))
+                if (!wait && Input.GetKey(KeyCode.F))
                 {
                     StartCoroutine(Wait());
                     AddItem.Raise(new EventArgsItem(Weapon, transform));
