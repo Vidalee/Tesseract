@@ -204,9 +204,11 @@ MonoBehaviour:
   SendPlayerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
   BossDeath: {fileID: 11400000, guid: 339d87618f8a3f44fb7fbb74a7a4dac7, type: 2}
   _hp: 1500
+  _Maxhp: 1500
   _armorP: 40
   _armorM: 40
   _xp: 1000
+  Image: {fileID: 0}
 --- !u!114 &3824718675619231397
 MonoBehaviour:
   m_ObjectHideFlags: 0

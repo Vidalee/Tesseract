@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
 
@@ -9,13 +10,20 @@ public class BossLive : MonoBehaviour
     public GameEvent BossDeath;
 
     [SerializeField] protected int _hp;
+    [SerializeField] protected int _Maxhp;
     [SerializeField] protected int _armorP;
     [SerializeField] protected int _armorM;
     [SerializeField] protected int _xp;
+
+    [SerializeField] protected RectTransform Image; 
     
     private bool alive = true;
-    
 
+
+    public void Update()
+    {
+        Image.localScale = new Vector3((float) _hp / _Maxhp * 0.5025f, Image.localScale.y); 
+    }
     public void GetDamaged(int damageP, int damageM)
     {
 
