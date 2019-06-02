@@ -127,6 +127,10 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                     break;
                 case "Dash":
                     break;
+                case "CacAtt":
+                    AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
+                    StartCoroutine(CoolDownCoroutine(competence, true));
+                    break;
             }
         }
     }
@@ -135,14 +139,12 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
         StartCoroutine(CoolDownCoroutine(competence, true));
-        if (_playerData.Name == "Warrior") return;
         InstantiateProjectiles(competence, ProjectilesDirection(dx, dy));
     }
     
     private void InstantiateArcProjectiles(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
-        if (_playerData.Name == "Warrior") return;
         float rotDist = 10;
         float rot = rotDist;
         Vector3 dir = ProjectilesDirection(dx, dy);

@@ -364,7 +364,6 @@ public class WeaponManager : MonoBehaviour
                 if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
             }
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D other)
