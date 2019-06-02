@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
     float fy = 0;
     int c = 0;
     private bool reset = false;
+
+    float lastx = 0;
+    float lasty = 0;
+
+    bool moving = false;
     #endregion 
 
     #region Initialise
@@ -36,19 +41,19 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
 
         StartCoroutine(UpdatePlayerPos());
         UDPEvent.Register(this);
-        if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
+        /*if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
         {
             new Thread(() =>
             {
                 while (true)
                 {
-                    Debug.Log("resetting mov");
-                    reset = true;
-                    Thread.Sleep(500);
+                    if (moving) 
+                        reset = true;
+                    Thread.Sleep(25);
                 }
 
             }).Start();
-        }
+        }*/
     }
 
 
@@ -69,15 +74,15 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         }
         else
         {
-            Move(mxDir, myDir, new Vector3(fx, fy));
+            Move(mxDir, myDir);
         }
         int xDir = (int)Input.GetAxisRaw("Horizontal");
         int yDir = (int)Input.GetAxisRaw("Vertical");
-        if(xDir != cX || yDir != cY)
+        if (xDir != cX || yDir != cY)
         {
             cX = xDir;
             cY = yDir;
-            MultiManager.socket.Send("JINFO " + xDir + " " + yDir);
+            MultiManager.socket.Send("PINFO TP " + transform.position.x + " " + transform.position.y + ";JINFO " + xDir + " " + yDir);
         }
         if (tp)
         {
@@ -100,15 +105,19 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
         int xDir = (int)Input.GetAxisRaw("Horizontal");
         int yDir = (int)Input.GetAxisRaw("Vertical");
 
-        
-            PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
-            if (xDir == 0 && yDir == 0) return;
+        PlayerMoveEvent.Raise(new EventArgsCoor(xDir, yDir, _playerData.MultiID));
 
-            Vector3 distance = GetDistance(xDir, yDir);
+        if (xDir == 0 && yDir == 0)
+        {
+            moving = false;
+            return;
+        }
+        moving = true;
+        Vector3 distance = GetDistance(xDir, yDir);
 
-            transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
-        
+        transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
+
     }
 
     public void OnReceive(string text)
@@ -120,20 +129,20 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
             {
                 mxDir = int.Parse(args[2]);
                 myDir = int.Parse(args[3]);
-                
+
             }
         }
-        if(args[0] == "PINFO" && args[1] == (_playerData.MultiID +"") && args[2] == "TP")
+        if (args[0] == "PINFO" && args[1] == (_playerData.MultiID + "") && args[2] == "TP")
         {
             fx = float.Parse(args[3]);
-            fy = float.Parse(args[2]);
+            fy = float.Parse(args[4]);
             tp = true;
         }
     }
 
-    public void Move(int xDir, int yDir, Vector3 final)
+    public void Move(int xDir, int yDir)
     {
-        Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
+        //Debug.Log("Move from multi: " + xDir + " " + yDir + " canmove: " + _playerData.CanMove);
         if (!_playerData.CanMove)
         {
             return;
@@ -147,7 +156,6 @@ public class PlayerMovement : MonoBehaviour, UDPEventListener
 
         transform.Translate(distance * _playerData.MoveSpeed * Time.deltaTime);
 
-        transform.position = final;
     }
 
     private IEnumerator UpdatePlayerPos()

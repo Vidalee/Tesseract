@@ -14,9 +14,12 @@ public class UDPSocket
     private State state = new State();
     private EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
     private AsyncCallback recv = null;
-    private List<string> toSend = new List<string>();
+    private List<string> pinfos = new List<string>();
     private string lastS = "";
     private string lastR = "";
+
+    private TcpClient client;
+    private NetworkStream ns;
 
     public class State
     {
@@ -35,46 +38,41 @@ public class UDPSocket
     {
         new Thread(() =>
         {
-            _socket.Connect(IPAddress.Parse(address), port);
-            Receive();
+            const int PORT_NO = 27000;
+            const string SERVER_IP = "127.0.0.1";
+            //---data to send to the server---
 
-        }).Start();
-
-        new Thread(() =>
-        {
+            //---create a TCPClient object at the IP and port no.---
+            TcpClient client = new TcpClient(SERVER_IP, PORT_NO);
+            NetworkStream nwStream = client.GetStream();
             while (true)
             {
-                Thread.Sleep(1000);
-                lastS = "";
-            }
+                this.client = client;
+                this.ns = nwStream;
 
-        }).Start();
-
-        new Thread(() =>
-        {
-            while (true)
-            {
-                //Thread.Sleep(3);
-                if (toSend.Count != 0)
-                {
-                    
-                    string text = toSend[0];
-                    toSend.RemoveAt(0);
-                    if(lastS != text)
+                //---read back the text---
+                byte[] bytesToRead = new byte[client.ReceiveBufferSize];
+                int bytesRead = nwStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
+                string msg = Encoding.ASCII.GetString(bytesToRead, 0, bytesRead);
+                string[] p = msg.Split(';');
+                foreach(string m in p) {
+                    Debug.Log("RAW RECEIVE: " + m);
+                    UDPEvent.Receive(m);
+                    if (m.StartsWith("SET"))
                     {
-                        lastS = text;
-                        byte[] data = Encoding.ASCII.GetBytes(text);
-                        _socket.Send(data, 0, data.Length, SocketFlags.None);
-                        _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (ar) =>
-                        {
 
-                            State so = (State)ar.AsyncState;
-                            int bytes = _socket.EndSend(ar);
-                            Debug.Log("SEND: " + text);
-                        }, state);
-                    } 
+                        string[] args = m.Split(' ');
+                        if (args.Length != 3) return;
+                        if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);
+                        Coffre.Remplir(args[1], args[2]);
+
+                    }
                 }
             }
+            client.Close();
+
+
+
         }).Start();
 
 
@@ -82,9 +80,19 @@ public class UDPSocket
 
     public void Send(string text)
     {
-        if (text == "PING")
-            Thread.Sleep(30);
-        toSend.Add(text);
+        if(text.Contains("PINFO TP"))
+        {
+            if (pinfos.Contains(text)) return;
+            else pinfos.Add(text);
+        }
+        text += ";";
+        if (text == "PING;")
+            Thread.Sleep(300);
+        byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(text);
+
+        //---send the text---
+        Console.WriteLine("Sending : " + text);
+        ns.Write(bytesToSend, 0, bytesToSend.Length);
     }
 
     private void Receive()
@@ -102,7 +110,7 @@ public class UDPSocket
             UDPEvent.Receive(msg);
             if (msg.StartsWith("SET"))
             {
-                
+
                 string[] args = msg.Split(' ');
                 if (args.Length != 3) return;
                 if (Coffre.Existe(args[0])) Coffre.Vider(args[0]);

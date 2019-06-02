@@ -73,7 +73,6 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
             start = false;
             ChangeScene.ChangeToScene("MultiGame");
         }
-        Debug.Log("refresh? " + refresh);
         if (refresh)
         {
             _socket.resetLastR();

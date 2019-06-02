@@ -85,7 +85,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             {
                 dx = float.Parse(args[3]);
                 dy = float.Parse(args[4]);
-                Debug.Log("parsed: dx " + dx + " dy " + dy);
                 if (args[2] == "AA")
                 {
                     aa = true;
