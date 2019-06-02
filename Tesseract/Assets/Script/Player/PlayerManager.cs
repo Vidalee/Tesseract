@@ -37,16 +37,6 @@ public class PlayerManager : MonoBehaviour
 
     public PlayerData PlayerData => _playerData;
 
-    #region Update
-
-    private void Update()
-    {
-        if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
-        if(Input.GetKey("x")) GetXp(10000);
-    }
-
-    #endregion
-
     #region Initialise
 
     public void Create(int x, int y, int id, bool solo)

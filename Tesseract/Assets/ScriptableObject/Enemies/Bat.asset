@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   name: Bat
-  _MaxHp: 100
-  _Hp: 100
+  _MaxHp: 50
+  _Hp: 50
   _XpValue: 2
   _physicsDamage: 3
   _MaxCooldown: 1

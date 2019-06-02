@@ -31,8 +31,6 @@ public class MousePotSelection : MonoBehaviour
     private void UpdatePos(int i)
     {
         actualIndex = (actualIndex + i + 4) % 4;
-        Debug.Log(pos[actualIndex]);
-        Debug.Log(transform.position.x);
         transform.position = new Vector2(pos[actualIndex], transform.position.y);
     }
 }

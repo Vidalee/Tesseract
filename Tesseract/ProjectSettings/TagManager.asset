@@ -15,6 +15,7 @@ TagManager:
   - PlayerFeet
   - Perspective
   - Mouse
+  - Boss
   layers:
   - Default
   - TransparentFX

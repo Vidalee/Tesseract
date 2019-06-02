@@ -48,13 +48,13 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                 UseCompetence(_playerData.Competences[1], 1);
             }
 
-            if (Input.GetKey("e"))
+            if (Input.GetKey(KeyCode.Mouse1))
             {
                 action = "A1";
                 UseCompetence(_playerData.Competences[2], 2);
             }
 
-            if (Input.GetKey("r"))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 action = "A2";
                 UseCompetence(_playerData.Competences[3], 3);
