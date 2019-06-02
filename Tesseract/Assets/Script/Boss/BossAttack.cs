@@ -70,7 +70,7 @@ public class BossAttack : MonoBehaviour
             }
             else
             {
-                TryAttack("AttackBat");
+                //TryAttack("AttackBat");
             }
 
             StartCoroutine(Cooldown());

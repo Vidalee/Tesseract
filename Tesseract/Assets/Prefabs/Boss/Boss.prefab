@@ -183,7 +183,7 @@ MonoBehaviour:
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
   _moveSpeed: 1
-  _attackRange: 2
+  _attackRange: 3
   _notCloseEnough: 10
   _distDash: 7
   entityLayer:

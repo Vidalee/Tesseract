@@ -15,6 +15,8 @@ public class BossMovement : MonoBehaviour
     private Transform _player;
     [SerializeField] protected LayerMask entityLayer;
 
+    private bool _dashing = false;
+    private bool _animationStarted = false;
     public void Update()
     {
         if (_player == null)
@@ -23,25 +25,52 @@ public class BossMovement : MonoBehaviour
             return;
         }
         
-        _sprite.sortingOrder = (int)(transform.position.y * -10);
-        Vector3 distanceToPos = _player.position + new Vector3(0, -0.375f) - transform.position;
+        Vector3 distanceToPos = _player.position + new Vector3(0, -0.5f) - transform.position;
         float magnitude = distanceToPos.magnitude;
-        if (magnitude > _notCloseEnough)
+        if (magnitude > _notCloseEnough || (_dashing && magnitude > _attackRange))
         {
-            _a.SetBool("Dashing", true);
-            _a.Play("PreDash");
-            
-            RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position, entityLayer);
-            StartCoroutine(Dash(linecast.point));
+            if (!_animationStarted || !_dashing)
+            {
+                _a.Play("PreDash");
+                _animationStarted = true;
+                _a.SetBool("Dashing", true);
+                _a.SetBool("Speed", false);
+                _dashing = true;
+                StartCoroutine(Dashing());
+            }
+            _moveSpeed = _distDash;
+            //RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position, entityLayer);
+            //Debug.Log(linecast.point);
+            //StartCoroutine(Dash((_player.position - transform.position).normalized));
         }
         else if (magnitude > _attackRange)
         {
-            _a.SetBool("Speed", true);
+            if (!_animationStarted)
+            {
+                _a.SetBool("Speed", true);
+                _a.Play("Move");
+                _animationStarted = true;
+            }
             StraightToPoint(distanceToPos.normalized);
         }
         else
         {
+            _moveSpeed = 1;
             _a.SetBool("Speed", false);
+            _a.SetBool("Dashing", false);
+            _animationStarted = false;
+            _dashing = false;
+        }
+    }
+
+    public IEnumerator Dashing()
+    {
+        yield return new WaitForSeconds(0.5f);
+        while (_dashing)
+        {
+            Vector3 pos = _player.position + new Vector3(0, -0.5f) - transform.position;
+            StraightToPoint(pos.normalized);
+            yield return null;
         }
     }
 

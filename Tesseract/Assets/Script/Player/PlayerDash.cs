@@ -81,7 +81,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
         Vector3 dir = dx == 0 && dy == 0 ? Direction() : new Vector3(dx, dy, 0);
         if ((string)Coffre.Regarder("mode") == "multi" && _playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
-        Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
+        //Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
 
         transform.position += direction - direction * 0.01f;
@@ -125,7 +125,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
     {
         Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         cursorPos.z = 0;
-        Debug.Log((cursorPos - transform.position).normalized.ToString());
+        //Debug.Log((cursorPos - transform.position).normalized.ToString());
         return (cursorPos - transform.position).normalized;
     }
 
