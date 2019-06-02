@@ -295,6 +295,8 @@ public class PlayerManager : MonoBehaviour
     public void UpgradeCompetence(IEventArgs args)
     {
         int i = ((EventArgsInt) args).X;
+        
+        Debug.Log(_playerData.CompPoint);
 
         if(_playerData.CompPoint <= 0) return;
 

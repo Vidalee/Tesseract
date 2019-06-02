@@ -34,13 +34,13 @@ public class BossDeath : MonoBehaviour
         else weaponses = warriorW;
         
         Weapons w1 = ScriptableObject.CreateInstance<Weapons>();
-        w1.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel());
+        w1.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel() + 5);
         
         Weapons w2 = ScriptableObject.CreateInstance<Weapons>();
-        w2.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel());
+        w2.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel() + 5);
         
         Weapons w3 = ScriptableObject.CreateInstance<Weapons>();
-        w3.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel());
+        w3.Create(weaponses[Random.Range(0, weaponses.Length)], StaticData.RandomLevel() + 5);
 
         Instantiate(Item, new Vector3(8, 12, 0), Quaternion.identity).GetComponent<WeaponManager>().Create(w1);
         Instantiate(Item, new Vector3(10, 12, 0), Quaternion.identity).GetComponent<WeaponManager>().Create(w2);

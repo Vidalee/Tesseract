@@ -30,11 +30,11 @@ public class Weapons : GamesItem
         colliderPoints = weapon.colliderPoints;
         _class = weapon._class;
         cd = weapon.cd + lvl / 2;
-        effectDamage = weapon.effectDamage + lvl;
+        effectDamage = effectType != 0 ? weapon.effectDamage + lvl : 0;
         effectType = weapon.effectType;
         effectSprite = weapon.effectSprite;
-        effectProb = weapon.effectProb + lvl / 2;
-        duration = weapon.duration + lvl / 10;
+        effectProb = effectType != 0 ? weapon.effectProb + lvl / 2 : 0;
+        duration = effectType != 0 ? weapon.duration + lvl / 10 : 0;
         id = weapon.id;
     }
 

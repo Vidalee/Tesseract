@@ -58,6 +58,7 @@ namespace Script.Enemies
             List<Transform> Targets = new List<Transform>();
             foreach (Transform player in Players)
             {
+                if(player != null)
                 if ((player.transform.position - Enemy.StartPos).magnitude < Enemy.DetectionRange) Targets.Add(player);
             }
             if (Targets.Count == 0)
