@@ -1,4 +1,5 @@
-﻿using Script.GlobalsScript.Struct;
+﻿using Script.GlobalsScript;
+using Script.GlobalsScript.Struct;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory")]
@@ -110,8 +111,8 @@ public class Inventory : ScriptableObject
         if(weapon == null) return;
         
         Transform o = Instantiate(W, pos, Quaternion.identity);
-        o.GetComponent<WeaponManager>().Create(weapon);
         weapon.inPlayerInventory = false;
+        o.GetComponent<WeaponManager>().Create(weapon);
         
         weapon = null;
         WeaponsAth.Raise(new EventArgsWeaponsAth(null));

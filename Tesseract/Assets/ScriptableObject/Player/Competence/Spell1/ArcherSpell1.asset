@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: ArcherSpell1
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
-  manaCost: 10
+  cooldown: 2
+  manaCost: 30
   id: ArcProj
-  allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
-  apDamage: 10
-  live: 10
-  number: 10
-  speed: 10
+  adDamage: 30
+  apDamage: 20
+  live: 1
+  number: 5
+  speed: 12
+  addNumber: 6
+  AddLive: 10
+  icon1: {fileID: 21300034, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  icon2: {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}

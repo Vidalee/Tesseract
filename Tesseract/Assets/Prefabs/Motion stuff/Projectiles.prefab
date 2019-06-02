@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilesAnimation: {fileID: 6960325498968825402, guid: 43798485657fb274fb2d95ea2a3e2756,
     type: 3}
+  Damage: {fileID: 11400000, guid: 38a3ac4708b9036409d40e34fb291f04, type: 2}
 --- !u!58 &5407684077624653620
 CircleCollider2D:
   m_ObjectHideFlags: 0

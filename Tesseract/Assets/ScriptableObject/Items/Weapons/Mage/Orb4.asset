@@ -11,16 +11,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 232de6ed3b2f9f040b871d205ccb713f, type: 3}
   m_Name: Orb4
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   icon: {fileID: 21300004, guid: d3ffcf07ee7dedd418c25fef1ea6cade, type: 3}
   displayName: Lightning Orb
-  description:
+  description: 
   id: 24
   magicDamage: 20
   physicsDamage: 20
   cd: 5
   effectDamage: 0
-  effectProb: 10
+  effectProb: 20
   effectType: 3
   effectSprite: {fileID: 21300000, guid: 1363730b71954d14c9a624bea17eed7f, type: 3}
   lvl: 0

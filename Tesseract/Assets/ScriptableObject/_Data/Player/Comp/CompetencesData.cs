@@ -9,7 +9,6 @@ public abstract class CompetencesData : ScriptableObject
     private bool usable;
     private int lvl;
     
-    [SerializeField] protected string allyTag;
     [SerializeField] protected string enemyTag;
 
     public float Cooldown
@@ -36,9 +35,9 @@ public abstract class CompetencesData : ScriptableObject
         cooldown = comp.cooldown;
         manaCost = comp.manaCost;
         usable = true;
-        allyTag = comp.allyTag;
         enemyTag = comp.enemyTag;
         id = comp.id;
+        this.lvl = lvl;
         
         ChildCreate(comp, lvl);
     }
@@ -47,11 +46,13 @@ public abstract class CompetencesData : ScriptableObject
 
     public string Name => name;
 
-    public string AllyTag => allyTag;
-
     public string EnemyTag => enemyTag;
 
     public string Id => id;
 
-    public int Lvl => lvl;
+    public int Lvl
+    {
+        get => lvl;
+        set => lvl = value;
+    }
 }

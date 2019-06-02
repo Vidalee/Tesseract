@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Spider
   m_EditorClassIdentifier: 
   name: Spider
-  _MaxHp: 50
-  _Hp: 50
+  _MaxHp: 150
+  _Hp: 150
   _XpValue: 5
-  _PhysicsDamage: 5
-  _MagicDamage: 0
+  _physicsDamage: 3
   _MaxCooldown: 1.5
+  DamageBoost: 0.5
+  _ArmorP: 20
+  _ArmorM: 10
   _MoveSpeed: 2.75
   _AttackRange: 0.5
   _DetectionRange: 25

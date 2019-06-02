@@ -25,8 +25,8 @@ public class Weapons : GamesItem
         icon = weapon.icon;
         displayName = weapon.displayName;
         description = weapon.description;
-        physicsDamage = weapon.physicsDamage + (int)((float) weapon.physicsDamage / 10 * lvl);
-        magicDamage = weapon.magicDamage + (int)((float) weapon.magicDamage / 10 * lvl);
+        physicsDamage = weapon.physicsDamage + lvl;
+        magicDamage = weapon.magicDamage + lvl;
         colliderPoints = weapon.colliderPoints;
         _class = weapon._class;
         cd = weapon.cd + lvl / 2;
@@ -35,6 +35,7 @@ public class Weapons : GamesItem
         effectSprite = weapon.effectSprite;
         effectProb = weapon.effectProb + lvl / 2;
         duration = weapon.duration + lvl / 10;
+        id = weapon.id;
     }
 
     public int PhysicsDamage => physicsDamage;

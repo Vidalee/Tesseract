@@ -29,7 +29,7 @@ public class WeaponManager : MonoBehaviour
         
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
-        if (!weapon.inPlayerInventory) _sprite.sortingOrder = (int) transform.position.y * -15;
+        if (!weapon.inPlayerInventory) _sprite.sortingOrder = (int) ((transform.position.y + 0.7) * -10);
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
         collider.points = weapon.ColliderPoints;
@@ -352,17 +352,17 @@ public class WeaponManager : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Mouse"))
+        {
+            AthItem.Raise(new EventArgsItemAth(Weapon));
+        }
+        
         if (_playerData.Name == "Warrior")
         {
-            if (other.CompareTag("Mouse"))
-            {
-                AthItem.Raise(new EventArgsItemAth(Weapon));
-            }
-
             if (isAttacking && other.CompareTag("Enemies"))
             {
                 EnemiesLive s = other.gameObject.GetComponent<EnemiesLive>();
-                s.GetDamaged(_playerData.PhysicsDamage + Weapon.PhysicsDamage + comp.AdDamage, _playerData.MagicDamage + Weapon.MagicDamage);
+                s.GetDamaged(_playerData.PhysicsDamage + Weapon.PhysicsDamage + comp.AdDamage, _playerData.MagicDamage + Weapon.MagicDamage + comp.ApDamage);
                 if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
             }
         }

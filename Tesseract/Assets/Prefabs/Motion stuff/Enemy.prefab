@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5143945073716395347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0006008148, y: 1.0897007, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.8762414, y: 0.49671966, z: 1}
   m_Children: []
   m_Father: {fileID: 2748399577407957624}
@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4730421346704413094}
   - component: {fileID: 7921205444448116669}
   - component: {fileID: 5362968789402854039}
+  - component: {fileID: 2001376408786120375}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -178,6 +179,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &2001376408786120375
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235926722726482283}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.0001}
+  m_EdgeRadius: 0
 --- !u!1 &5994532140397432917
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,8 +214,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 442513264576149954}
-  - component: {fileID: 153487125084920880}
-  - component: {fileID: 6055508183065932926}
   - component: {fileID: 2780564005037560652}
   m_Layer: 0
   m_Name: hp bar
@@ -205,53 +230,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5994532140397432917}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44099998, y: 1.0900002, z: 0}
+  m_LocalPosition: {x: -0.44, y: 0, z: 0}
   m_LocalScale: {x: 0.015810957, y: 0.025556963, z: 0.50874996}
   m_Children: []
   m_Father: {fileID: 2748399577407957624}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &153487125084920880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5994532140397432917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8913c6c7acfd950458c444d47eea2232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6055508183065932926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5994532140397432917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 3a17fd1af175149bd9b0e22751c1e12e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 153487125084920880}
-        m_MethodName: ScaleBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!212 &2780564005037560652
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -423,6 +407,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 0}
+  Projectiles: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2,
+    type: 3}
+  Archer: {fileID: 7400000, guid: c2cfaba5405d50a418a8ea3432ab4118, type: 2}
+  Sans: {fileID: 7400000, guid: 303dbf4e1acf41b44a8e61ede9370183, type: 2}
   PlayerDamage: {fileID: 11400000, guid: 38a3ac4708b9036409d40e34fb291f04, type: 2}
   players: []
   CanAttack: 0
@@ -445,7 +433,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1363730b71954d14c9a624bea17eed7f, type: 3}
   - {fileID: 21300000, guid: fd03191ffb0b18c49b29eee187da5111, type: 3}
   Enemy: {fileID: 0}
-  weapon: {fileID: 3877816231457508458, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}
   armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}
   playerDatas: []
   hpBar: {fileID: 5994532140397432917}
@@ -554,7 +541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9108514642056930618}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.026518106}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 2748399577407957624}

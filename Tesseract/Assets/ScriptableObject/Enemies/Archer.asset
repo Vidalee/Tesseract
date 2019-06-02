@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   name: Archer
-  _MaxHp: 100
-  _Hp: 100
+  _MaxHp: 250
+  _Hp: 250
   _XpValue: 10
-  _PhysicsDamage: 5
-  _MagicDamage: 0
+  _physicsDamage: 10
   _MaxCooldown: 2
+  DamageBoost: 1
+  _ArmorP: 20
+  _ArmorM: 15
   _MoveSpeed: 3
   _AttackRange: 6
   _DetectionRange: 15
   _StartPos: {x: 0, y: 0, z: 0}
   _Competences:
-  - {fileID: 11400000, guid: 8177b743ae5cd4d48a42bec4db0b69e6, type: 2}
+  - {fileID: 0}
   _Sprite: {fileID: 21300012, guid: d09985e565b04004dae0d270572eefb8, type: 3}
   _Triggered: 0
   OnHisWayBack: 0

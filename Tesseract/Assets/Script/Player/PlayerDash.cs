@@ -9,6 +9,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
     public PlayerData _playerData;
     [SerializeField] protected LayerMask BlockingLayer;
     [SerializeField] protected GameEvent PlayerDashEvent;
+    public GameEvent Comp;
 
     #endregion
 
@@ -38,6 +39,7 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
 
         if (Input.GetKey("space") && _playerData.Competences[0].Usable)
         {
+            Comp.Raise(new EventArgsDoubleInt((int) _playerData.Competences[0].Cooldown, 0));
             if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             {
                 if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.Competences[0] as DashComp));

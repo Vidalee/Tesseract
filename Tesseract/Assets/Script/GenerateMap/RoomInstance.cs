@@ -85,24 +85,22 @@ public class RoomInstance : MonoBehaviour
 
     public void AddChest()
     {
-        if (Random.Range(0, 3) == 0)
-        {
-            int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
-            int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
 
-            if (!script.Instances[y, x] && !script.Instances[y + 1, x] && !script.Instances[y - 1, x])
-            {
-                Transform o = Instantiate(Chest, new Vector3(x, y, 0), Quaternion.identity, transform);
-                ChestData chest = ScriptableObject.CreateInstance<ChestData>();
-                ChestData chestref = ChestDatas[Random.Range(0, ChestDatas.Length)];
-                
-                chest.Create(chestref);
-                chest.Item = GamesItems[Random.Range(0, GamesItems.Length)];
-                o.GetComponent<Chest>().Create(chest);
-                
-                script.AddToInstance(y, x, true, false);
-                _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
-            }
+        int x = _roomData.X1 + Random.Range(1, _roomData.Width - 2);
+        int y = _roomData.Y1 + Random.Range(1, _roomData.Height - 2);
+
+        if (!script.Instances[y, x] && !script.Instances[y + 1, x] && !script.Instances[y - 1, x])
+        {
+            Transform o = Instantiate(Chest, new Vector3(x, y, 0), Quaternion.identity, transform);
+            ChestData chest = ScriptableObject.CreateInstance<ChestData>();
+            ChestData chestref = ChestDatas[Random.Range(0, ChestDatas.Length)];
+            
+            chest.Create(chestref);
+            chest.Item = GamesItems[Random.Range(0, GamesItems.Length)];
+            o.GetComponent<Chest>().Create(chest);
+            
+            script.AddToInstance(y, x, true, false);
+            _roomData.ModifyGrid(y - _roomData.Y1, x - _roomData.X1 , o);
         }
     }
 

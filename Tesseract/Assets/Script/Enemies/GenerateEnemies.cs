@@ -89,22 +89,23 @@ public class GenerateEnemies : MonoBehaviour
     {
         EnemyData newEnemy = ScriptableObject.CreateInstance<EnemyData>();
         newEnemy.Create(enemyData, x, y, StaticData.RandomLevel());
-
+        
         GameObject enemy = Instantiate(Enemy, new Vector3(x, y, 0), Quaternion.identity);
         enemiesList.Add(enemy);            
         
         Animator animator = enemy.GetComponentInChildren<Animator>();
         SetAnimation(newEnemy, animator);
-                    
+                            
         enemy.GetComponent<Attack>().Create(newEnemy, players, animator);
         enemy.GetComponent<EnemiesLive>().Create(newEnemy, playerDatas); 
         enemy.GetComponent<EnemiesMovement>().Create(newEnemy, players, playerDatas, BlockingLayer, animator);
         enemy.GetComponent<Pathfinding>().Create(newEnemy);
         enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
         enemy.GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
-        enemy.transform.GetChild(2).transform.position = new Vector3(0, newEnemy.EffectY + 0.181f, 0);
-        enemy.transform.GetChild(3).transform.position = new Vector3(0, newEnemy.EffectY, 0);
-        enemy.transform.GetChild(4).transform.position = new Vector3(0, newEnemy.EffectY, 0);
+        enemy.transform.GetChild(0).GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
+        enemy.transform.GetChild(2).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY + 0.181f, 0);
+        enemy.transform.GetChild(3).transform.position = new Vector3(x, y, 0) + new Vector3(-0.44f, newEnemy.EffectY, 0);
+        enemy.transform.GetChild(4).transform.position = new Vector3(x, y, 0) + new Vector3(0, newEnemy.EffectY, 0);
     }
     
     private void SetAnimation(EnemyData enemyData, Animator animator)

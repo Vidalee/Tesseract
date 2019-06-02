@@ -1,5 +1,6 @@
 using System;
 using Script.GlobalsScript.Struct;
+using Script.Pathfinding;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]
@@ -29,9 +30,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
 
-    [SerializeField] protected int _MaxXp;
+    [SerializeField] protected long _MaxXp;
 
-    public int _Xp;
+    public long _Xp;
     [SerializeField] protected int _MaxLvl;
     public int _Lvl;
 
@@ -75,13 +76,13 @@ public class PlayerData : ScriptableObject
         
         _MaxHp = playerData.MaxHp + Lvl * 5;
         _Hp = _MaxHp;
-        _MaxMana = playerData.MaxMana;
+        _MaxMana = playerData.MaxMana + Lvl * 5;
         _Mana = MaxMana;
         _ManaRegen = playerData.ManaRegen + Lvl;
         _PhysicsDamage = playerData.PhysicsDamage + Lvl * 5;
         _MagicDamage = playerData.MagicDamage + Lvl * 5;
         _MoveSpeed = playerData.MoveSpeed;
-        _MaxXp = playerData.MaxXp + (int) (playerData.MaxXp * Lvl * 0.25f);
+        _MaxXp = _Lvl == 0 ? playerData.MaxXp : (int) (Mathf.Pow(1.2f, Lvl) * playerData.MaxXp);
         _Xp = playerData.Xp;
         _MaxLvl = 99;
         
@@ -224,7 +225,7 @@ public class PlayerData : ScriptableObject
         }
     }
 
-    public int Xp
+    public long Xp
     {
         get => _Xp;
         set
@@ -267,7 +268,7 @@ public class PlayerData : ScriptableObject
         set => _MoveSpeed = value;
     }
 
-    public int MaxXp
+    public long MaxXp
     {
         get => _MaxXp;
         set => _MaxXp = value;

@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     public GameEvent SetManaBar;
     public GameEvent SetMana;
     public GameEvent SetLvl;
+    public GameEvent CompAth;
 
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public List<GamesItem> Items;
@@ -41,7 +42,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
-        if(Input.GetKey("x")) GetXp(10);
+        if(Input.GetKey("x")) GetXp(10000);
     }
 
     #endregion
@@ -91,7 +92,8 @@ public class PlayerManager : MonoBehaviour
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
         SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
-
+        CompAth.Raise(new EventArgsNull());
+        
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
         o.GetComponent<PotionUsable>().Create(_playerData);
@@ -142,7 +144,7 @@ public class PlayerManager : MonoBehaviour
         string type = Perso != "" ? Perso : StaticData.PlayerChoice;
         pers = pers == 0 ? FindClass(type) : pers - 1;
         
-        PlayerDataSave data = SaveSystem.LoadPlayer("Mage");
+        PlayerDataSave data = SaveSystem.LoadPlayer(type);
         if (data == null)
         {
             ResetStats(pers);
@@ -157,12 +159,14 @@ public class PlayerManager : MonoBehaviour
         }
 
         ResetStats(pers, data.Lvl);
+        _playerData.Xp = data.Xp;
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
         it.Create(item as Weapons, data.weaponLvl);
-
+                
         _playerData.Inventory.AddItem(it, Vector3.zero);
+        _playerData.StateProj = it.EffectType;
 
         _playerData.Inventory.Potions = new Potions[4];
     }
@@ -200,22 +204,22 @@ public class PlayerManager : MonoBehaviour
 
     #region PlayerStats
 
-    public void GetXp(int amout)
+    public void GetXp(long amout)
     {
-        int gap = _playerData.MaxXp - _playerData.Xp;
+        long gap = _playerData.MaxXp - _playerData.Xp;
 
         while (amout >= gap)
         {
             amout = amout - gap;
 
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
-            _playerData.Xp = gap;
+            _playerData.Xp = 0;
 
-            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
+            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.2f);
             
             UpgradeStats();
 
-            gap = _playerData.MaxXp - _playerData.Xp;
+            gap = _playerData.MaxXp;
         }
 
         _playerData.Xp += amout;
@@ -229,8 +233,9 @@ public class PlayerManager : MonoBehaviour
     {
 
         _playerData.MaxHp += 5;
+        _playerData.Hp += 5;
         _playerData.MaxMana += 5;
-        
+        _playerData.Mana += 5;
         _playerData.ManaRegen++;
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;

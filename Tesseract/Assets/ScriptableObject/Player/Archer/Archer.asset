@@ -25,13 +25,13 @@ MonoBehaviour:
   _Hp: 100
   _MaxMana: 100
   _Mana: 100
-  _ManaRegen: 2
-  _PhysicsDamage: 100
-  _MagicDamage: 50
-  _MoveSpeed: 3.5
-  _MaxXp: 100
+  _ManaRegen: 3
+  _PhysicsDamage: 15
+  _MagicDamage: 10
+  _MoveSpeed: 3
+  _MaxXp: 50
   _Xp: 0
-  _MaxLvl: 100
+  _MaxLvl: 200
   _Lvl: 1
   _Width: 0.5
   _Height: 0.75

@@ -16,9 +16,14 @@ MonoBehaviour:
   cooldown: 1
   manaCost: 10
   id: Boost
-  allyTag: Player
   enemyTag: Enemies
   apBoost: 10
   adBoost: 10
   coolDownBoost: 10
-  manaCostBoost: 10
+  duration: 0
+  icon1: []
+  icon2:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

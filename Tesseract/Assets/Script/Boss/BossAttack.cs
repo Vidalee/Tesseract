@@ -21,20 +21,12 @@ public class BossAttack : MonoBehaviour
     [SerializeField] protected GameObject _enemy;
     [SerializeField] protected EnemyData batData;
     
-    [SerializeField] protected Transform _player;
+    private Transform _player;
     [SerializeField] protected PlayerData _playerData;
     [SerializeField] protected List<Transform> _players = new List<Transform>();
     [SerializeField] protected List<PlayerData> _playerDatas = new List<PlayerData>();
     
     [SerializeField] protected LayerMask _blockingLayer;
-
-    public void Create(Transform player)
-    {
-        _player = player;
-        _playerData = StaticData.actualData;
-        _players.Add(player);
-        _playerDatas.Add(_playerData);
-    }
 
     public void TryAttack(string attack)
     {
@@ -59,6 +51,16 @@ public class BossAttack : MonoBehaviour
 
     private void Update()
     {
+        if (_player == null)
+        {
+            _player = GameObject.Find("Player(Clone)").transform;
+            if(_player == null) return;
+            _playerData = _player.GetComponent<PlayerMovement>()._playerData;
+            _players.Add(_player);
+            _playerDatas.Add(_playerData);
+            return;
+        }
+        
         _sprite.sortingOrder = (int) (transform.position.y * -10);
         if (!waitingCooldown)
         {
@@ -112,6 +114,7 @@ public class BossAttack : MonoBehaviour
         enemy.GetComponent<Pathfinding>().Create(newEnemy);
         enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
         enemy.GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
+        enemy.transform.GetChild(0).GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
         enemy.transform.GetChild(2).transform.position = new Vector3(0, newEnemy.EffectY + 0.181f, 0);
         enemy.transform.GetChild(3).transform.position = new Vector3(0, newEnemy.EffectY, 0);
         enemy.transform.GetChild(4).transform.position = new Vector3(0, newEnemy.EffectY, 0);

@@ -12,18 +12,16 @@ public class BossMovement : MonoBehaviour
     [SerializeField] protected float _notCloseEnough;
     [SerializeField] protected float _distDash;
 
-    public Transform _player;
-
-    public void Create(Transform player)
-    {
-        _player = player;
-        Debug.Log(_player);
-    }
+    private Transform _player;
     
     public void Update()
     {
-        //_player = GameObject.Find("Player (Clone)").transform;
-        //Debug.Log(_player);
+        if (_player == null)
+        {
+            _player = GameObject.Find("Player(Clone)").transform;
+            return;
+        }
+        
         _sprite.sortingOrder = (int)(transform.position.y * -10);
         Vector3 distanceToPos = _player.position + new Vector3(0, -0.375f) - transform.position;
         float magnitude = distanceToPos.magnitude;

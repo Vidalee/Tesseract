@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Simple shuriken
   id: 11
   magicDamage: 0
-  physicsDamage: 50
+  physicsDamage: 40
   cd: 0
   effectDamage: 0
   effectProb: 0

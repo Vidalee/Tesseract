@@ -1,4 +1,5 @@
 ﻿ using System.Collections;
+ using System.Linq.Expressions;
  using Script.GlobalsScript.Struct;
  using UnityEngine;
 
@@ -8,6 +9,8 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     public Transform Proj;
     public PlayerData _playerData;
+    public GameEvent Comp;
+    
     [SerializeField] protected GameEvent AttackEvent;
 
     #endregion
@@ -22,7 +25,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     private string action = "DEF";
 
     #endregion
-
 
     #region Initialise
 
@@ -43,36 +45,36 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             if (Input.GetMouseButton(0))
             {
                 action = "AA";
-                UseCompetence(_playerData.Competences[1]);
+                UseCompetence(_playerData.Competences[1], 1);
             }
 
             if (Input.GetKey("e"))
             {
                 action = "A1";
-                UseCompetence(_playerData.Competences[2]);
+                UseCompetence(_playerData.Competences[2], 2);
             }
 
             if (Input.GetKey("r"))
             {
                 action = "A2";
-                UseCompetence(_playerData.Competences[3]);
+                UseCompetence(_playerData.Competences[3], 3);
             }
         }
 
         if (aa)
         {
             aa = false;
-            UseCompetence(_playerData.Competences[1], dx, dy);
+            UseCompetence(_playerData.Competences[1], 1, dx, dy);
         }
         if (a1)
         {
             a1 = false;
-            UseCompetence(_playerData.Competences[1], dx, dy);
+            UseCompetence(_playerData.Competences[1], 2, dx, dy);
         }
         if (a2)
         {
             a2 = false;
-            UseCompetence(_playerData.Competences[2], dx, dy);
+            UseCompetence(_playerData.Competences[2], 3, dx, dy);
         }
     }
 
@@ -106,10 +108,13 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     #region Competence
 
-    private void UseCompetence(CompetencesData competence, float dx = 0, float dy = 0)
+    private void UseCompetence(CompetencesData competence, int index, float dx = 0, float dy = 0)
     {
         if (competence.Usable)
-        {
+        {       
+            Comp.Raise(new EventArgsDoubleInt((int) competence.Cooldown, index));
+            StartCoroutine(AfkCoroutine());
+
             switch (competence.Id)
             {
                 case "OneProj":
@@ -184,16 +189,22 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     }
 
     private void BoostPlayer(BoostComp competence, float dx = 0, float dy = 0)
-    {
+    {        
         _playerData.PhysicsDamage += competence.AdBoost;
         _playerData.MagicDamage += competence.ApBoost;
-        _playerData.ReduceCd(competence.CoolDownBoost);
-        
+        _playerData.ReduceCd(1 - competence.CoolDownBoost);
+
         StartCoroutine(CoolDownCoroutine(competence, true));
+        StartCoroutine(ResetBoost(competence));
+    }
+
+    private IEnumerator ResetBoost(BoostComp competence)
+    {
+        yield return new WaitForSeconds(competence.Duration);
         
         _playerData.PhysicsDamage -= competence.AdBoost;
         _playerData.MagicDamage -= competence.ApBoost;
-        _playerData.ReduceCd(1 / competence.CoolDownBoost);
+        _playerData.ReduceCd(1 / (1 - competence.CoolDownBoost));
     }
 
     #endregion
@@ -222,6 +233,13 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         yield return new WaitForSeconds(competence.Cooldown);
         competence.Usable = true;
     }
+
+    IEnumerator AfkCoroutine()
+    {
+        _playerData.CanMove = false;
+        yield return new WaitForSeconds(0.05f);
+        _playerData.CanMove = true;
+    }
     
     private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
     {
@@ -233,7 +251,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         int dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
         int dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
         
-        projectilesData.Created(dir, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
+        projectilesData.Created(dir.normalized, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
             competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
         
         Projectiles script = o.GetComponent<Projectiles>();

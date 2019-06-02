@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,9 @@ public class EnemiesLive : MonoBehaviour
 {
     public Sprite[] SpriteEffect;
     [SerializeField] protected EnemyData Enemy;
-    [SerializeField] protected GameObject weapon;
     [SerializeField] protected GameObject armory;
     [SerializeField] protected List<PlayerData> playerDatas;
     [SerializeField] protected GameObject hpBar; 
-    
 
     private SpriteRenderer Icon;
 
@@ -28,7 +27,6 @@ public class EnemiesLive : MonoBehaviour
 
     public void GetDamaged(int damageP, int damageM)
     {
-
         int dP = damageP - Enemy.ArmorP;
         int dM = damageM - Enemy.ArmorM;
         
@@ -42,7 +40,7 @@ public class EnemiesLive : MonoBehaviour
             Death();
         }
         
-        hpBar.transform.localScale = new Vector3((float) Enemy.Hp/Enemy.MaxHp * 0.01581096f, hpBar.transform.localScale.y);
+        hpBar.transform.localScale = new Vector3((Enemy.Hp/Enemy.MaxHp) * 0.01581096f, hpBar.transform.localScale.y);
     }
 
     public void Death()
@@ -55,6 +53,8 @@ public class EnemiesLive : MonoBehaviour
                 PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
                 ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();
                 Weapons weaponData = armoryManager.GetWeaponData(player.Name);
+                Debug.Log(weaponData.PhysicsDamage);
+                Debug.Log(Enemy.Lvl);
                 armoryManager.CreateWeapon(weaponData, transform, Enemy.Lvl);
             }
             Destroy(gameObject);
@@ -70,34 +70,33 @@ public class EnemiesLive : MonoBehaviour
 
     public void Effect(int effect, int damage, float duration)
     {
-        if (effect == 1)
+        switch (effect)
         {
-            StartCoroutine(ResetSpeed(Enemy.MoveSpeed, duration));
-            Enemy.MoveSpeed -= Enemy.MoveSpeed * ((float) damage / 100);
-            StartCoroutine(SetIcon(effect, duration));
+            case 1:
+                StartCoroutine(ResetSpeed(damage, duration));
+                break;
+            case 2:
+                StartCoroutine(DamagePoison(damage, duration));
+                break;
+            case 3:
+                StartCoroutine(Stun(duration));
+                break;
+            case 4:
+                StartCoroutine(DamageFire(damage, duration));
+                break;
         }
-        if (effect == 2)
-        {
-            StartCoroutine(DamagePoison(damage, duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        if (effect == 3)
-        {
-            StartCoroutine(Stun(duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        if (effect == 4)
-        {
-            StartCoroutine(DamageFire(damage, duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        
+
+        StartCoroutine(SetIcon(effect, duration));
+
     }
 
-    IEnumerator ResetSpeed(float reset, float duration)
+    IEnumerator ResetSpeed(float damage, float duration)
     {
+        float old = Enemy.MoveSpeed;
+        Enemy.MoveSpeed -= 1 + damage / 100;
+        if (Enemy.MoveSpeed < 0) Enemy.MoveSpeed = 0;
         yield return new WaitForSeconds(duration);
-        Enemy.MoveSpeed = reset;
+        Enemy.MoveSpeed = old;
     }
 
     IEnumerator DamagePoison(int damage, float duration)

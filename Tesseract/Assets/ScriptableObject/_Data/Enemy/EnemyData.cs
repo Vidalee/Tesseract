@@ -16,11 +16,10 @@ public class EnemyData : ScriptableObject
     [SerializeField] private float _Hp;
     private int _lvl;
     [SerializeField] protected float _XpValue;
-
     
     [SerializeField] protected int _physicsDamage;
-    [SerializeField] protected int _magicDamage;
     [SerializeField] protected float _MaxCooldown;
+    [SerializeField] protected float DamageBoost;
 
     [SerializeField] protected int _ArmorP;
     [SerializeField] protected int _ArmorM;
@@ -52,14 +51,14 @@ public class EnemyData : ScriptableObject
     [SerializeField] protected Vector3 feetPos;
 
     public void Create(EnemyData enemy, float x, float y, int lvl)
-    { 
+    {
+        Lvl = lvl;
         name = enemy.name;
         _MaxHp = enemy.MaxHp;
-        _Hp = enemy.Hp;
-        _XpValue = enemy.XpValue;
-        _physicsDamage = enemy.PhysicsDamage;
-        _magicDamage = enemy.MagicDamage;
-        _ArmorM = enemy._ArmorM;
+        _Hp = enemy.Hp + 10 * lvl;
+        _XpValue = enemy.XpValue * 1.2f;
+        _physicsDamage = enemy.PhysicsDamage + (int) (lvl * enemy.DamageBoost);
+        _ArmorM = enemy._ArmorM + lvl / 5;
         _MaxCooldown = enemy.MaxCooldown;
         _MoveSpeed = enemy.MoveSpeed;
         _AttackRange = enemy.AttackRange;
@@ -76,6 +75,7 @@ public class EnemyData : ScriptableObject
         colliderX = enemy.colliderX;
         colliderY = enemy.colliderY;
         feetPos = enemy.feetPos;
+        effectY = enemy.EffectY;
     }
 
     public string Name => name;
@@ -96,8 +96,6 @@ public class EnemyData : ScriptableObject
     public float XpValue => _XpValue;
 
     public int PhysicsDamage => _physicsDamage;
-
-    public int MagicDamage => _magicDamage;
 
     public int ArmorP => _ArmorP;
 
