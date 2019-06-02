@@ -7,7 +7,6 @@ public class RaiseCompUpgrade : MonoBehaviour
 
     public void Upgrade()
     {
-        Debug.Log("Work");
         int id = 1;
         
         if (transform.parent.name == "AA") id = 1;

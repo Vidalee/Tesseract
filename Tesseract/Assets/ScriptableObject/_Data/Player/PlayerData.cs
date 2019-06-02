@@ -108,7 +108,7 @@ public class PlayerData : ScriptableObject
         _Competences[3] = CreateInstance<BoostComp>();
 
         for (int i = 0; i < 4; i++)
-            _Competences[i].Create(playerData.Competences[i], lvl == null ? 0 : lvl[i + 1]);
+            _Competences[i].Create(playerData.Competences[i], 0);
 
         _Inventory = CreateInstance<Inventory>();
         _Inventory.Create(playerData._Inventory);
@@ -126,7 +126,6 @@ public class PlayerData : ScriptableObject
 
     public AnimationClip AnimProj()
     {
-        Debug.Log(stateProj);
         return compAnim[stateProj];
     }
 

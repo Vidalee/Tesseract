@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerDataSave
 {
     public int[] Lvl;
-    public int ManaRegen;
 
     public long Xp;
     public int weapon;
@@ -15,14 +14,14 @@ public class PlayerDataSave
     public PlayerDataSave(PlayerData player)
     {
         Xp = player.Xp;
-        ManaRegen = player.ManaRegen;
         Lvl = new int[5];
         CompPoint = player.CompPoint;
 
         Lvl[0] = player.Lvl;
-        for (int i = 1; i < 4; i++)
+        for (int i = 1; i < 5; i++)
         {
-            Lvl[i] = player.Competences[i].Lvl;
+            Lvl[i] = player.Competences[i - 1].Lvl;
+            Debug.Log(Lvl[i]);
         }
         
         weapon = ItemNull(player.Inventory.Weapon);
