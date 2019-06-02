@@ -1,5 +1,6 @@
 using System;
 using Script.GlobalsScript.Struct;
+using Script.Pathfinding;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player/Data")]

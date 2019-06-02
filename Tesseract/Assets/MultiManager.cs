@@ -9,7 +9,7 @@ public class MultiManager : MonoBehaviour, UDPEventListener
     public List<int> playersAlreadyInGame = new List<int>();
 
 
-    private bool ap = false;
+    private bool ap;
     private bool ad = true;
     private bool s = false;
     private int next = 0;

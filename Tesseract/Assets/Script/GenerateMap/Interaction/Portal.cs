@@ -39,7 +39,7 @@ public class Portal : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         
-        if (_portalData.IsBoss && StaticData.ActualFloor > StaticData.NumberFloor)
+        if (_portalData.IsBoss && StaticData.ActualFloor >= StaticData.NumberFloor)
         {
             Debug.Log(StaticData.ActualFloor);
 

@@ -184,16 +184,22 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     }
 
     private void BoostPlayer(BoostComp competence, float dx = 0, float dy = 0)
-    {
+    {        
         _playerData.PhysicsDamage += competence.AdBoost;
         _playerData.MagicDamage += competence.ApBoost;
-        _playerData.ReduceCd(competence.CoolDownBoost);
-        
+        _playerData.ReduceCd(1 - competence.CoolDownBoost);
+
         StartCoroutine(CoolDownCoroutine(competence, true));
+        StartCoroutine(ResetBoost(competence));
+    }
+
+    private IEnumerator ResetBoost(BoostComp competence)
+    {
+        yield return new WaitForSeconds(competence.Duration);
         
         _playerData.PhysicsDamage -= competence.AdBoost;
         _playerData.MagicDamage -= competence.ApBoost;
-        _playerData.ReduceCd(1 / competence.CoolDownBoost);
+        _playerData.ReduceCd(1 / (1 - competence.CoolDownBoost));
     }
 
     #endregion
