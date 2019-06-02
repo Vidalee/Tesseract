@@ -18,4 +18,4 @@ MonoBehaviour:
   id: 108
   type: livemana
   hpHeal: 60
-  manaHeal: 0
+  manaHeal: 60

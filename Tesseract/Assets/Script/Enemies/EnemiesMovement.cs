@@ -72,8 +72,8 @@ namespace Script.Enemies
                 foreach (Transform potentialTarget in Targets)
                 {
                     Vector3 playerFeet = potentialTarget.transform.position + new Vector3(0, -0.5f);
-                    RaycastHit2D linecast1 = Physics2D.Linecast(EnemyPos - new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
-                    RaycastHit2D linecast2 = Physics2D.Linecast(EnemyPos + new Vector3(Enemy.ColliderX / 2 + 0.1f , 0), playerFeet, BlockingLayer);
+                    RaycastHit2D linecast1 = Physics2D.Linecast(EnemyPos - new Vector3(Enemy.ColliderX / 2 + 0.001f , 0), playerFeet, BlockingLayer);
+                    RaycastHit2D linecast2 = Physics2D.Linecast(EnemyPos + new Vector3(Enemy.ColliderX / 2 + 0.001f , 0), playerFeet, BlockingLayer);
                                         
                     if (!linecast1 && !linecast2) 
                     { 

@@ -266,8 +266,9 @@ public class PlayerManager : MonoBehaviour
         {
             if ((args as EventArgsWeaponsAth).Weapons != null)
             {
-                armory.GetComponent<ArmoryManager>().CreateWeapon((args as EventArgsWeaponsAth).Weapons,
-                    transform.GetChild(0), 1, transform.GetChild(0));
+                Weapons weapon = (args as EventArgsWeaponsAth).Weapons;
+                armory.GetComponent<ArmoryManager>().CreateWeapon(weapon,
+                    transform.GetChild(0), weapon.Lvl, transform.GetChild(0));
             }
             else
             {

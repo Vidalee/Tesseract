@@ -12,6 +12,7 @@ public class ArmoryManager : MonoBehaviour
     [SerializeField] public List<Weapons> mageWeapons;
     [SerializeField] public List<Weapons> warriorWeapons;
     [SerializeField] public GameObject weapon;
+    [SerializeField] public LayerMask defaultLayer;
     public Weapons GetWeaponData(string category)
     {
         switch (category)
@@ -39,6 +40,7 @@ public class ArmoryManager : MonoBehaviour
         {
             newWeaponData.inPlayerInventory = true;
             newWeapon.transform.parent = parent;
+            newWeapon.layer = defaultLayer;
         }
         newWeapon.GetComponent<WeaponManager>().Create(newWeaponData);
     }

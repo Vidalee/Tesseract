@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 700305830372789256}
   - component: {fileID: 4927898001369744459}
   - component: {fileID: 2826358815441896796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,8 +53,6 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   PlayerMoveEvent: {fileID: 11400000, guid: 8b07c3cfc8dea9342b456e5bea798cb6, type: 2}
   isAttacking: 0
-  attack: {fileID: 7400000, guid: fc365fb04519a604eb093c6c022edad1, type: 2}
-  compteur: 0
   AthItem: {fileID: 11400000, guid: 7eefe18a3274b57438452d2d83d0a6da, type: 2}
   AthItemS: {fileID: 11400000, guid: c67a6a7fafbfcd54a94c5413a76f1e0c, type: 2}
   AddItem: {fileID: 11400000, guid: 32b35486695acb543b37503ea11de54e, type: 2}

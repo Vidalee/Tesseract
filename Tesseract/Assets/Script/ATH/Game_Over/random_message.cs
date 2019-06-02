@@ -9,7 +9,16 @@ public class random_message : MonoBehaviour
     public Text message;
     private int t;  
     private string[] Str_Array = new[]
-        {"Despite your efforts, the Dungeon overcame you... ", "Take up arms again for the Tesseract", "It wasn't the right strategy...", "Oops..."};
+        {
+            "Despite your efforts, the Dungeon overcame you... ", 
+            "Take up arms again for the Tesseract", 
+            "It wasn't the right strategy...", 
+            "Oops...",
+            "Oops you did it again !",
+            "Heroes never d... Oh wait...",
+            "Deja vu ! You've just been in this place before !"
+            
+        };
    
     // Start is called before the first frame update
     void Start()
