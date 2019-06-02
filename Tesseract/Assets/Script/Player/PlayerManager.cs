@@ -40,6 +40,12 @@ public class PlayerManager : MonoBehaviour
 
     #region Initialise
 
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.P)) SaveSystem.SavePlayer(_playerData);
+        if(Input.GetKey(KeyCode.O)) GetXp(10000);
+    }
+
     public void Create(int x, int y, int id, bool solo)
     {
         if (solo)
@@ -152,6 +158,14 @@ public class PlayerManager : MonoBehaviour
         ResetStats(pers, data.Lvl);
         _playerData.Xp = data.Xp;
         _playerData.CompPoint = data.CompPoint;
+
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < data.Lvl[i + 1]; j++)
+            {
+                _playerData.Competences[i].UpgradeStats();
+            }
+        }
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
@@ -295,7 +309,7 @@ public class PlayerManager : MonoBehaviour
     public void UpgradeCompetence(IEventArgs args)
     {
         int i = ((EventArgsInt) args).X;
-
+        
         if(_playerData.CompPoint <= 0) return;
 
         _playerData.CompPoint--;

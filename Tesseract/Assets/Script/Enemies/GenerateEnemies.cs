@@ -28,6 +28,7 @@ public class GenerateEnemies : MonoBehaviour
         List<PlayerData> playerDatas = new List<PlayerData>();
         foreach (Transform player in players)
         {
+            if(player != null)
             playerDatas.Add(player.parent.GetComponent<PlayerManager>().PlayerData);
         }
         

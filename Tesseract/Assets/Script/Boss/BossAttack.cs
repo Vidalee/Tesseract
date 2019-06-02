@@ -121,8 +121,9 @@ public class BossAttack : MonoBehaviour
         EnemyData newEnemy = ScriptableObject.CreateInstance<EnemyData>();
         newEnemy.Create(batData, transform.position.x, transform.position.y, StaticData.RandomLevel());
         
-        GameObject enemy = Instantiate(_enemy, new Vector3(x, y, 0), Quaternion.identity);
-
+        GameObject g = Instantiate(new GameObject(), Vector3.zero, Quaternion.identity);
+        GameObject enemy = Instantiate(_enemy, new Vector3(x, y, 0), Quaternion.identity, g.transform);
+        
         Animator animator = enemy.GetComponentInChildren<Animator>();
         SetAnimation(newEnemy, animator);
                 

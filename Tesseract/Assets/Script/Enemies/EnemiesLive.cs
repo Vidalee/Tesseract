@@ -55,9 +55,10 @@ public class EnemiesLive : MonoBehaviour
         {
             alive = false;
             if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer) 
-                                                                && !circleCollider2D.IsTouchingLayers(bossLayer))
+                                                                && !circleCollider2D.IsTouchingLayers(bossLayer)
+                                                                && transform.parent == null)
             {
-                if (Random.Range(0, 4) * 0 == 0)
+                if (Random.Range(0, 4) == 0)
                 {
                     PlayerData player = playerDatas[Random.Range(0, playerDatas.Count)];
                     ArmoryManager armoryManager = armory.GetComponent<ArmoryManager>();

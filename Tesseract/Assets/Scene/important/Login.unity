@@ -112,6 +112,42 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &561112472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4192734631973438868, guid: 74953027c0178474c8d7d56c2ff8e2ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752193639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &590593761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4192734633703757769, guid: 74953027c0178474c8d7d56c2ff8e2ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752193639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &842976598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5911999360364411418, guid: 74953027c0178474c8d7d56c2ff8e2ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752193639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &983476955
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,10 +192,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ip: 127.0.0.1
-  error: {fileID: 0}
-  loginButton: {fileID: 0}
-  nameInputfield: {fileID: 0}
-  passwordInputfield: {fileID: 0}
+  error: {fileID: 1145341414}
+  loginButton: {fileID: 842976598}
+  nameInputfield: {fileID: 561112472}
+  passwordInputfield: {fileID: 590593761}
+--- !u!114 &1145341414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4192734632033312615, guid: 74953027c0178474c8d7d56c2ff8e2ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752193639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1752193639
 PrefabInstance:
   m_ObjectHideFlags: 0

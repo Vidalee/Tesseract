@@ -182,10 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
-  _moveSpeed: 2
+  _moveSpeed: 2.3
   _attackRange: 1.5
-  _notCloseEnough: 9
-  _distDash: 6
+  _notCloseEnough: 7
+  _distDash: 10
   entityLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -203,10 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SendPlayerXp: {fileID: 11400000, guid: 21eac5f2416e6424a9851ae9ee947cb1, type: 2}
   BossDeath: {fileID: 11400000, guid: 339d87618f8a3f44fb7fbb74a7a4dac7, type: 2}
-  _hp: 1000
+  _hp: 1500
   _armorP: 40
   _armorM: 40
-  _xp: 500
+  _xp: 1000
 --- !u!114 &3824718675619231397
 MonoBehaviour:
   m_ObjectHideFlags: 0
