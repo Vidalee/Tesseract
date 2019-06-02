@@ -187,8 +187,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 442513264576149954}
-  - component: {fileID: 153487125084920880}
-  - component: {fileID: 6055508183065932926}
   - component: {fileID: 2780564005037560652}
   m_Layer: 0
   m_Name: hp bar
@@ -211,47 +209,6 @@ Transform:
   m_Father: {fileID: 2748399577407957624}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &153487125084920880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5994532140397432917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8913c6c7acfd950458c444d47eea2232, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6055508183065932926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5994532140397432917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d57860e711575a4895811808d91a972, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 3a17fd1af175149bd9b0e22751c1e12e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 153487125084920880}
-        m_MethodName: ScaleBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: Script.GlobalsScript.EventScript.UnityEventWithArgs, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!212 &2780564005037560652
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -445,7 +402,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1363730b71954d14c9a624bea17eed7f, type: 3}
   - {fileID: 21300000, guid: fd03191ffb0b18c49b29eee187da5111, type: 3}
   Enemy: {fileID: 0}
-  weapon: {fileID: 3877816231457508458, guid: 6d0fa32dbb257f047a16070147b42e3c, type: 3}
   armory: {fileID: 2463668023115033791, guid: b62e16d3dcab6f5449fc29450047040b, type: 3}
   playerDatas: []
   hpBar: {fileID: 5994532140397432917}

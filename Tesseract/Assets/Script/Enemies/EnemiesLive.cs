@@ -10,11 +10,9 @@ public class EnemiesLive : MonoBehaviour
 {
     public Sprite[] SpriteEffect;
     [SerializeField] protected EnemyData Enemy;
-    [SerializeField] protected GameObject weapon;
     [SerializeField] protected GameObject armory;
     [SerializeField] protected List<PlayerData> playerDatas;
     [SerializeField] protected GameObject hpBar; 
-    
 
     private SpriteRenderer Icon;
 
@@ -42,7 +40,9 @@ public class EnemiesLive : MonoBehaviour
             Death();
         }
         
-        hpBar.transform.localScale = new Vector3((float) Enemy.Hp/Enemy.MaxHp * 0.01581096f, hpBar.transform.localScale.y);
+        hpBar.transform.localScale = new Vector3((Enemy.Hp/Enemy.MaxHp) * 0.01581096f, hpBar.transform.localScale.y);
+        Debug.Log(Enemy.Hp);
+        Debug.Log(Enemy.MaxHp);
     }
 
     public void Death()
