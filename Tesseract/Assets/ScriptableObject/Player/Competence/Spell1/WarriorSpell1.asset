@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: WarriorSpell1
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
-  manaCost: 10
+  cooldown: 2
+  manaCost: 30
   id: ArcProj
   allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
-  apDamage: 10
+  adDamage: 45
+  apDamage: 5
   live: 10
   number: 1
   speed: 10
   addNumber: 0
+  AddLive: 0

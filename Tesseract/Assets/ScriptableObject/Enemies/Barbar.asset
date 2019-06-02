@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Barbar
   m_EditorClassIdentifier: 
   name: Barbarian
-  _MaxHp: 200
-  _Hp: 200
-  _XpValue: 50
-  _PhysicsDamage: 10
-  _MagicDamage: 0
+  _MaxHp: 500
+  _Hp: 500
+  _XpValue: 10
+  _physicsDamage: 15
   _MaxCooldown: 2
+  DamageBoost: 1
+  _ArmorP: 15
+  _ArmorM: 40
   _MoveSpeed: 2
   _AttackRange: 1
   _DetectionRange: 12.5
@@ -39,3 +41,4 @@ MonoBehaviour:
   colliderX: 0.9
   colliderY: 1
   effectY: 1.074
+  feetPos: {x: 0, y: 0, z: 0}

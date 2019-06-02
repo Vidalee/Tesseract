@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerDash
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
+  cooldown: 10
   manaCost: 10
   id: Dash
   allyTag: Player

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   name: Bat
-  _MaxHp: 20
-  _Hp: 20
+  _MaxHp: 100
+  _Hp: 100
   _XpValue: 2
-  _PhysicsDamage: 2
-  _MagicDamage: 0
+  _physicsDamage: 3
   _MaxCooldown: 1
+  DamageBoost: 0.2
+  _ArmorP: 10
+  _ArmorM: 5
   _MoveSpeed: 3
   _AttackRange: 0.25
   _DetectionRange: 30

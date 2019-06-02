@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: NinjaSpell1
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
-  manaCost: 10
+  cooldown: 2
+  manaCost: 25
   id: ArcProj
   allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
+  adDamage: 40
   apDamage: 10
   live: 2
   number: 3
   speed: 8
   addNumber: 6
+  AddLive: 10

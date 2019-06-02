@@ -56,9 +56,7 @@ public class Attack : MonoBehaviour
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();
 
         int dP = Enemy.PhysicsDamage;
-        
-        Debug.Log(dP);
-    
+            
         projectilesData.Created(dir.normalized, speed, dP, 0, "Player", clip,
             1, Color.black, 0, 0, 0, 0);
     
