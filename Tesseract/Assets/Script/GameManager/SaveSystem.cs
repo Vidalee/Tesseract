@@ -23,12 +23,13 @@ public static class SaveSystem
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
-
+            
             PlayerDataSave data = formatter.Deserialize(stream) as PlayerDataSave ;
             stream.Close();
             
             return data;
         }
+        
         return null;
     }
 

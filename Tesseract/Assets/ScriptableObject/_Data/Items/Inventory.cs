@@ -12,6 +12,21 @@ public class Inventory : ScriptableObject
     public Transform P;
     public Transform W;
 
+    public void Create(Inventory inv)
+    {
+        PotionsAth = inv.PotionsAth;
+        WeaponsAth = inv.WeaponsAth;
+        P = inv.P;
+        W = inv.W;
+        
+        potions = new Potions[4];
+        
+        for (int i = 0; i < 4; i++)
+        {
+            potions[i] = inv.Potions[i];
+        }
+    }
+
     public Potions[] Potions
     {
         get => potions;

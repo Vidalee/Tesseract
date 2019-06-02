@@ -52,4 +52,6 @@ public class Weapons : GamesItem
     public Sprite EffectSprite => effectSprite;
 
     public int Duration => duration;
+
+    public int Lvl => lvl;
 }

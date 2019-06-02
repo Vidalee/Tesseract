@@ -15,7 +15,7 @@ public class PlayerLvlMenu : MonoBehaviour
         PlayerDataSave data = SaveSystem.LoadPlayer(transform.parent.name);
         if (data != null)
         {
-            lvl = data.Lvl.ToString();
+            lvl = data.Lvl[0].ToString();
         }
         
         GetComponent<Text>().text = "Level : " + lvl;

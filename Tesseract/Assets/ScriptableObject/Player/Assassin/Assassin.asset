@@ -20,15 +20,16 @@ MonoBehaviour:
   PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Assassin
-  _MaxHp: 120
-  _Hp: 120
-  _MaxMana: 120
-  _Mana: 120
-  _ManaRegen: 2
-  _PhysicsDamage: 110
-  _MagicDamage: 40
-  _MoveSpeed: 4.4099994
-  _MaxXp: 256
+  _MultiID: 1
+  _MaxHp: 100
+  _Hp: 100
+  _MaxMana: 100
+  _Mana: 100
+  _ManaRegen: 0
+  _PhysicsDamage: 100
+  _MagicDamage: 30
+  _MoveSpeed: 4
+  _MaxXp: 100
   _Xp: 0
   _MaxLvl: 100
   _Lvl: 1
@@ -63,9 +64,10 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 8d6c0ddc4ca1e1740b377e1e374b965b, type: 2}
   - {fileID: 7400000, guid: 9d9109333afcc78428271f8a1a7c7162, type: 2}
   _Competences:
-  - {fileID: 11400000, guid: 41ffd3df25ff4e540851a4f1f4cbe69f, type: 2}
-  - {fileID: 11400000, guid: 5e2ff8f2ab89cb243920893f44cfd47c, type: 2}
-  - {fileID: 11400000, guid: a644301d73608b94da7bdb5ca374f933, type: 2}
+  - {fileID: 11400000, guid: 27096ad80f5071242b6dd2871d2b3c37, type: 2}
+  - {fileID: 11400000, guid: b2d86601c301eeb40af283d5640e4224, type: 2}
+  - {fileID: 11400000, guid: 43924c88da79a544ebeb6ef23c876db3, type: 2}
+  - {fileID: 11400000, guid: 3d806565153a6d7458ee36389e56463c, type: 2}
   _Inventory: {fileID: 11400000, guid: c2cb697ee6a1e4c4c8dc9ac0913e9db3, type: 2}
   _PotionsCooldown: 2
   PositionChanged: 0

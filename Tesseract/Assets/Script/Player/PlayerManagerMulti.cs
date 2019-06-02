@@ -176,7 +176,6 @@ public class PlayerManagerMulti : MonoBehaviour
         _playerData.MoveSpeed = data.MoveSpeed;
         _playerData.Xp = data.Xp;
         _playerData.MaxXp = data.MaxXp;
-        _playerData.Lvl = data.Lvl;
         _playerData.ManaRegen = data.ManaRegen;
 
         //TODO Load multi ?

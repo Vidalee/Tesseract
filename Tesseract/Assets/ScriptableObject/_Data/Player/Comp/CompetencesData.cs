@@ -1,27 +1,27 @@
 ﻿using UnityEngine;
 
-public class CompetencesData : ScriptableObject
+public abstract class CompetencesData : ScriptableObject
 {
-    [SerializeField] protected string _Name;
-    [SerializeField] protected float _Cooldown;
+    [SerializeField] protected string name;
+    [SerializeField] protected float cooldown;
     [SerializeField] protected int manaCost;
-    private bool _Usable;
+    [SerializeField] protected string id;
+    private bool usable;
+    private int lvl;
     
-    [SerializeField] protected Transform _Object;
-    
-    [SerializeField] protected string _AllyTag;
-    [SerializeField] protected string _EnemyTag;
+    [SerializeField] protected string allyTag;
+    [SerializeField] protected string enemyTag;
 
     public float Cooldown
     {
-        get => _Cooldown;
-        set => _Cooldown = value;
+        get => cooldown;
+        set => cooldown = value;
     }
 
     public bool Usable
     {
-        get => _Usable;
-        set => _Usable = value;
+        get => usable;
+        set => usable = value;
     }
 
     public int ManaCost
@@ -29,12 +29,29 @@ public class CompetencesData : ScriptableObject
         get => manaCost;
         set => manaCost = value;
     }
+    
+    public void Create(CompetencesData comp, int lvl)
+    {
+        name = comp.name;
+        cooldown = comp.cooldown;
+        manaCost = comp.manaCost;
+        usable = true;
+        allyTag = comp.allyTag;
+        enemyTag = comp.enemyTag;
+        id = comp.id;
+        
+        ChildCreate(comp, lvl);
+    }
 
-    public string Name => _Name;
+    public abstract void ChildCreate(CompetencesData comp, int lvl);
 
-    public Transform Object => _Object;
+    public string Name => name;
 
-    public string AllyTag => _AllyTag;
+    public string AllyTag => allyTag;
 
-    public string EnemyTag => _EnemyTag;
+    public string EnemyTag => enemyTag;
+
+    public string Id => id;
+
+    public int Lvl => lvl;
 }

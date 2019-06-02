@@ -54,10 +54,72 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected float _PotionsCooldown;
 
     public bool PositionChanged;
-    public Script.Pathfinding.Node Node;
+    public Node Node;
 
     private int stateProj;
     private Color[] color;
+
+    public void Create(PlayerData playerData, int[] lvl = null)
+    {
+        PlayerHpAth = playerData.PlayerHpAth;
+        PlayerHpBarAth = playerData.PlayerHpBarAth;
+        PlayerManaAth = playerData.PlayerManaAth;
+        PlayerManaBarAth = playerData.PlayerManaBarAth;
+        PlayerXpAth = playerData.PlayerXpAth;
+        PlayerXpBarAth = playerData.PlayerXpBarAth;
+        PlayerLevelAth = playerData.PlayerLevelAth;
+        
+        _Name = playerData.name;
+        
+        _Lvl = lvl == null ? 0 : lvl[0];
+        
+        _MaxHp = playerData.MaxHp + Lvl * 5;
+        _Hp = _MaxHp;
+        _MaxMana = playerData.MaxMana;
+        _Mana = MaxMana;
+        _ManaRegen = playerData.ManaRegen + Lvl;
+        _PhysicsDamage = playerData.PhysicsDamage + Lvl * 5;
+        _MagicDamage = playerData.MagicDamage + Lvl * 5;
+        _MoveSpeed = playerData.MoveSpeed;
+        _MaxXp = playerData.MaxXp + (int) (playerData.MaxXp * Lvl * 0.25f);
+        _Xp = playerData.Xp;
+        _MaxLvl = 99;
+        
+        _Width = 0.5f;
+        _Height = 0.75f;
+        _FeetHeight = 0.06f;
+        
+        _Move = playerData.Move;
+        _Idle = playerData.Idle;
+        _Attack = playerData.Attack;
+        _Dash = playerData.Dash;
+        _DashParticles = playerData.DashParticles;
+        compAnim = playerData.compAnim;
+
+        _Competences = new CompetencesData[4];
+
+        _Competences[0] = CreateInstance<DashComp>();
+        if (Name == "Warrior") _Competences[1] = CreateInstance<CacComp>();
+            else _Competences[1] = CreateInstance<ProjComp>();
+        _Competences[2] = CreateInstance<ProjComp>();
+        _Competences[3] = CreateInstance<BoostComp>();
+
+        for (int i = 0; i < 4; i++)
+            _Competences[i].Create(playerData.Competences[i], lvl == null ? 0 : lvl[i + 1]);
+        
+        _Inventory = CreateInstance<Inventory>();
+        _Inventory.Create(playerData._Inventory);
+        _PotionsCooldown = playerData.PotionsCooldown;
+        
+        stateProj = 0;
+        
+        _CanMove = true;
+
+        color = new[]
+        {
+            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),
+        };
+    }
 
     public AnimationClip AnimProj()
     {
@@ -92,21 +154,13 @@ public class PlayerData : ScriptableObject
         return Inventory.Weapon.Duration;
     }
 
-    private void OnEnable()
+    public void ReduceCd(float change)
     {
-        _MaxLvl = 100;
-        _Xp = 0;
-        _Lvl = 1;
-        _Hp = _MaxHp;
-        _Mana = _MaxMana;
-        _CanMove = true;
-
-        color = new[]
+        foreach (var comp in Competences)
         {
-            new Color(198, 198, 198), new Color(149, 210, 205), new Color(96, 121, 81), new Color(240, 225, 124), new Color(216, 34, 6),
-        };
+            comp.Cooldown *= change;
+        }
     }
-
     #endregion
 
     #region Set/Get
@@ -220,15 +274,6 @@ public class PlayerData : ScriptableObject
     }
 
     public int MaxLvl => _MaxLvl;
-
-    public CompetencesData GetCompetence(string name)
-    {
-        foreach (var c in _Competences)
-        {
-            if (c.Name == name) return c;
-        }
-        throw new Exception("Competence not found");
-    }
 
     public string Name => _Name;
 

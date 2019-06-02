@@ -12,10 +12,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private SpriteRenderer _sprite;
 
     public GameEvent PlayerMoveEvent;
-    public bool isAttacking = false;
-
-    public AnimationClip attack;
-    public int compteur = 0;
+    public bool isAttacking;
 
     public GameEvent AthItem;
     public GameEvent AthItemS;
@@ -28,14 +25,14 @@ public class WeaponManager : MonoBehaviour
     public void Create(Weapons weapon)
     {
         _playerData = StaticData.actualData;
-        comp = null; //_playerData.Competences[1] as CacComp;
+        comp = _playerData.Name == "Warrior" ? _playerData.Competences[1] as CacComp : null;
         
         _sprite = GetComponent<SpriteRenderer>();
         _sprite.sprite = weapon.icon;
         if (!weapon.inPlayerInventory) _sprite.sortingOrder = (int) transform.position.y * -15;
         Weapon = weapon;
         EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
-        collider.points = weapon.ColliderPoints;  
+        collider.points = weapon.ColliderPoints;
                 
         PlayerMoveEvent.Raise(new EventArgsCoor(0, -1, int.Parse((string) Coffre.Regarder("id"))));
     }
@@ -313,8 +310,6 @@ public class WeaponManager : MonoBehaviour
             }
         }
     }
-    
-
 
     public void PlaceWeapon(float x, float y, float angle)
     {
@@ -357,16 +352,19 @@ public class WeaponManager : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Mouse"))
+        if (_playerData.Name == "Warrior")
         {
-            AthItem.Raise(new EventArgsItemAth(Weapon));
-        }
+            if (other.CompareTag("Mouse"))
+            {
+                AthItem.Raise(new EventArgsItemAth(Weapon));
+            }
 
-        if (isAttacking && other.CompareTag("Enemies"))
-        {
-            EnemiesLive s = other.gameObject.GetComponent<EnemiesLive>();
-            s.GetDamaged(_playerData.PhysicsDamage + Weapon.PhysicsDamage + comp.AdDamage, _playerData.MagicDamage + Weapon.MagicDamage);
-            if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
+            if (isAttacking && other.CompareTag("Enemies"))
+            {
+                EnemiesLive s = other.gameObject.GetComponent<EnemiesLive>();
+                s.GetDamaged(_playerData.PhysicsDamage + Weapon.PhysicsDamage + comp.AdDamage, _playerData.MagicDamage + Weapon.MagicDamage);
+                if(Weapon.EffectType != 0) s.Effect(Weapon.EffectType, Weapon.EffectDamage, Weapon.Duration);
+            }
         }
     }
 

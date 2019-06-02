@@ -36,20 +36,20 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
     {
         if (!_playerData.CanMove) return;
 
-        if (Input.GetKey("space") && _playerData.GetCompetence("Dash").Usable)
+        if (Input.GetKey("space") && _playerData.Competences[0].Usable)
         {
             if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             {
-                if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.GetCompetence("Dash")  as DashComp));
-                else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp));
+                if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.Competences[0] as DashComp));
+                else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp));
             }
         }
 
         if (shouldDash)
         {
             shouldDash = false;
-            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
-            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
+            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.Competences[0] as DashComp, dx, dy));
+            else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp, dx, dy));
         }
     }
 
@@ -81,7 +81,6 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
             MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
         Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
-        yield return new WaitForSeconds(0.5f);
 
         transform.position += direction - direction * 0.01f;
         _playerData.CanMove = true;

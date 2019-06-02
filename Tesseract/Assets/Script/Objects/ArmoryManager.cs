@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Script.GlobalsScript;
 using UnityEngine;
 
 public class ArmoryManager : MonoBehaviour

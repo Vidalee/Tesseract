@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "CompetenceData", menuName = "Player/Competence/Dash")]
+[CreateAssetMenu(fileName = "CompetenceData", menuName = "Competence/Proj")]
 public class ProjComp : CompetencesData
 {
     [SerializeField] protected int adDamage;
@@ -8,18 +8,18 @@ public class ProjComp : CompetencesData
     [SerializeField] protected int live;
     [SerializeField] protected int number;
     [SerializeField] protected float speed;
-    [SerializeField] protected int lvl;
 
-    public void Created(ProjComp comp, int lvl)
+    public override void ChildCreate(CompetencesData competence, int lvl)
     {
+        ProjComp comp = (ProjComp) competence;
+        
         adDamage = comp.adDamage + lvl;
         apDamage = comp.apDamage + + lvl;
         live = comp.live + + lvl;
         number = comp.number + + lvl;
         speed = comp.speed + + lvl;
-        this.lvl = comp.lvl;
     }
-
+    
     public int AdDamage => adDamage;
 
     public int ApDamage => apDamage;
@@ -29,6 +29,4 @@ public class ProjComp : CompetencesData
     public int Number => number;
 
     public float Speed => speed;
-
-    public int Lvl => lvl;
 }

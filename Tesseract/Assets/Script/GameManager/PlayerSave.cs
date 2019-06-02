@@ -11,7 +11,7 @@ public class PlayerDataSave
     public float MoveSpeed;
     public int Xp;
     public int MaxXp;
-    public int Lvl;
+    public int[] Lvl;
     public int ManaRegen;
     
     public int weapon;
@@ -26,13 +26,17 @@ public class PlayerDataSave
         MoveSpeed = player.MoveSpeed;
         Xp = player.Xp;
         MaxXp = player.MaxXp;
-        Lvl = player.Lvl;
-        ManaRegen = player.ManaRegen;        
+        ManaRegen = player.ManaRegen;
+        Lvl = new int[5];
 
-        
+        Lvl[0] = player.Lvl;
+        for (int i = 1; i < 4; i++)
+        {
+            Lvl[i] = player.Competences[i].Lvl;
+        }
         
         weapon = ItemNull(player.Inventory.Weapon);
-        weaponLvl = player.Inventory.Weapon == null ? 0 : Lvl;
+        weaponLvl = weapon == 0 ? 0 : player.Inventory.Weapon.Lvl;
     }
 
     private int ItemNull(GamesItem item)

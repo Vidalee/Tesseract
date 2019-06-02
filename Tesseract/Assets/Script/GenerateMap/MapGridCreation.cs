@@ -89,6 +89,7 @@ public class MapGridCreation : MonoBehaviour
             AddPikes();
 
             AddPortal();
+            AddBossPortal();
             if ((string)Coffre.Regarder("mode") == "solo") AddPlayer(1, true);
         }
         catch (Exception e)

@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 {
     #region Variable
 
+    public Transform Proj;
     public PlayerData _playerData;
     [SerializeField] protected GameEvent AttackEvent;
 
@@ -42,26 +43,26 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             if (Input.GetMouseButton(0))
             {
                 action = "AA";
-                UseCompetence(_playerData.GetCompetence("AutoAttack"));
+                UseCompetence(_playerData.Competences[1]);
             }
 
             if (Input.GetKey("e"))
             {
                 action = "A1";
-                UseCompetence(_playerData.Competences[1]);
+                UseCompetence(_playerData.Competences[2]);
             }
 
             if (Input.GetKey("r"))
             {
                 action = "A2";
-                UseCompetence(_playerData.Competences[2]);
+                UseCompetence(_playerData.Competences[3]);
             }
         }
 
         if (aa)
         {
             aa = false;
-            UseCompetence(_playerData.GetCompetence("AutoAttack"), dx, dy);
+            UseCompetence(_playerData.Competences[1], dx, dy);
         }
         if (a1)
         {
@@ -109,39 +110,44 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     {
         if (competence.Usable)
         {
-            switch (competence.Name)
+            switch (competence.Id)
             {
-                case "AutoAttack":
-                    AutoAttack(competence as ProjComp, dx, dy);
+                case "OneProj":
+                    InstantiateOneProjectiles(competence as ProjComp, dx, dy);
                     break;
-                case "MultipleProjectiles":
-                    MultipleAttack(competence as ProjComp, dx, dy);
+                case "ArcProj":
+                    InstantiateArcProjectiles(competence as ProjComp, dx, dy);
                     break;
-                case "CirclesProjectiles":
-                    CircleAttack(competence as ProjComp, dx, dy);
+                case "CirProj":
+                    InstantiateCircleAttack(competence as ProjComp, dx, dy);
+                    break;
+                case "Boost":
+                    BoostPlayer(competence as BoostComp);
+                    break;
+                case "CacAtt":
+                    AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
+                    StartCoroutine(CoolDownCoroutine(competence, true));
                     break;
             }
         }
     }
 
-    private void AutoAttack(ProjComp competence, float dx = 0, float dy = 0)
+    private void InstantiateOneProjectiles(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
         StartCoroutine(CoolDownCoroutine(competence, true));
-        if (_playerData.Name == "Warrior") return;
         InstantiateProjectiles(competence, ProjectilesDirection(dx, dy));
     }
     
-    private void MultipleAttack(ProjComp competence, float dx = 0, float dy = 0)
+    private void InstantiateArcProjectiles(ProjComp competence, float dx = 0, float dy = 0)
     {
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
-        if (_playerData.Name == "Warrior") return;
         float rotDist = 10;
         float rot = rotDist;
         Vector3 dir = ProjectilesDirection(dx, dy);
         InstantiateProjectiles(competence, dir);
         
-        for (int i = 0; i < competence.Number/2; i++)
+        for (int i = 1; i < competence.Number / 2 + 1; i++)
         {
             InstantiateProjectiles(competence, Quaternion.Euler(0, 0, rot) * dir);
             InstantiateProjectiles(competence, Quaternion.Euler(0, 0, -rot) * dir);
@@ -152,14 +158,16 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
     
-    private void CircleAttack(ProjComp competence, float dx = 0, float dy = 0)
+    private void InstantiateCircleAttack(ProjComp competence, float dx = 0, float dy = 0)
     {
         if (_playerData.Mana < competence.ManaCost)
         {
             return;
         }
+        
         if(dx == 0 && dy == 0)
-            MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
+            if ((string) Coffre.Regarder("mode") == "multi")
+                MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
 
         _playerData.Mana -= competence.ManaCost;
 
@@ -173,6 +181,19 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         }
 
         StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+
+    private void BoostPlayer(BoostComp competence, float dx = 0, float dy = 0)
+    {
+        _playerData.PhysicsDamage += competence.AdBoost;
+        _playerData.MagicDamage += competence.ApBoost;
+        _playerData.ReduceCd(competence.CoolDownBoost);
+        
+        StartCoroutine(CoolDownCoroutine(competence, true));
+        
+        _playerData.PhysicsDamage -= competence.AdBoost;
+        _playerData.MagicDamage -= competence.ApBoost;
+        _playerData.ReduceCd(1 / competence.CoolDownBoost);
     }
 
     #endregion
@@ -189,7 +210,8 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             cursorPos.z = 0;
             Vector3 n = (cursorPos - transform.position).normalized;
-            MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
+            if ((string) Coffre.Regarder("mode") == "multi")
+                MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
             return n;
         }
     }
@@ -203,7 +225,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     
     private void InstantiateProjectiles(ProjComp competence, Vector3 dir)
     {
-        Transform o = Instantiate(competence.Object, transform.position + dir/4, Quaternion.identity);
+        Transform o = Instantiate(Proj, transform.position + dir/4, Quaternion.identity);
         o.name = competence.Name;
                 
         ProjectilesData projectilesData = ScriptableObject.CreateInstance<ProjectilesData>();

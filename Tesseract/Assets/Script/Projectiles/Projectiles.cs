@@ -41,19 +41,13 @@ public class Projectiles : MonoBehaviour
             Destroy(gameObject);
         }
         
-        if (_projectilesData.AllyTag != "" && other.gameObject.CompareTag(_projectilesData.AllyTag))
+        if (!other.CompareTag(_projectilesData.AllyTag) && other.gameObject.CompareTag(_projectilesData.AllyTag))
         {
-            try
-            {
-                if(--_projectilesData.Live <= 0) Destroy(gameObject);
-                EnemiesLive e = other.transform.GetComponent<EnemiesLive>();
-                
-                e.GetDamaged(_projectilesData.DamageP, _projectilesData.DamageM);
-                if (Random.Range(0, 100) < _projectilesData.Prob) e.Effect(_projectilesData.Effect, _projectilesData.EffectDamage, _projectilesData.Duration);
-            }
-            catch (Exception)
-            {
-            }
+            if(--_projectilesData.Live <= 0) Destroy(gameObject);
+            EnemiesLive e = other.transform.GetComponent<EnemiesLive>();
+            
+            e.GetDamaged(_projectilesData.DamageP, _projectilesData.DamageM);
+            if (Random.Range(0, 100) < _projectilesData.Prob) e.Effect(_projectilesData.Effect, _projectilesData.EffectDamage, _projectilesData.Duration);
         }
     }
 

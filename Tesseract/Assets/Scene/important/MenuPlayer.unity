@@ -382,25 +382,5 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5504461515137876144, guid: 1f8e49b249a60b349a74e153fe6e3d8e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: LevelSelection
-      objectReference: {fileID: 0}
-    - target: {fileID: 5504461515774389103, guid: 1f8e49b249a60b349a74e153fe6e3d8e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: LevelSelection
-      objectReference: {fileID: 0}
-    - target: {fileID: 5504461516576253930, guid: 1f8e49b249a60b349a74e153fe6e3d8e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: LevelSelection
-      objectReference: {fileID: 0}
-    - target: {fileID: 5504461517105747591, guid: 1f8e49b249a60b349a74e153fe6e3d8e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: LevelSelection
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f8e49b249a60b349a74e153fe6e3d8e, type: 3}

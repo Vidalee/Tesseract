@@ -19,7 +19,6 @@ public class PlayerManager : MonoBehaviour
     public GameEvent SetMana;
     public GameEvent SetLvl;
 
-    [SerializeField] protected PlayerData[] _PlayersData;
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public List<GamesItem> Items;
 
@@ -41,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
         if(Input.GetKey("x")) GetXp(10);
     }
 
@@ -55,13 +55,10 @@ public class PlayerManager : MonoBehaviour
             if (StaticData.ActualFloor == 0)
             {
                 StaticData.ActualFloor = 1;
-                string type = Perso != "" ? Perso : StaticData.PlayerChoice;
-                int pers = FindClass(type);
-
-                _playerData = _PlayersData[pers];
-                _playerData.MultiID = id;
 
                 LoadPlayer();
+
+                _playerData.MultiID = id;
 
                 InstantiatePlayer(x, y);
             }
@@ -72,18 +69,19 @@ public class PlayerManager : MonoBehaviour
             }
         }
         else
-        {
-            int pers = id - 1;
-
-            _playerData = _PlayersData[pers];
+        {           
+            LoadPlayer(id);
+            
             _playerData.MultiID = id;
-            LoadPlayer();
+            
             InstantiatePlayer(x, y);
         }
     }
 
     private void InstantiatePlayer(int x, int y)
     {
+        StaticData.actualData = _playerData;
+            
         Transform o = Instantiate(Player, new Vector3(x, y, 0), Quaternion.identity, transform);
 
         SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
@@ -139,25 +137,26 @@ public class PlayerManager : MonoBehaviour
         return index;
     }
 
-    private void LoadPlayer()
+    private void LoadPlayer(int pers = 0)
     {
-        PlayerDataSave data = SaveSystem.LoadPlayer(_playerData.Name);
+        string type = Perso != "" ? Perso : StaticData.PlayerChoice;
+        pers = pers == 0 ? FindClass(type) : pers - 1;
+        
+        PlayerDataSave data = SaveSystem.LoadPlayer("Mage");
         if (data == null)
         {
-            ResetStats(FindClass(_playerData.Name));
+            ResetStats(pers);
 
             GamesItem ite = FindItems(0);
             Weapons i = ScriptableObject.CreateInstance<Weapons>();
-            i.Create(ite as Weapons, 1);
+            i.Create(ite as Weapons, 0);
 
             _playerData.Inventory.Weapon = i;
-
-            _playerData.Inventory.Potions = new Potions[4];
 
             return;
         }
 
-        LoadStats(data);
+        ResetStats(pers, data.Lvl);
 
         GamesItem item = FindItems(data.weapon);
         Weapons it = ScriptableObject.CreateInstance<Weapons>();
@@ -168,54 +167,27 @@ public class PlayerManager : MonoBehaviour
         _playerData.Inventory.Potions = new Potions[4];
     }
 
-    private void ResetStats(int index)
+    private void ResetStats(int index, int[] lvl = null)
     {
-        _playerData = _PlayersData[index];
-        _playerData.MaxHp = _PlayersDataCopy[index].MaxHp;
-        _playerData.Hp = _PlayersDataCopy[index].Hp;
-        _playerData.MaxMana = _PlayersDataCopy[index].MaxMana;
-        _playerData.Mana = _PlayersDataCopy[index].Mana;
-        _playerData.PhysicsDamage = _PlayersDataCopy[index].PhysicsDamage;
-        _playerData.MagicDamage = _PlayersDataCopy[index].MagicDamage;
-        _playerData.MoveSpeed = _PlayersDataCopy[index].MoveSpeed;
-        _playerData.MaxXp = _PlayersDataCopy[index].MaxXp;
-        _playerData.Xp = _PlayersDataCopy[index].Xp;
-        _playerData.Lvl = _PlayersDataCopy[index].Lvl;
-        _playerData.ManaRegen = _PlayersDataCopy[index].ManaRegen;        
-        //Todo COMP SAVE
-    }
-
-    private void LoadStats(PlayerDataSave data)
-    {
-        _playerData.MaxHp = data.MaxHp;
-        _playerData.Hp = data.MaxHp;
-        _playerData.MaxMana = data.MaxMana;
-        _playerData.Mana = data.MaxMana;
-        _playerData.PhysicsDamage = data.PhysicsDamage;
-        _playerData.MagicDamage = data.MagicDamage;
-        _playerData.MoveSpeed = data.MoveSpeed;
-        _playerData.Xp = data.Xp;
-        _playerData.MaxXp = data.MaxXp;
-        _playerData.Lvl = data.Lvl;
-        _playerData.ManaRegen = data.ManaRegen;
-        
-        //Todo COMP LOAD
+        _playerData = ScriptableObject.CreateInstance<PlayerData>();
+        _playerData.Create(_PlayersDataCopy[index], lvl);
     }
 
     private GamesItem FindItems(int id)
     {
         if (id == 0)
         {
-            if (_playerData.name == "Warrior") id = 31;
-            if (_playerData.name == "Mage") id = 21;
-            if (_playerData.name == "Assassin") id = 11;
-            if (_playerData.name == "Archer") id = 1;
+            if (_playerData.Name == "Warrior") id = 31;
+            if (_playerData.Name == "Mage") id = 21;
+            if (_playerData.Name == "Assassin") id = 11;
+            if (_playerData.Name == "Archer") id = 1;
         }
+        
         foreach (var it in Items)
         {
             if (it.id == id) return it;
         }
-
+        
         return null;
     }
 
@@ -255,16 +227,11 @@ public class PlayerManager : MonoBehaviour
 
     private void UpgradeStats()
     {
-        if (_playerData.Lvl % 5 == 0)
-        {
-            _playerData.MaxHp += 10;
-            _playerData.Hp = _playerData.MaxHp;
-            _playerData.MaxMana += 10;
-            _playerData.Mana = _playerData.MaxMana;
-            _playerData.MoveSpeed *= 1.05f;
-            _playerData.ManaRegen++;
-        }
 
+        _playerData.MaxHp += 5;
+        _playerData.MaxMana += 5;
+        
+        _playerData.ManaRegen++;
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;
     }

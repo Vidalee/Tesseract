@@ -3,7 +3,6 @@ using UnityEngine.Tilemaps;
 
 public class Minimap : MonoBehaviour
 {
-
     public Tilemap Texture;
     public Tilemap Collider;
     public Tilemap Background;
