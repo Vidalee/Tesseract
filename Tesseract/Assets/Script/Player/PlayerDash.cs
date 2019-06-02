@@ -81,7 +81,6 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
             MultiManager.socket.Send("PINFO DASH " + dir.y + " " + dir.x);
         Debug.Log(_playerData.MultiID + " dashing to " + dir.x + " " + dir.y + " ( " + dx + " " + dy);
         Vector3 direction = CheckObstacles(dir, competence);
-        yield return new WaitForSeconds(0.5f);
 
         transform.position += direction - direction * 0.01f;
         _playerData.CanMove = true;

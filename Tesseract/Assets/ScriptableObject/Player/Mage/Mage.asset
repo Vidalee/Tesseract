@@ -22,7 +22,7 @@ MonoBehaviour:
   _Name: Mage
   _MultiID: 1
   _MaxHp: 100
-  _Hp: 80
+  _Hp: 100
   _MaxMana: 100
   _Mana: 95
   _ManaRegen: 5

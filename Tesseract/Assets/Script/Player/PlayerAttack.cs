@@ -121,11 +121,8 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
                 case "CirProj":
                     InstantiateCircleAttack(competence as ProjComp, dx, dy);
                     break;
-                case "Invis":
-                    break;
                 case "Boost":
-                    break;
-                case "Dash":
+                    BoostPlayer(competence as BoostComp);
                     break;
                 case "CacAtt":
                     AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
@@ -184,6 +181,19 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         }
 
         StartCoroutine(CoolDownCoroutine(competence, true));
+    }
+
+    private void BoostPlayer(BoostComp competence, float dx = 0, float dy = 0)
+    {
+        _playerData.PhysicsDamage += competence.AdBoost;
+        _playerData.MagicDamage += competence.ApBoost;
+        _playerData.ReduceCd(competence.CoolDownBoost);
+        
+        StartCoroutine(CoolDownCoroutine(competence, true));
+        
+        _playerData.PhysicsDamage -= competence.AdBoost;
+        _playerData.MagicDamage -= competence.ApBoost;
+        _playerData.ReduceCd(1 / competence.CoolDownBoost);
     }
 
     #endregion

@@ -18,3 +18,4 @@ MonoBehaviour:
   id: Dash
   allyTag: Player
   enemyTag: Enemies
+  distDash: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: 
   cooldown: 1
   manaCost: 10
-  id: 
+  id: CacAtt
   allyTag: Player
   enemyTag: Enemies
   adDamage: 10

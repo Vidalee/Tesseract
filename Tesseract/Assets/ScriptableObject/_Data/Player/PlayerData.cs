@@ -156,6 +156,13 @@ public class PlayerData : ScriptableObject
         return Inventory.Weapon.Duration;
     }
 
+    public void ReduceCd(float change)
+    {
+        foreach (var comp in Competences)
+        {
+            comp.Cooldown *= change;
+        }
+    }
     #endregion
 
     #region Set/Get
