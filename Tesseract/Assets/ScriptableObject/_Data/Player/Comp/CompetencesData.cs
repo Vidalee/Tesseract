@@ -38,6 +38,8 @@ public abstract class CompetencesData : ScriptableObject
         usable = true;
         allyTag = comp.allyTag;
         enemyTag = comp.enemyTag;
+        id = comp.id;
+        
         ChildCreate(comp, lvl);
     }
 
