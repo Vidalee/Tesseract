@@ -7,6 +7,8 @@ public class BoostComp : CompetencesData
     [SerializeField] protected int adBoost;
     [SerializeField] protected float coolDownBoost;
     [SerializeField] protected int duration;
+    [SerializeField] protected Sprite[] icon1;
+
 
     public override void ChildCreate(CompetencesData competence, int lvl)
     {
@@ -17,6 +19,7 @@ public class BoostComp : CompetencesData
         coolDownBoost = (comp.coolDownBoost + lvl / 2) / 100;
         duration = comp.Duration + lvl;
         manaCost = 0;
+        icon1 = comp.icon1;
     }
 
     public void UpgradeStats()
@@ -36,4 +39,6 @@ public class BoostComp : CompetencesData
     public float CoolDownBoost => coolDownBoost;
 
     public int Duration => duration;
+
+    public Sprite[] Icon1 => icon1;
 }

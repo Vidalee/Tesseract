@@ -16,7 +16,6 @@ MonoBehaviour:
   cooldown: 2
   manaCost: 25
   id: ArcProj
-  allyTag: Player
   enemyTag: Enemies
   adDamage: 40
   apDamage: 10
@@ -25,3 +24,5 @@ MonoBehaviour:
   speed: 8
   addNumber: 6
   AddLive: 10
+  icon1: {fileID: 21300042, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  icon2: {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}

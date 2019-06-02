@@ -11,6 +11,7 @@ public class ProjComp : CompetencesData
     [SerializeField] protected float speed;
     [SerializeField] protected float addNumber;
     [SerializeField] protected float AddLive;
+    [SerializeField] protected Sprite icon1;
 
     public override void ChildCreate(CompetencesData competence, int lvl)
     {
@@ -23,6 +24,7 @@ public class ProjComp : CompetencesData
         live = comp.live + (int) (AddLive * lvl);
         number = comp.number + (int)(addNumber * lvl);
         speed = comp.speed;
+        icon1 = comp.icon1;
     }
 
     public void UpgradeStats()
@@ -44,4 +46,7 @@ public class ProjComp : CompetencesData
     public int Number => number;
 
     public float Speed => speed;
+
+    public Sprite Icon1 => icon1;
+    
 }

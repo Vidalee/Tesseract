@@ -16,9 +16,18 @@ MonoBehaviour:
   cooldown: 30
   manaCost: 0
   id: Boost
-  allyTag: Player
   enemyTag: Enemies
   apBoost: 10
   adBoost: 10
   coolDownBoost: 10
   duration: 10
+  icon1:
+  - {fileID: 21300036, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  - {fileID: 21300044, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  - {fileID: 21300060, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  - {fileID: 21300052, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  icon2:
+  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
+  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
+  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
+  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}

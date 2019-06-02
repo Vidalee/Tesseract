@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     public GameEvent SetManaBar;
     public GameEvent SetMana;
     public GameEvent SetLvl;
+    public GameEvent CompAth;
 
     [SerializeField] protected PlayerData[] _PlayersDataCopy;
     public List<GamesItem> Items;
@@ -92,6 +93,8 @@ public class PlayerManager : MonoBehaviour
         SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
 
+        CompAth.Raise(new EventArgsNull());
+        
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
         o.GetComponent<PotionUsable>().Create(_playerData);

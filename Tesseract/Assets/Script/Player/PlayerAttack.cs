@@ -1,4 +1,5 @@
 ﻿ using System.Collections;
+ using System.Linq.Expressions;
  using Script.GlobalsScript.Struct;
  using UnityEngine;
 
@@ -8,6 +9,8 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     public Transform Proj;
     public PlayerData _playerData;
+    public GameEvent Comp;
+    
     [SerializeField] protected GameEvent AttackEvent;
 
     #endregion
@@ -22,7 +25,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
     private string action = "DEF";
 
     #endregion
-
 
     #region Initialise
 
@@ -43,36 +45,36 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             if (Input.GetMouseButton(0))
             {
                 action = "AA";
-                UseCompetence(_playerData.Competences[1]);
+                UseCompetence(_playerData.Competences[1], 1);
             }
 
             if (Input.GetKey("e"))
             {
                 action = "A1";
-                UseCompetence(_playerData.Competences[2]);
+                UseCompetence(_playerData.Competences[2], 2);
             }
 
             if (Input.GetKey("r"))
             {
                 action = "A2";
-                UseCompetence(_playerData.Competences[3]);
+                UseCompetence(_playerData.Competences[3], 3);
             }
         }
 
         if (aa)
         {
             aa = false;
-            UseCompetence(_playerData.Competences[1], dx, dy);
+            UseCompetence(_playerData.Competences[1], 1, dx, dy);
         }
         if (a1)
         {
             a1 = false;
-            UseCompetence(_playerData.Competences[1], dx, dy);
+            UseCompetence(_playerData.Competences[1], 2, dx, dy);
         }
         if (a2)
         {
             a2 = false;
-            UseCompetence(_playerData.Competences[2], dx, dy);
+            UseCompetence(_playerData.Competences[2], 3, dx, dy);
         }
     }
 
@@ -106,10 +108,11 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     #region Competence
 
-    private void UseCompetence(CompetencesData competence, float dx = 0, float dy = 0)
+    private void UseCompetence(CompetencesData competence, int index, float dx = 0, float dy = 0)
     {
         if (competence.Usable)
-        {
+        {       
+            Comp.Raise(new EventArgsDoubleInt((int) competence.Cooldown, index));
             StartCoroutine(AfkCoroutine());
 
             switch (competence.Id)

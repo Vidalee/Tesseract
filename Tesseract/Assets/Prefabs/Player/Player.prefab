@@ -179,6 +179,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PlayerDashEvent: {fileID: 11400000, guid: e3018df61d53dde4097a9887a2cbc1a5, type: 2}
+  Comp: {fileID: 11400000, guid: d6249da2c92d15044bddded93ba555ec, type: 2}
 --- !u!114 &4606261879900217901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Proj: {fileID: 7780897999480266336, guid: 07197bc3ef273d3439b9fa340c815fe2, type: 3}
   _playerData: {fileID: 0}
+  Comp: {fileID: 11400000, guid: d6249da2c92d15044bddded93ba555ec, type: 2}
   AttackEvent: {fileID: 11400000, guid: bd732cc18d24aa74b9f76e5a6538246a, type: 2}
 --- !u!114 &106657716
 MonoBehaviour:

@@ -16,7 +16,6 @@ MonoBehaviour:
   cooldown: 0.4
   manaCost: 10
   id: OneProj
-  allyTag: Player
   enemyTag: Enemies
   adDamage: 10
   apDamage: 5
@@ -25,3 +24,5 @@ MonoBehaviour:
   speed: 12
   addNumber: 0
   AddLive: 5
+  icon1: {fileID: 21300032, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
+  icon2: {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
