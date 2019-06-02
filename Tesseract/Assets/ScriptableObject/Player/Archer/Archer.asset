@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f38c1a5654806f468bdd75f9d3f6d47, type: 3}
   m_Name: Archer
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   PlayerHpAth: {fileID: 11400000, guid: dd3bf4f205e112545acef28afda5b3f1, type: 2}
   PlayerHpBarAth: {fileID: 11400000, guid: c0a3c13ea0e4dcc41bc88e3ef175b439, type: 2}
   PlayerManaAth: {fileID: 11400000, guid: 0fb703b5b237c6b42b05d5e43deddaaa, type: 2}
@@ -62,7 +62,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: b8307cb920445524090ce2aa7d172db0, type: 2}
   - {fileID: 7400000, guid: dff886c8407b23745bf6fd243a619a9d, type: 2}
   - {fileID: 7400000, guid: 7938add593add69458921c7d64efb703, type: 2}
-  - {fileID: 7400000, guid: 77984986e893b9744822e17972c0a068, type: 2}
   _Competences:
   - {fileID: 11400000, guid: 27096ad80f5071242b6dd2871d2b3c37, type: 2}
   - {fileID: 11400000, guid: 106f3ec882163d8499482323098c7c6d, type: 2}

@@ -61,7 +61,7 @@ public class PlayerManagerMulti : MonoBehaviour
     private void InstantiatePlayer(int x, int y)
     {
         Transform o = Instantiate(PlayerMulti, new Vector3(x, y, 0), Quaternion.identity, transform);
-
+        /*
         SetXp.Raise(new EventArgsString(_playerData.Xp.ToString()));
         SetXpBar.Raise(new EventArgsFloat((float)_playerData.Xp / _playerData.MaxXp));
         SetHp.Raise(new EventArgsString(_playerData.Hp.ToString()));
@@ -69,7 +69,7 @@ public class PlayerManagerMulti : MonoBehaviour
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
         SetManaBar.Raise(new EventArgsFloat((float)_playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
-
+        */
         o.GetComponent<PlayerMovement>().Create(_playerData);
         o.GetComponent<PlayerDash>().Create(_playerData);
         o.GetComponent<PotionUsable>().Create(_playerData);
@@ -127,7 +127,7 @@ public class PlayerManagerMulti : MonoBehaviour
 
             GamesItem ite = FindItems(0);
             Weapons i = ScriptableObject.CreateInstance<Weapons>();
-            i.Create(ite as Weapons, 1);
+           // i.Create(ite as Weapons, 1);
 
             _playerData.Inventory.Weapon = i;
 
@@ -262,7 +262,7 @@ public class PlayerManagerMulti : MonoBehaviour
 
     public void AddWeapons(IEventArgs args)
     {
-        StartCoroutine(FuckIt(args));
+       // StartCoroutine(FuckIt(args));
     }
 
     IEnumerator FuckIt(IEventArgs args)

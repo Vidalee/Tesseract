@@ -87,7 +87,6 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
             {
                 dx = float.Parse(args[3]);
                 dy = float.Parse(args[4]);
-                Debug.Log("parsed: dx " + dx + " dy " + dy);
                 if (args[2] == "AA")
                 {
                     aa = true;
@@ -162,18 +161,31 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         
         StartCoroutine(CoolDownCoroutine(competence, true));
     }
+<<<<<<< HEAD
     
     private void InstantiateCircleAttack(ProjComp competence, float dx = 0, float dy = 0)
+=======
+
+    private void CircleAttack(CompetencesData competence, float dx = 0, float dy = 0)
+>>>>>>> MultiLink
     {
         if (_playerData.Mana < competence.ManaCost)
         {
             return;
         }
+<<<<<<< HEAD
         
         if(dx == 0 && dy == 0)
             if ((string) Coffre.Regarder("mode") == "multi")
                 MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
+=======
+        if ((string)Coffre.Regarder("mode") != "solo") {
+>>>>>>> MultiLink
 
+            if (dx == 0 && dy == 0)
+                MultiManager.socket.Send("PINFO " + action + " -1 " + dx);
+        }
+    
         _playerData.Mana -= competence.ManaCost;
 
         AttackEvent.Raise(new EventArgsInt(_playerData.MultiID));
@@ -213,17 +225,31 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     private Vector3 ProjectilesDirection(float dx = 0, float dy = 0)
     {
-        bool by = dy == 0;
-        if (dx != 0 || dy != 0)
-            return new Vector3(dx, dy, 0);
-        else
+        if ((string)Coffre.Regarder("mode") == "solo")
         {
             Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             cursorPos.z = 0;
             Vector3 n = (cursorPos - transform.position).normalized;
+<<<<<<< HEAD
             if ((string) Coffre.Regarder("mode") == "multi")
                 MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
+=======
+>>>>>>> MultiLink
             return n;
+        }
+        else
+        {
+            bool by = dy == 0;
+            if (dx != 0 || dy != 0)
+                return new Vector3(dx, dy, 0);
+            else
+            {
+                Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                cursorPos.z = 0;
+                Vector3 n = (cursorPos - transform.position).normalized;
+                MultiManager.socket.Send("PINFO " + action + " " + n.x + " " + n.y);
+                return n;
+            }
         }
     }
 

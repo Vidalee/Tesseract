@@ -32,12 +32,15 @@ public class UDPClient : MonoBehaviour, UDPEventListener
 
     void Start()
     {
+        Coffre.Créer();
+
         UDPEvent.Register(this);
         error.text = "Server not reachable";
         //loginButton.enabled = false;
         loginButton.gameObject.SetActive(false);
 
         _socket.Client(ip, 27000);
+       
         _socket.Send("PING");
 
     }
