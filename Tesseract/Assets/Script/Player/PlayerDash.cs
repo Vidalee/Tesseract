@@ -36,20 +36,20 @@ public class PlayerDash : MonoBehaviour, UDPEventListener
     {
         if (!_playerData.CanMove) return;
 
-        if (Input.GetKey("space") && _playerData.GetCompetence("Dash").Usable)
+        if (Input.GetKey("space") && _playerData.Competences[0].Usable)
         {
             if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
             {
-                if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.GetCompetence("Dash")  as DashComp));
-                else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp));
+                if (_playerData.Name == "Mage") StartCoroutine(Dash(_playerData.Competences[0] as DashComp));
+                else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp));
             }
         }
 
         if (shouldDash)
         {
             shouldDash = false;
-            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
-            else StartCoroutine(SmoothDash(_playerData.GetCompetence("Dash") as DashComp, dx, dy));
+            if (_playerData.MultiID == 3) StartCoroutine(Dash(_playerData.Competences[0] as DashComp, dx, dy));
+            else StartCoroutine(SmoothDash(_playerData.Competences[0] as DashComp, dx, dy));
         }
     }
 

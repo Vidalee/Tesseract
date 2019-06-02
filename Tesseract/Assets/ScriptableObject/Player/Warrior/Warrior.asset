@@ -20,6 +20,7 @@ MonoBehaviour:
   PlayerXpBarAth: {fileID: 11400000, guid: 24cb463a62ae6f24e95e17d5c71cc999, type: 2}
   PlayerLevelAth: {fileID: 11400000, guid: b1efd1ff23cb1744da9ddb67595ce9a5, type: 2}
   _Name: Warrior
+  _MultiID: 0
   _MaxHp: 100
   _Hp: 100
   _MaxMana: 100
@@ -56,10 +57,12 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 0e221ecbfbd98714e99e662540e28926, type: 2}
   - {fileID: 7400000, guid: 229ee47038da1c74e817c784bc977aff, type: 2}
   _DashParticles: {fileID: 7400000, guid: 5a2d66932441a2e4795296bdd44606cb, type: 2}
+  compAnim: []
   _Competences:
-  - {fileID: 11400000, guid: 305d1ae88034adb45a30f75947a4aaac, type: 2}
-  - {fileID: 11400000, guid: 592eb9a2cf0bf3846981d3f61455cd79, type: 2}
-  - {fileID: 11400000, guid: 592eb9a2cf0bf3846981d3f61455cd79, type: 2}
+  - {fileID: 11400000, guid: 27096ad80f5071242b6dd2871d2b3c37, type: 2}
+  - {fileID: 11400000, guid: 076c03ac699361746856abbc4acc42d1, type: 2}
+  - {fileID: 11400000, guid: 48e060d235195a549bb20b72e409da95, type: 2}
+  - {fileID: 11400000, guid: 3d806565153a6d7458ee36389e56463c, type: 2}
   _Inventory: {fileID: 11400000, guid: a00c00f36bc26df459c3de1d5d81ac1f, type: 2}
   _PotionsCooldown: 2
   PositionChanged: 0

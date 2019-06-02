@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "CompetenceData", menuName = "Player/Competence/Dash")]
+[CreateAssetMenu(fileName = "CompetenceData", menuName = "Competence/Boost")]
 public class BoostComp : CompetencesData
 {
     [SerializeField] protected float apBoost;
@@ -8,8 +8,10 @@ public class BoostComp : CompetencesData
     [SerializeField] protected float coolDownBoost;
     [SerializeField] protected float manaCostBoost;
 
-    public void Create(BoostComp comp, int lvl)
+    public override void ChildCreate(CompetencesData competence, int lvl)
     {
+        BoostComp comp = (BoostComp) competence;
+        
         apBoost = comp.apBoost + lvl;
         adBoost = comp.adBoost + lvl;
         coolDownBoost = comp.coolDownBoost + lvl;
