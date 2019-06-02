@@ -30,9 +30,9 @@ public class PlayerData : ScriptableObject
     [SerializeField] protected int _MagicDamage;
     [SerializeField] protected float _MoveSpeed;
 
-    [SerializeField] protected int _MaxXp;
+    [SerializeField] protected long _MaxXp;
 
-    public int _Xp;
+    public long _Xp;
     [SerializeField] protected int _MaxLvl;
     public int _Lvl;
 
@@ -225,7 +225,7 @@ public class PlayerData : ScriptableObject
         }
     }
 
-    public int Xp
+    public long Xp
     {
         get => _Xp;
         set
@@ -268,7 +268,7 @@ public class PlayerData : ScriptableObject
         set => _MoveSpeed = value;
     }
 
-    public int MaxXp
+    public long MaxXp
     {
         get => _MaxXp;
         set => _MaxXp = value;

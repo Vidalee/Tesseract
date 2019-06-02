@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: WarriorAA
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
+  cooldown: 0.5
   manaCost: 10
   id: CacAtt
   allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
-  apDamage: 10
+  adDamage: 0
+  apDamage: 15

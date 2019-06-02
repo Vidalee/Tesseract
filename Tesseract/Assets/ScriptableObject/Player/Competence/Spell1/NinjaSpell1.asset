@@ -20,6 +20,7 @@ MonoBehaviour:
   enemyTag: Enemies
   adDamage: 10
   apDamage: 10
-  live: 10
-  number: 10
-  speed: 10
+  live: 2
+  number: 3
+  speed: 8
+  addNumber: 6

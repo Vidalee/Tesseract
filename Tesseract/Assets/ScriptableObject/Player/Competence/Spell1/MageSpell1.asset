@@ -18,8 +18,9 @@ MonoBehaviour:
   id: CirProj
   allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
-  apDamage: 10
-  live: 10
-  number: 10
+  adDamage: 0
+  apDamage: 30
+  live: 1
+  number: 8
   speed: 10
+  addNumber: 4

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "CompetenceData", menuName = "Competence/Proj")]
 public class ProjComp : CompetencesData
@@ -8,16 +9,28 @@ public class ProjComp : CompetencesData
     [SerializeField] protected int live;
     [SerializeField] protected int number;
     [SerializeField] protected float speed;
+    [SerializeField] protected float addNumber;
 
     public override void ChildCreate(CompetencesData competence, int lvl)
     {
         ProjComp comp = (ProjComp) competence;
-        
+
+        manaCost = comp.manaCost + lvl;
+        addNumber = Math.Abs(addNumber) < 0.01 ? 0 : 1 / comp.addNumber;
         adDamage = comp.adDamage + lvl;
-        apDamage = comp.apDamage + + lvl;
-        live = comp.live + + lvl;
-        number = comp.number + + lvl;
-        speed = comp.speed + + lvl;
+        apDamage = comp.apDamage + lvl;
+        live = comp.live + lvl / 5;
+        number = comp.number + (int)(addNumber * lvl);
+        speed = comp.speed;
+    }
+
+    public void UpgradeStats()
+    {
+        manaCost++;
+        Lvl++;
+        adDamage++;
+        apDamage++;
+        live += Lvl % 5 == 0 ? 1 : 0;
     }
     
     public int AdDamage => adDamage;

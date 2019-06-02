@@ -54,5 +54,9 @@ public abstract class CompetencesData : ScriptableObject
 
     public string Id => id;
 
-    public int Lvl => lvl;
+    public int Lvl
+    {
+        get => lvl;
+        set => lvl = value;
+    }
 }

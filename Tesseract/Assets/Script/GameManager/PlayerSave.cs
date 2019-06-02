@@ -9,8 +9,8 @@ public class PlayerDataSave
     public int PhysicsDamage;
     public int MagicDamage;
     public float MoveSpeed;
-    public int Xp;
-    public int MaxXp;
+    public long Xp;
+    public long MaxXp;
     public int[] Lvl;
     public int ManaRegen;
     

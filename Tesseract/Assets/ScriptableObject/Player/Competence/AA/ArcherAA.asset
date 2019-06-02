@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: ArcherAA
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
+  cooldown: 0.5
   manaCost: 10
   id: OneProj
   allyTag: Player
   enemyTag: Enemies
   adDamage: 10
-  apDamage: 10
+  apDamage: 5
   live: 10
-  number: 10
-  speed: 10
+  number: 1
+  speed: 12
+  addNumber: 0

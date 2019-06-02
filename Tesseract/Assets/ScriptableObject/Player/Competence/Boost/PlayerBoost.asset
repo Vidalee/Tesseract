@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: PlayerBoost
   m_EditorClassIdentifier: 
   name: 
-  cooldown: 1
-  manaCost: 10
+  cooldown: 30
+  manaCost: 0
   id: Boost
   allyTag: Player
   enemyTag: Enemies
   apBoost: 10
   adBoost: 10
   coolDownBoost: 10
+  duration: 10

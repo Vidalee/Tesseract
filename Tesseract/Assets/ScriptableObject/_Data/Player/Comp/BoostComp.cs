@@ -15,9 +15,20 @@ public class BoostComp : CompetencesData
         apBoost = comp.apBoost + lvl * 5;
         adBoost = comp.adBoost + lvl * 5;
         coolDownBoost = (comp.coolDownBoost + lvl / 2) / 100;
-        duration = comp.Duration;
+        duration = comp.Duration + lvl;
+        manaCost += lvl;
     }
-    
+
+    public void UpgradeStats()
+    {
+        manaCost++;
+        Lvl += 1;
+        apBoost += 1;
+        adBoost += 1;
+        coolDownBoost += Lvl % 2 == 0 ? 1 : 0;
+        duration += 1;
+    }
+
     public int ApBoost => apBoost;
 
     public int AdBoost => adBoost;

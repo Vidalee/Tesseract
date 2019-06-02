@@ -112,6 +112,7 @@ public class BossAttack : MonoBehaviour
         enemy.GetComponent<Pathfinding>().Create(newEnemy);
         enemy.GetComponentInChildren<SpriteRenderer>().sprite = newEnemy.Sprite;
         enemy.GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
+        enemy.transform.GetChild(0).GetComponent<BoxCollider2D>().size = new Vector3(newEnemy.ColliderX, newEnemy.ColliderY);
         enemy.transform.GetChild(2).transform.position = new Vector3(0, newEnemy.EffectY + 0.181f, 0);
         enemy.transform.GetChild(3).transform.position = new Vector3(0, newEnemy.EffectY, 0);
         enemy.transform.GetChild(4).transform.position = new Vector3(0, newEnemy.EffectY, 0);

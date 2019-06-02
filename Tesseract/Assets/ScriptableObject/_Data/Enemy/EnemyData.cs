@@ -55,11 +55,11 @@ public class EnemyData : ScriptableObject
     { 
         name = enemy.name;
         _MaxHp = enemy.MaxHp;
-        _Hp = enemy.Hp;
-        _XpValue = enemy.XpValue;
-        _physicsDamage = enemy.PhysicsDamage;
-        _magicDamage = enemy.MagicDamage;
-        _ArmorM = enemy._ArmorM;
+        _Hp = enemy.Hp + 10 * lvl;
+        _XpValue = enemy.XpValue * 1.2f;
+        _physicsDamage = enemy.PhysicsDamage + lvl;
+        _magicDamage = enemy.MagicDamage + lvl;
+        _ArmorM = enemy._ArmorM + lvl / 5;
         _MaxCooldown = enemy.MaxCooldown;
         _MoveSpeed = enemy.MoveSpeed;
         _AttackRange = enemy.AttackRange;

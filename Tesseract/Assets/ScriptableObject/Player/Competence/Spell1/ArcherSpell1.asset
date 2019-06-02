@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   cooldown: 1
-  manaCost: 10
+  manaCost: 50
   id: ArcProj
   allyTag: Player
   enemyTag: Enemies
-  adDamage: 10
+  adDamage: 20
   apDamage: 10
-  live: 10
-  number: 10
-  speed: 10
+  live: 1
+  number: 5
+  speed: 12
+  addNumber: 6

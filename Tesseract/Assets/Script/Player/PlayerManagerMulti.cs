@@ -207,9 +207,9 @@ public class PlayerManagerMulti : MonoBehaviour
 
     #region PlayerStats
 
-    public void GetXp(int amout)
+    public void GetXp(long amout)
     {
-        int gap = _playerData.MaxXp - _playerData.Xp;
+        long gap = _playerData.MaxXp - _playerData.Xp;
 
         while (amout >= gap)
         {

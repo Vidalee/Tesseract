@@ -21,5 +21,6 @@ MonoBehaviour:
   adDamage: 10
   apDamage: 10
   live: 10
-  number: 10
+  number: 1
   speed: 10
+  addNumber: 0

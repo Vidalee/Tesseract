@@ -12,6 +12,15 @@ public class CacComp : CompetencesData
         
         adDamage = comp.adDamage + lvl;
         apDamage = comp.apDamage + lvl;
+        manaCost = comp.manaCost + lvl;
+    }
+
+    public void UpgradeStats()
+    {
+        manaCost++;
+        Lvl++;
+        adDamage += 1;
+        apDamage += 1;
     }
 
     public int AdDamage => adDamage;

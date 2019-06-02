@@ -41,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
-        if(Input.GetKey("x")) GetXp(10);
+        if(Input.GetKey("x")) GetXp(10000000);
     }
 
     #endregion
@@ -200,9 +200,9 @@ public class PlayerManager : MonoBehaviour
 
     #region PlayerStats
 
-    public void GetXp(int amout)
+    public void GetXp(long amout)
     {
-        int gap = _playerData.MaxXp - _playerData.Xp;
+        long gap = _playerData.MaxXp - _playerData.Xp;
 
         while (amout >= gap)
         {
@@ -211,7 +211,7 @@ public class PlayerManager : MonoBehaviour
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
             _playerData.Xp = gap;
 
-            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.1f);
+            _playerData.MaxXp = (int) (_playerData.MaxXp * 1.2f);
             
             UpgradeStats();
 
@@ -229,8 +229,9 @@ public class PlayerManager : MonoBehaviour
     {
 
         _playerData.MaxHp += 5;
+        _playerData.Hp += 5;
         _playerData.MaxMana += 5;
-        
+        _playerData.Mana += 5;
         _playerData.ManaRegen++;
         _playerData.PhysicsDamage++;
         _playerData.MagicDamage++;

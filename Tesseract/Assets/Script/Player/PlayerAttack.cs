@@ -239,7 +239,7 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
         int dP = _playerData.PhysicsDamage + _playerData.Inventory.Weapon.PhysicsDamage + competence.AdDamage;
         int dM = _playerData.MagicDamage + _playerData.Inventory.Weapon.MagicDamage + competence.ApDamage;
         
-        projectilesData.Created(dir, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
+        projectilesData.Created(dir.normalized, competence.Speed, dP, dM, competence.EnemyTag, _playerData.AnimProj(),
             competence.Live, _playerData.AnimColor(), _playerData.Prob(), _playerData.Effect(), _playerData.EffectDamage(), _playerData.Duration());
         
         Projectiles script = o.GetComponent<Projectiles>();

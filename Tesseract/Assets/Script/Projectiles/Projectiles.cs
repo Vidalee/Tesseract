@@ -36,12 +36,14 @@ public class Projectiles : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        string tag = other.gameObject.tag;
+        
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("ObstaclesDestroy"))
         {
             Destroy(gameObject);
         }
         
-        if (!other.CompareTag(_projectilesData.AllyTag) && other.gameObject.CompareTag(_projectilesData.AllyTag))
+        if (tag == _projectilesData.EnemyTag)
         {
             if(--_projectilesData.Live <= 0) Destroy(gameObject);
             EnemiesLive e = other.transform.GetComponent<EnemiesLive>();
