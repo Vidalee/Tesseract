@@ -30,7 +30,7 @@ public class PlayerDataSave
         Lvl = new int[5];
 
         Lvl[0] = player.Lvl;
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 4; i++)
         {
             Lvl[i] = player.Competences[i].Lvl;
         }

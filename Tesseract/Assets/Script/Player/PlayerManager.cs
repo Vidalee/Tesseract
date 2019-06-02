@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
         if(Input.GetKey("x")) GetXp(10);
     }
 
