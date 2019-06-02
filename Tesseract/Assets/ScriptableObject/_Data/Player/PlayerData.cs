@@ -82,7 +82,7 @@ public class PlayerData : ScriptableObject
         _PhysicsDamage = playerData.PhysicsDamage + Lvl * 5;
         _MagicDamage = playerData.MagicDamage + Lvl * 5;
         _MoveSpeed = playerData.MoveSpeed;
-        _MaxXp = playerData.MaxXp + (int) (playerData.MaxXp * Lvl * 0.25f);
+        _MaxXp = _Lvl == 0 ? playerData.MaxXp : (int) (Mathf.Pow(1.2f, Lvl) * playerData.MaxXp);
         _Xp = playerData.Xp;
         _MaxLvl = 99;
         

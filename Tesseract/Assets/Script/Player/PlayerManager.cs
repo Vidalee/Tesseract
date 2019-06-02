@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         if(Input.GetKey("m")) SaveSystem.SavePlayer(_playerData);
-        if(Input.GetKey("x")) GetXp(10000000);
+        if(Input.GetKey("x")) GetXp(10000);
     }
 
     #endregion
@@ -92,7 +92,6 @@ public class PlayerManager : MonoBehaviour
         SetMana.Raise(new EventArgsString(_playerData.Mana.ToString()));
         SetManaBar.Raise(new EventArgsFloat((float) _playerData.Mana / _playerData.MaxMana));
         SetLvl.Raise(new EventArgsString(_playerData.Lvl.ToString()));
-
         CompAth.Raise(new EventArgsNull());
         
         o.GetComponent<PlayerMovement>().Create(_playerData);
@@ -145,7 +144,7 @@ public class PlayerManager : MonoBehaviour
         string type = Perso != "" ? Perso : StaticData.PlayerChoice;
         pers = pers == 0 ? FindClass(type) : pers - 1;
         
-        PlayerDataSave data = SaveSystem.LoadPlayer("Mage");
+        PlayerDataSave data = SaveSystem.LoadPlayer(type);
         if (data == null)
         {
             ResetStats(pers);
@@ -214,13 +213,13 @@ public class PlayerManager : MonoBehaviour
             amout = amout - gap;
 
             if (_playerData.Lvl < _playerData.MaxLvl) _playerData.Lvl++;
-            _playerData.Xp = gap;
+            _playerData.Xp = 0;
 
             _playerData.MaxXp = (int) (_playerData.MaxXp * 1.2f);
             
             UpgradeStats();
 
-            gap = _playerData.MaxXp - _playerData.Xp;
+            gap = _playerData.MaxXp;
         }
 
         _playerData.Xp += amout;
