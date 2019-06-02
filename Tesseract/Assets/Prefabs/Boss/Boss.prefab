@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 3922147731662384217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.507927, y: 66.533844, z: -0.64941406}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 3922147730277004502}
   - {fileID: 8492981900083277896}
@@ -150,21 +150,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerDamage: {fileID: 11400000, guid: 38a3ac4708b9036409d40e34fb291f04, type: 2}
+  bossMovement: {fileID: 4255360054210686381}
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
   waitingCooldown: 0
-  _cooldown: 2
+  _cooldown: 5
   _damage: 20
   _attackRange: 3
   _enemy: {fileID: 7149161332187119876, guid: 6229a51e6d6924ac8982f39676b60b85, type: 3}
   batData: {fileID: 11400000, guid: e188e488d6a64064f86e1ea9831aad95, type: 2}
   _playerData: {fileID: 0}
-  _players:
-  - {fileID: 0}
-  - {fileID: 0}
-  _playerDatas:
-  - {fileID: 0}
-  - {fileID: 0}
+  _players: []
+  _playerDatas: []
   _blockingLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -183,8 +180,8 @@ MonoBehaviour:
   _a: {fileID: 1869203770113076162}
   _sprite: {fileID: 5516537902354805601}
   _moveSpeed: 1
-  _attackRange: 3
-  _notCloseEnough: 10
+  _attackRange: 1
+  _notCloseEnough: 5
   _distDash: 7
   entityLayer:
     serializedVersion: 2
@@ -258,7 +255,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -327,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6030753301531125248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.877054, y: 2.9061737, z: -0.053710938}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3922147731662384223}

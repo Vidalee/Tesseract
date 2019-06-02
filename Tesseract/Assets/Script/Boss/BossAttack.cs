@@ -9,12 +9,16 @@ using UnityEngine;
 public class BossAttack : MonoBehaviour
 {
     [SerializeField] public GameEvent PlayerDamage;
+
+    [SerializeField] protected BossMovement bossMovement;
     
     [SerializeField] protected Animator _a;
     [SerializeField] protected SpriteRenderer _sprite;
     
-    [SerializeField] protected bool waitingCooldown = false;
-    [SerializeField] protected float _cooldown;
+    [SerializeField] protected bool waitingAxeCooldown = false;
+    [SerializeField] protected bool waitingBatCooldown = false;
+    [SerializeField] protected float _batCooldown;
+    [SerializeField] protected float _axeCooldown;
     [SerializeField] protected int _damage;
     [SerializeField] protected float _attackRange;
 
@@ -30,6 +34,7 @@ public class BossAttack : MonoBehaviour
 
     public void TryAttack(string attack)
     {
+        StartCoroutine(bossMovement.CantMove());
         if (attack == "AttackBat")
         {
             _a.Play("AttackBat");
@@ -42,11 +47,18 @@ public class BossAttack : MonoBehaviour
         }
     }
   
-    IEnumerator Cooldown()
+    IEnumerator BatCooldown()
     {
-        waitingCooldown = true;
-        yield return new WaitForSeconds(_cooldown);
-        waitingCooldown = false;
+        waitingBatCooldown = true;
+        yield return new WaitForSeconds(_batCooldown);
+        waitingBatCooldown = false;
+    }
+
+    IEnumerator AxeCooldown()
+    {
+        waitingAxeCooldown = true;
+        yield return new WaitForSeconds(_axeCooldown);
+        waitingAxeCooldown = false;
     }
 
     private void Update()
@@ -62,20 +74,19 @@ public class BossAttack : MonoBehaviour
         }
         
         _sprite.sortingOrder = (int) (transform.position.y * -10);
-        if (!waitingCooldown)
+   
+        if (!waitingAxeCooldown && (_player.position - transform.position).sqrMagnitude < _attackRange * _attackRange + 0.2f)
         {
-            if ((_player.position - transform.position).sqrMagnitude < _attackRange * _attackRange + 0.2f)
-            {
-                TryAttack("AttackAxe");
-            }
-            else
-            {
-                //TryAttack("AttackBat");
-            }
-
-            StartCoroutine(Cooldown());
+            TryAttack("AttackAxe");
+            StartCoroutine(AxeCooldown());
+        }
+        else if (!waitingBatCooldown)
+        {
+            TryAttack("AttackBat");
+            StartCoroutine(BatCooldown());
         }
     }
+    
 
     private void GenerateBats()
     {

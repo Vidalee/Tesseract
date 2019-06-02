@@ -17,6 +17,7 @@ public class BossMovement : MonoBehaviour
 
     private bool _dashing = false;
     private bool _animationStarted = false;
+    private bool _canmove = true;
     public void Update()
     {
         if (_player == null)
@@ -24,42 +25,44 @@ public class BossMovement : MonoBehaviour
             _player = GameObject.Find("Player(Clone)").transform;
             return;
         }
-        
-        Vector3 distanceToPos = _player.position + new Vector3(0, -0.5f) - transform.position;
-        float magnitude = distanceToPos.magnitude;
-        if (magnitude > _notCloseEnough || (_dashing && magnitude > _attackRange))
+
+        if (_canmove)
         {
-            if (!_animationStarted || !_dashing)
+            Vector3 distanceToPos = _player.position + new Vector3(0, -0.5f) - transform.position;
+            float magnitude = distanceToPos.magnitude;
+            if (magnitude > _notCloseEnough || (_dashing && magnitude > _attackRange))
             {
-                _a.Play("PreDash");
-                _animationStarted = true;
-                _a.SetBool("Dashing", true);
+                if (!_animationStarted || !_dashing)
+                {
+                    _a.Play("PreDash");
+                    _animationStarted = true;
+                    _a.SetBool("Dashing", true);
+                    _a.SetBool("Speed", false);
+                    _dashing = true;
+                    StartCoroutine(Dashing());
+                }
+
+                _moveSpeed = _distDash;
+            }
+            else if (magnitude > _attackRange)
+            {
+                if (!_animationStarted)
+                {
+                    _a.SetBool("Speed", true);
+                    _a.Play("Move");
+                    _animationStarted = true;
+                }
+
+                StraightToPoint(distanceToPos.normalized);
+            }
+            else
+            {
+                _moveSpeed = 1;
                 _a.SetBool("Speed", false);
-                _dashing = true;
-                StartCoroutine(Dashing());
+                _a.SetBool("Dashing", false);
+                _animationStarted = false;
+                _dashing = false;
             }
-            _moveSpeed = _distDash;
-            //RaycastHit2D linecast = Physics2D.Linecast(transform.position, _player.position, entityLayer);
-            //Debug.Log(linecast.point);
-            //StartCoroutine(Dash((_player.position - transform.position).normalized));
-        }
-        else if (magnitude > _attackRange)
-        {
-            if (!_animationStarted)
-            {
-                _a.SetBool("Speed", true);
-                _a.Play("Move");
-                _animationStarted = true;
-            }
-            StraightToPoint(distanceToPos.normalized);
-        }
-        else
-        {
-            _moveSpeed = 1;
-            _a.SetBool("Speed", false);
-            _a.SetBool("Dashing", false);
-            _animationStarted = false;
-            _dashing = false;
         }
     }
 
@@ -74,23 +77,14 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    public IEnumerator Dash(Vector3 direction)
-    {  
-        float step = _distDash * Time.fixedDeltaTime;
-        float t = 0;
-        Vector3 end = transform.position + direction - direction * 0.01f;
 
-        while ((end - transform.position).magnitude > 0.1f)
-        {
-            t += step;
-            transform.position = Vector3.Lerp(transform.position, end, t);
-            yield return new WaitForFixedUpdate();
-        }
-
-        transform.position = end;
-        _a.SetBool("Dashing", false);
+    public IEnumerator CantMove()
+    {
+        _canmove = false;
+        _animationStarted = false;
+        yield return new WaitForSeconds(0.5f);
+        _canmove = true;
     }
-    
     private void StraightToPoint(Vector3 direction)
     {
         transform.Translate(direction * Time.deltaTime * _moveSpeed);
