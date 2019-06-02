@@ -77,6 +77,7 @@ public class EnemyData : ScriptableObject
         colliderX = enemy.colliderX;
         colliderY = enemy.colliderY;
         feetPos = enemy.feetPos;
+        effectY = enemy.EffectY;
     }
 
     public string Name => name;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,34 +72,32 @@ public class EnemiesLive : MonoBehaviour
 
     public void Effect(int effect, int damage, float duration)
     {
-        if (effect == 1)
+        switch (effect)
         {
-            StartCoroutine(ResetSpeed(Enemy.MoveSpeed, duration));
-            Enemy.MoveSpeed -= Enemy.MoveSpeed * ((float) damage / 100);
-            StartCoroutine(SetIcon(effect, duration));
+            case 1:
+                StartCoroutine(ResetSpeed(damage, duration));
+                break;
+            case 2:
+                StartCoroutine(DamagePoison(damage, duration));
+                break;
+            case 3:
+                StartCoroutine(Stun(duration));
+                break;
+            case 4:
+                StartCoroutine(DamageFire(damage, duration));
+                break;
         }
-        if (effect == 2)
-        {
-            StartCoroutine(DamagePoison(damage, duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        if (effect == 3)
-        {
-            StartCoroutine(Stun(duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        if (effect == 4)
-        {
-            StartCoroutine(DamageFire(damage, duration));
-            StartCoroutine(SetIcon(effect, duration));
-        }
-        
+
+        StartCoroutine(SetIcon(effect, duration));
+
     }
 
-    IEnumerator ResetSpeed(float reset, float duration)
+    IEnumerator ResetSpeed(float damage, float duration)
     {
+        float old = Enemy.MoveSpeed;
+        Enemy.MoveSpeed -= 1 + damage / 100;
         yield return new WaitForSeconds(duration);
-        Enemy.MoveSpeed = reset;
+        Enemy.MoveSpeed = old;
     }
 
     IEnumerator DamagePoison(int damage, float duration)
