@@ -6,6 +6,7 @@ public class MenuFunction : MonoBehaviour
 {
     public void PlayScene(string scene)
     {
+        if (scene == "Login") StaticData.ActualFloor = 0;
         SceneManager.LoadScene(scene);
     }
 

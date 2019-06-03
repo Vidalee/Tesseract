@@ -53,6 +53,7 @@ public class EnemiesLive : MonoBehaviour
     {
         if (alive)
         {
+            Debug.Log(transform.parent);
             alive = false;
             if (!circleCollider2D.IsTouchingLayers(weaponLayer) && !circleCollider2D.IsTouchingLayers(enemyLayer) 
                                                                 && !circleCollider2D.IsTouchingLayers(bossLayer)
