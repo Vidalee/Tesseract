@@ -121,11 +121,9 @@ public class PlayerAttack : MonoBehaviour, UDPEventListener
 
     private void UseCompetence(CompetencesData competence, int index, float dx = 0, float dy = 0)
     {
-        Debug.Log("on passe");
         if (competence.Usable && competence.ManaCost <= _playerData.Mana || _playerData.MultiID + "" != (string)Coffre.Regarder("id"))
         {
             StartCoroutine(AfkCoroutine());
-            Debug.Log("passé");
             if (_playerData.MultiID + "" == (string)Coffre.Regarder("id"))
                 Comp.Raise(new EventArgsDoubleInt((int)competence.Cooldown, index));
 

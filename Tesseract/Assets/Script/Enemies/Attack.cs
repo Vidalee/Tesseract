@@ -77,8 +77,14 @@ public class Attack : MonoBehaviour
     private void Update()
     {
         _sprite.sortingOrder = (int) (transform.position.y * -10);
+        
         if (Enemy.Triggered)
         {
+            players = players.Where(p => p != null).ToList();
+            if (players.Count == 0)
+            {
+                return;
+            }
             Transform target = players.OrderBy(p => (p.position - transform.position).magnitude).ToList()[0];
             if ((target.position - transform.position).sqrMagnitude < Enemy.AttackRange * Enemy.AttackRange + 0.1f &&
                 !waitingCooldown)
