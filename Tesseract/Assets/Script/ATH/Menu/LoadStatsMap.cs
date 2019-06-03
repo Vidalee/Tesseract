@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Script.GlobalsScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadStatsMap : MonoBehaviour
@@ -20,7 +21,7 @@ public class LoadStatsMap : MonoBehaviour
 
         StaticData.NumberFloor = 1 + StaticData.RandomLevel() / 10;
 
-        ChangeScene.ChangeToScene("Dungeon");
+        SceneManager.LoadScene("Dungeon");
     }
 
     public void ReturnChampSelect()
@@ -28,7 +29,7 @@ public class LoadStatsMap : MonoBehaviour
         StaticData.Reset();
         GlobalInfo.Reset();
         
-        ChangeScene.ChangeToScene("MenuPlayer");
+        SceneManager.LoadScene("MenuPlayer");
     }
 
     public void Reset()
@@ -36,6 +37,6 @@ public class LoadStatsMap : MonoBehaviour
         string path = Application.persistentDataPath + "/lvl.txt";
         if(File.Exists(path)) File.Delete(path);
 
-        ChangeScene.ChangeToScene("LevelSelection");
+        SceneManager.LoadScene("LevelSelection");
     }
 }

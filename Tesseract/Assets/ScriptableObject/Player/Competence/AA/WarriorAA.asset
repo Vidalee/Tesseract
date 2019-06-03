@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa918c69c73a35548b62088554da2425, type: 3}
   m_Name: WarriorAA
   m_EditorClassIdentifier: 
-  name: 
+  name: Warrior Attack
   cooldown: 0.4
   manaCost: 0
   id: CacAtt

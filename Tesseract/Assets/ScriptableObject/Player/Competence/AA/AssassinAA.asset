@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe3f1d32984b240a903a1857ef6204, type: 3}
   m_Name: AssassinAA
   m_EditorClassIdentifier: 
-  name: 
+  name: Assassin Attack
   cooldown: 0.4
   manaCost: 0
   id: OneProj

@@ -1,11 +1,12 @@
 ﻿using Script.GlobalsScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuFunction : MonoBehaviour
 {
     public void PlayScene(string scene)
     {
-        ChangeScene.ChangeToScene(scene);
+        SceneManager.LoadScene(scene);
     }
 
     public void ChoosePlayer(string player)
@@ -16,7 +17,7 @@ public class MenuFunction : MonoBehaviour
     public void StartMultiGame()
     {
         UDPRoomManager._socket.Send("PINFO START");
-        ChangeScene.ChangeToScene("MultiGame");
+        SceneManager.LoadScene("MultiGame");
     }
 
     public void QuitGame()

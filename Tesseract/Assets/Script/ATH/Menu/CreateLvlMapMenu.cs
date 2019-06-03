@@ -49,6 +49,7 @@ public class CreateLvlMapMenu : MonoBehaviour
             Transform o = Instantiate(lvl, init + new Vector3(0, -140 * (i % 5), 0), Quaternion.identity, transform);
 
             o.name = text[i];
+            o.localScale = Vector3.one / 2;
         }
     }
 }

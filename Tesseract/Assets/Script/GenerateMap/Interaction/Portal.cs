@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Script.GlobalsScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class Portal : MonoBehaviour
             Debug.Log(StaticData.ActualFloor);
 
             StaticData.actualData = other.GetComponentInParent<PlayerManager>().PlayerData;
-            ChangeScene.ChangeToScene("Boss");
+            SceneManager.LoadScene("Boss");
         }
         
         else if (_portalData.IsBoss && StaticData.ActualFloor < 0)
@@ -53,7 +54,7 @@ public class Portal : MonoBehaviour
 
             SaveSystem.SavePlayer(other.GetComponentInParent<PlayerManager>().PlayerData);
             
-            ChangeScene.ChangeToScene("LevelSelection");
+            SceneManager.LoadScene("LevelSelection");
         }
         
         else if(_portalData.IsBoss)
@@ -65,7 +66,7 @@ public class Portal : MonoBehaviour
             Random.InitState(StaticData.Seed);
 
             StaticData.Seed = Random.Range(0, 1000000);
-            ChangeScene.ChangeToScene("Dungeon");
+            SceneManager.LoadScene("Dungeon");
         }
         
         other.transform.parent.position = _pos;

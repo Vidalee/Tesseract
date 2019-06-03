@@ -52,8 +52,9 @@ public class CompSetAthMenuLoad : MonoBehaviour
         Text[] te = transform.GetComponentsInChildren<Text>();
         te[0].text = comp.Name;
         te[2].text = "Cooldown : " + comp.Cooldown;
-        te[2].text = "Mana Cost : " + comp.ManaCost;
+        te[4].text = "Mana Cost : " + comp.ManaCost;
         te[3].text = "Damage Boost : " + comp.AdBoost;
-        te[4].text = "Damage Boost : " + comp.ApBoost;
+        te[5].text = "Damage Boost : " + comp.ApBoost;
+        Debug.Log(comp.ApBoost);
     }
 }
