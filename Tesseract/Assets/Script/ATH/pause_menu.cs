@@ -1,5 +1,6 @@
 ﻿using Script.GlobalsScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class pause_menu : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class pause_menu : MonoBehaviour
         Time.timeScale = 1;
         StaticData.pause = false;
         
-        ChangeScene.ChangeToScene("Login");
+        SceneManager.LoadScene("Login");
     }
 
     public void ActiveComp()

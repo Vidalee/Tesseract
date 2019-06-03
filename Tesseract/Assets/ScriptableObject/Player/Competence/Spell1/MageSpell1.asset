@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbe3f1d32984b240a903a1857ef6204, type: 3}
   m_Name: MageSpell1
   m_EditorClassIdentifier: 
-  name: 
+  name: 'Fireballs'' Circle '
   cooldown: 2
   manaCost: 40
   id: CirProj
@@ -25,4 +25,3 @@ MonoBehaviour:
   addNumber: 4
   AddLive: 10
   icon1: {fileID: 21300050, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
-  icon2: {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}

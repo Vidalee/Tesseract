@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UDPRoomManager : MonoBehaviour, UDPEventListener
@@ -71,7 +72,7 @@ public class UDPRoomManager : MonoBehaviour, UDPEventListener
         if (start)
         {
             start = false;
-            ChangeScene.ChangeToScene("MultiGame");
+            SceneManager.LoadScene("MultiGame");
         }
         if (refresh)
         {

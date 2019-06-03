@@ -2,6 +2,7 @@
 using Script.GlobalsScript;
 using Script.GlobalsScript.Struct;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Live : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Live : MonoBehaviour
     {
         if (_playerData.Hp <= 0)
         {
-            ChangeScene.ChangeToScene("Game_Over");
+            SceneManager.LoadScene("Game_Over");
         }
     }
 

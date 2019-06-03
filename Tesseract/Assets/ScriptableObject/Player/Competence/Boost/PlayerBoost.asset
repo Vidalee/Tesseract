@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6870ac5ba6dfe46823961b9cfac219, type: 3}
   m_Name: PlayerBoost
   m_EditorClassIdentifier: 
-  name: 
+  name: Mega Boost
   cooldown: 30
   manaCost: 0
   id: Boost
@@ -26,8 +26,3 @@ MonoBehaviour:
   - {fileID: 21300044, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
   - {fileID: 21300060, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
   - {fileID: 21300052, guid: 264c89f85d6bc4a5884ec76a8fc0fef5, type: 3}
-  icon2:
-  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
-  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
-  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}
-  - {fileID: 21300000, guid: 0ba262e96b69fa54ea0992e3057eb500, type: 3}

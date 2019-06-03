@@ -44,20 +44,20 @@ public class MiniCompAth : MonoBehaviour
         
         Image[] im = GetComponentsInChildren<Image>();
 
-        im[0].sprite = (c[0] as DashComp).Icon1[index];
+        im[4].sprite = (c[0] as DashComp).Icon1[index];
 
         if (index == 3)
         {
-            im[1].sprite = (c[1] as CacComp).Icon1;
+            im[5].sprite = (c[1] as CacComp).Icon1;
         }
         else
         {
-            im[1].sprite = (c[1] as ProjComp).Icon1;
+            im[5].sprite = (c[1] as ProjComp).Icon1;
         }
         
-        im[2].sprite = (c[2] as ProjComp).Icon1;
+        im[6].sprite = (c[2] as ProjComp).Icon1;
         
-        im[3].sprite = (c[3] as BoostComp).Icon1[index];
+        im[7].sprite = (c[3] as BoostComp).Icon1[index];
     }
     
     IEnumerator SetAth(int id, int time)
